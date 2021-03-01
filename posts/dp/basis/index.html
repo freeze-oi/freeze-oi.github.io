@@ -1,0 +1,1645 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../../img/floppy.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+      
+        <title>基础 DP - Freeze's Blogs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.cb6bc1d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,700%7CFira+Code&display=fallback">
+        <style>body,input{font-family:"Nunito",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Fira Code",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fibonacci" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../.." title="Freeze&#39;s Blogs" class="md-header-nav__button md-logo" aria-label="Freeze's Blogs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5.5L18.5 3H17v6a1 1 0 01-1 1H8a1 1 0 01-1-1V3H5m7 1v5h3V4h-3m-5 8h10a1 1 0 011 1v6H6v-6a1 1 0 011-1z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Freeze's Blogs
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              基础 DP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../.." class="md-tabs__link">
+      主页
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../basis/dfs/" class="md-tabs__link">
+        基础算法
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ds/stack/" class="md-tabs__link">
+        数据结构
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        动态规划
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../string/hash/" class="md-tabs__link">
+        字符串
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../graph/" class="md-tabs__link">
+        图论
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../math/prime/" class="md-tabs__link">
+        数论
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../tools/" class="md-tabs__link">
+      工具
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Freeze&#39;s Blogs" class="md-nav__button md-logo" aria-label="Freeze's Blogs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5.5L18.5 3H17v6a1 1 0 01-1 1H8a1 1 0 01-1-1V3H5m7 1v5h3V4h-3m-5 8h10a1 1 0 011 1v6H6v-6a1 1 0 011-1z"/></svg>
+
+    </a>
+    Freeze's Blogs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        主页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+      
+      <label class="md-nav__link" for="nav-2">
+        基础算法
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="基础算法" data-md-level="1">
+        <label class="md-nav__title" for="nav-2">
+          <span class="md-nav__icon md-icon"></span>
+          基础算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basis/dfs/" class="md-nav__link">
+        深度优先搜索
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basis/bfs/" class="md-nav__link">
+        广度优先搜索
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basis/sort/" class="md-nav__link">
+        排序算法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basis/compress/" class="md-nav__link">
+        状态压缩
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+      
+      <label class="md-nav__link" for="nav-3">
+        数据结构
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="数据结构" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          数据结构
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds/stack/" class="md-nav__link">
+        栈
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds/queue/" class="md-nav__link">
+        队列
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds/link/" class="md-nav__link">
+        链表
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds/high-pre/" class="md-nav__link">
+        高精度
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds/STL/" class="md-nav__link">
+        STL
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      
+      <label class="md-nav__link" for="nav-4">
+        动态规划
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="动态规划" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          动态规划
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memo-search/" class="md-nav__link">
+        记忆化搜索
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          基础 DP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        基础 DP
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fibonacci" class="md-nav__link">
+    斐波那契（Fibonacci）数列
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hanoi" class="md-nav__link">
+    汉诺塔（Hanoi）问题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    骨牌问题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    平面分割
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lis" class="md-nav__link">
+    最长上升子序列（LIS）
+  </a>
+  
+    <nav class="md-nav" aria-label="最长上升子序列（LIS）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    单调栈优化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lcs" class="md-nav__link">
+    最长公共子序列（LCS）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    数字金字塔
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    数字矩阵
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    前缀和
+  </a>
+  
+    <nav class="md-nav" aria-label="前缀和">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    一维前缀和
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    二维前缀和
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../knapsack/" class="md-nav__link">
+        背包 DP
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+      
+      <label class="md-nav__link" for="nav-5">
+        字符串
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="字符串" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          字符串
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../string/hash/" class="md-nav__link">
+        哈希算法
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+      
+      <label class="md-nav__link" for="nav-6">
+        图论
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="图论" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+          <span class="md-nav__icon md-icon"></span>
+          图论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/" class="md-nav__link">
+        简介
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/store/" class="md-nav__link">
+        图的存储
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/DSU/" class="md-nav__link">
+        并查集
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/path/" class="md-nav__link">
+        最短路径
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/MST/" class="md-nav__link">
+        最小生成树
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../graph/topsort/" class="md-nav__link">
+        拓扑排序
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" >
+      
+      <label class="md-nav__link" for="nav-7">
+        数论
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="数论" data-md-level="1">
+        <label class="md-nav__title" for="nav-7">
+          <span class="md-nav__icon md-icon"></span>
+          数论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/prime/" class="md-nav__link">
+        质数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/factor/" class="md-nav__link">
+        因数
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../math/model/" class="md-nav__link">
+        同余
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/" class="md-nav__link">
+        工具
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fibonacci" class="md-nav__link">
+    斐波那契（Fibonacci）数列
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hanoi" class="md-nav__link">
+    汉诺塔（Hanoi）问题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    骨牌问题
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    平面分割
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lis" class="md-nav__link">
+    最长上升子序列（LIS）
+  </a>
+  
+    <nav class="md-nav" aria-label="最长上升子序列（LIS）">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    单调栈优化
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lcs" class="md-nav__link">
+    最长公共子序列（LCS）
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    数字金字塔
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    数字矩阵
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    前缀和
+  </a>
+  
+    <nav class="md-nav" aria-label="前缀和">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    一维前缀和
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    二维前缀和
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  <h1>基础 DP</h1>
+                
+                <h2 id="fibonacci">斐波那契（Fibonacci）数列<a class="headerlink" href="#fibonacci" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>斐波那契数列是形如 <span class="arithmatex">\(1,1,2,3,5,8,\cdots\)</span> 的数列。求数列的第 <span class="arithmatex">\(n\)</span> 项。</p>
+</div>
+<p><span class="arithmatex">\(f[n]\)</span> 表示数列的第 <span class="arithmatex">\(n\)</span> 项，则：</p>
+<div class="arithmatex">\[
+f[n]=f[n-1]+f[n-2],n≥3
+\]</div>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">初始条件</td>
+<td align="center"><span class="arithmatex">\(f[1]=f[2]=1\)</span></td>
+<td align="center">计算顺序</td>
+<td align="center"><span class="arithmatex">\(f[3\rightarrow n]\)</span></td>
+</tr>
+<tr>
+<td align="center">最终答案</td>
+<td align="center"><span class="arithmatex">\(f[n]\)</span></td>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(n)\)</span></td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">f</span><span class="p">[];</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">];</span>
+</code></pre></div>
+</details>
+<h2 id="hanoi">汉诺塔（Hanoi）问题<a class="headerlink" href="#hanoi" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>汉诺塔由 <span class="arithmatex">\(n\)</span> 个大小不同的圆盘和三根杆子 <span class="arithmatex">\(a,b,c\)</span> 组成。初始时，<span class="arithmatex">\(n\)</span>个圆盘从大到小依次套在 <span class="arithmatex">\(a\)</span> 杆上，如下图所示：</p>
+<p><center><img src=/img/dp/basis_hanoi.png style="zoom:80%"></img></center></p>
+<p>现在要求把 <span class="arithmatex">\(a\)</span> 杆上的 <span class="arithmatex">\(n\)</span> 个圆盘按以下规则移到 <span class="arithmatex">\(c\)</span> 杆上：</p>
+<ol>
+<li>
+<p>一次只能移动一个圆盘；</p>
+</li>
+<li>
+<p>圆盘只能存放在柱子上；</p>
+</li>
+<li>
+<p>在移动的过程中，大圆盘不能压在小圆盘上。</p>
+</li>
+</ol>
+<p>求圆盘的最少移动次数。</p>
+</div>
+<p><span class="arithmatex">\(f[n]\)</span> 表示将 <span class="arithmatex">\(n\)</span> 个圆盘从一个杆整体移到另一个杆，需要的最少移动次数。</p>
+<p>将 <span class="arithmatex">\(n\)</span> 个盘子从小到大编号为 <span class="arithmatex">\(1\sim n\)</span>，为了将它们从 <span class="arithmatex">\(a\)</span> 杆移到 <span class="arithmatex">\(c\)</span> 杆，需要做以下 <span class="arithmatex">\(3\)</span> 步：</p>
+<ol>
+<li>
+<p>将 <span class="arithmatex">\(a\)</span> 杆上的 <span class="arithmatex">\(1\sim n-1\)</span> 号盘移至 <span class="arithmatex">\(b\)</span> 杆，总移动次数为 <span class="arithmatex">\(f[n-1]\)</span>；</p>
+</li>
+<li>
+<p>将 <span class="arithmatex">\(a\)</span> 杆上的 <span class="arithmatex">\(n\)</span> 号盘移至 <span class="arithmatex">\(c\)</span> 杆，总移动次数为 <span class="arithmatex">\(1\)</span>；</p>
+</li>
+<li>
+<p>将 <span class="arithmatex">\(b\)</span> 杆上的 <span class="arithmatex">\(1\sim n-1\)</span> 号盘移至 <span class="arithmatex">\(c\)</span> 杆，总移动次数为 <span class="arithmatex">\(f[n-1]\)</span>。</p>
+</li>
+</ol>
+<div class="arithmatex">\[
+f[n]=2·f[n-1]+1,n≥1
+\]</div>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">初始条件</td>
+<td align="center"><span class="arithmatex">\(f[1]=1\)</span></td>
+<td align="center">计算顺序</td>
+<td align="center"><span class="arithmatex">\(f[2\rightarrow n]\)</span></td>
+</tr>
+<tr>
+<td align="center">最终答案</td>
+<td align="center"><span class="arithmatex">\(f[n]\)</span></td>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(n)\)</span></td>
+</tr>
+</tbody>
+</table>
+<details class="node" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">f</span><span class="p">[];</span> <span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+</details>
+<h2 id="_1">骨牌问题<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>用若干个 <span class="arithmatex">\(1×2\)</span> 的骨牌铺满 <span class="arithmatex">\(2×n\)</span> 的方格。如图为 <span class="arithmatex">\(n=3\)</span> 时的所有铺法：</p>
+<p><center><img src=/img/dp/basis_bone_1.png style="zoom:80%"></img></center></p>
+<p>求任意的 <span class="arithmatex">\(n\)</span> 对应的铺法总数。</p>
+</div>
+<p><span class="arithmatex">\(f[n]\)</span> 表示 <span class="arithmatex">\(2×n\)</span> 方格的铺法总数。对于不好分析的问题，先用枚举法找出规律：</p>
+<ul>
+<li>
+<p>若 <span class="arithmatex">\(n=1\)</span>，显然只有一种铺法，<span class="arithmatex">\(f[1]=1\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(n=2\)</span>，可以全部竖放，或全部横放，<span class="arithmatex">\(f[2]=2\)</span></p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(n=3\)</span>，可以全部竖放，或一个竖放，两个横放，共 <span class="arithmatex">\(3\)</span> 种放法。<span class="arithmatex">\(f[3]=3\)</span>。</p>
+</li>
+</ul>
+<p><center><img src=/img/dp/basis_bone_2.png style="zoom:80%"></img></center></p>
+<p>总结出一般规律：</p>
+<ul>
+<li>
+<p>若第一个骨牌竖放在左边，则剩下 <span class="arithmatex">\(2×(n-1)\)</span> 个方格未铺满，铺法数为 <span class="arithmatex">\(f[n-1]\)</span>；</p>
+</li>
+<li>
+<p>若第一个骨牌横放在左上角，为了不留空，第二个骨牌必须横放在它的正下方。剩下 <span class="arithmatex">\(2×(n-2)\)</span> 个方格未铺满，铺法数为 <span class="arithmatex">\(f[n-2]\)</span>。</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+f[n]=f[n-1]+f[n-2],n≥3
+\]</div>
+<p>状态转移方程恰好和<a href="#fibonacci">斐波那契数列</a>相同。</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>不同问题的状态转移方程可能相同。</p>
+</div>
+<h2 id="_2">平面分割<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>平面上有 <span class="arithmatex">\(n\)</span> 条封闭曲线，每 <span class="arithmatex">\(2\)</span> 条封闭曲线恰好相交于 <span class="arithmatex">\(2\)</span> 点，且每 <span class="arithmatex">\(3\)</span> 条封闭曲线不交于同一点。求 <span class="arithmatex">\(n\)</span> 条封闭曲线把平面分割成的区域个数。</p>
+<p><center><img src="\img\dp\basis_split.png" style="zoom:80%"></img></center></p>
+</div>
+<p><span class="arithmatex">\(a[n]\)</span> 表示 <span class="arithmatex">\(n\)</span> 条封闭曲线分割成的区域个数，由上图可得：<span class="arithmatex">\(a[2]-a[1]=2\)</span>，<span class="arithmatex">\(a[3]-a[2]=4\)</span>，<span class="arithmatex">\(a[4]-a[3]=6\)</span>，总结出规律: <span class="arithmatex">\(a[n]-a[n-1]=2(n-1)\)</span>。变形得：</p>
+<div class="arithmatex">\[
+a[n]=a[n-1]+2(n-1),n≥1
+\]</div>
+<p>正确性证明：</p>
+<p>新增一条曲线时：</p>
+<p><span class="arithmatex">\(∵\)</span> 每与平面上一条已有曲线相交一次，就会增加一个区域，</p>
+<p><span class="arithmatex">\(∴\)</span> 新增区域数 <span class="arithmatex">\(=\)</span> 新增交点数。</p>
+<p><span class="arithmatex">\(∵\)</span> 新增的第 <span class="arithmatex">\(n\)</span> 条曲线与已有的 <span class="arithmatex">\(n-1\)</span> 条曲线各有 <span class="arithmatex">\(2\)</span> 个交点，</p>
+<p><span class="arithmatex">\(∴\)</span> 新增区域数 <span class="arithmatex">\(=\)</span> 新增交点数 <span class="arithmatex">\(=2·(n-1)\)</span>。</p>
+<p><span class="arithmatex">\(∴\)</span> 现有区域个数 <span class="arithmatex">\(a[n]=\)</span> 原有区域个数 <span class="arithmatex">\(+\)</span> 新增区域个数 <span class="arithmatex">\(=a[n-1]+2(n-1)\)</span>。</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">初始条件</td>
+<td align="center"><span class="arithmatex">\(a[1]=2\)</span></td>
+<td align="center">计算顺序</td>
+<td align="center"><span class="arithmatex">\(a[2\rightarrow n]\)</span></td>
+</tr>
+<tr>
+<td align="center">最终答案</td>
+<td align="center"><span class="arithmatex">\(a[n]\)</span></td>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(n)\)</span></td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">a</span><span class="p">[];</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+</code></pre></div>
+</details>
+<h2 id="lis">最长上升子序列（LIS）<a class="headerlink" href="#lis" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>数列 <span class="arithmatex">\(A\)</span> 的长度为 <span class="arithmatex">\(n\)</span>，求 <span class="arithmatex">\(A\)</span> 的最长上升子序列<sup id="fnref:LIS"><a class="footnote-ref" href="#fn:LIS">1</a></sup>的长度。</p>
+<p>样例：<span class="arithmatex">\(A=\{2,3,6,4,5,1\}\)</span>，最长上升子序列 <span class="arithmatex">\(=\{2,3,4,5\}\)</span>，长度为 <span class="arithmatex">\(4\)</span>。</p>
+</div>
+<p><span class="arithmatex">\(f[i]\)</span> 表示以 <span class="arithmatex">\(A_i\)</span> 结尾的最长上升子序列的长度。求 <span class="arithmatex">\(f[i]\)</span> 时，子问题 <span class="arithmatex">\(f[1\sim i-1]\)</span> 已求得最优解，故枚举 <span class="arithmatex">\(j=1\cdots i-1\)</span> 并做以下判断：</p>
+<ul>
+<li>
+<p>若 <span class="arithmatex">\(A_j&lt;A_i\)</span>，则 <span class="arithmatex">\(A_i\)</span> 可以接在 <span class="arithmatex">\(A_j\)</span> 之后，最长上升子序列长度为 <span class="arithmatex">\(f[j]+1\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(A_j≥A_i\)</span>，则 <span class="arithmatex">\(A_i\)</span> 不可以接在 <span class="arithmatex">\(A_j\)</span> 之后，跳过。</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+f[i]=\max(f[j])+1,j&lt;i,A_j&lt;A_i
+\]</div>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">初始条件</td>
+<td align="center"><span class="arithmatex">\(f[1\cdots n]=1\)</span></td>
+<td align="center">计算顺序</td>
+<td align="center"><span class="arithmatex">\(f[1\rightarrow n]\)</span></td>
+</tr>
+<tr>
+<td align="center">最终答案</td>
+<td align="center"><span class="arithmatex">\(f[1\cdots n]\)</span> 的最大值</td>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(n^2)\)</span></td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h3 id="_3">单调栈优化<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
+<p>运用<a href="/posts/ds/stack/#_6">单调栈</a>优化时间复杂度。依次扫描数组元素：</p>
+<ul>
+<li>
+<p>若当前元素大于栈顶元素，则将其插入单调栈；</p>
+</li>
+<li>
+<p>否则二分查找栈中第一个比当前元素大的元素，并替换。</p>
+</li>
+</ul>
+<p>由于 <a href="/posts/ds/STL/#stack"><code>STL Stack</code></a> 不支持访问栈内元素，故使用 <a href="/posts/ds/STL/#vector"><code>STL Vector</code></a> 模拟栈。最终的答案是栈的长度。时间复杂度为 <span class="arithmatex">\(O(n\log{n})\)</span>。</p>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">s</span><span class="p">.</span><span class="n">back</span><span class="p">())</span> <span class="n">s</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="k">else</span> <span class="n">s</span><span class="p">[</span><span class="o">*</span><span class="n">lower_bound</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">s</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="lcs">最长公共子序列（LCS）<a class="headerlink" href="#lcs" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>给定长度分别为 <span class="arithmatex">\(n\)</span> 和 <span class="arithmatex">\(m\)</span> 的两个字符串 <span class="arithmatex">\(A\)</span>、<span class="arithmatex">\(B\)</span>，求 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 的最长公共子序列<sup id="fnref:LCS"><a class="footnote-ref" href="#fn:LCS">2</a></sup>长度。</p>
+<p>样例：<span class="arithmatex">\(A=\)</span> <code>freeze</code>，<span class="arithmatex">\(B=\)</span> <code>refeze</code>，最长公共子序列 <span class="arithmatex">\(=\)</span> <code>reeze</code>，长度为 <span class="arithmatex">\(5\)</span>。</p>
+</div>
+<p><span class="arithmatex">\(f[i,j]\)</span> 表示 <span class="arithmatex">\(A[1\cdots i]\)</span> 和 <span class="arithmatex">\(B[1\cdots j]\)</span> 的最长公共子序列长度。</p>
+<ul>
+<li>
+<p>若 <span class="arithmatex">\(A_i≠B_j\)</span>，则继承最优子状态。子问题 <span class="arithmatex">\(f[i-1,j]\)</span> 和 <span class="arithmatex">\(f[i,j-1]\)</span> 已求得最优解，故令 <span class="arithmatex">\(f[i,j]=\max(f[i-1,j],f[i,j-1])\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(A_i=B_j\)</span>，则 <span class="arithmatex">\(A_i\)</span>（或 <span class="arithmatex">\(B_j\)</span>）可以接在 <span class="arithmatex">\(A[1\cdots i-1]\)</span> 和 <span class="arithmatex">\(B[1\cdots j-1]\)</span> 的最长公共子序列之后，生成的新序列长度为 <span class="arithmatex">\(f[i-1,j-1]+1\)</span>。</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+f[i,j]=\max\left\{\begin{aligned}
+&amp;f[i-1,j]\\
+&amp;f[i,j-1]\\
+&amp;f[i-1,j-1]+1,A_i=B_j
+\end{aligned}\right.
+\]</div>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">初始条件</td>
+<td align="center">无</td>
+<td align="center">计算顺序</td>
+<td align="center"><span class="arithmatex">\(f[i=1\rightarrow n,j=1\rightarrow m]\)</span></td>
+</tr>
+<tr>
+<td align="center">最终答案</td>
+<td align="center"><span class="arithmatex">\(f[n,m]\)</span></td>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(nm)\)</span></td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>
+            <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="_4">数字金字塔<a class="headerlink" href="#_4" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>三角矩阵 <span class="arithmatex">\(A\)</span> 有 <span class="arithmatex">\(n\)</span> 行，第 <span class="arithmatex">\(i\)</span> 行有 <span class="arithmatex">\(i\)</span> 列。从第一行第一列出发，每次可以移动到下一行相邻的两个数字。到达底部时，经过的数字之和最大为多少？</p>
+<p>样例：</p>
+<p><img src=/img/dp/basis_1.png style="zoom:80%"></img></p>
+<p>最优路径为 <span class="arithmatex">\(13→8→26→15\)</span>，最大值为 <span class="arithmatex">\(62\)</span>。</p>
+</div>
+<p><span class="arithmatex">\((i,j)\)</span> 表示矩阵第 <span class="arithmatex">\(i\)</span> 行第 <span class="arithmatex">\(j\)</span> 列的数字。<span class="arithmatex">\(f[i,j]\)</span> 表示走到 <span class="arithmatex">\((i,j)\)</span> 时，经过的数字之和的最大值。</p>
+<p>采用逆推法：要想走到 <span class="arithmatex">\((i,j)\)</span>，上一步只能在 <span class="arithmatex">\((i-1,j-1)\)</span> 或 <span class="arithmatex">\((i-1,j)\)</span>：</p>
+<ul>
+<li>
+<p>若上一步在 <span class="arithmatex">\((i-1,j-1)\)</span>，则 <span class="arithmatex">\(f[i,j]=(i,j)+f[i-1,j-1]\)</span>；</p>
+</li>
+<li>
+<p>若上一步 <span class="arithmatex">\((i-1,j)\)</span>，则 <span class="arithmatex">\(f[i,j]=(i,j)+f[i-1,j]\)</span>。</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+f[i,j]=(i,j)+\max\left\{\begin{aligned}
+&amp;f[i-1,j-1]\\
+&amp;f[i-1,j]
+\end{aligned}\right.
+\]</div>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">初始条件</td>
+<td align="center"><span class="arithmatex">\(f[1,1]=(1,1)\)</span></td>
+<td align="center">计算顺序</td>
+<td align="center"><span class="arithmatex">\(f[i=2\rightarrow n,j=1\rightarrow i]\)</span></td>
+</tr>
+<tr>
+<td align="center">最终答案</td>
+<td align="center"><span class="arithmatex">\(f[n,1\cdots n]\)</span> 的最大值</td>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(n^2)\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>当 <span class="arithmatex">\(j=1\)</span> 或 <span class="arithmatex">\(j=i\)</span> 时，<span class="arithmatex">\(f[i-1,j-1]\)</span> 和 <span class="arithmatex">\(f[i-1,j]\)</span> 会越界。读入数据前要将 <span class="arithmatex">\(f\)</span> 数组初始化为 <span class="arithmatex">\(-∞\)</span>，从而使越界的元素在取最大值时被自动淘汰。</p>
+</div>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="n">memset</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">f</span><span class="p">);</span>
+<span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">cnt</span><span class="p">;</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span> <span class="o">+</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
+    <span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">f</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</code></pre></div>
+</details>
+<h2 id="_5">数字矩阵<a class="headerlink" href="#_5" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>数字矩阵 <span class="arithmatex">\(A\)</span> 有 <span class="arithmatex">\(n\)</span> 行 <span class="arithmatex">\(m\)</span> 列。从左上角的元素出发，每次只能向下或向左走。到达右下角时，经过的数字之和最大为多少？</p>
+<p>样例：</p>
+<p><img src=/img/dp/basis_2.png style="zoom:80%"></img></p>
+<p>最优路径为 <span class="arithmatex">\(17→1→20→12→9→2\)</span>，最大值为 <span class="arithmatex">\(61\)</span>。</p>
+</div>
+<p><span class="arithmatex">\((i,j)\)</span> 表示矩阵第 <span class="arithmatex">\(i\)</span> 行第 <span class="arithmatex">\(j\)</span> 列的数字。<span class="arithmatex">\(f[i,j]\)</span> 表示走到 <span class="arithmatex">\((i,j)\)</span> 时，经过的数字之和的最大值。</p>
+<p>由于只能向左走或向下走，要走到 <span class="arithmatex">\((i,j)\)</span>，上一步只能在 <span class="arithmatex">\((i-1,j)\)</span> 或 <span class="arithmatex">\((i,j-1)\)</span>：</p>
+<div class="arithmatex">\[
+f[i,j]=(i,j)+\max\left\{\begin{aligned}
+&amp;f[i-1,j]\\
+&amp;f[i,j-1]
+\end{aligned}\right.
+\]</div>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">初始条件</td>
+<td align="center"><span class="arithmatex">\(f[1,1]=(1,1)\)</span></td>
+<td align="center">计算顺序</td>
+<td align="center"><span class="arithmatex">\(f[i=1\rightarrow n,j=1\rightarrow m]\)</span></td>
+</tr>
+<tr>
+<td align="center">最终答案</td>
+<td align="center"><span class="arithmatex">\(f[n,m]\)</span></td>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(nm)\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>当 <span class="arithmatex">\(i=1\)</span> 或 <span class="arithmatex">\(j=1\)</span> 时，<span class="arithmatex">\(f[i-1,j]\)</span> 和 <span class="arithmatex">\(f[i,j-1]\)</span> 会越界。同样需要将 <span class="arithmatex">\(f\)</span> 数组初始化为 <span class="arithmatex">\(-∞\)</span>。</p>
+</div>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="n">memset</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mh">0x80</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">f</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">cnt</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span> <span class="n">j</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">;</span>
+        <span class="k">else</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span> <span class="o">+</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="mi">-1</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+    <span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="_6">前缀和<a class="headerlink" href="#_6" title="Permanent link">$</a></h2>
+<p>前缀和是一种重要的预处理技巧，能降低查询的时间复杂度。</p>
+<h3 id="_7">一维前缀和<a class="headerlink" href="#_7" title="Permanent link">$</a></h3>
+<p>数列 <span class="arithmatex">\(A\)</span> 有 <span class="arithmatex">\(n\)</span> 项，<span class="arithmatex">\(f[i]\)</span> 表示数列 <span class="arithmatex">\(A\)</span> 前 <span class="arithmatex">\(i\)</span> 项的和，则有：</p>
+<div class="arithmatex">\[
+f[i]=f[i-1]+A_i
+\]</div>
+<p>初始条件：<span class="arithmatex">\(f[0]=0\)</span>。预处理出 <span class="arithmatex">\(f[1]\cdots f[n]\)</span> 的时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
+<p>前缀和可以实现快速查询数列的子段和。<span class="arithmatex">\(g[i,j]\)</span> 表示从 <span class="arithmatex">\(A_i\)</span> 到 <span class="arithmatex">\(A_j\)</span> 的所有元素和，则有：</p>
+<p><center><img src=/img/dp/basis_3.png style="zoom:80%"></img></center></p>
+<div class="arithmatex">\[
+g[i,j]=f[j]-f[i-1]
+\]</div>
+<p>单次查询的时间复杂度为 <span class="arithmatex">\(O(1)\)</span>。</p>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">g</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">l</span> <span class="o">&gt;&gt;</span> <span class="n">r</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">g</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h3 id="_8">二维前缀和<a class="headerlink" href="#_8" title="Permanent link">$</a></h3>
+<p>矩阵 <span class="arithmatex">\(A\)</span> 有 <span class="arithmatex">\(n\)</span> 行 <span class="arithmatex">\(m\)</span> 列。<span class="arithmatex">\(f[i,j]\)</span> 表示以 <span class="arithmatex">\((1,1)\)</span> 为左上角，以 <span class="arithmatex">\((i,j)\)</span> 为右下角的子矩阵的元素和，则：</p>
+<p><center><img src=/img/dp/basis_4.png style="zoom:80%"></img></center></p>
+<div class="arithmatex">\[
+f[i,j]=f[i-1,j]+f[i,j-1]-f[i-1,j-1]+(i,j)
+\]</div>
+<p>初始条件：<span class="arithmatex">\(f[0,0]=0\)</span>。预处理出 <span class="arithmatex">\(f[1,1]\cdots f[n,m]\)</span> 的时间复杂度为 <span class="arithmatex">\(O(nm)\)</span>。</p>
+<p>二维前缀和可以实现快速查询子矩阵元素和。<span class="arithmatex">\(g[x_1,y_1,x_2,y_2]\)</span> 表示以 <span class="arithmatex">\((x_1,y_1)\)</span> 为左上角，以 <span class="arithmatex">\((x_2,y_2)\)</span> 为右下角的子矩阵的元素和，则：</p>
+<p><center><img src=/img/dp/basis_5.png style="zoom:80%"></img></center></p>
+<div class="arithmatex">\[
+g[x_1,y_1,x_2,y_2]=f[x_2,y_2]-f[x_1-1,y_2]-f[x_2,y_1-1]+f[x_1-1,y_1-1]
+\]</div>
+<p>单次查询的时间复杂度为 <span class="arithmatex">\(O(1)\)</span>。</p>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">g</span><span class="p">(</span><span class="kt">int</span> <span class="n">x1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x2</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">x2</span><span class="p">][</span><span class="n">y2</span><span class="p">]</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">y2</span><span class="p">]</span> <span class="o">-</span> <span class="n">f</span><span class="p">[</span><span class="n">x2</span><span class="p">][</span><span class="n">y1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">x1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">y1</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x1</span> <span class="o">&gt;&gt;</span> <span class="n">y1</span> <span class="o">&gt;&gt;</span> <span class="n">x2</span> <span class="o">&gt;&gt;</span> <span class="n">y2</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">g</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<style>
+th, td {
+    font-size: 14px;
+}
+</style>
+
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:LIS">
+<p><span class="arithmatex">\(A\)</span> 的任意子序列 <span class="arithmatex">\(B\)</span> 可以表示为 <span class="arithmatex">\(B=\{A_{k_1} \ ,A_{k_2} \ ,\cdots,A_{k_p} \ \}\)</span> ，其中 <span class="arithmatex">\(k_1&lt;k_2&lt;\cdots&lt;k_p\)</span> 。</p>
+<p>若 <span class="arithmatex">\(A\)</span> 的子序列 <span class="arithmatex">\(B\)</span> 满足 <span class="arithmatex">\(A_{k_1}&lt;A_{k_2}&lt;\cdots&lt;A_{k_p}\)</span> ，则 <span class="arithmatex">\(B\)</span> 是 <span class="arithmatex">\(A\)</span> 的上升子序列。&#160;<a class="footnote-backref" href="#fnref:LIS" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:LCS">
+<p>若一个序列既是 <span class="arithmatex">\(A\)</span> 的子序列，又是 <span class="arithmatex">\(B\)</span> 的子序列，则它是 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 的公共子序列。&#160;<a class="footnote-backref" href="#fnref:LCS" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        <!--
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../memo-search/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一页
+                </span>
+                记忆化搜索
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../knapsack/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一页
+                </span>
+                背包 DP
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer> -->
+      
+    </div>
+    
+      <script src="../../../assets/javascripts/vendor.18f0862e.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: ['navigation.tabs', 'navigation.tabs.sticky'],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.9c0e82ba.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../../js/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
+
+<style>
+  pre, label, code {
+    font-size: 16px;
+  }
+  span.md-ellipsis {
+    font-weight: bold;
+  }
+  li, p, summary, ul {
+    font-size: 16px;
+  }
+</style>
