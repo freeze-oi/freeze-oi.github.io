@@ -215,6 +215,22 @@
   
   
     <li class="md-tabs__item">
+      <a href="../../string/hash/" class="md-tabs__link">
+        字符串
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
       <a href="../../graph/" class="md-tabs__link">
         图论
       </a>
@@ -410,41 +426,34 @@
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    桶排序
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
     快速排序
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     归并排序
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     猴子排序
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     各类排序算法的比较
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     求逆序对
   </a>
   
@@ -660,11 +669,54 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
       
       <label class="md-nav__link" for="nav-5">
+        字符串
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="字符串" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+          <span class="md-nav__icon md-icon"></span>
+          字符串
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../string/hash/" class="md-nav__link">
+        哈希算法
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+      
+      <label class="md-nav__link" for="nav-6">
         图论
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="图论" data-md-level="1">
-        <label class="md-nav__title" for="nav-5">
+        <label class="md-nav__title" for="nav-6">
           <span class="md-nav__icon md-icon"></span>
           图论
         </label>
@@ -760,14 +812,14 @@
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" >
       
-      <label class="md-nav__link" for="nav-6">
+      <label class="md-nav__link" for="nav-7">
         数论
         <span class="md-nav__icon md-icon"></span>
       </label>
       <nav class="md-nav" aria-label="数论" data-md-level="1">
-        <label class="md-nav__title" for="nav-6">
+        <label class="md-nav__title" for="nav-7">
           <span class="md-nav__icon md-icon"></span>
           数论
         </label>
@@ -883,41 +935,34 @@
       
         <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    桶排序
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
     快速排序
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_6" class="md-nav__link">
     归并排序
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#_7" class="md-nav__link">
     猴子排序
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#_8" class="md-nav__link">
     各类排序算法的比较
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     求逆序对
   </a>
   
@@ -942,7 +987,7 @@
 <p>每次找出第 <span class="arithmatex">\(i\)</span> 小的元素，与数组第 <span class="arithmatex">\(i\)</span> 个位置上的元素交换。时间复杂度为 <span class="arithmatex">\(O(n^2)\)</span>。</p>
 <div class="admonition tip">
 <p class="admonition-title">Graph</p>
-<p><center><img src=/img/basis/sort/选择排序.gif></img></center></p>
+<p><center><img src=/img/basis/sort/选择排序.gif style="zoom:80%"></img></center></p>
 </div>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span>
@@ -954,7 +999,7 @@
 <p>在程序的执行过程中，较大的元素像气泡般「浮」到数列的末尾，故叫做冒泡排序。</p>
 <div class="admonition tip">
 <p class="admonition-title">Graph</p>
-<p><center><img src=/img/basis/sort/冒泡排序.gif></img></center></p>
+<p><center><img src=/img/basis/sort/冒泡排序.gif style="zoom:80%"></img></center></p>
 </div>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">bool</span> <span class="n">solve</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
@@ -968,7 +1013,7 @@
 <p>将数列分为「已排序」和「未排序」两部分，每次从「未排序」区域中选择一个元素插入「已排序」区域的正确位置。时间复杂度为 <span class="arithmatex">\(O(n^2)\)</span>。</p>
 <div class="admonition tip">
 <p class="admonition-title">Graph</p>
-<p><center><img src=/img/basis/sort/插入排序.gif></img></center></p>
+<p><center><img src=/img/basis/sort/插入排序.gif style="zoom:80%"></img></center></p>
 </div>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
@@ -985,7 +1030,7 @@
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Graph</p>
-<p><center><img src=/img/basis/sort/计数排序.gif></img></center></p>
+<p><center><img src=/img/basis/sort/计数排序.gif style="zoom:80%"></img></center></p>
 </div>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">minn</span> <span class="o">=</span> <span class="mf">1e9</span><span class="p">,</span> <span class="n">maxn</span> <span class="o">=</span> <span class="mf">-1e9</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -997,36 +1042,13 @@
     <span class="k">while</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">a</span><span class="p">[</span><span class="n">p</span> <span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
 </code></pre></div>
 </details>
-<h2 id="_5">桶排序<a class="headerlink" href="#_5" title="Permanent link">$</a></h2>
-<p>1.扫描数列 <span class="arithmatex">\(A\)</span>，找出最大值 <span class="arithmatex">\(maxn\)</span> 和最小值 <span class="arithmatex">\(minn\)</span>；</p>
-<p>2.把区间 <span class="arithmatex">\([minn, maxn]\)</span> 均匀划分成 <span class="arithmatex">\(k\)</span> 个区间，每个区间看作是一个「桶」，将元素放入对应的「桶」中；</p>
-<p>3.对每个「桶」内的元素进行排序，可以使用任意一种排序算法；</p>
-<p>4.将各个桶中的元素合并成有序序列。</p>
-<p>平均时间复杂度为 <span class="arithmatex">\(O(n+n^2/k+k)\)</span>，最坏时间复杂度为 <span class="arithmatex">\(O(n^2)\)</span>。</p>
-<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">bucket</span><span class="p">[];</span>
-<span class="kt">int</span> <span class="n">minn</span> <span class="o">=</span> <span class="mf">1e9</span><span class="p">,</span> <span class="n">maxn</span> <span class="o">=</span> <span class="mf">-1e9</span><span class="p">;</span>
-<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">minn</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">minn</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="n">maxn</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">maxn</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-<span class="p">}</span>
-<span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="n">maxn</span> <span class="o">-</span> <span class="n">minn</span><span class="p">)</span> <span class="o">/</span> <span class="n">k</span><span class="p">;</span>
-<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
-    <span class="n">bucket</span><span class="p">[</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">size</span><span class="p">].</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-<span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">k</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">sort</span><span class="p">(</span><span class="n">bucket</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span> <span class="c1">// 使用任意排序算法对 bucket[i] 进行排序</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">bucket</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span>
-        <span class="n">a</span><span class="p">[</span><span class="n">p</span> <span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">bucket</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
-<span class="p">}</span>
-</code></pre></div>
-</details>
-<h2 id="_6">快速排序<a class="headerlink" href="#_6" title="Permanent link">$</a></h2>
+<h2 id="_5">快速排序<a class="headerlink" href="#_5" title="Permanent link">$</a></h2>
 <p>1.设定基准数（通常是数列最中间的数），将小于基准数的数放在它左边，大于它的放在右边；</p>
 <p>2.递归排序基准数的左右两部分。</p>
 <p>平均时间复杂度为 <span class="arithmatex">\(o(n\log{n})\)</span>，最坏时间复杂度为 <span class="arithmatex">\(O(n^2)\)</span>。</p>
 <div class="admonition tip">
 <p class="admonition-title">Graph</p>
-<p><center><img src=/img/basis/sort/快速排序.gif></img></center></p>
+<p><center><img src=/img/basis/sort/快速排序.gif style="zoom:80%"></img></center></p>
 </div>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">qsort</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&gt;=</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
@@ -1040,14 +1062,14 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h2 id="_7">归并排序<a class="headerlink" href="#_7" title="Permanent link">$</a></h2>
+<h2 id="_6">归并排序<a class="headerlink" href="#_6" title="Permanent link">$</a></h2>
 <p>1.将数列分为左右两个子序列；</p>
 <p>2.递归排序左右子序列；</p>
 <p>3.合并两个子序列。</p>
 <p>时间复杂度为 <span class="arithmatex">\(O(n\log{n})\)</span>。</p>
 <div class="admonition tip">
 <p class="admonition-title">Graph</p>
-<p><center><img src=/img/basis/sort/归并排序.gif></img></center></p>
+<p><center><img src=/img/basis/sort/归并排序.gif style="zoom:80%"></img></center></p>
 </div>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">msort</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
@@ -1062,11 +1084,11 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h2 id="_8">猴子排序<a class="headerlink" href="#_8" title="Permanent link">$</a></h2>
+<h2 id="_7">猴子排序<a class="headerlink" href="#_7" title="Permanent link">$</a></h2>
 <p>从数列中随机选取两个元素交换位置，重复直到所有元素升序排列。平均时间复杂度为 <span class="arithmatex">\(O(n·n!)\)</span>，最优时间复杂度为 <span class="arithmatex">\(O(n)\)</span>，最坏时间复杂度为 <span class="arithmatex">\(O(∞)\)</span>。</p>
 <div class="admonition tip">
 <p class="admonition-title">Graph</p>
-<p><center><img src=/img/basis/sort/猴子排序.gif></img></center></p>
+<p><center><img src=/img/basis/sort/猴子排序.gif style="zoom:80%"></img></center></p>
 </div>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="n">srand</span><span class="p">(</span><span class="kt">unsigned</span><span class="p">(</span><span class="n">time</span><span class="p">(</span><span class="mi">0</span><span class="p">)));</span> <span class="c1">// 伪随机种子</span>
 <span class="k">while</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>
@@ -1078,7 +1100,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h2 id="_9">各类排序算法的比较<a class="headerlink" href="#_9" title="Permanent link">$</a></h2>
+<h2 id="_8">各类排序算法的比较<a class="headerlink" href="#_8" title="Permanent link">$</a></h2>
 <table>
 <thead>
 <tr>
@@ -1119,13 +1141,6 @@
 <td align="center">稳定</td>
 </tr>
 <tr>
-<td align="center">桶排序</td>
-<td align="center"><span class="arithmatex">\(O(n+n^2/k+k)\)</span></td>
-<td align="center"><span class="arithmatex">\(O(n)\)</span></td>
-<td align="center"><span class="arithmatex">\(O(n^2)\)</span></td>
-<td align="center">稳定/不稳定</td>
-</tr>
-<tr>
 <td align="center">快速排序</td>
 <td align="center"><span class="arithmatex">\(O(n\log{n})\)</span></td>
 <td align="center"><span class="arithmatex">\(O(n\log{n})\)</span></td>
@@ -1148,7 +1163,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="_10">求逆序对<a class="headerlink" href="#_10" title="Permanent link">$</a></h2>
+<h2 id="_9">求逆序对<a class="headerlink" href="#_9" title="Permanent link">$</a></h2>
 <div class="admonition faq">
 <p class="admonition-title">Faq</p>
 <p>该模块正在开发中 <span class="arithmatex">\(\cdots \ \cdots\)</span></p>
