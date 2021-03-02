@@ -511,6 +511,19 @@
     Vector
   </a>
   
+    <nav class="md-nav" aria-label="Vector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vectorbool" class="md-nav__link">
+    Vector.bool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -518,25 +531,31 @@
     Queue
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Queue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#priority-queue" class="md-nav__link">
     Priority Queue
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deque" class="md-nav__link">
+    Deque
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#stack" class="md-nav__link">
     Stack
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deque" class="md-nav__link">
-    Deque
   </a>
   
 </li>
@@ -903,6 +922,19 @@
     Vector
   </a>
   
+    <nav class="md-nav" aria-label="Vector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vectorbool" class="md-nav__link">
+    Vector.bool
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -910,25 +942,31 @@
     Queue
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Queue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#priority-queue" class="md-nav__link">
     Priority Queue
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deque" class="md-nav__link">
+    Deque
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#stack" class="md-nav__link">
     Stack
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#deque" class="md-nav__link">
-    Deque
   </a>
   
 </li>
@@ -956,7 +994,7 @@
                   <h1>STL</h1>
                 
                 <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p><code>STL</code>（<code>Standard Template Library</code> 标准模板库）是 <code>C++</code> 开发者提供的通用模板类和函数库。</p>
+<p><code>STL</code>（<code>Standard Template Library</code> 标准模板库）是 <code>C++</code> 开发者提供的模板类库和函数库。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>使用 <code>STL</code> 需要默认使用命名空间。</p>
@@ -1108,6 +1146,67 @@
 5 5 10 0 1 2 3 4
 </code></pre></div>
 </details>
+<h3 id="vectorbool">Vector.bool<a class="headerlink" href="#vectorbool" title="Permanent link">$</a></h3>
+<p><code>Vector.bool</code> 支持 <code>Vector</code> 的所有功能，并且额外支持取反。</p>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Define</strong></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>#include &lt;vector&gt;</code></td>
+<td align="left">头文件</td>
+</tr>
+<tr>
+<td align="left"><code>vector&lt;bool&gt; vec</code></td>
+<td align="left">创建 <code>bool</code> 类型的容器</td>
+</tr>
+<tr>
+<td align="left"><strong>Modifiers</strong></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>flip()</code></td>
+<td align="left">全部取反</td>
+</tr>
+<tr>
+<td align="left"><code>flip(pos)</code></td>
+<td align="left">将第 <code>pos</code> 位取反</td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;bits/stdc++.h&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="kt">int</span> <span class="n">arr</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">};</span> 
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+
+    <span class="n">vec</span><span class="p">.</span><span class="n">flip</span><span class="p">();</span> <span class="c1">// 全部取反 </span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">vec</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="sc">&#39; &#39;</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>output:
+1 0 1 1 0 1
+</code></pre></div>
+</details>
 <h2 id="queue">Queue<a class="headerlink" href="#queue" title="Permanent link">$</a></h2>
 <p><code>Queue</code> 队列，一种先进先出的数据结构。</p>
 <ul>
@@ -1204,7 +1303,7 @@
 1
 </code></pre></div>
 </details>
-<h2 id="priority-queue">Priority Queue<a class="headerlink" href="#priority-queue" title="Permanent link">$</a></h2>
+<h3 id="priority-queue">Priority Queue<a class="headerlink" href="#priority-queue" title="Permanent link">$</a></h3>
 <p><code>Priority Queue</code> 优先队列。</p>
 <ul>
 <li>
@@ -1306,92 +1405,7 @@
 5
 </code></pre></div>
 </details>
-<h2 id="stack">Stack<a class="headerlink" href="#stack" title="Permanent link">$</a></h2>
-<p><code>Stack</code> 栈，一种先进后出的数据结构。</p>
-<ul>
-<li>支持从末端插入、提取或访问元素。</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="left"></th>
-<th align="left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><strong>Define</strong></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><code>#include &lt;stack&gt;</code></td>
-<td align="left">头文件</td>
-</tr>
-<tr>
-<td align="left"><code>stack&lt;type&gt; stk</code></td>
-<td align="left">创建 <code>type</code> 类的栈</td>
-</tr>
-<tr>
-<td align="left"><strong>Capacity</strong></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><code>size()</code></td>
-<td align="left">返回元素个数</td>
-</tr>
-<tr>
-<td align="left"><code>empty()</code></td>
-<td align="left">返回是否为空</td>
-</tr>
-<tr>
-<td align="left"><strong>Access</strong></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><code>top()</code></td>
-<td align="left">返回末端元素</td>
-</tr>
-<tr>
-<td align="left"><strong>Modifiers</strong></td>
-<td align="left"></td>
-</tr>
-<tr>
-<td align="left"><code>push(x)</code></td>
-<td align="left">在末端插入 <code>val</code></td>
-</tr>
-<tr>
-<td align="left"><code>pop()</code></td>
-<td align="left">删除末端元素</td>
-</tr>
-</tbody>
-</table>
-<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp"></span>
-
-<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-
-    <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">stk</span><span class="p">;</span> <span class="c1">// 创建 int 类的栈</span>
-
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
-        <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="c1">// 在末端插入 i</span>
-    <span class="cm">/* 当前 stk = {0, 1, 2, 3, 4} */</span>
-
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 输出末端元素</span>
-
-    <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span> <span class="c1">// 删除末端元素</span>
-    <span class="cm">/* 当前 stk = {0, 1, 2, 3} */</span>
-
-    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="c1">// 输出末端元素</span>
-<span class="p">}</span>
-</code></pre></div>
-<div class="highlight"><pre><span></span><code>output:
-4
-3
-</code></pre></div>
-</details>
-<h2 id="deque">Deque<a class="headerlink" href="#deque" title="Permanent link">$</a></h2>
+<h3 id="deque">Deque<a class="headerlink" href="#deque" title="Permanent link">$</a></h3>
 <p><code>Deque</code> 双向队列相当于 <code>Vector</code> 的升级版。</p>
 <ul>
 <li>
@@ -1537,6 +1551,91 @@
 <div class="highlight"><pre><span></span><code>output:
 7
 5 10 0 1 2 3 4
+</code></pre></div>
+</details>
+<h2 id="stack">Stack<a class="headerlink" href="#stack" title="Permanent link">$</a></h2>
+<p><code>Stack</code> 栈，一种先进后出的数据结构。</p>
+<ul>
+<li>支持从末端插入、提取或访问元素。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Define</strong></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>#include &lt;stack&gt;</code></td>
+<td align="left">头文件</td>
+</tr>
+<tr>
+<td align="left"><code>stack&lt;type&gt; stk</code></td>
+<td align="left">创建 <code>type</code> 类的栈</td>
+</tr>
+<tr>
+<td align="left"><strong>Capacity</strong></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>size()</code></td>
+<td align="left">返回元素个数</td>
+</tr>
+<tr>
+<td align="left"><code>empty()</code></td>
+<td align="left">返回是否为空</td>
+</tr>
+<tr>
+<td align="left"><strong>Access</strong></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>top()</code></td>
+<td align="left">返回末端元素</td>
+</tr>
+<tr>
+<td align="left"><strong>Modifiers</strong></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><code>push(x)</code></td>
+<td align="left">在末端插入 <code>val</code></td>
+</tr>
+<tr>
+<td align="left"><code>pop()</code></td>
+<td align="left">删除末端元素</td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stack&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">stk</span><span class="p">;</span> <span class="c1">// 创建 int 类的栈</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="c1">// 在末端插入 i</span>
+    <span class="cm">/* 当前 stk = {0, 1, 2, 3, 4} */</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// 输出末端元素</span>
+
+    <span class="n">stk</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span> <span class="c1">// 删除末端元素</span>
+    <span class="cm">/* 当前 stk = {0, 1, 2, 3} */</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">stk</span><span class="p">.</span><span class="n">top</span><span class="p">();</span> <span class="c1">// 输出末端元素</span>
+<span class="p">}</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>output:
+4
+3
 </code></pre></div>
 </details>
 <h2 id="bitset">Bitset<a class="headerlink" href="#bitset" title="Permanent link">$</a></h2>
