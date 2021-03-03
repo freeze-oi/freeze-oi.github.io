@@ -1472,13 +1472,36 @@ f[i,j]=(i,j)+\max\left\{\begin{aligned}
 </code></pre></div>
 </details>
 <h2 id="_6">前缀和<a class="headerlink" href="#_6" title="Permanent link">$</a></h2>
-<p>前缀和是一种重要的预处理技巧，能降低查询的时间复杂度。</p>
+<p>前缀和是一种重要的预处理技巧，能大幅降低查询「区间元素和」的时间复杂度。</p>
 <h3 id="_7">一维前缀和<a class="headerlink" href="#_7" title="Permanent link">$</a></h3>
-<p>数列 <span class="arithmatex">\(A\)</span> 有 <span class="arithmatex">\(n\)</span> 项，<span class="arithmatex">\(f[i]\)</span> 表示数列 <span class="arithmatex">\(A\)</span> 前 <span class="arithmatex">\(i\)</span> 项的和，则有：</p>
+<p>数列 <span class="arithmatex">\(A\)</span> 有 <span class="arithmatex">\(n\)</span> 个元素，<span class="arithmatex">\(f[i]\)</span> 表示 <span class="arithmatex">\(A_1+A_2+\cdots+A_i\)</span>，则有：</p>
 <div class="arithmatex">\[
 f[i]=f[i-1]+A_i
 \]</div>
-<p>初始条件：<span class="arithmatex">\(f[0]=0\)</span>。预处理出 <span class="arithmatex">\(f[1]\cdots f[n]\)</span> 的时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">初始条件</td>
+<td align="center"><span class="arithmatex">\(f[0]=0\)</span></td>
+<td align="center">计算顺序</td>
+<td align="center"><span class="arithmatex">\(f[1]\rightarrow f[n]\)</span></td>
+</tr>
+<tr>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(n)\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
 <p>前缀和可以实现快速查询数列的子段和。<span class="arithmatex">\(g[i,j]\)</span> 表示从 <span class="arithmatex">\(A_i\)</span> 到 <span class="arithmatex">\(A_j\)</span> 的所有元素和，则有：</p>
 <p><center><img src=/img/dp/basis_3.png style="zoom:80%"></img></center></p>
 <div class="arithmatex">\[
@@ -1504,8 +1527,31 @@ g[i,j]=f[j]-f[i-1]
 <div class="arithmatex">\[
 f[i,j]=f[i-1,j]+f[i,j-1]-f[i-1,j-1]+(i,j)
 \]</div>
-<p>初始条件：<span class="arithmatex">\(f[0,0]=0\)</span>。预处理出 <span class="arithmatex">\(f[1,1]\cdots f[n,m]\)</span> 的时间复杂度为 <span class="arithmatex">\(O(nm)\)</span>。</p>
-<p>二维前缀和可以实现快速查询子矩阵元素和。<span class="arithmatex">\(g[x_1,y_1,x_2,y_2]\)</span> 表示以 <span class="arithmatex">\((x_1,y_1)\)</span> 为左上角，以 <span class="arithmatex">\((x_2,y_2)\)</span> 为右下角的子矩阵的元素和，则：</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">初始条件</td>
+<td align="center"><span class="arithmatex">\(f[0,0]=0\)</span></td>
+<td align="center">计算顺序</td>
+<td align="center"><span class="arithmatex">\(f[1\rightarrow n,1\rightarrow m]\)</span></td>
+</tr>
+<tr>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(nm)\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>二维前缀和可以实现快速查询子矩阵元素和。<span class="arithmatex">\(g[x_1,y_1,x_2,y_2]\)</span> 表示以 <span class="arithmatex">\((x_1,y_1)\)</span> 为左上角，<span class="arithmatex">\((x_2,y_2)\)</span> 为右下角的子矩阵元素和，则：</p>
 <p><center><img src=/img/dp/basis_5.png style="zoom:80%"></img></center></p>
 <div class="arithmatex">\[
 g[x_1,y_1,x_2,y_2]=f[x_2,y_2]-f[x_1-1,y_2]-f[x_2,y_1-1]+f[x_1-1,y_1-1]

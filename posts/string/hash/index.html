@@ -872,9 +872,7 @@
                   <h1>哈希算法</h1>
                 
                 <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p>如何快速比较两个字符串是否相同？</p>
-<p><strong>哈希算法</strong>能够计算出任意字符串的<strong>哈希值</strong>，且每个字符串都对应不同的哈希值。若两个字符串的哈希值相等，则它们相同。</p>
-<p>假定字符串 <span class="arithmatex">\(str\)</span> 中只出现 <span class="arithmatex">\(a\sim z\)</span> 字符，将每一位的字符 <span class="arithmatex">\(a\sim z\)</span> 转换为数字 <span class="arithmatex">\(1\sim 26\)</span>，则 <span class="arithmatex">\(str\)</span> 可以看作一个 <span class="arithmatex">\(27\)</span> 进制数。此数可以作为 <span class="arithmatex">\(str\)</span> 的哈希值。如下图，字符串 <code>fantasy</code> 的哈希值为 <span class="arithmatex">\(6×27^6+1×27^5+14×27^4+20×27^3+1×27^2+19×27+25\)</span>。</p>
+<p><strong>哈希算法</strong>实质上就是把不同的字符串转成不同的整数。</p>
 <p><center><img src=/img/string/hash_1.png style="zoom:80%"></img></center></p>
 <p>当字符串长度过长时，计算出的哈希值容易超出 <code>long long</code> 类型的范围。使用 <code>unsigned long long</code> 类型，储存范围为 <span class="arithmatex">\([0,2^{64}-1]\)</span>，且数据溢出时会自动对 <span class="arithmatex">\(2^{64}\)</span> 取模。取模后的哈希值在匹配时仍保留有较高的正确性。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ull</span><span class="p">;</span>
