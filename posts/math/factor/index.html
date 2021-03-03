@@ -1055,7 +1055,7 @@ n=p_1^{c_1}×p_2^{c_2}×...×p_m^{c_m} \ , \ p_i∈\mathbb{P},c_i\in Z^{+}
 <p>设 <span class="arithmatex">\(a &gt; b\)</span>，<span class="arithmatex">\(gcd(a, b)=x\)</span>，则 <span class="arithmatex">\(a|x, b|x,(a\%b)|x\)</span>，</p>
 <p><span class="arithmatex">\(∴gcd(a,b)=gcd(b,a\%b)(a &gt; b &gt; a\%b)\)</span>。</p>
 <p>于是「求 <span class="arithmatex">\(gcd(a,b)\)</span>」的问题被转化为「求 <span class="arithmatex">\(gcd(b,a\%b)\)</span>」这一范围更小的问题。当 <span class="arithmatex">\(b=0\)</span> 时，<span class="arithmatex">\(a\)</span> 即为最大公因数。</p>
-<p>时间复杂度为<span class="arithmatex">\(O(log{(a+b)})\)</span>。</p>
+<p>时间复杂度为 <span class="arithmatex">\(O(log{(a+b)})\)</span>。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">b</span><span class="p">)</span> <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
     <span class="k">return</span> <span class="n">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">%</span> <span class="n">b</span><span class="p">);</span>
