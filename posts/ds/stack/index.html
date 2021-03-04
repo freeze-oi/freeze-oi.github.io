@@ -980,11 +980,10 @@
                   <h1>栈</h1>
                 
                 <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p>栈是一种「先进后出」的数据结构。类似于在桶中堆积物品，取物品时只能从顶端开始取，最先进桶的被压在最底下，最后被取出来。</p>
+<p>栈是一种「先进后出」的数据结构。类似于在桶中堆积物品，取物品时只能从顶端开始取，最先进桶的被压在最底下，最后被取出来。基本操作见 <a href="/posts/ds/STL/#stack"><code>STL Stack</code></a>。</p>
 <p><center><img src=/img/ds/stack.png style="zoom:80%"></img></center></p>
-<p>栈的基本操作见 <a href="/posts/ds/STL/#stack"><code>STL Stack</code></a>。</p>
 <h2 id="_2">表达式计算<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
-<p>算术表达式分为三类：</p>
+<p>算术表达式分为三类（<span class="arithmatex">\(op\)</span> 为运算符，<span class="arithmatex">\(A,B\)</span> 为数字或表达式）：</p>
 <ol>
 <li>
 <p><strong>中缀表达式</strong>：全国人民都在用的表达式，如「<span class="arithmatex">\(5×(3+2)\)</span>」；</p>
@@ -993,8 +992,7 @@
 <p><strong>前缀表达式</strong>：形如「<span class="arithmatex">\(op \ \textcolor{red}{A} \ \textcolor{blue}{B}\)</span>」，如「<span class="arithmatex">\(× \ \textcolor{red}{5} \ \textcolor{blue}{+} \ \textcolor{blue}{3} \ \textcolor{blue}{2}\)</span>」；</p>
 </li>
 <li>
-<p><strong>后缀表达式</strong>：形如「<span class="arithmatex">\(\textcolor{red}{A} \ \textcolor{blue}{B} \ op\)</span>」，如「<span class="arithmatex">\(\textcolor{red}{3} \ \textcolor{red}{2} \ \textcolor{red}{+} \ \textcolor{blue}{5} \ ×\)</span>」。</p>
-<p>（<span class="arithmatex">\(op\)</span> 为运算符，<span class="arithmatex">\(A,B\)</span> 为数字或表达式）</p>
+<p><strong>后缀表达式</strong>：形如「<span class="arithmatex">\(\textcolor{red}{A} \ \textcolor{blue}{B} \ op\)</span>」，如「<span class="arithmatex">\(\textcolor{red}{3} \ \textcolor{red}{2} \ \textcolor{red}{+} \ \textcolor{blue}{5} \ ×\)</span>」。    </p>
 </li>
 </ol>
 <p>计算前/后缀表达式时，先递归求出 <span class="arithmatex">\(A,B\)</span> 的值，二者再做 <span class="arithmatex">\(op\)</span> 运算。计算方案是唯一确定的，且不需要使用括号。计算后缀表达式的算法最容易设计。</p>
@@ -1053,7 +1051,7 @@
 </code></pre></div>
 </details>
 <h3 id="_4">中缀表达式<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
-<p>将中缀表达式转换成<a href="#_4">后缀表达式</a>后再计算。</p>
+<p>将中缀表达式转换成<a href="#_3">后缀表达式</a>后再计算。</p>
 <ol>
 <li>
 <p>定义一个栈，用于存放运算符；</p>

@@ -507,11 +507,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    容器
+  <a href="#containers" class="md-nav__link">
+    容器（Containers）
   </a>
   
-    <nav class="md-nav" aria-label="容器">
+    <nav class="md-nav" aria-label="容器（Containers）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -938,11 +938,11 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    容器
+  <a href="#containers" class="md-nav__link">
+    容器（Containers）
   </a>
   
-    <nav class="md-nav" aria-label="容器">
+    <nav class="md-nav" aria-label="容器（Containers）">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -1046,7 +1046,7 @@
 <tbody>
 <tr>
 <td align="left">容器 <strong>Containers</strong></td>
-<td align="left">容器用于储存某一类对象。<code>STL</code> 提供了各种类型的容器，如 <code>vector</code>，<code>deque</code> 等。</td>
+<td align="left">容器用于储存某一类对象。</td>
 </tr>
 <tr>
 <td align="left">算法 <strong>Algorithms</strong></td>
@@ -1058,45 +1058,45 @@
 </tr>
 </tbody>
 </table>
+<p>对于每个组件，按照以下分组展开介绍：</p>
+<table>
+<thead>
+<tr>
+<th align="left">分组</th>
+<th align="left">内容</th>
+<th align="left">分组</th>
+<th align="left">内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><strong>Define</strong></td>
+<td align="left">头文件、定义、初始化</td>
+<td align="left"><strong>Capacity</strong></td>
+<td align="left">内存操作</td>
+</tr>
+<tr>
+<td align="left"><strong>Access</strong></td>
+<td align="left">元素访问</td>
+<td align="left"><strong>Modifiers</strong></td>
+<td align="left">元素增改</td>
+</tr>
+<tr>
+<td align="left"><strong>Operations</strong></td>
+<td align="left">优化功能</td>
+<td align="left"><strong>Code</strong></td>
+<td align="left">示例程序</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>使用 <code>STL</code> 需要默认使用命名空间。</p>
 <div class="highlight"><pre><span></span><code><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
 </code></pre></div>
 </div>
-<h2 id="_2">容器<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
+<h2 id="containers">容器（Containers）<a class="headerlink" href="#containers" title="Permanent link">$</a></h2>
 <p>容器的功能较数组更加强大，且 <code>STL</code> 提供了容器的配套算法。</p>
-<p>对各容器的介绍分为以下五个分组：</p>
-<table>
-<thead>
-<tr>
-<th align="left">分组</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left"><strong>Define</strong></td>
-<td align="left">容器的头文件、定义方式、初始化</td>
-</tr>
-<tr>
-<td align="left"><strong>Capacity</strong></td>
-<td align="left">容器内存及其属性的操作</td>
-</tr>
-<tr>
-<td align="left"><strong>Access</strong></td>
-<td align="left">元素的访问</td>
-</tr>
-<tr>
-<td align="left"><strong>Modifiers</strong></td>
-<td align="left">元素的增改</td>
-</tr>
-<tr>
-<td align="left"><strong>Operations</strong></td>
-<td align="left">附加功能</td>
-</tr>
-</tbody>
-</table>
 <h3 id="vector">Vector<a class="headerlink" href="#vector" title="Permanent link">$</a></h3>
 <p><code>Vector</code> 容器相当于可调整大小的数组。</p>
 <ul>
@@ -1128,15 +1128,15 @@
 </tr>
 <tr>
 <td align="left"><code>vector&lt;type&gt; vec</code></td>
-<td align="left">创建 <code>type</code> 类的容器</td>
+<td align="left">创建空容器 <code>vec</code>，用于存放 <code>type</code> 类元素</td>
 </tr>
 <tr>
 <td align="left"><code>vector&lt;type&gt; vec(n)</code></td>
-<td align="left">创建 <code>type</code> 类的容器，并添加 <code>n</code> 个元素</td>
+<td align="left">创建包含 <code>n</code> 个 <code>type</code> 类元素的容器 <code>vec</code>（元素的默认值为 <code>0</code>）</td>
 </tr>
 <tr>
 <td align="left"><code>vector&lt;type&gt; vec(n, val)</code></td>
-<td align="left">创建 <code>type</code> 类的容器，并添加 <code>n</code> 个 <code>val</code></td>
+<td align="left">创建包含 <code>n</code> 个 <code>type</code> 类元素的容器 <code>vec</code>，元素值为 <code>val</code></td>
 </tr>
 <tr>
 <td align="left"><strong>Capacity</strong></td>
@@ -1243,7 +1243,7 @@
 </code></pre></div>
 </details>
 <h4 id="vectorbool">Vector&lt;Bool&gt;<a class="headerlink" href="#vectorbool" title="Permanent link">$</a></h4>
-<p><code>Vector&lt;Bool&gt;</code> 在 <code>Vector</code> 的基础上，额外支持取反操作。</p>
+<p><code>Vector&lt;Bool&gt;</code> 在 <code>Vector</code> 的基础上，额外支持取反操作（<code>true</code> 变 <code>false</code>，<code>false</code> 变 <code>true</code>）。</p>
 <table>
 <thead>
 <tr>
@@ -1262,7 +1262,7 @@
 </tr>
 <tr>
 <td align="left"><code>vector&lt;bool&gt; vec</code></td>
-<td align="left">创建 <code>bool</code> 类型的容器</td>
+<td align="left">创建存储 <code>bool</code> 类元素的空容器</td>
 </tr>
 <tr>
 <td align="left"><strong>Modifiers</strong></td>
@@ -1304,7 +1304,7 @@
 </code></pre></div>
 </details>
 <h3 id="queue">Queue<a class="headerlink" href="#queue" title="Permanent link">$</a></h3>
-<p><code>Queue</code> 队列，一种「先进先出」的数据结构。</p>
+<p><code>Queue</code> 队列。</p>
 <ul>
 <li>
 <p>支持从末端插入元素，从前端提取元素；</p>
@@ -1331,7 +1331,7 @@
 </tr>
 <tr>
 <td align="left"><code>queue&lt;type&gt; que</code></td>
-<td align="left">创建 <code>type</code> 类的队列</td>
+<td align="left">创建存储 <code>type</code> 类元素的空队列</td>
 </tr>
 <tr>
 <td align="left"><strong>Capacity</strong></td>
@@ -1427,7 +1427,7 @@
 </tr>
 <tr>
 <td align="left"><code>priority_queue&lt;type&gt; que</code></td>
-<td align="left">创建 <code>type</code> 类的优先队列（默认前端最大）</td>
+<td align="left">创建存储 <code>type</code> 类元素的优先队列（默认前端最大）</td>
 </tr>
 <tr>
 <td align="left"><strong>Capacity</strong></td>
@@ -1502,7 +1502,7 @@
 </code></pre></div>
 </details>
 <h4 id="deque">Deque<a class="headerlink" href="#deque" title="Permanent link">$</a></h4>
-<p><code>Deque</code> 双向队列是 <code>Queue</code> 的优化版本。</p>
+<p><code>Deque</code> 双向队列相当于 <code>Vector</code> 的升级版。</p>
 <ul>
 <li>
 <p>支持从两端插入、删除元素；</p>
@@ -1532,7 +1532,7 @@
 </tr>
 <tr>
 <td align="left"><code>deque&lt;type&gt; q</code></td>
-<td align="left">创建 <code>type</code> 类的双向队列</td>
+<td align="left">创建存储 <code>type</code> 类元素的双向队列</td>
 </tr>
 <tr>
 <td align="left"><strong>Capacity</strong></td>
@@ -1650,7 +1650,7 @@
 </code></pre></div>
 </details>
 <h3 id="stack">Stack<a class="headerlink" href="#stack" title="Permanent link">$</a></h3>
-<p><code>Stack</code> 栈，一种先进后出的数据结构。</p>
+<p><code>Stack</code> 栈。</p>
 <ul>
 <li>支持从末端插入、提取或访问元素。</li>
 </ul>
@@ -1672,7 +1672,7 @@
 </tr>
 <tr>
 <td align="left"><code>stack&lt;type&gt; stk</code></td>
-<td align="left">创建 <code>type</code> 类的栈</td>
+<td align="left">创建存储 <code>type</code> 类元素的空栈</td>
 </tr>
 <tr>
 <td align="left"><strong>Capacity</strong></td>
@@ -1715,7 +1715,7 @@
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
 
-    <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">stk</span><span class="p">;</span> <span class="c1">// 创建 int 类的栈</span>
+    <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">stk</span><span class="p">;</span> <span class="c1">// 创建 int 类的空栈</span>
 
     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
         <span class="n">stk</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="c1">// 在末端插入 i</span>
