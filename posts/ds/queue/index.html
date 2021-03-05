@@ -259,11 +259,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../tools/" class="md-tabs__link">
-      工具
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        工具
+      </a>
+    </li>
+  
 
       
     </ul>
@@ -873,10 +877,62 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" >
+      
+      <label class="md-nav__link" for="nav-8">
+        工具
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="工具" data-md-level="1">
+        <label class="md-nav__title" for="nav-8">
+          <span class="md-nav__icon md-icon"></span>
+          工具
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../tools/" class="md-nav__link">
-        工具
+        下载
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/Dev-Cpp/" class="md-nav__link">
+        Dev-C++
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/Python/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -994,7 +1050,7 @@
 <p>重复弹出队头，直到队头 <span class="arithmatex">\(≥p\)</span>；</p>
 </li>
 <li>
-<p>重复弹出队尾，直到 <span class="arithmatex">\(A[\)</span>队尾<span class="arithmatex">\(]&lt;A[i]\)</span>（若是单调递减队列，则重复直到 <span class="arithmatex">\(A[\)</span>队尾<span class="arithmatex">\(]&gt;A[i]\)</span>）。</p>
+<p>重复弹出队尾，直到 <span class="arithmatex">\(A[\)</span>队尾<span class="arithmatex">\(]&lt;A[i]\)</span>（若单调递减，则重复直到 <span class="arithmatex">\(A[\)</span>队尾<span class="arithmatex">\(]&gt;A[i]\)</span>）。</p>
 </li>
 <li>
 <p>将 <span class="arithmatex">\(i\)</span> 入队。</p>
@@ -1061,7 +1117,7 @@
 </code></pre></div>
 </details>
 <h4 id="_7">单调队列优化<a class="headerlink" href="#_7" title="Permanent link">$</a></h4>
-<p>使用单调递减队列优化「查找区间 <span class="arithmatex">\([i-k+1,i]\)</span> 中的最大整数」的效率。</p>
+<p>使用单调递减队列优化「查找区间 <span class="arithmatex">\([i-k+1,i]\)</span> 中的最大整数」的效率。时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">q</span><span class="p">;</span>
 
 <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
