@@ -25,7 +25,7 @@
         
           
           
-          <meta name="theme-color" content="#4051b5">
+          <meta name="theme-color" content="#ffffff">
         
       
     
@@ -52,7 +52,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
       
   
     
@@ -384,6 +384,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../basis/binary/" class="md-nav__link">
+        二分算法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../basis/compress/" class="md-nav__link">
         状态压缩
       </a>
@@ -663,6 +675,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    差分
+  </a>
   
 </li>
       
@@ -1087,6 +1106,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    差分
+  </a>
   
 </li>
       
@@ -1528,7 +1554,7 @@ f[i,j]=(i,j)+\max\left\{\begin{aligned}
 </code></pre></div>
 </details>
 <h2 id="_6">前缀和<a class="headerlink" href="#_6" title="Permanent link">$</a></h2>
-<p>前缀和是一种重要的预处理技巧，能大幅降低查询「区间元素和」的时间复杂度。</p>
+<p>前缀和是一种重要的预处理技巧，能大幅降低「查询区间元素和」的时间复杂度。</p>
 <h3 id="_7">一维前缀和<a class="headerlink" href="#_7" title="Permanent link">$</a></h3>
 <p>数列 <span class="arithmatex">\(A\)</span> 有 <span class="arithmatex">\(n\)</span> 个元素，<span class="arithmatex">\(f[i]\)</span> 表示 <span class="arithmatex">\(A_1+A_2+\cdots+A_i\)</span>，则有：</p>
 <div class="arithmatex">\[
@@ -1569,7 +1595,6 @@ g[i,j]=f[j]-f[i-1]
 <span class="p">}</span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
         <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
     <span class="k">while</span><span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">l</span> <span class="o">&gt;&gt;</span> <span class="n">r</span><span class="p">)</span>
@@ -1624,6 +1649,62 @@ g[x_1,y_1,x_2,y_2]=f[x_2,y_2]-f[x_1-1,y_2]-f[x_2,y_1-1]+f[x_1-1,y_1-1]
             <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
     <span class="k">while</span><span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">x1</span> <span class="o">&gt;&gt;</span> <span class="n">y1</span> <span class="o">&gt;&gt;</span> <span class="n">x2</span> <span class="o">&gt;&gt;</span> <span class="n">y2</span><span class="p">)</span>
         <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">g</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="_9">差分<a class="headerlink" href="#_9" title="Permanent link">$</a></h2>
+<p>差分是<a href="#_6">前缀和</a>的逆运算，能大幅降低「区间批量操作」的时间复杂度。</p>
+<p>数列 <span class="arithmatex">\(A\)</span> 有 <span class="arithmatex">\(n\)</span> 个元素。<span class="arithmatex">\(f[i]\)</span> 代表数列 <span class="arithmatex">\(A\)</span> 第 <span class="arithmatex">\(i\)</span> 项和前一项的差，即：</p>
+<div class="arithmatex">\[
+f[i]=A_i-A_{i-1}
+\]</div>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">初始条件</td>
+<td align="center"><span class="arithmatex">\(f[1]=A_1\)</span></td>
+<td align="center">计算顺序</td>
+<td align="center"><span class="arithmatex">\(f[1\rightarrow n]\)</span></td>
+</tr>
+<tr>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(n)\)</span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\(f\)</span> 被称作「差分数列」。数列 <span class="arithmatex">\(A=\{5,2,3,1,6,4\}\)</span> 的差分数列为 <span class="arithmatex">\(f=\{5,-3,1,-2,5,-2\}\)</span>。</p>
+<p>将 <span class="arithmatex">\(A[l\cdots r]\)</span> 中的每个元素都加上 <span class="arithmatex">\(x\)</span> 时，差分数列中 <span class="arithmatex">\(f[l]\)</span> 增加了 <span class="arithmatex">\(x\)</span>，<span class="arithmatex">\(f[r+1]\)</span> 减少了 <span class="arithmatex">\(x\)</span>，其余元素不变。因此每次只修改 <span class="arithmatex">\(f[l]\)</span> 和 <span class="arithmatex">\(f[r+1]\)</span> 的值，最后通过 <span class="arithmatex">\(f\)</span> 数列还原 <span class="arithmatex">\(A\)</span> 中的元素，即：</p>
+<div class="arithmatex">\[
+A_i=A_{i-1}+f[i]
+\]</div>
+<p>单次批量操作的时间复杂度为 <span class="arithmatex">\(O(1)\)</span>。</p>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span><span class="c1">// 将区间 [l, r] 批量加 x</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">+=</span> <span class="n">x</span><span class="p">,</span> <span class="n">f</span><span class="p">[</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">query</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// 还原数组元素</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">l</span> <span class="o">&gt;&gt;</span> <span class="n">r</span> <span class="o">&gt;&gt;</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">add</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">query</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>

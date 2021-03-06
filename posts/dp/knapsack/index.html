@@ -25,7 +25,7 @@
         
           
           
-          <meta name="theme-color" content="#4051b5">
+          <meta name="theme-color" content="#ffffff">
         
       
     
@@ -52,7 +52,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
       
   
     
@@ -374,6 +374,18 @@
     <li class="md-nav__item">
       <a href="../../basis/sort/" class="md-nav__link">
         排序算法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basis/binary/" class="md-nav__link">
+        二分算法
       </a>
     </li>
   
@@ -1441,8 +1453,6 @@ f[v] = \max\left\{\begin{aligned}
 </code></pre></div>
 </details>
 <h3 id="01_1">转换为 01 背包<a class="headerlink" href="#01_1" title="Permanent link">$</a></h3>
-<div class="admonition info">
-<p class="admonition-title">Info</p>
 <ul>
 <li>
 <p>在 <span class="arithmatex">\(1,2,4,\cdots,2^n\)</span> 中选出若干个相加，可以得到 <span class="arithmatex">\(0\sim 2^{n+1}-1\)</span> 中的任意整数。</p>
@@ -1451,7 +1461,6 @@ f[v] = \max\left\{\begin{aligned}
 <p>同理，<span class="arithmatex">\(1,2,4,\cdots,2^k,n-(2^{k+1}-1)\)</span> 可以组合出 <span class="arithmatex">\(0\sim n\)</span> 中的任意整数，其中 <span class="arithmatex">\(k\)</span> 是满足 <span class="arithmatex">\(n-(2^{k+1}-1)&gt;0\)</span> 的最大整数。</p>
 </li>
 </ul>
-</div>
 <p>将第 <span class="arithmatex">\(i\)</span> 种物品拆分成 <span class="arithmatex">\(\log{s_i}\)</span> 个物品，它们的体积和价值如下：</p>
 <table>
 <thead>
@@ -1623,6 +1632,14 @@ f[i,v] = \max\left\{\begin{aligned}
     <span class="p">}</span>
 </code></pre></div>
 </details>
+<p><style>
+th, td {
+    font-size: 14px;
+}
+.md-typeset table:not([class]) th {
+    min-width: 3rem;
+}
+</style></p>
                 
               
               

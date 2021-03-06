@@ -25,7 +25,7 @@
         
           
           
-          <meta name="theme-color" content="#4051b5">
+          <meta name="theme-color" content="#ffffff">
         
       
     
@@ -52,7 +52,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="">
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="white" data-md-color-accent="">
       
   
     
@@ -374,6 +374,18 @@
     <li class="md-nav__item">
       <a href="../../basis/sort/" class="md-nav__link">
         排序算法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../basis/binary/" class="md-nav__link">
+        二分算法
       </a>
     </li>
   
@@ -1119,11 +1131,18 @@
 <p>若扫到一个数 <span class="arithmatex">\(n\)</span>，直接输出 <span class="arithmatex">\(n\)</span>；</p>
 </li>
 <li>
-<p>若扫到运算符 <span class="arithmatex">\(op\)</span>，重复输出并弹出栈顶（不输出括号），直到栈顶的<strong>优先级</strong>大于 <span class="arithmatex">\(op\)</span>，再把 <span class="arithmatex">\(op\)</span> 入栈。</p>
+<p>若扫到「左括号」，把左括号入栈；</p>
+</li>
+<li>
+<p>若扫到「右括号」，重复取栈顶并输出，直到栈顶为左括号，再出栈左括号；</p>
+</li>
+<li>
+<p>若扫到其它运算符 <span class="arithmatex">\(op\)</span>，重复取栈顶并输出，直到栈顶的<strong>优先级</strong>大于 <span class="arithmatex">\(op\)</span>，再把 <span class="arithmatex">\(op\)</span> 入栈。</p>
 </li>
 </ul>
 </li>
 </ol>
+<p>运算符优先级越大，越晚出栈，因此可以将「左括号」的优先级视作最低，「右括号」的优先级视作最高。</p>
 <p>时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
 <table>
 <thead>
@@ -1139,11 +1158,11 @@
 <tbody>
 <tr>
 <td align="center">优先级</td>
-<td align="center">最低</td>
-<td align="center">低</td>
-<td align="center">中</td>
-<td align="center">高</td>
-<td align="center">最高</td>
+<td align="center">最低（0）</td>
+<td align="center">低（1）</td>
+<td align="center">中（2）</td>
+<td align="center">高（3）</td>
+<td align="center">最高（4）</td>
 </tr>
 </tbody>
 </table>
