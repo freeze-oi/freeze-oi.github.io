@@ -417,7 +417,7 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    基本原理（开发中）
+    基本原理
   </a>
   
 </li>
@@ -877,7 +877,7 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    基本原理（开发中）
+    基本原理
   </a>
   
 </li>
@@ -898,27 +898,59 @@
                   <h1>二分算法</h1>
                 
                 <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
 <p>玩过「数字炸弹」游戏吗？</p>
 <ul>
 <li>
 <p>叫你的朋友在你背后写一个 <span class="arithmatex">\([1,1000]\)</span> 中的正整数 <span class="arithmatex">\(n\)</span>；</p>
 </li>
 <li>
-<p>每轮你都会给出数字 <span class="arithmatex">\(x\)</span>，你朋友只能回答「<span class="arithmatex">\(n\)</span> 比 <span class="arithmatex">\(x\)</span> 大」、「<span class="arithmatex">\(n\)</span> 比 <span class="arithmatex">\(x\)</span> 小」或「猜中」。</p>
+<p>每轮你都会给出数字 <span class="arithmatex">\(x\)</span>，你朋友只能回答「<span class="arithmatex">\(n\)</span> 比 <span class="arithmatex">\(x\)</span> 大」「<span class="arithmatex">\(n\)</span> 比 <span class="arithmatex">\(x\)</span> 小」或「猜中」。</p>
 </li>
 </ul>
-<p>一旦猜中，数字炸弹就会爆炸。你能花费最少次数引爆炸弹吗？</p>
-<p>最初 <span class="arithmatex">\(n\)</span> 在 <span class="arithmatex">\([1,1000]\)</span> 范围中。你可以先猜 <span class="arithmatex">\(500\)</span>，若 <span class="arithmatex">\(n\)</span> 比 <span class="arithmatex">\(500\)</span> 大，则可以进一步确定 <span class="arithmatex">\(n\)</span> 的范围为 <span class="arithmatex">\((500,1000]\)</span>，否则为 <span class="arithmatex">\([0,500)\)</span>。只要每次都猜范围的中间数，每次都会将 <span class="arithmatex">\(n\)</span> 的范围缩小一半，最多 <span class="arithmatex">\(\log{n}\)</span> 次就可以确定 <span class="arithmatex">\(n\)</span> 的值。</p>
-<h2 id="_2">基本原理（开发中）<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
-<p>二分查找 <span class="arithmatex">\(A[l\cdots r]\)</span> 中第一个大于 <span class="arithmatex">\(val\)</span> 的元素。时间复杂度为 <span class="arithmatex">\(O(\log{n})\)</span>。</p>
-<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">binary</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">l</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span> <span class="o">-=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="k">while</span><span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+<p>一旦猜中，数字炸弹就会爆炸。你能花最少次数引爆炸弹吗？</p>
+</div>
+<p>最初 <span class="arithmatex">\(n∈(0,1001)\)</span>。你可以先猜 <span class="arithmatex">\(500\)</span>：</p>
+<ul>
+<li>
+<p>若 <span class="arithmatex">\(n&gt;500\)</span>，则可以进一步确定 <span class="arithmatex">\(n∈(500,1001)\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(n&lt;500\)</span>，则 <span class="arithmatex">\(n∈(0,500)\)</span>；</p>
+</li>
+<li>
+<p>否则 <span class="arithmatex">\(n=500\)</span>，猜中。</p>
+</li>
+</ul>
+<p>重复猜范围的中间数，每次都会将 <span class="arithmatex">\(n\)</span> 的范围缩小一半，最多 <span class="arithmatex">\(\log{n}\)</span> 次就可以确定 <span class="arithmatex">\(n\)</span> 的值。</p>
+<p>通过若干次折半范围实现快速查询，是<strong>二分算法</strong>的基本思想。</p>
+<h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
+<p><span class="arithmatex">\(l\)</span> 表示 <span class="arithmatex">\(n\)</span> 所在范围的左端点，<span class="arithmatex">\(r\)</span> 表示右端点，即 <span class="arithmatex">\(n∈(l,r)\)</span>。重复执行以下操作：</p>
+<ul>
+<li>
+<p>取范围的中间数 <span class="arithmatex">\(m=\lfloor(l+r)/2\rfloor\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(n&gt;m\)</span>，则可以确定 <span class="arithmatex">\(n∈(m,r)\)</span>，令 <span class="arithmatex">\(l=m\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(n&lt;m\)</span>，则可以确定 <span class="arithmatex">\(n∈(l,m)\)</span>，令 <span class="arithmatex">\(r=m\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(n=m\)</span>，跳出循环。</p>
+</li>
+</ul>
+<p>初始条件：<span class="arithmatex">\(l=0,r=1001\)</span>。时间复杂度为 <span class="arithmatex">\(O(\log{n})\)</span>。</p>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">binary</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 使用二分算法猜出 n 的最少次数</span>
+    <span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1001</span><span class="p">,</span> <span class="n">frq</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// frq 记录次数</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">frq</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">m</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">val</span><span class="p">)</span> <span class="n">l</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
-        <span class="k">else</span> <span class="n">r</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="n">m</span><span class="p">)</span> <span class="n">l</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">)</span> <span class="n">r</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">break</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">frq</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>
