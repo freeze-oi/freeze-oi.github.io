@@ -14,7 +14,7 @@
     
     
       
-        <title>哈希算法 - Freeze's Blogs</title>
+        <title>字符串哈希 - Freeze's Blogs</title>
       
     
     
@@ -94,7 +94,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              哈希算法
+              字符串哈希
             
           </span>
         </div>
@@ -165,7 +165,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../basis/dfs/" class="md-tabs__link">
+      <a href="../../basis/high-pre/" class="md-tabs__link">
         基础算法
       </a>
     </li>
@@ -344,6 +344,18 @@
   
   
     <li class="md-nav__item">
+      <a href="../../basis/high-pre/" class="md-nav__link">
+        高精度
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../basis/dfs/" class="md-nav__link">
         深度优先搜索
       </a>
@@ -471,8 +483,20 @@
   
   
     <li class="md-nav__item">
-      <a href="../../ds/high-pre/" class="md-nav__link">
-        高精度
+      <a href="../../ds/seg-tree/" class="md-nav__link">
+        线段树
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ds/tree-array/" class="md-nav__link">
+        树状数组
       </a>
     </li>
   
@@ -614,12 +638,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          哈希算法
+          字符串哈希
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        哈希算法
+        字符串哈希
       </a>
       
         
@@ -644,6 +668,42 @@
   
 </nav>
       
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hash-table/" class="md-nav__link">
+        哈希表
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KMP/" class="md-nav__link">
+        KMP算法
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trie/" class="md-nav__link">
+        Trie树
+      </a>
     </li>
   
 
@@ -881,10 +941,10 @@
               
                 
                 
-                  <h1>哈希算法</h1>
+                  <h1>字符串哈希</h1>
                 
                 <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p><strong>哈希算法</strong>实质上就是把不同的字符串转成不同的整数。</p>
+<p><strong>字符串哈希</strong>能够将不同的字符串转成不同的整数。</p>
 <p><center><img src=/img/string/hash_1.png style="zoom:80%"></img></center></p>
 <p>当字符串长度过长时，计算出的哈希值容易超出 <code>long long</code> 类型的范围。使用 <code>unsigned long long</code> 类型，储存范围为 <span class="arithmatex">\([0,2^{64}-1]\)</span>，且数据溢出时会自动对 <span class="arithmatex">\(2^{64}\)</span> 取模。取模后的哈希值在匹配时仍保留有较高的正确性。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">ull</span><span class="p">;</span>
@@ -930,13 +990,13 @@
           </a>
         
         
-          <a href="../../graph/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../hash-table/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   下一页
                 </span>
-                简介
+                哈希表
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
