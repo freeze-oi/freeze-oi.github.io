@@ -1153,7 +1153,7 @@ n=p_1^{c_1}×p_2^{c_2}×...×p_m^{c_m} \ , \ p_i∈\mathbb{P},c_i\in Z^{+}
 </div>
 <p><span class="arithmatex">\(lcm(a,b)\)</span> 表示 <span class="arithmatex">\(a\)</span> 和 <span class="arithmatex">\(b\)</span> 的最小公倍数。</p>
 <p>设 <span class="arithmatex">\(gcd(a,b)=x\)</span>，则有 <span class="arithmatex">\(a = k_1x,\)</span> <span class="arithmatex">\(b=k_2x,\)</span> <span class="arithmatex">\(k_i \in Z^{+}\)</span>，</p>
-<p><span class="arithmatex">\(∴lcm(a,b)=k_1k_2x=\frac{ab}{x}\)</span>，即 <span class="arithmatex">\(lcm(a,b)=\frac{ab}{gcd(a,b)}\)</span>。</p>
+<p><span class="arithmatex">\(\displaystyle∴lcm(a,b)=k_1k_2x=\frac{ab}{x}\)</span>，即 <span class="arithmatex">\(\displaystyle lcm(a,b)=\frac{ab}{gcd(a,b)}\)</span>。</p>
 <p>时间复杂度和 <span class="arithmatex">\(gcd\)</span> 一致。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">lcm</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span> <span class="o">/</span> <span class="n">gcd</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">);</span>
@@ -1214,8 +1214,8 @@ n=p_1^{c_1}×p_2^{c_2}×...×p_m^{c_m} \ , \ p_i∈\mathbb{P},c_i\in Z^{+}
 <p class="admonition-title">Question</p>
 <p>如何求 <span class="arithmatex">\([1,n]\)</span> 中任意数的欧拉函数？</p>
 </div>
-<p>如果 <span class="arithmatex">\(p\)</span> 是 <span class="arithmatex">\(n\)</span> 的质因子，则 <span class="arithmatex">\(p\)</span> 的所有倍数（<span class="arithmatex">\(2p,3p,\cdots,\)</span> 共 <span class="arithmatex">\(\frac{n}{p}\)</span> 个）都不与 <span class="arithmatex">\(n\)</span> 互质。则可能与 <span class="arithmatex">\(n\)</span> 互质的数只剩 <span class="arithmatex">\(n·(1-\frac{1}{p})\)</span> 个。</p>
-<p>根据乘法原理，设 <span class="arithmatex">\(n\)</span> 的质因子为 <span class="arithmatex">\(p_1,p_2,\cdots,p_m\)</span>，则：</p>
+<p>如果 <span class="arithmatex">\(p\)</span> 是 <span class="arithmatex">\(n\)</span> 的质因子，则 <span class="arithmatex">\(p\)</span> 的所有倍数（<span class="arithmatex">\(2p,3p,\cdots,\)</span> 共 <span class="arithmatex">\(\displaystyle\frac{n}{p}\)</span> 个）都不与 <span class="arithmatex">\(n\)</span> 互质。则可能与 <span class="arithmatex">\(n\)</span> 互质的数只剩 <span class="arithmatex">\(\displaystyle n·(1-\frac{1}{p})\)</span> 个。</p>
+<p>设 <span class="arithmatex">\(n\)</span> 的质因子为 <span class="arithmatex">\(p_1,p_2,\cdots,p_m\)</span>，根据乘法原理，有：</p>
 <div class="arithmatex">\[ \phi(n)=n(1-\frac{1}{p_1})(1-\frac{1}{p_2})\cdots(1-\frac{1}{p_m})=n\prod_{i=1}^{m}(1-\frac{1}{p_i}) \]</div>
 <p>时间复杂度为 <span class="arithmatex">\(O(\sqrt{n})\)</span>。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">phi</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
@@ -1310,10 +1310,9 @@ n=p_1^{c_1}×p_2^{c_2}×...×p_m^{c_m} \ , \ p_i∈\mathbb{P},c_i\in Z^{+}
 <!-- <div class="md-footer-meta md-typeset">
         <div class="md-footer-meta__inner md-grid">
             <div class="md-footer-copyright">
-                
-                Made with
-                <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-                    Material for MkDocs
+                Powered By
+                <a href="https://freeze.org.cn/" target="_blank" rel="noopener">
+                    Freeze
                 </a>
             </div>
             
