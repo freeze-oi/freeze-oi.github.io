@@ -910,6 +910,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    夹逼定理
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -996,6 +1003,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    夹逼定理
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1044,10 +1058,9 @@ f(x)\rightarrow 1,x\rightarrow 2
 <div class="arithmatex">\[
 \lim_{x\rightarrow 2}f(x)=1
 \]</div>
-<p><span class="arithmatex">\(\displaystyle\lim_{x\rightarrow a}f(x)\)</span> 读作「<span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\(x\rightarrow a\)</span> 处的（双侧）极限」。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>不论定义中 <span class="arithmatex">\(f(2)\)</span> 的值为何，<span class="arithmatex">\(\displaystyle\lim_{x\rightarrow 2}f(x)\)</span> 始终等于 <span class="arithmatex">\(1\)</span>。</p>
+<p>不论定义中 <span class="arithmatex">\(f(2)\)</span> 的值为何，本例中 <span class="arithmatex">\(\displaystyle\lim_{x\rightarrow 2}f(x)\)</span> 始终等于 <span class="arithmatex">\(1\)</span>。</p>
 </div>
 <h2 id="_2">左右极限<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <p>考虑一个奇怪的函数 <span class="arithmatex">\(f(x)\)</span> 的图像：</p>
@@ -1071,11 +1084,11 @@ f(x)\rightarrow 1,x\rightarrow 2
 <p>即当左右极限不相等时，双侧极限不存在。例如 <span class="arithmatex">\(\displaystyle f(x)=\frac{1}{x}\)</span> 在 <span class="arithmatex">\(x\rightarrow 0\)</span> 时没有极限：</p>
 <p><center><img src=/img/math/limit/limit_3.png style="zoom:80%"></img></center></p>
 <div class="arithmatex">\[
-\left\{\begin{aligned}
-&amp;\lim_{x\rightarrow 0^-}=-∞\\
-&amp;\lim_{x\rightarrow 0^+}=+∞
-\end{aligned}\right.
-\Longrightarrow\lim_{x\rightarrow 0} \ \rm DNE
+\left.\begin{aligned}
+&amp;\lim_{x\rightarrow 0^-}f(x)=-∞\\
+&amp;\lim_{x\rightarrow 0^+}f(x)=+∞
+\end{aligned}\right\}
+\Longrightarrow\lim_{x\rightarrow 0}f(x) \ \rm DNE
 \]</div>
 <p>此外，函数在<a href="#_5">无限震荡</a>处不存在左右极限。</p>
 <h2 id="_4">渐近线<a class="headerlink" href="#_4" title="Permanent link">$</a></h2>
@@ -1108,6 +1121,27 @@ f(x)\rightarrow 1,x\rightarrow 2
 <p>因此 <span class="arithmatex">\(\displaystyle f(x)=\sin(\frac{1}{x})\)</span> 的图像如下：</p>
 <p><center><img src=/img/math/limit/limit_6.png style="zoom:80%"></img></center></p>
 <p>当 <span class="arithmatex">\(x\)</span> 从 <span class="arithmatex">\(+∞\)</span> 或 <span class="arithmatex">\(-∞\)</span> 逐渐变化到趋于 <span class="arithmatex">\(0\)</span> 时，<span class="arithmatex">\(f(x)\)</span> 的值在 <span class="arithmatex">\([-1,1]\)</span> 之间来回变化（振荡）的周期逐渐减少到趋于 <span class="arithmatex">\(0\)</span>，在 <span class="arithmatex">\(x=0\)</span> 处「无限振荡」，没有<a href="#_4">水平渐近线</a>。故 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\(x=0\)</span> 处没有左右极限。</p>
+<h2 id="_6">夹逼定理<a class="headerlink" href="#_6" title="Permanent link">$</a></h2>
+<p>如图，函数 <span class="arithmatex">\(f(x)\)</span> 始终夹在 <span class="arithmatex">\(g(x)\)</span> 与 <span class="arithmatex">\(h(x)\)</span> 之间。对于定义域上的任意 <span class="arithmatex">\(x\)</span>，<span class="arithmatex">\(g(x)≤f(x)≤h(x)\)</span>：</p>
+<p><center><img src=/img/math/limit/limit_7.png style="zoom:80%"></img></center></p>
+<p>当 <span class="arithmatex">\(x\rightarrow a\)</span> 时，三个函数极限相同，即：</p>
+<div class="arithmatex">\[
+\left.\begin{aligned}
+&amp;\lim_{x\rightarrow a}h(x)=L\\
+&amp;\lim_{x\rightarrow a}g(x)=L
+\end{aligned}\right\}
+\Longrightarrow\lim_{x\rightarrow a}f(x)=L
+\]</div>
+<p>使用夹逼定理可求 <span class="arithmatex">\(\displaystyle f(x)=x\sin(\frac{1}{x})\)</span> 在 <span class="arithmatex">\(x\rightarrow 0\)</span> 的极限。如图：</p>
+<p><center><img src=/img/math/limit/limit_8.png style="zoom:80%"></img></center></p>
+<p>由于 <span class="arithmatex">\(\displaystyle sin(\frac{1}{x})\in[-1,1]\)</span>，因而 <span class="arithmatex">\(\displaystyle f(x)=x\sin(\frac{1}{x})\in[-x,x]\)</span>。故 <span class="arithmatex">\(f(x)\)</span> 始终夹在 <span class="arithmatex">\(h(x)=x\)</span> 和 <span class="arithmatex">\(g(x)=-x\)</span> 之间。根据夹逼定理，有：</p>
+<div class="arithmatex">\[
+\left.\begin{aligned}
+&amp;\lim_{x\rightarrow 0}h(x)=0\\
+&amp;\lim_{x\rightarrow 0}g(x)=0
+\end{aligned}\right\}
+\Longrightarrow\lim_{x\rightarrow 0}f(x)=0
+\]</div>
                 
               
               
