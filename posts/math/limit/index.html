@@ -877,7 +877,7 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    基本思想
+    简介
   </a>
   
 </li>
@@ -914,6 +914,33 @@
   <a href="#_6" class="md-nav__link">
     夹逼定理
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    多项式的极限
+  </a>
+  
+    <nav class="md-nav" aria-label="多项式的极限">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xa" class="md-nav__link">
+    x→a 时的有理函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xa_1" class="md-nav__link">
+    x→a 时的含平方根函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -970,7 +997,7 @@
       
         <li class="md-nav__item">
   <a href="#_1" class="md-nav__link">
-    基本思想
+    简介
   </a>
   
 </li>
@@ -1010,6 +1037,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    多项式的极限
+  </a>
+  
+    <nav class="md-nav" aria-label="多项式的极限">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xa" class="md-nav__link">
+    x→a 时的有理函数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xa_1" class="md-nav__link">
+    x→a 时的含平方根函数
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1025,7 +1079,7 @@
                 
                   <h1>极限</h1>
                 
-                <h2 id="_1">基本思想<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
+                <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
 <p>在函数 <span class="arithmatex">\(f(x)=\left\{\begin{aligned}&amp;x-1,x≠2\\&amp;2,x=2\end{aligned}\right.\)</span> 中，<span class="arithmatex">\(x\)</span> 极限接近 <span class="arithmatex">\(2\)</span> 但不等于 <span class="arithmatex">\(2\)</span> 时，<span class="arithmatex">\(f(x)\)</span> 极限接近 <span class="arithmatex">\(1\)</span>。</p>
 <p><center><img src=/img/math/limit/limit_1.png style="zoom:80%"></img></center></p>
 <table>
@@ -1052,14 +1106,11 @@
 </table>
 <p>符号「<span class="arithmatex">\(\rightarrow\)</span>」表示「极限接近」，读作「趋于」。用数学语言描述：</p>
 <div class="arithmatex">\[
-f(x)\rightarrow 1,x\rightarrow 2
-\]</div>
-<p>高逼格写法：</p>
-<div class="arithmatex">\[
 \lim_{x\rightarrow 2}f(x)=1
 \]</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
+<p>读作「<span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\(x\)</span> 趋于 <span class="arithmatex">\(2\)</span> 时的极限等于 <span class="arithmatex">\(1\)</span>」。</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>不论定义中 <span class="arithmatex">\(f(2)\)</span> 的值为何，本例中 <span class="arithmatex">\(\displaystyle\lim_{x\rightarrow 2}f(x)\)</span> 始终等于 <span class="arithmatex">\(1\)</span>。</p>
 </div>
 <h2 id="_2">左右极限<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
@@ -1134,7 +1185,9 @@ f(x)\rightarrow 1,x\rightarrow 2
 \]</div>
 <p>使用夹逼定理可求 <span class="arithmatex">\(\displaystyle f(x)=x\sin(\frac{1}{x})\)</span> 在 <span class="arithmatex">\(x\rightarrow 0\)</span> 的极限。如图：</p>
 <p><center><img src=/img/math/limit/limit_8.png style="zoom:80%"></img></center></p>
-<p>由于 <span class="arithmatex">\(\displaystyle sin(\frac{1}{x})\in[-1,1]\)</span>，因而 <span class="arithmatex">\(\displaystyle f(x)=x\sin(\frac{1}{x})\in[-x,x]\)</span>。故 <span class="arithmatex">\(f(x)\)</span> 始终夹在 <span class="arithmatex">\(h(x)=x\)</span> 和 <span class="arithmatex">\(g(x)=-x\)</span> 之间。根据夹逼定理，有：</p>
+<p><span class="arithmatex">\(∵\displaystyle sin(\frac{1}{x})\in[-1,1]\)</span>，</p>
+<p><span class="arithmatex">\(∴\displaystyle f(x)=x\sin(\frac{1}{x})\in[-x,x]\)</span>。</p>
+<p>因而 <span class="arithmatex">\(f(x)\)</span> 始终夹在 <span class="arithmatex">\(h(x)=x\)</span> 和 <span class="arithmatex">\(g(x)=-x\)</span> 之间。根据夹逼定理，有：</p>
 <div class="arithmatex">\[
 \left.\begin{aligned}
 &amp;\lim_{x\rightarrow 0}h(x)=0\\
@@ -1142,6 +1195,92 @@ f(x)\rightarrow 1,x\rightarrow 2
 \end{aligned}\right\}
 \Longrightarrow\lim_{x\rightarrow 0}f(x)=0
 \]</div>
+<h2 id="_7">多项式的极限<a class="headerlink" href="#_7" title="Permanent link">$</a></h2>
+<p>针对不同类型的函数和极限值，分成以下 <span class="arithmatex">\(4\)</span> 类研究：</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(x\rightarrow a\)</span> 时的有理函数；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(x\rightarrow a\)</span> 时的含平方根函数；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(x\rightarrow ∞\)</span> 时的有理函数；</p>
+</li>
+<li>
+<p><span class="arithmatex">\(x\rightarrow ∞\)</span> 时的多项式型函数；</p>
+</li>
+</ul>
+<h3 id="xa">x→a 时的有理函数<a class="headerlink" href="#xa" title="Permanent link">$</a></h3>
+<p>当 <span class="arithmatex">\(f(a)\)</span> 有意义时，<span class="arithmatex">\(\displaystyle\lim_{x\rightarrow a}f(x)=f(a)\)</span>。例如：</p>
+<div class="arithmatex">\[
+\lim_{x\rightarrow -1} \frac{x^2-3x+2}{x-2}=\frac{(-1)^2-3·(-1)+2}{-1+2}=-2
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>代入法的前提是函数 <span class="arithmatex">\(f(x)\)</span> 连续，在下一章中将证明其正确性。</p>
+</div>
+<p>另一方面，当 <span class="arithmatex">\(f(x)\)</span> 无意义时，若仍采取相同做法，例如：</p>
+<div class="arithmatex">\[
+\lim_{x\rightarrow 2}\frac{x^2-3x+2}{x-2}=\lim_{x\rightarrow 2}\frac{2^2-3^2+2}{2-2}=\frac{0}{0}
+\]</div>
+<p>将会得到分母为 <span class="arithmatex">\(0\)</span> 的<strong>不定式</strong>。此时可以借助分解质因数将分母约掉：</p>
+<div class="arithmatex">\[
+\lim_{x\rightarrow 2}\frac{x^2-3x+2}{x-2}=\lim_{x\rightarrow 2}\frac{(x-2)(x-1)}{x-2}=\lim_{x\rightarrow 2}(x-1)=1
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>由于 <span class="arithmatex">\(x\)</span> 无限接近 <span class="arithmatex">\(2\)</span> 却不等于 <span class="arithmatex">\(2\)</span>，因此分子分母中的 <span class="arithmatex">\((x-2)\)</span> 可以同时约去。</p>
+</div>
+<p>若<strong>不定式</strong>分母为 <span class="arithmatex">\(0\)</span>，分子不为 <span class="arithmatex">\(0\)</span>，此时无法约掉分母中代入后为 <span class="arithmatex">\(0\)</span> 的部分。例如：</p>
+<div class="arithmatex">\[
+\lim_{x\rightarrow 1}\frac{2x^2-x-6}{x(x-1)^3}
+\]</div>
+<p>分母中的 <span class="arithmatex">\((x-1)^3\)</span> 无法被约掉。针对该情况使用「隔离法」：</p>
+<p>首先将分子分母分别替换为函数：</p>
+<div class="arithmatex">\[
+\lim_{x\rightarrow 1}\frac{p(x)}{q(x)}, \ p(x)=2x^2-x-6, \ q(x)=x(x-1)^3
+\]</div>
+<p>对分子分析： <span class="arithmatex">\(x\rightarrow 1\)</span> 时，<span class="arithmatex">\(p(x)\rightarrow 2·1^2-1-6=-5\)</span>。</p>
+<p>对分母分析：</p>
+<ul>
+<li>
+<p>若 <span class="arithmatex">\(x\rightarrow 1^-\)</span>（<span class="arithmatex">\(x\)</span> 略小于 1，同时极限接近 <span class="arithmatex">\(1\)</span>），则 <span class="arithmatex">\(q(x)\)</span> 是个绝对值极小的负数。</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(x\rightarrow 1^+\)</span>（<span class="arithmatex">\(x\)</span> 略大于 1，同时极限接近 <span class="arithmatex">\(1\)</span>），则 <span class="arithmatex">\(q(x)\)</span> 是个绝对值极小的正数。</p>
+</li>
+</ul>
+<p>可以总结如下（使用 <span class="arithmatex">\((-)\)</span> 和 <span class="arithmatex">\((+)\)</span> 代表负数和正数）：</p>
+<ul>
+<li>
+<p>若 <span class="arithmatex">\(x&lt;1\)</span>，<span class="arithmatex">\(\displaystyle\frac{p(x)}{q(x)}=\frac{(-)}{(-)}=(+)\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(x&gt;1\)</span>，<span class="arithmatex">\(\displaystyle\frac{p(x)}{q(x)}=\frac{(-)}{(+)}=(-)\)</span>；</p>
+</li>
+</ul>
+<p>显然，分母的绝对值极小时，分式的绝对值极大。因此：</p>
+<div class="arithmatex">\[\lim_{x\rightarrow 1^-}\frac{2x^2-x-6}{x(x-1)^3}=∞, \ \lim_{x\rightarrow 1^+}\frac{2x^2-x-6}{x(x-1)^3}=-∞\]</div>
+<p>由于左右极限不相等，故不存在双侧极限：</p>
+<div class="arithmatex">\[\lim_{x\rightarrow 1}\frac{2x^2-x-6}{x(x-1)^3} \ \rm DNE\]</div>
+<h3 id="xa_1">x→a 时的含平方根函数<a class="headerlink" href="#xa_1" title="Permanent link">$</a></h3>
+<p>考虑极限：</p>
+<div class="arithmatex">\[\lim_{x\rightarrow 5}\frac{\sqrt{x^2-9}-4}{x-5}\]</div>
+<p>若代入 <span class="arithmatex">\(x=5\)</span>，将得到 <span class="arithmatex">\(\displaystyle\frac{0}{0}\)</span> 型的不定式，进行因式分解也不管用。此时需要进行「有理化」：</p>
+<p>定义 <span class="arithmatex">\(a+\sqrt{b}\)</span> 的<strong>共轭表达式</strong>为 <span class="arithmatex">\(a-\sqrt{b}\)</span>，它们的乘积为有理数 <span class="arithmatex">\(a^2-b\)</span>。因此将分子分母同时乘以 <span class="arithmatex">\(\sqrt{x^2-9}-4\)</span> 的共轭表达式，即 <span class="arithmatex">\(\sqrt{x^2-9}+4\)</span>：</p>
+<div class="arithmatex">\[
+\left.\begin{aligned}
+&amp;\lim_{x\rightarrow 5}\frac{\sqrt{x^2-9}-4}{x-5} \\
+=&amp;\lim_{x\rightarrow 5}\frac{(\sqrt{x^2-9}-4)(\sqrt{x^2-9}+4)}{(x-5)(\sqrt{x^2-9}+4)} \\
+=&amp;\lim_{x\rightarrow 5}\frac{x^2-25}{(x-5)(\sqrt{x^2-9}+4)} \\
+=&amp;\lim_{x\rightarrow 5}\frac{(x+5)(x-5)}{(x-5)(\sqrt{x^2-9}+4)} \\
+=&amp;\lim_{x\rightarrow 5}\frac{x+5}{\sqrt{x^2-9}+4} \\
+=&amp;\frac{5+5}{\sqrt{5^2-9}+4} \\
+=&amp;\frac{5}{4}
+\end{aligned}\right.
+\]</div>
+<p>此做法有时能将分母中代入后为 <span class="arithmatex">\(0\)</span> 的部分消掉，使得代入法可行。</p>
                 
               
               
