@@ -944,6 +944,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    连续函数极值
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1029,6 +1036,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    连续函数极值
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1048,7 +1062,7 @@
 <p>直觉上，可以一笔画出的函数，如 <span class="arithmatex">\(f(x)=x^2\)</span>，是「<strong>连续</strong>」的函数。但对于 <span class="arithmatex">\(\displaystyle f(x)=\frac{1}{x}\)</span>，它被 <span class="arithmatex">\(x=0\)</span> 处的垂直渐近线分成了两半，需要两笔画。事实上，除了在 <span class="arithmatex">\(x=0\)</span> 外，<span class="arithmatex">\(\displaystyle f(x)=\frac{1}{x}\)</span> 处处连续。</p>
 <p><center><img src=/img/math/continuity/continuity_1.png style="zoom:80%"></img></center></p>
 <h3 id="_2">在一点处连续<a class="headerlink" href="#_2" title="Permanent link">$</a></h3>
-<p>若 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\(x=a\)</span> 处连续，则 <span class="arithmatex">\(\displaystyle\lim_{x→a}f(x)=f(a)≠±∞\)</span>。以下三则反例皆不连续：</p>
+<p>若 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\(x=a\)</span> 处连续，则 <span class="arithmatex">\(\displaystyle\lim_{x→a}f(x)=f(a)≠±∞\)</span>。以下三则反例在 <span class="arithmatex">\(x=a\)</span> 处皆不连续：</p>
 <p><center><img src=/img/math/continuity/continuity_2.png style="zoom:80%"></img></center></p>
 <h3 id="_3">在区间处连续<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
 <p>若 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\([a,b]\)</span> 上连续，则：</p>
@@ -1067,6 +1081,14 @@
 <p>若 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\([a,b]\)</span> 上连续，且 <span class="arithmatex">\(f(a)&gt;L,f(b)&lt;L\)</span>，则存在 <span class="arithmatex">\(c\in(a,b)\)</span>，使 <span class="arithmatex">\(f(c)=L\)</span>。</p>
 <p><center><img src=/img/math/continuity/continuity_3.png style="zoom:80%"></img></center></p>
 <p>其正确性显然。点 <span class="arithmatex">\((a,f(a))\)</span> 与点 <span class="arithmatex">\((b,f(b))\)</span> 的任意连线（可以是随机曲线）必与直线 <span class="arithmatex">\(y=L\)</span> 相交。</p>
+<h2 id="_5">连续函数极值<a class="headerlink" href="#_5" title="Permanent link">$</a></h2>
+<p>若 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\([a,b]\)</span> 上连续，则 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\([a,b]\)</span> 上至少有一个最大值和一个最小值。</p>
+<p><center><img src=/img/math/continuity/continuity_4.png style="zoom:80%"></img></center></p>
+<p>为什么呢？当范围是开区间 <span class="arithmatex">\((a,b)\)</span> 或 <span class="arithmatex">\(f(x)\)</span> 不连续时会出大问题：</p>
+<p><center><img src=/img/math/continuity/continuity_5.png style="zoom:80%"></img></center></p>
+<p>左图在 <span class="arithmatex">\(x=a\)</span> 和 <span class="arithmatex">\(x=b\)</span> 处形成了不连续点，该函数没有最大值。右图在 <span class="arithmatex">\(x=c\)</span> 处没有定义，<span class="arithmatex">\(f(c)\)</span> 无意义，同样不存在最大值。</p>
+<p>当然，即使是闭区间，也可能有极值。例如 <span class="arithmatex">\(f(c)\)</span> 和 <span class="arithmatex">\(f(d)\)</span> 分别是 <span class="arithmatex">\(f(x)\)</span> 在 <span class="arithmatex">\((a,b)\)</span> 上的最大和最小值：</p>
+<p><center><img src=/img/math/continuity/continuity_6.png style="zoom:80%"></img></center></p>
                             
                             
                             
