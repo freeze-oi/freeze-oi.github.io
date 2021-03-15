@@ -748,6 +748,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval/" class="md-nav__link">
+        区间 DP
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1194,19 +1206,13 @@ f[n]=f[n-1]+f[n-2],n≥3
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">初始条件</th>
+<th align="center"><span class="arithmatex">\(f[1]=f[2]=1\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[3\rightarrow n]\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center">初始条件</td>
-<td align="center"><span class="arithmatex">\(f[1]=f[2]=1\)</span></td>
-<td align="center">计算顺序</td>
-<td align="center"><span class="arithmatex">\(f[3\rightarrow n]\)</span></td>
-</tr>
 <tr>
 <td align="center">最终答案</td>
 <td align="center"><span class="arithmatex">\(f[n]\)</span></td>
@@ -1258,19 +1264,13 @@ f[n]=2·f[n-1]+1,n≥1
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">初始条件</th>
+<th align="center"><span class="arithmatex">\(f[1]=1\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[2\rightarrow n]\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center">初始条件</td>
-<td align="center"><span class="arithmatex">\(f[1]=1\)</span></td>
-<td align="center">计算顺序</td>
-<td align="center"><span class="arithmatex">\(f[2\rightarrow n]\)</span></td>
-</tr>
 <tr>
 <td align="center">最终答案</td>
 <td align="center"><span class="arithmatex">\(f[n]\)</span></td>
@@ -1341,19 +1341,13 @@ a[n]=a[n-1]+2(n-1),n≥1
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">初始条件</th>
+<th align="center"><span class="arithmatex">\(a[1]=2\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(a[2\rightarrow n]\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center">初始条件</td>
-<td align="center"><span class="arithmatex">\(a[1]=2\)</span></td>
-<td align="center">计算顺序</td>
-<td align="center"><span class="arithmatex">\(a[2\rightarrow n]\)</span></td>
-</tr>
 <tr>
 <td align="center">最终答案</td>
 <td align="center"><span class="arithmatex">\(a[n]\)</span></td>
@@ -1383,24 +1377,18 @@ a[n]=a[n-1]+2(n-1),n≥1
 </li>
 </ul>
 <div class="arithmatex">\[
-f[i]=\max(f[j])+1,j&lt;i,A_j&lt;A_i
+f[i]=\max_{j&lt;i, \ A_j&lt;A_i}(f[j])+1
 \]</div>
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">初始条件</th>
+<th align="center"><span class="arithmatex">\(f[1\cdots n]=1\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[1\rightarrow n]\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center">初始条件</td>
-<td align="center"><span class="arithmatex">\(f[1\cdots n]=1\)</span></td>
-<td align="center">计算顺序</td>
-<td align="center"><span class="arithmatex">\(f[1\rightarrow n]\)</span></td>
-</tr>
 <tr>
 <td align="center">最终答案</td>
 <td align="center"><span class="arithmatex">\(f[1\cdots n]\)</span> 的最大值</td>
@@ -1459,19 +1447,13 @@ f[i,j]=\max\left\{\begin{aligned}
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">初始条件</th>
+<th align="center">无</th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[i=1\rightarrow n,j=1\rightarrow m]\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center">初始条件</td>
-<td align="center">无</td>
-<td align="center">计算顺序</td>
-<td align="center"><span class="arithmatex">\(f[i=1\rightarrow n,j=1\rightarrow m]\)</span></td>
-</tr>
 <tr>
 <td align="center">最终答案</td>
 <td align="center"><span class="arithmatex">\(f[n,m]\)</span></td>
@@ -1515,19 +1497,13 @@ f[i,j]=(i,j)+\max\left\{\begin{aligned}
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">初始条件</th>
+<th align="center"><span class="arithmatex">\(f[1,1]=(1,1)\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[i=2\rightarrow n,j=1\rightarrow i]\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center">初始条件</td>
-<td align="center"><span class="arithmatex">\(f[1,1]=(1,1)\)</span></td>
-<td align="center">计算顺序</td>
-<td align="center"><span class="arithmatex">\(f[i=2\rightarrow n,j=1\rightarrow i]\)</span></td>
-</tr>
 <tr>
 <td align="center">最终答案</td>
 <td align="center"><span class="arithmatex">\(f[n,1\cdots n]\)</span> 的最大值</td>
@@ -1570,19 +1546,13 @@ f[i,j]=(i,j)+\max\left\{\begin{aligned}
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">初始条件</th>
+<th align="center"><span class="arithmatex">\(f[1,1]=(1,1)\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[i=1\rightarrow n,j=1\rightarrow m]\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center">初始条件</td>
-<td align="center"><span class="arithmatex">\(f[1,1]=(1,1)\)</span></td>
-<td align="center">计算顺序</td>
-<td align="center"><span class="arithmatex">\(f[i=1\rightarrow n,j=1\rightarrow m]\)</span></td>
-</tr>
 <tr>
 <td align="center">最终答案</td>
 <td align="center"><span class="arithmatex">\(f[n,m]\)</span></td>
@@ -1614,19 +1584,13 @@ f[i]=f[i-1]+A_i
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">初始条件</th>
+<th align="center"><span class="arithmatex">\(f[0]=0\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[1]\rightarrow f[n]\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center">初始条件</td>
-<td align="center"><span class="arithmatex">\(f[0]=0\)</span></td>
-<td align="center">计算顺序</td>
-<td align="center"><span class="arithmatex">\(f[1]\rightarrow f[n]\)</span></td>
-</tr>
 <tr>
 <td align="center">时间复杂度</td>
 <td align="center"><span class="arithmatex">\(O(n)\)</span></td>
@@ -1662,19 +1626,13 @@ f[i,j]=f[i-1,j]+f[i,j-1]-f[i-1,j-1]+(i,j)
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">初始条件</th>
+<th align="center"><span class="arithmatex">\(f[0,0]=0\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[1\rightarrow n,1\rightarrow m]\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center">初始条件</td>
-<td align="center"><span class="arithmatex">\(f[0,0]=0\)</span></td>
-<td align="center">计算顺序</td>
-<td align="center"><span class="arithmatex">\(f[1\rightarrow n,1\rightarrow m]\)</span></td>
-</tr>
 <tr>
 <td align="center">时间复杂度</td>
 <td align="center"><span class="arithmatex">\(O(nm)\)</span></td>
@@ -1712,19 +1670,13 @@ f[i]=A_i-A_{i-1}
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th align="center">初始条件</th>
+<th align="center"><span class="arithmatex">\(f[1]=A_1\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[1\rightarrow n]\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td align="center">初始条件</td>
-<td align="center"><span class="arithmatex">\(f[1]=A_1\)</span></td>
-<td align="center">计算顺序</td>
-<td align="center"><span class="arithmatex">\(f[1\rightarrow n]\)</span></td>
-</tr>
 <tr>
 <td align="center">时间复杂度</td>
 <td align="center"><span class="arithmatex">\(O(n)\)</span></td>

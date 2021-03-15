@@ -616,6 +616,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dp/interval/" class="md-nav__link">
+        区间 DP
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1097,14 +1109,14 @@
 </code></pre></div>
 </details>
 <h3 id="_4">反向边访问<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
-<p>使用邻接表存储双向边时，依次存储正向边和反向边，故 <code>edge[i]</code> 和 <code>edge[i + 1]</code>（<span class="arithmatex">\(i\)</span> 为偶数）互为反向边。此时 <span class="arithmatex">\(i\)</span> 和 <span class="arithmatex">\(i+1\)</span> 构成<a href="/posts/basis/compress/#_2">「成对变化」</a>，即 <code>edge[i]</code> 的反向边为 <code>edge[i xor 1]</code>。</p>
+<p>使用邻接表存储双向边时，依次存储正向边和反向边，故 <code>edge[i]</code> 和 <code>edge[i + 1]</code>（<span class="arithmatex">\(i\)</span> 为偶数）互为反向边。此时 <span class="arithmatex">\(i\)</span> 和 <span class="arithmatex">\(i+1\)</span> 构成<a href="/posts/basis/compress/#_2">「成对变化」</a>，即 <code>edge[i]</code> 的反向边为 <code>edge[i ^ 1]</code>。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">len</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 追加一条从 u 到 v 长度为 len 的双向边</span>
     <span class="n">edge</span><span class="p">[</span><span class="o">++</span> <span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="n">Node</span><span class="p">{</span><span class="n">v</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">]},</span> <span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">top</span><span class="p">;</span> <span class="c1">// 从 u 到 v 的边</span>
     <span class="n">edge</span><span class="p">[</span><span class="o">++</span> <span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="n">Node</span><span class="p">{</span><span class="n">u</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="n">head</span><span class="p">[</span><span class="n">v</span><span class="p">]},</span> <span class="n">head</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">top</span><span class="p">;</span> <span class="c1">// 从 v 到 u 的边</span>
 <span class="p">}</span>
 
 <span class="n">Node</span> <span class="nf">rpath</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 返回 edge[pos] 的反向边</span>
-    <span class="k">return</span> <span class="n">edge</span><span class="p">[</span><span class="n">pos</span> <span class="n">xor</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">edge</span><span class="p">[</span><span class="n">pos</span> <span class="o">^</span> <span class="mi">1</span><span class="p">];</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>

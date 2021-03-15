@@ -746,6 +746,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../interval/" class="md-nav__link">
+        区间 DP
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1517,32 +1529,22 @@ f[v] = \max\left\{\begin{aligned}
 <thead>
 <tr>
 <th align="center">体积 <span class="arithmatex">\(w\)</span></th>
-<th align="center">价值 <span class="arithmatex">\(v\)</span></th>
+<th align="center"><span class="arithmatex">\(w_i\)</span></th>
+<th align="center"><span class="arithmatex">\(2w_i\)</span></th>
+<th align="center"><span class="arithmatex">\(4w_i\)</span></th>
+<th align="center"><span class="arithmatex">\(\cdots\)</span></th>
+<th align="center"><span class="arithmatex">\(2^kw_i\)</span></th>
+<th align="center"><span class="arithmatex">\([s_i-(2^{k+1}-1)]w_i\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><span class="arithmatex">\(w_i\)</span></td>
+<td align="center">价值 <span class="arithmatex">\(v\)</span></td>
 <td align="center"><span class="arithmatex">\(c_i\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="arithmatex">\(2w_i\)</span></td>
 <td align="center"><span class="arithmatex">\(2c_i\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="arithmatex">\(4w_i\)</span></td>
 <td align="center"><span class="arithmatex">\(4c_i\)</span></td>
-</tr>
-<tr>
 <td align="center"><span class="arithmatex">\(\cdots\)</span></td>
-<td align="center"><span class="arithmatex">\(\cdots\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="arithmatex">\(2^kw_i\)</span></td>
 <td align="center"><span class="arithmatex">\(2^kc_i\)</span></td>
-</tr>
-<tr>
-<td align="center"><span class="arithmatex">\([s_i-(2^{k+1}-1)]w_i\)</span></td>
 <td align="center"><span class="arithmatex">\([s_i-(2^{k+1}-1)]c_i\)</span></td>
 </tr>
 </tbody>
@@ -1614,15 +1616,15 @@ f[v_1,v_2] = \max\left\{\begin{aligned}
 <h3 id="_8">方案总数<a class="headerlink" href="#_8" title="Permanent link">$</a></h3>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
-<p>将物品放入背包的方案有几种？</p>
+<p>在 <a href="#01">01 背包</a>的基础上，将物品放入背包的方案有几种？</p>
 </div>
 <p><span class="arithmatex">\(g[i,v]\)</span> 表示把前 <span class="arithmatex">\(i\)</span> 个物品放入体积为 <span class="arithmatex">\(v\)</span> 的背包的方案总数。</p>
 <ul>
 <li>
-<p>若不放第 <span class="arithmatex">\(i\)</span> 个物品，则方案总数 <span class="arithmatex">\(=g[i-1,v]\)</span>；</p>
+<p>若不放第 <span class="arithmatex">\(i\)</span> 个物品，则方案总数为 <span class="arithmatex">\(g[i-1,v]\)</span>；</p>
 </li>
 <li>
-<p>若放第 <span class="arithmatex">\(i\)</span> 个物品，则方案总数 <span class="arithmatex">\(=g[i,v-w_i]\)</span>。</p>
+<p>若放第 <span class="arithmatex">\(i\)</span> 个物品，则方案总数为 <span class="arithmatex">\(g[i,v-w_i]\)</span>。</p>
 </li>
 </ul>
 <div class="arithmatex">\[
@@ -1726,13 +1728,13 @@ th, td {
             </a>
             
             
-            <a href="../../string/hash/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <a href="../interval/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
                 <div class="md-footer-nav__title">
                     <div class="md-ellipsis">
                         <span class="md-footer-nav__direction">
                             下一页
                         </span>
-                        字符串哈希
+                        区间 DP
                     </div>
                 </div>
                 <div class="md-footer-nav__button md-icon">
