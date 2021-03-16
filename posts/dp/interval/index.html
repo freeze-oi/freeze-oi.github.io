@@ -1093,7 +1093,7 @@
 <p><strong>数据范围</strong></p>
 <p><span class="arithmatex">\(1≤n≤100\)</span>，所有数据皆在 <span class="arithmatex">\(int\)</span> 范围内。</p>
 </div>
-<p><span class="arithmatex">\(f[l,r]\)</span> 表示合并区间 <span class="arithmatex">\([l,r]\)</span> 内的石子（第 <span class="arithmatex">\(i\)</span> 堆至第 <span class="arithmatex">\(j\)</span> 堆石子）花费的最少体力值。</p>
+<p><span class="arithmatex">\(f[l,r]\)</span> 表示合并区间 <span class="arithmatex">\([l,r]\)</span> 内的石子（第 <span class="arithmatex">\(l\)</span> 堆至第 <span class="arithmatex">\(r\)</span> 堆石子）花费的最少体力值。</p>
 <p>枚举 <span class="arithmatex">\(k=l→r-1\)</span>：</p>
 <ul>
 <li>
@@ -1151,8 +1151,8 @@ f[l,r]=\min_{l≤k&lt;r}\{f[l,k]+f[k+1,r]\}+sum[r]-sum[l-1]
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p><strong>题目描述</strong></p>
-<p>数列 <span class="arithmatex">\(A\)</span> 的 <span class="arithmatex">\(n\)</span> 个元素互不相同。要求重复从 <span class="arithmatex">\(A\)</span> 的左边或右边删掉连续 <span class="arithmatex">\(i\)</span> 个数（<span class="arithmatex">\(1≤i≤n\)</span>），若剩余不足 <span class="arithmatex">\(i\)</span> 个数则全部删除，直到所有数都被删除。</p>
-<p>每次操作都能获得价值。删除 <span class="arithmatex">\(A_i\cdots A_k\)</span> 的价值为 <span class="arithmatex">\(|A_i-A_k|·(k-i+1)\)</span>，如果只能删一个数，获得的价值为这个数的值。求操作的最大价值。</p>
+<p>数列 <span class="arithmatex">\(A\)</span> 的 <span class="arithmatex">\(n\)</span> 个元素互不相同。要求重复从 <span class="arithmatex">\(A\)</span> 的左边或右边删掉连续 <span class="arithmatex">\(i\)</span> 个数（<span class="arithmatex">\(1≤i≤n\)</span>），若剩余不足 <span class="arithmatex">\(i\)</span> 个数则全部删除，直到数列为空。</p>
+<p>每次操作都能获得价值。删除 <span class="arithmatex">\(A_i\cdots A_k\)</span> 的价值为 <span class="arithmatex">\(|A_i-A_k|·(k-i+1)\)</span>，如果只能删一个数，获得的价值为该数的值。求操作的最大价值。</p>
 <p><strong>样例输入</strong></p>
 <div class="highlight"><pre><span></span><code>6
 54 29 196 21 133 118
