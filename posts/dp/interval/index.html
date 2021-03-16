@@ -658,8 +658,35 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    基本原理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    例题
+  </a>
+  
+    <nav class="md-nav" aria-label="例题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     石子合并
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    删数问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -996,8 +1023,35 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
+    基本原理
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    例题
+  </a>
+  
+    <nav class="md-nav" aria-label="例题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
     石子合并
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    删数问题
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1017,11 +1071,27 @@
                             <h1>区间 DP</h1>
                             
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p><strong>区间 DP</strong> 在区间上进行动态规划，以「区间长度」作为 DP 的「阶段」，通过小区间的最优值推出大区间的最优值。</p>
-<h2 id="_2">石子合并<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
+<p><strong>区间 DP</strong> 以「区间长度」作为 DP 的「阶段」，通过小区间的最优值推出大区间的最优值。</p>
+<h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p><strong>Freeze</strong> 懒得写基本原理，他认为这些例题已经代表了区间 DP 的精髓。</p>
+</div>
+<h2 id="_3">例题<a class="headerlink" href="#_3" title="Permanent link">$</a></h2>
+<h3 id="_4">石子合并<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
-<p><span class="arithmatex">\(n\)</span> 堆石子排成一列，第 <span class="arithmatex">\(i\)</span> 堆石子重量为 <span class="arithmatex">\(A_i\)</span>。进行 <span class="arithmatex">\(n-1\)</span> 次操作，每次将相邻两堆石子合并成一堆，消耗的体力值为这两堆石子的重量和。求最少消耗多少体力。</p>
+<p><strong>题目描述</strong></p>
+<p><span class="arithmatex">\(n\)</span> 堆石子排成一列，第 <span class="arithmatex">\(i\)</span> 堆石子重量为 <span class="arithmatex">\(A_i\)</span>。每次合并相邻两堆石子为一堆，消耗的体力值为这两堆石子的重量和。求将所有石子合并为一堆，最少消耗多少体力。</p>
+<p><strong>样例输入</strong></p>
+<div class="highlight"><pre><span></span><code>4
+4 5 9 4
+</code></pre></div>
+<p><strong>样例输出</strong></p>
+<div class="highlight"><pre><span></span><code>43
+</code></pre></div>
+<p><strong>数据范围</strong></p>
+<p><span class="arithmatex">\(1≤n≤100\)</span>，所有数据皆在 <span class="arithmatex">\(int\)</span> 范围内。</p>
 </div>
 <p><span class="arithmatex">\(f[l,r]\)</span> 表示合并区间 <span class="arithmatex">\([l,r]\)</span> 内的石子（第 <span class="arithmatex">\(i\)</span> 堆至第 <span class="arithmatex">\(j\)</span> 堆石子）花费的最少体力值。</p>
 <p>枚举 <span class="arithmatex">\(k=l→r-1\)</span>：</p>
@@ -1050,16 +1120,16 @@ f[l,r]=\min_{l≤k&lt;r}\{f[l,k]+f[k+1,r]\}+sum[r]-sum[l-1]
 <tr>
 <th align="center">初始条件</th>
 <th align="center"><span class="arithmatex">\(f[i,i]=0\)</span>，其余为 <span class="arithmatex">\(∞\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[\)</span>小区间<span class="arithmatex">\(]→f[\)</span>大区间<span class="arithmatex">\(]\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td align="center">最终答案</td>
 <td align="center"><span class="arithmatex">\(f[1,n]\)</span></td>
-</tr>
-<tr>
 <td align="center">时间复杂度</td>
-<td align="center"><span class="arithmatex">\(O(n)\)</span></td>
+<td align="center"><span class="arithmatex">\(O(n^3)\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -1069,11 +1139,70 @@ f[l,r]=\min_{l≤k&lt;r}\{f[l,k]+f[k+1,r]\}+sum[r]-sum[l-1]
     <span class="n">sum</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 <span class="p">}</span>
 <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">len</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">len</span> <span class="o">++</span><span class="p">)</span> <span class="c1">// 区间长度</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">l</span> <span class="o">+</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">l</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 枚举左端点</span>
-        <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">l</span> <span class="o">+</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">l</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 枚举区间左端点</span>
+        <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 区间右端点</span>
         <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="n">k</span> <span class="o">++</span><span class="p">)</span>
             <span class="n">f</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">r</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">r</span><span class="p">]);</span>
         <span class="n">f</span><span class="p">[</span><span class="n">l</span><span class="p">][</span><span class="n">r</span><span class="p">]</span> <span class="o">+=</span> <span class="n">sum</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">-</span> <span class="n">sum</span><span class="p">[</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
+    <span class="p">}</span>
+</code></pre></div>
+</details>
+<h3 id="_5">删数问题<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p><strong>题目描述</strong></p>
+<p>数列 <span class="arithmatex">\(A\)</span> 的 <span class="arithmatex">\(n\)</span> 个元素互不相同。要求重复从 <span class="arithmatex">\(A\)</span> 的左边或右边删掉连续 <span class="arithmatex">\(i\)</span> 个数（<span class="arithmatex">\(1≤i≤n\)</span>），若剩余不足 <span class="arithmatex">\(i\)</span> 个数则全部删除，直到所有数都被删除。</p>
+<p>每次操作都能获得价值。删除 <span class="arithmatex">\(A_i\cdots A_k\)</span> 的价值为 <span class="arithmatex">\(|A_i-A_k|·(k-i+1)\)</span>，如果只能删一个数，获得的价值为这个数的值。求操作的最大价值。</p>
+<p><strong>样例输入</strong></p>
+<div class="highlight"><pre><span></span><code>6
+54 29 196 21 133 118
+</code></pre></div>
+<p><strong>样例输出</strong></p>
+<div class="highlight"><pre><span></span><code>768
+</code></pre></div>
+<p><strong>数据范围</strong></p>
+<p><span class="arithmatex">\(3≤n≤100,1≤A_i≤1000\)</span>。</p>
+</div>
+<p><span class="arithmatex">\(f[l,r]\)</span> 表示删除 <span class="arithmatex">\(A[l\cdots r]\)</span> 得到的最大价值。删除 <span class="arithmatex">\(A[l\cdots r]\)</span> 有两种方法：</p>
+<ul>
+<li>
+<p>一次性删除 <span class="arithmatex">\(A[l\cdots r]\)</span>，得到价值 <span class="arithmatex">\(|A_l-A_r|·(r-l+1)\)</span>；</p>
+</li>
+<li>
+<p>先删除 <span class="arithmatex">\(A[l\cdots k]\)</span>，再删除 <span class="arithmatex">\(A[k+1\cdots r]\)</span>，得到价值 <span class="arithmatex">\(f[l,k]+f[k+1,r]\)</span>。</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+f[l,r]=\max\left\{\begin{aligned}
+&amp;|A_l-A_r|·(r-l+1)\\
+&amp;f[l,k]+f[k+1,r],l≤k&lt;r
+\end{aligned}\right.
+\]</div>
+<table>
+<thead>
+<tr>
+<th align="center">初始条件</th>
+<th align="center"><span class="arithmatex">\(f[i,i]=A_i\)</span></th>
+<th align="center">计算顺序</th>
+<th align="center"><span class="arithmatex">\(f[\)</span>小区间<span class="arithmatex">\(]→f[\)</span>大区间<span class="arithmatex">\(]\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">最终答案</td>
+<td align="center"><span class="arithmatex">\(f[1,n]\)</span></td>
+<td align="center">时间复杂度</td>
+<td align="center"><span class="arithmatex">\(O(n^3)\)</span></td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">len</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">len</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">l</span> <span class="o">+</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">l</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">abs</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">]</span> <span class="o">-</span> <span class="n">a</span><span class="p">[</span><span class="n">r</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">r</span><span class="p">;</span> <span class="n">k</span> <span class="o">++</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">f</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
     <span class="p">}</span>
 </code></pre></div>
 </details>
