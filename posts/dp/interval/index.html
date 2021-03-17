@@ -698,6 +698,18 @@
   
 
           
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tree/" class="md-nav__link">
+        树形 DP
+      </a>
+    </li>
+  
+
+          
         </ul>
       </nav>
     </li>
@@ -1071,7 +1083,7 @@
                             <h1>区间 DP</h1>
                             
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p><strong>区间 DP</strong> 以「区间长度」作为 DP 的「阶段」，通过小区间的最优值推出大区间的最优值。</p>
+<p><strong>区间 DP</strong> 即在区间上进行的 DP，以「区间长度」作为 DP 的「阶段」，通过小区间的最优值推出大区间的最优值。</p>
 <h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <div class="admonition quote">
 <p class="admonition-title">Quote</p>
@@ -1083,12 +1095,15 @@
 <p class="admonition-title">Question</p>
 <p><strong>题目描述</strong></p>
 <p><span class="arithmatex">\(n\)</span> 堆石子排成一列，第 <span class="arithmatex">\(i\)</span> 堆石子重量为 <span class="arithmatex">\(A_i\)</span>。每次合并相邻两堆石子为一堆，消耗的体力值为这两堆石子的重量和。求将所有石子合并为一堆，最少消耗多少体力。</p>
-<p><strong>样例输入</strong></p>
+<p><strong>输入格式</strong></p>
+<p>第一行一个整数 <span class="arithmatex">\(n\)</span>，表示有 <span class="arithmatex">\(n\)</span> 堆石子。</p>
+<p>第二行 <span class="arithmatex">\(n\)</span> 个整数，表示每堆石子的重量。</p>
 <div class="highlight"><pre><span></span><code>4
 4 5 9 4
 </code></pre></div>
-<p><strong>样例输出</strong></p>
-<div class="highlight"><pre><span></span><code>43
+<p><strong>输出格式</strong></p>
+<p>共一行一个整数，表示最小消耗体力值。</p>
+<div class="highlight"><pre><span></span><code>44
 </code></pre></div>
 <p><strong>数据范围</strong></p>
 <p><span class="arithmatex">\(1≤n≤100\)</span>，所有数据皆在 <span class="arithmatex">\(int\)</span> 范围内。</p>
@@ -1152,12 +1167,15 @@ f[l,r]=\min_{l≤k&lt;r}\{f[l,k]+f[k+1,r]\}+sum[r]-sum[l-1]
 <p class="admonition-title">Question</p>
 <p><strong>题目描述</strong></p>
 <p>数列 <span class="arithmatex">\(A\)</span> 的 <span class="arithmatex">\(n\)</span> 个元素互不相同。现要求从 <span class="arithmatex">\(A\)</span> 的左边或右边删掉连续 <span class="arithmatex">\(i\)</span> 个数（<span class="arithmatex">\(1≤i≤n\)</span>），重复此操作直到数列为空。</p>
-<p>每次操作都能获得价值。删除 <span class="arithmatex">\(A_i\cdots A_k\)</span> 的价值为 <span class="arithmatex">\(|A_i-A_k|·(k-i+1)\)</span>，如果只能删一个数，获得的价值为该数的值。求操作的最大价值。</p>
-<p><strong>样例输入</strong></p>
+<p>每次操作都能获得价值。删除 <span class="arithmatex">\(A_l\cdots A_r\)</span> 可获得的价值为 <span class="arithmatex">\(|A_l-A_r|·(r-l+1)\)</span>，如果只能删一个数，获得的价值为该数的值。求可得的最大价值。</p>
+<p><strong>输入格式</strong></p>
+<p>第一行一个整数 <span class="arithmatex">\(n\)</span>，表示数列元素个数。</p>
+<p>第二行 <span class="arithmatex">\(n\)</span> 个整数，第 <span class="arithmatex">\(i\)</span> 个数表示 <span class="arithmatex">\(A_i\)</span>。</p>
 <div class="highlight"><pre><span></span><code>6
 54 29 196 21 133 118
 </code></pre></div>
-<p><strong>样例输出</strong></p>
+<p><strong>输出格式</strong></p>
+<p>共一行一个整数，表示最大价值。</p>
 <div class="highlight"><pre><span></span><code>768
 </code></pre></div>
 <p><strong>数据范围</strong></p>
@@ -1241,13 +1259,13 @@ f[l,r]=\max\left\{\begin{aligned}
             </a>
             
             
-            <a href="../../string/hash/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <a href="../tree/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
                 <div class="md-footer-nav__title">
                     <div class="md-ellipsis">
                         <span class="md-footer-nav__direction">
                             下一页
                         </span>
-                        字符串哈希
+                        树形 DP
                     </div>
                 </div>
                 <div class="md-footer-nav__button md-icon">
