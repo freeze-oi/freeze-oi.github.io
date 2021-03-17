@@ -1163,13 +1163,13 @@ f[i]=1+\sum_{v\in Son(i)}f[v]
 <p><span class="arithmatex">\(f[i,j]\)</span> 表示从以 <span class="arithmatex">\(i\)</span> 为根的子树中邀请部分职员参会，当 <span class="arithmatex">\(j=0\)</span> 时 <span class="arithmatex">\(i\)</span> 号员工不参会，<span class="arithmatex">\(j=1\)</span> 时参会。</p>
 <ul>
 <li>
-<p>若 <span class="arithmatex">\(i\)</span> 号员工的下属 <span class="arithmatex">\(v\)</span> 参会，则总欢乐值为 <span class="arithmatex">\(f[v,0]\)</span>；</p>
+<p>若 <span class="arithmatex">\(i\)</span> 号员工的下属 <span class="arithmatex">\(v\)</span> 不参会，则总欢乐值为 <span class="arithmatex">\(f[v,0]\)</span>；</p>
 </li>
 <li>
 <p>若 <span class="arithmatex">\(i\)</span> 号员工的下属 <span class="arithmatex">\(v\)</span> 参会，则总欢乐值为 <span class="arithmatex">\(f[v,1]\)</span>。</p>
 </li>
 </ul>
-<p>显然，当 <span class="arithmatex">\(i\)</span> 号员工参会，其直接下属必不参会；否则直接下属可参会可不参会：</p>
+<p>显然，当 <span class="arithmatex">\(i\)</span> 号员工参会，其直接下属必不来；否则直接下属可来可不来：</p>
 <div class="arithmatex">\[f[i,1]=H_i+\sum_{v\in Son(i)}f[v,0]\]</div>
 <div class="arithmatex">\[f[i,0]=\sum_{v\in Son(i)}\max\{f[v,0],f[v,1]\}\]</div>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 求 u 号员工对应的 f[u][0] 和 f[u][1]</span>
