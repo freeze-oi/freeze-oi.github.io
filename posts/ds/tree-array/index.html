@@ -1269,7 +1269,7 @@
 <p><span class="arithmatex">\(\textcolor{blue}{C_7}=\textcolor{green}{A_7}\)</span>；</p>
 <p><span class="arithmatex">\(\textcolor{blue}{C_8}=\textcolor{blue}{C_4}+\textcolor{blue}{C_6}+\textcolor{blue}{C_7}+\textcolor{green}{A_8}=A_1+A_2+A_3+A_4+A_5+A_6+A_7+A_8\)</span></p>
 <p><span class="arithmatex">\(C\)</span> 数组这么构造到底有什么用呢？仔细观察发现，<span class="arithmatex">\(A[1\cdots n]\)</span> 的和，恰好等于 <span class="arithmatex">\(C\)</span> 数组某些元素之和。</p>
-<p><span class="arithmatex">\(sum[n]\)</span> 表示 <span class="arithmatex">\(\displaystyle\sum_{i=1}^nA_i\)</span>（<span class="arithmatex">\(A[1\cdots n]\)</span> 的和）。<span class="arithmatex">\(n=3\)</span> 时，<span class="arithmatex">\(sum[3]=C_2+C_3\)</span>：</p>
+<p><span class="arithmatex">\(sum[n]\)</span> 表示 <span class="arithmatex">\(\displaystyle\sum_{i=1}^nA_i\)</span>（即 <span class="arithmatex">\(A[1\cdots n]\)</span> 的和）。<span class="arithmatex">\(n=3\)</span> 时，<span class="arithmatex">\(sum[3]=C_2+C_3\)</span>：</p>
 <p><center><img src=\img\ds\tree-array_2.png style="zoom:80%"></img></center></p>
 <p><span class="arithmatex">\(n=7\)</span> 时，<span class="arithmatex">\(sum[7]=C_4+C_6+C_7\)</span>：</p>
 <p><center><img src=\img\ds\tree-array_3.png style="zoom:80%"></img></center></p>
@@ -1284,13 +1284,10 @@
 <p>假设在一条斜线上，<span class="arithmatex">\(C_i\)</span> 的相邻节点为 <span class="arithmatex">\(C_j\)</span>，且 <span class="arithmatex">\(C_i\)</span> 在第 <span class="arithmatex">\(k\)</span> 层，<span class="arithmatex">\(C_j\)</span> 在第 <span class="arithmatex">\(k+1\)</span> 层：</p>
 <ul>
 <li>
-<p><span class="arithmatex">\(\rm lowbit(i)\)</span> 的末尾有 <span class="arithmatex">\(k-1\)</span> 个 <span class="arithmatex">\(0\)</span>，<span class="arithmatex">\(\rm lowbit(j)\)</span> 的末尾有 <span class="arithmatex">\(k-2\)</span> 个 <span class="arithmatex">\(0\)</span>；</p>
+<p><span class="arithmatex">\(\rm lowbit(i)\)</span> 的末尾有 <span class="arithmatex">\(k-1\)</span> 个 <span class="arithmatex">\(0\)</span>，<span class="arithmatex">\(\rm lowbit(j)\)</span> 的末尾有 <span class="arithmatex">\(k\)</span> 个 <span class="arithmatex">\(0\)</span>；</p>
 </li>
 <li>
-<p>将 <span class="arithmatex">\(i\)</span> 最低位的 <span class="arithmatex">\(1\)</span> 改成 <span class="arithmatex">\(0\)</span>，就等于 <span class="arithmatex">\(j\)</span>；</p>
-</li>
-<li>
-<p><span class="arithmatex">\(\rm lowbit(i)\)</span> 的值为 「<span class="arithmatex">\(i\)</span> 最低位的 <span class="arithmatex">\(1\)</span> 及其后所有的 <span class="arithmatex">\(0\)</span> 构成的数值」。</p>
+<p>将 <span class="arithmatex">\(i\)</span> 的二进制中，第 <span class="arithmatex">\(k\)</span> 位的 <span class="arithmatex">\(1\)</span> 改成 <span class="arithmatex">\(0\)</span>，就等于 <span class="arithmatex">\(j\)</span>；</p>
 </li>
 </ul>
 <div class="arithmatex">\[
