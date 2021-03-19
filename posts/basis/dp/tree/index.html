@@ -282,11 +282,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../../tools/" class="md-tabs__link">
-      工具
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        工具
+      </a>
+    </li>
+  
 
       
     </ul>
@@ -1066,10 +1070,62 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" >
+      
+      <label class="md-nav__link" for="nav-8">
+        工具
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="工具" data-md-level="1">
+        <label class="md-nav__title" for="nav-8">
+          <span class="md-nav__icon md-icon"></span>
+          工具
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../../tools/" class="md-nav__link">
         工具
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/Dev-Cpp/" class="md-nav__link">
+        Dev-C++
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tools/Python/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1164,13 +1220,16 @@
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p><strong>题目描述</strong></p>
-<p>给定一棵 <span class="arithmatex">\(n\)</span> 个点，<span class="arithmatex">\(m\)</span> 条边，顶点编号为 <span class="arithmatex">\(1\sim n-1\)</span> 的无权树，<span class="arithmatex">\(1\)</span> 号节点为根。</p>
+<p>给定一棵 <span class="arithmatex">\(n\)</span> 个点，<span class="arithmatex">\(m\)</span> 条边，顶点编号为 <span class="arithmatex">\(1\sim n\)</span> 的无权树，<span class="arithmatex">\(1\)</span> 号节点为根。</p>
 <p>进行 <span class="arithmatex">\(m\)</span> 次询问，查询以 <span class="arithmatex">\(i\)</span> 号节点为根的子树所包含的节点个数（子树大小）。</p>
 <p><strong>输入格式</strong></p>
 <p>第一行一个整数 <span class="arithmatex">\(n\)</span>，代表顶点数。</p>
 <p>接下来 <span class="arithmatex">\(n\)</span> 行，每行一对整数 <span class="arithmatex">\(l,k\)</span>，表示 <span class="arithmatex">\(l\)</span> 是 <span class="arithmatex">\(k\)</span> 的父节点。</p>
 <p>接下来一行一个整数 <span class="arithmatex">\(m\)</span>，代表询问次数。</p>
 <p>接下来 <span class="arithmatex">\(m\)</span> 行，每行一个整数，表示询问的根节点编号。</p>
+<p><strong>输出格式</strong></p>
+<p>一行一个整数，表示对应根节点的子树大小。</p>
+<p><strong>输入样例</strong></p>
 <div class="highlight"><pre><span></span><code>5
 1 2
 1 3
@@ -1181,8 +1240,7 @@
 3
 5
 </code></pre></div>
-<p><strong>输出格式</strong></p>
-<p>一行一个整数，表示对应根节点的子树大小。</p>
+<p><strong>输出样例</strong></p>
 <div class="highlight"><pre><span></span><code>5
 2
 0
@@ -1208,12 +1266,15 @@ f[i]=1+\sum_{v\in Son(i)}f[v]
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p><strong>题目描述</strong></p>
-<p>公司有 <span class="arithmatex">\(n\)</span> 个人（编号 <span class="arithmatex">\(1\cdots n\)</span>)，现要举⾏⼀场晚会，并规定如果邀请了某个⼈，那么⼀定不会邀请他的上司（上司的上司，上司的上司的上司 <span class="arithmatex">\(\cdots\)</span> 都可以邀请）。</p>
+<p>公司有 <span class="arithmatex">\(n\)</span> 个人（编号 <span class="arithmatex">\(1\cdots n\)</span>），现要举⾏⼀场晚会，并规定如果邀请了某个⼈，那么⼀定不会邀请他的上司（他上司的上司，上司的上司的上司 <span class="arithmatex">\(\cdots\)</span> 都可以邀请）。</p>
 <p>每个⼈都有⼀个欢乐值，给出公司所有人的上下级关系，求⼀个邀请⽅案，使欢乐值的和最⼤。</p>
 <p><strong>输入格式</strong></p>
 <p>第一行一个整数 <span class="arithmatex">\(n\)</span>。</p>
 <p>第二行 <span class="arithmatex">\(n\)</span> 个整数，第 <span class="arithmatex">\(i\)</span> 个整数表示 <span class="arithmatex">\(i\)</span> 号员工的欢乐值 <span class="arithmatex">\(H_i\)</span>。</p>
 <p>接下来 <span class="arithmatex">\(n-1\)</span> 行，每行一对整数 <span class="arithmatex">\(l,k\)</span>，表示 <span class="arithmatex">\(l\)</span> 号员工是 <span class="arithmatex">\(k\)</span> 号员工的直接上司。</p>
+<p><strong>输出格式</strong></p>
+<p>一行一个整数，代表最大欢乐值之和。</p>
+<p><strong>输入样例</strong></p>
 <div class="highlight"><pre><span></span><code>7
 1 1 1 1 1 1 1
 1 3
@@ -1223,14 +1284,13 @@ f[i]=1+\sum_{v\in Son(i)}f[v]
 4 5
 3 5
 </code></pre></div>
-<p><strong>输出格式</strong></p>
-<p>一行一个整数，代表最大欢乐值之和。</p>
+<p><strong>输出样例</strong></p>
 <div class="highlight"><pre><span></span><code>5
 </code></pre></div>
 <p><strong>数据范围</strong></p>
-<p><span class="arithmatex">\(1≤n≤6×10^3,H_i\in[-128,127),1≤l,k≤n\)</span>，且给出的关系一定是一棵树。</p>
+<p><span class="arithmatex">\(1≤n≤6×10^3,H_i\in[-128,127),1≤l,k≤n\)</span>。</p>
 </div>
-<p><span class="arithmatex">\(f[i,j]\)</span> 表示从以 <span class="arithmatex">\(i\)</span> 为根的子树中邀请部分职员参会，当 <span class="arithmatex">\(j=0\)</span> 时 <span class="arithmatex">\(i\)</span> 号员工不参会，<span class="arithmatex">\(j=1\)</span> 时参会。</p>
+<p><span class="arithmatex">\(f[i,j]\)</span> 表示从以 <span class="arithmatex">\(i\)</span> 为根的子树中邀请部分职员参会的最欢乐值之和，当 <span class="arithmatex">\(j=0\)</span> 时 <span class="arithmatex">\(i\)</span> 号员工不参会，<span class="arithmatex">\(j=1\)</span> 时参会。</p>
 <ul>
 <li>
 <p>若 <span class="arithmatex">\(i\)</span> 号员工的下属 <span class="arithmatex">\(v\)</span> 不参会，则总欢乐值为 <span class="arithmatex">\(f[v,0]\)</span>；</p>
@@ -1239,8 +1299,9 @@ f[i]=1+\sum_{v\in Son(i)}f[v]
 <p>若 <span class="arithmatex">\(i\)</span> 号员工的下属 <span class="arithmatex">\(v\)</span> 参会，则总欢乐值为 <span class="arithmatex">\(f[v,1]\)</span>。</p>
 </li>
 </ul>
-<p>显然，当 <span class="arithmatex">\(i\)</span> 号员工参会，其直接下属必不来；否则直接下属可来可不来：</p>
+<p>显然，若 <span class="arithmatex">\(i\)</span> 号员工参会，他的直接下属必不来：</p>
 <div class="arithmatex">\[f[i,1]=H_i+\sum_{v\in Son(i)}f[v,0]\]</div>
+<p>若 <span class="arithmatex">\(i\)</span> 号员工参会，他的直接下属爱来不来：</p>
 <div class="arithmatex">\[f[i,0]=\sum_{v\in Son(i)}\max\{f[v,0],f[v,1]\}\]</div>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 求 u 号员工对应的 f[u][0] 和 f[u][1]</span>
     <span class="n">f</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span><span class="p">[</span><span class="n">u</span><span class="p">];</span>

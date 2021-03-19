@@ -282,11 +282,15 @@
   
 
 
-  <li class="md-tabs__item">
-    <a href="../../tools/" class="md-tabs__link">
-      工具
-    </a>
-  </li>
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../tools/" class="md-tabs__link">
+        工具
+      </a>
+    </li>
+  
 
       
     </ul>
@@ -1051,10 +1055,62 @@
   
   
   
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8" >
+      
+      <label class="md-nav__link" for="nav-8">
+        工具
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="工具" data-md-level="1">
+        <label class="md-nav__title" for="nav-8">
+          <span class="md-nav__icon md-icon"></span>
+          工具
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../tools/" class="md-nav__link">
         工具
       </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/Dev-Cpp/" class="md-nav__link">
+        Dev-C++
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tools/Python/" class="md-nav__link">
+        Python
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
     </li>
   
 
@@ -1125,7 +1181,7 @@
                             <h1>字符串哈希</h1>
                             
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p>「<strong>字符串哈希</strong>」通过「<strong>哈希函数</strong>」将不同字符串转换为不同数字，以便于匹配。通过哈希函数转化得到的数值称为「<strong>哈希值</strong>」。</p>
+<p><strong>字符串哈希</strong>通过<strong>哈希函数</strong>将不同字符串转换为不同数字，以便于匹配。通过哈希函数转化得到的数值称为<strong>哈希值</strong>。</p>
 <h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <p>假定字符串 <code>str</code> 中只含有 <code>a-z</code> 共 <span class="arithmatex">\(26\)</span> 个小写字符。将字符 <code>a-z</code> 看作数字 <span class="arithmatex">\(1\sim 26\)</span>，<code>str</code> 看作 <span class="arithmatex">\(27\)</span> 进制数。如下图，字符串 <code>fantasy</code> 的哈希值可以设计为 <span class="arithmatex">\(6×27^6+1×27^5+14×27^4+\cdots+25×27^0\)</span>：</p>
 <p><center><img src=/img/string/hash_1.png style="zoom:80%"></img></center></p>
@@ -1154,7 +1210,7 @@
 </details>
 <h2 id="_4">哈希冲突<a class="headerlink" href="#_4" title="Permanent link">$</a></h2>
 <p>使用<a href="#_3">滚动哈希</a>时，有概率会使不同字符串的哈希值相同。该现象称为「<strong>哈希冲突</strong>」。</p>
-<p>一种降低哈希冲突概率的可靠方法是「<strong>双哈希</strong>」：即使用两组不同的质数 <span class="arithmatex">\(b_1,p_1\)</span> 和 <span class="arithmatex">\(b_2,p_2\)</span>，分别计算哈希值。只有两个哈希值分别相同，才能判定字符串的匹配。</p>
+<p>一种降低哈希冲突概率的可靠方法是「<strong>双哈希</strong>」：使用两组不同的质数 <span class="arithmatex">\(b_1,p_1\)</span> 和 <span class="arithmatex">\(b_2,p_2\)</span>，分别计算哈希值。只有两个哈希值分别相同，才能判定字符串的匹配。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">LL</span><span class="p">;</span>
 <span class="k">const</span> <span class="n">LL</span> <span class="n">b_1</span> <span class="o">=</span> <span class="mi">29</span><span class="p">,</span> <span class="n">p_1</span> <span class="o">=</span> <span class="mi">10000019</span><span class="p">;</span>
 <span class="k">const</span> <span class="n">LL</span> <span class="n">b_2</span> <span class="o">=</span> <span class="mi">31</span><span class="p">,</span> <span class="n">p_2</span> <span class="o">=</span> <span class="mi">10000079</span><span class="p">;</span>
