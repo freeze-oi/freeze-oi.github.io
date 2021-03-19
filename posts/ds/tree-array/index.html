@@ -1295,8 +1295,8 @@ i-\rm lowbit(i)=j
 \]</div>
 <p>这意味着同一斜线上，比 <span class="arithmatex">\(C[i]\)</span> 更高一层的相邻节点为 <span class="arithmatex">\(C[i-\rm lowbit(i)]\)</span>。</p>
 <p><center><img src=\img\ds\tree-array_7.png style="zoom:80%"></img></center></p>
-<p><span class="arithmatex">\(0111-\rm lowbit(0111)\)</span> <span class="arithmatex">\(=0111-11=0110\)</span>；</p>
-<p><span class="arithmatex">\(0110-\rm lowbit(0110)\)</span> <span class="arithmatex">\(=0110-10=0100\)</span>；</p>
+<p>0111 <span class="arithmatex">\(-\rm lowbit(\)</span>0111<span class="arithmatex">\()\)</span> <span class="arithmatex">\(=\)</span> 0111 <span class="arithmatex">\(-\)</span> 01 <span class="arithmatex">\(=\)</span> 0110；</p>
+<p>0110 <span class="arithmatex">\(-\rm lowbit(\)</span>0110<span class="arithmatex">\()\)</span> <span class="arithmatex">\(=\)</span> 0110 <span class="arithmatex">\(-\)</span> 10 <span class="arithmatex">\(=\)</span> 0100；</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">lowbit</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="p">(</span><span class="o">~</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1308,7 +1308,7 @@ i-\rm lowbit(i)=j
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<p>再配合<a href="/posts/basis/dp/basis/#_6">前缀和</a>使用，就可以求出任意区间的元素和：</p>
+<p>再配合<a href="/posts/basis/dp/basis/#_6">前缀和</a>，就可以求出任意区间的元素和：</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 查询 A[l...r] 的和</span>
     <span class="k">return</span> <span class="n">ask</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">-</span> <span class="n">ask</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
