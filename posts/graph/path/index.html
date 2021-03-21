@@ -899,6 +899,39 @@
     SPFA 算法
   </a>
   
+    <nav class="md-nav" aria-label="SPFA 算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spfa_1" class="md-nav__link">
+    卡 SPFA
+  </a>
+  
+    <nav class="md-nav" aria-label="卡 SPFA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 网格图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 链套菊花
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1196,6 +1229,39 @@
     SPFA 算法
   </a>
   
+    <nav class="md-nav" aria-label="SPFA 算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spfa_1" class="md-nav__link">
+    卡 SPFA
+  </a>
+  
+    <nav class="md-nav" aria-label="卡 SPFA">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 网格图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 链套菊花
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1298,12 +1364,12 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<div class="admonition warning">
-<p class="admonition-title">它死了</p>
-<p>至于为什么我从不推荐 <span class="arithmatex">\(Oier\)</span> 使用 SPFA 求最短路，这里有一个很恶毒的例子：</p>
+<h3 id="spfa_1">卡 SPFA<a class="headerlink" href="#spfa_1" title="Permanent link">$</a></h3>
+<p>SPFA 遇到以下几类图时，时间复杂度会退化成 <span class="arithmatex">\(O(n^2)\)</span>。设计特定的数据卡 SPFA 算法也成了出题者最热衷于做的事情之一。</p>
+<h4 id="1">1. 网格图<a class="headerlink" href="#1" title="Permanent link">$</a></h4>
 <p><center><img src=\img\graph\path_1.png style="zoom:80%"></img></center></p>
-<p>采用 SPFA 跑网格图的时间复杂度退化为 <span class="arithmatex">\(O(n^2)\)</span>。</p>
-</div>
+<h4 id="2">2. 链套菊花<a class="headerlink" href="#2" title="Permanent link">$</a></h4>
+<p><center><img src=\img\graph\path_2.png style="zoom:80%"></img></center></p>
 <h2 id="dijkstra">Dijkstra 算法<a class="headerlink" href="#dijkstra" title="Permanent link">$</a></h2>
 <p>从节点 s 出发。首先把所有节点分成两个集合：已确定最短路长度的，和未确定的。一开始只有 s 在第一个集合，且 <code>dis[s] = 0</code>；其它节点都未确定最短路，它们的 <code>dis</code> 值应设为 <span class="arithmatex">\(∞\)</span>。</p>
 <p>重复以下操作直到第二个集合中没有节点：</p>

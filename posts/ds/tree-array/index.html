@@ -659,49 +659,49 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    基本原理
+    引入问题
   </a>
   
-    <nav class="md-nav" aria-label="基本原理">
+    <nav class="md-nav" aria-label="引入问题">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    引入问题
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    构造
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    单点修改
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    前缀查询
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    区间查询
+    暴力算法
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    构造
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    单点修改
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    前缀查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    区间查询
+  </a>
   
 </li>
       
@@ -1173,49 +1173,49 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    基本原理
+    引入问题
   </a>
   
-    <nav class="md-nav" aria-label="基本原理">
+    <nav class="md-nav" aria-label="引入问题">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    引入问题
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    构造
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    单点修改
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    前缀查询
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    区间查询
+    暴力算法
   </a>
   
 </li>
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    构造
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    单点修改
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    前缀查询
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    区间查询
+  </a>
   
 </li>
       
@@ -1245,20 +1245,19 @@
 </li>
 </ul>
 <p>前置知识：<a href="/posts/basis/compress/#lowbit"><span class="arithmatex">\(\rm lowbit\)</span> 运算</a>。</p>
-<h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
-<h3 id="_3">引入问题<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
+<h2 id="_2">引入问题<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
 <p><strong>题目描述</strong></p>
 <p>给出一个长度为 <span class="arithmatex">\(n\)</span> 的数组 <span class="arithmatex">\(A\)</span>，进行以下两种操作若干次：</p>
-<ol>
+<ul>
 <li>
 <p>将第 <span class="arithmatex">\(x\)</span> 个数加上 <span class="arithmatex">\(k\)</span>；</p>
 </li>
 <li>
 <p>输出区间 <span class="arithmatex">\([l,r]\)</span> 内每个数的和，即 <span class="arithmatex">\(A\)</span> 的第 <span class="arithmatex">\(l\sim r\)</span> 个元素的和。</p>
 </li>
-</ol>
+</ul>
 <p><strong>输入格式</strong></p>
 <p>第一行两个整数 <span class="arithmatex">\(n\)</span>（数组元素个数）和 <span class="arithmatex">\(m\)</span>（操作次数）；</p>
 <p>第二行 <span class="arithmatex">\(n\)</span> 个整数，第 <span class="arithmatex">\(i\)</span> 个数表示 <span class="arithmatex">\(A_i\)</span>；</p>
@@ -1272,7 +1271,7 @@
 </li>
 </ul>
 <p><strong>输出格式</strong></p>
-<p>换行输出所有操作 <span class="arithmatex">\(2\)</span> 的结果。</p>
+<p>输出的结果以换行隔开。</p>
 <p><strong>输入样例</strong></p>
 <div class="highlight"><pre><span></span><code>5 5
 1 5 4 2 3
@@ -1289,7 +1288,7 @@
 <p><strong>数据范围</strong></p>
 <p><span class="arithmatex">\(1≤n,m≤5×10^5\)</span>。</p>
 </div>
-<p><strong>暴力算法</strong>：</p>
+<h3 id="_3">暴力算法<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
 <ul>
 <li>
 <p>单点修改：直接更改原数组中 <span class="arithmatex">\(A_x\)</span> 的值；</p>
@@ -1325,7 +1324,8 @@
 <p>区间查询：<span class="arithmatex">\(O(n)\)</span>。</p>
 </li>
 </ul>
-<p><span class="arithmatex">\(m\)</span> 次操作的总复杂度为 <span class="arithmatex">\(O(nm)\)</span>。该做法显然接受不了大数据。我们需要使用「<strong>树状数组</strong>」来苟过所有的测试点。</p>
+<p><span class="arithmatex">\(m\)</span> 次操作的总复杂度为 <span class="arithmatex">\(O(nm)\)</span>。该做法显然接受不了大数据。</p>
+<p>使用「<strong>树状数组</strong>」以苟过所有的测试点。</p>
 <p>树状数组的时间复杂度：</p>
 <ul>
 <li>
@@ -1336,7 +1336,7 @@
 </li>
 </ul>
 <p><span class="arithmatex">\(m\)</span> 次操作的总复杂度为 <span class="arithmatex">\(O(m\log{n})\)</span>，可以跑非常大规模的数据。</p>
-<h3 id="_4">构造<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<h2 id="_4">构造<a class="headerlink" href="#_4" title="Permanent link">$</a></h2>
 <p>在数组 <span class="arithmatex">\(A\)</span> 的上方建立起这样的森林结构：</p>
 <p><center><img src=\img\ds\tree-array_1.png style="zoom:80%"></img></center></p>
 <p>其中 <span class="arithmatex">\(C_i\)</span> 的值为「以 <span class="arithmatex">\(C_i\)</span> 为根节点的子树中，叶结点值的和」，即：</p>
@@ -1351,10 +1351,10 @@
 <p><span class="arithmatex">\(\cdots \ \cdots\)</span></p>
 <p>每个节点覆盖的长度为多少呢？将 <span class="arithmatex">\(C\)</span> 数组所有元素的下标转换成二进制数，再分别计算它们的 <a href="/posts/basis/compress/#lowbit"><span class="arithmatex">\(\rm lowbit\)</span> 值</a>：</p>
 <p><center><img src=\img\ds\tree-array_2.png style="zoom:80%"></img></center></p>
-<p>会发现同一层所有节点的下标 <span class="arithmatex">\(\rm lowbit\)</span> 值相同，且节点 <span class="arithmatex">\(C_i\)</span> 覆盖的长度恰好为 <span class="arithmatex">\(\rm lowbit(i)\)</span>。</p>
+<p>会发现同一层所有节点下标的 <span class="arithmatex">\(\rm lowbit\)</span> 值相同，且节点 <span class="arithmatex">\(C_i\)</span> 覆盖的长度恰好为 <span class="arithmatex">\(\rm lowbit(i)\)</span>。</p>
 <p>通过进一步观察发现：<span class="arithmatex">\(C_i\)</span> 的父节点为 <span class="arithmatex">\(C[i+\rm lowbit(i)]\)</span>。例如：</p>
 <p><center><span class="arithmatex">\(C[\)</span>0010<span class="arithmatex">\(]\)</span> 的父节点 <span class="arithmatex">\(=C[\)</span>0010 <span class="arithmatex">\(+ \rm \ lowbit(\)</span>0010<span class="arithmatex">\()]=C[\)</span>0010 <span class="arithmatex">\(+\)</span> 10<span class="arithmatex">\(]=C[\)</span>0100<span class="arithmatex">\(]\)</span></center></p>
-<h3 id="_5">单点修改<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
+<h2 id="_5">单点修改<a class="headerlink" href="#_5" title="Permanent link">$</a></h2>
 <p>将 <span class="arithmatex">\(A_x\)</span> 的值增加 <span class="arithmatex">\(k\)</span>，哪些节点的值会跟着变动？以 <span class="arithmatex">\(A_3\)</span> 为例：</p>
 <p><center><img src=\img\ds\tree-array_3.png style="zoom:80%"></img></center></p>
 <p><span class="arithmatex">\(C_3=\textcolor{red}{A_3}\)</span>；</p>
@@ -1372,7 +1372,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_6">前缀查询<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
+<h2 id="_6">前缀查询<a class="headerlink" href="#_6" title="Permanent link">$</a></h2>
 <p>树状数组支持查询前缀和，即数组 <span class="arithmatex">\(A\)</span> 第 <span class="arithmatex">\(1\sim x\)</span> 个元素的和。</p>
 <p><span class="arithmatex">\(sum[x]\)</span> 表示 <span class="arithmatex">\(A[1\cdots x]\)</span> 所有元素的和。以 <span class="arithmatex">\(sum[7]\)</span> 为例：</p>
 <p><center><img src=\img\ds\tree-array_4.png style="zoom:80%"></img></center></p>
@@ -1393,7 +1393,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_7">区间查询<a class="headerlink" href="#_7" title="Permanent link">$</a></h3>
+<h2 id="_7">区间查询<a class="headerlink" href="#_7" title="Permanent link">$</a></h2>
 <p>采用<a href="/posts/basis/dp/basis/#_6">前缀和</a>思想。<span class="arithmatex">\(get[l,r]\)</span> 表示 <span class="arithmatex">\(A[l\cdots r]\)</span> 所有元素的和，则：</p>
 <div class="arithmatex">\[
 get[l,r]=sum[r]-sum[l-1];
