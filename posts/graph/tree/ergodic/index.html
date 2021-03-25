@@ -703,7 +703,7 @@
 
 <li class="md-nav__item">
     <a href="../../../string/KMP/" class="md-nav__link">
-        KMP算法
+        KMP 算法
     </a>
 </li>
 
@@ -715,7 +715,7 @@
 
 <li class="md-nav__item">
     <a href="../../../string/trie/" class="md-nav__link">
-        Trie树
+        Trie 树
     </a>
 </li>
 
@@ -855,21 +855,21 @@
             
             <li class="md-nav__item">
     <a href="#_2" class="md-nav__link">
-        前序遍历（前根遍历）
+        前序遍历
     </a>
     
 </li>
             
             <li class="md-nav__item">
     <a href="#_3" class="md-nav__link">
-        中序遍历（中根遍历）
+        中序遍历
     </a>
     
 </li>
             
             <li class="md-nav__item">
     <a href="#_4" class="md-nav__link">
-        后序遍历（后根遍历）
+        后序遍历
     </a>
     
 </li>
@@ -890,6 +890,18 @@
   
 </nav>
     
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../MST/" class="md-nav__link">
+        最小生成树
+    </a>
 </li>
 
 
@@ -953,19 +965,7 @@
 
 
 <li class="md-nav__item">
-    <a href="../../MST/" class="md-nav__link">
-        最小生成树
-    </a>
-</li>
-
-
-            
-            
-
-
-
-<li class="md-nav__item">
-    <a href="../../tarjan/" class="md-nav__link">
+    <a href="../../SCC/" class="md-nav__link">
         强连通分量
     </a>
 </li>
@@ -1199,21 +1199,21 @@
             
             <li class="md-nav__item">
     <a href="#_2" class="md-nav__link">
-        前序遍历（前根遍历）
+        前序遍历
     </a>
     
 </li>
             
             <li class="md-nav__item">
     <a href="#_3" class="md-nav__link">
-        中序遍历（中根遍历）
+        中序遍历
     </a>
     
 </li>
             
             <li class="md-nav__item">
     <a href="#_4" class="md-nav__link">
-        后序遍历（后根遍历）
+        后序遍历
     </a>
     
 </li>
@@ -1248,27 +1248,30 @@
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
 <p>递归访问树中所有节点的过程叫做<strong>树的遍历</strong>。本章介绍二叉树的 <span class="arithmatex">\(3\)</span> 种遍历方式。</p>
 <p><center><img src=/img/graph/tree/tree_9.png style="zoom:80%"></img></center></p>
-<h3 id="_2">前序遍历（前根遍历）<a class="headerlink" href="#_2" title="Permanent link">$</a></h3>
+<h3 id="_2">前序遍历<a class="headerlink" href="#_2" title="Permanent link">$</a></h3>
 <p>先访问根节点，再遍历左子树，最后遍历右子树。上图的前序遍历顺序为 <span class="arithmatex">\(1→2→4→5→3\)</span>。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 打印以 u 为根的树的遍历顺序</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">u</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
     <span class="n">dfs</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">u</span><span class="p">]);</span> <span class="c1">// l[u] 表示 u 的左子节点</span>
     <span class="n">dfs</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">u</span><span class="p">]);</span> <span class="c1">// r[u] 表示 u 的右子节点</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_3">中序遍历（中根遍历）<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
+<h3 id="_3">中序遍历<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
 <p>先遍历左子树，再访问根节点，最后遍历右子树。上图的中序遍历顺序为 <span class="arithmatex">\(4→2→5→1→3\)</span>。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">u</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
     <span class="n">dfs</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">u</span><span class="p">]);</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
     <span class="n">dfs</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">u</span><span class="p">]);</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_4">后序遍历（后根遍历）<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<h3 id="_4">后序遍历<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
 <p>先遍历左子树，再遍历右子树，最后访问根节点。上图的后序遍历顺序为 <span class="arithmatex">\(4→5→2→3→1\)</span>。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">dfs</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">u</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
     <span class="n">dfs</span><span class="p">(</span><span class="n">l</span><span class="p">[</span><span class="n">u</span><span class="p">]);</span>
     <span class="n">dfs</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="n">u</span><span class="p">]);</span>
     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">u</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
@@ -1315,13 +1318,13 @@
             </a>
             
             
-            <a href="../../treap/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <a href="../MST/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
                 <div class="md-footer-nav__title">
                     <div class="md-ellipsis">
                         <span class="md-footer-nav__direction">
                             下一页
                         </span>
-                        二叉平衡树
+                        最小生成树
                     </div>
                 </div>
                 <div class="md-footer-nav__button md-icon">

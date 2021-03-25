@@ -84,6 +84,11 @@
         <label class="md-overlay" for="__drawer"></label>
         <div data-md-component="skip">
             
+            
+            <a href="#tarjan" class="md-skip">
+                跳转至
+            </a>
+            
         </div>
         <div data-md-component="announce">
             
@@ -698,7 +703,7 @@
 
 <li class="md-nav__item">
     <a href="../../string/KMP/" class="md-nav__link">
-        KMP算法
+        KMP 算法
     </a>
 </li>
 
@@ -710,7 +715,7 @@
 
 <li class="md-nav__item">
     <a href="../../string/trie/" class="md-nav__link">
-        Trie树
+        Trie 树
     </a>
 </li>
 
@@ -824,6 +829,18 @@
 
 
 <li class="md-nav__item">
+    <a href="../tree/MST/" class="md-nav__link">
+        最小生成树
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
     <a href="../treap/" class="md-nav__link">
         二叉平衡树
     </a>
@@ -877,18 +894,6 @@
 
 
 
-<li class="md-nav__item">
-    <a href="../MST/" class="md-nav__link">
-        最小生成树
-    </a>
-</li>
-
-
-            
-            
-
-
-
 
 
 <li class="md-nav__item md-nav__item--active">
@@ -896,9 +901,50 @@
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
+    <label class="md-nav__link md-nav__link--active" for="__toc">
+        强连通分量
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    
     <a href="./" class="md-nav__link md-nav__link--active">
         强连通分量
     </a>
+    
+    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+    <a href="#tarjan" class="md-nav__link">
+        Tarjan 算法
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#kosaraju" class="md-nav__link">
+        Kosaraju 算法
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#garbow" class="md-nav__link">
+        Garbow 算法
+    </a>
+    
+</li>
+      
+    </ul>
+  
+</nav>
     
 </li>
 
@@ -1107,6 +1153,49 @@
                     
                     
                     
+                    <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                        <div class="md-sidebar__scrollwrap">
+                            <div class="md-sidebar__inner">
+                                
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+    <a href="#tarjan" class="md-nav__link">
+        Tarjan 算法
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#kosaraju" class="md-nav__link">
+        Kosaraju 算法
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#garbow" class="md-nav__link">
+        Garbow 算法
+    </a>
+    
+</li>
+      
+    </ul>
+  
+</nav>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                     <div class="md-content">
                         <article class="md-content__inner md-typeset">
                             
@@ -1114,7 +1203,8 @@
                             
                             <h1>强连通分量</h1>
                             
-                            <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">dep</span><span class="p">[],</span> <span class="n">low</span><span class="p">[],</span> <span class="n">tot</span><span class="p">;</span>
+                            <h2 id="tarjan">Tarjan 算法<a class="headerlink" href="#tarjan" title="Permanent link">$</a></h2>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">dep</span><span class="p">[],</span> <span class="n">low</span><span class="p">[],</span> <span class="n">tot</span><span class="p">;</span>
 <span class="n">stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">s</span><span class="p">;</span>
 
 <span class="kt">void</span> <span class="nf">tarjan</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span> <span class="p">{</span>
@@ -1133,6 +1223,64 @@
         <span class="k">while</span><span class="p">(</span><span class="n">u</span> <span class="o">!=</span> <span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">())</span> <span class="n">avl</span><span class="p">[</span><span class="n">s</span><span class="p">.</span><span class="n">top</span><span class="p">()]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
         <span class="n">avl</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">,</span> <span class="n">s</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
     <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="kosaraju">Kosaraju 算法<a class="headerlink" href="#kosaraju" title="Permanent link">$</a></h2>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">dfs1</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">vis</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">v</span> <span class="p">:</span> <span class="n">g</span><span class="p">[</span><span class="n">u</span><span class="p">])</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">vis</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">dfs1</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="n">s</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">dfs2</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">color</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">sccCnt</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="nl">v</span> <span class="p">:</span> <span class="n">g2</span><span class="p">[</span><span class="n">u</span><span class="p">])</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">color</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">dfs2</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">kosaraju</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">sccCnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">vis</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">dfs1</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">color</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span> <span class="p">{</span>
+            <span class="o">++</span> <span class="n">sccCnt</span><span class="p">;</span>
+            <span class="n">dfs2</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="garbow">Garbow 算法<a class="headerlink" href="#garbow" title="Permanent link">$</a></h2>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">garbow</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">stack1</span><span class="p">[</span><span class="o">++</span><span class="n">p1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
+    <span class="n">stack2</span><span class="p">[</span><span class="o">++</span><span class="n">p2</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">;</span>
+    <span class="n">low</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="o">++</span><span class="n">dfs_clock</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="n">u</span><span class="p">];</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">to</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+        <span class="n">garbow</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">sccno</span><span class="p">[</span><span class="n">v</span><span class="p">])</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">low</span><span class="p">[</span><span class="n">stack2</span><span class="p">[</span><span class="n">p2</span><span class="p">]]</span> <span class="o">&gt;</span> <span class="n">low</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">p2</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">stack2</span><span class="p">[</span><span class="n">p2</span><span class="p">]</span> <span class="o">==</span> <span class="n">u</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">p2</span><span class="o">--</span><span class="p">;</span>
+        <span class="n">scc_cnt</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">do</span> <span class="p">{</span>
+        <span class="n">sccno</span><span class="p">[</span><span class="n">stack1</span><span class="p">[</span><span class="n">p1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">scc_cnt</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">stack1</span><span class="p">[</span><span class="n">p1</span><span class="o">--</span><span class="p">]</span> <span class="o">!=</span> <span class="n">u</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">find_scc</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">dfs_clock</span> <span class="o">=</span> <span class="n">scc_cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">p1</span> <span class="o">=</span> <span class="n">p2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">sccno</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sccno</span><span class="p">));</span>
+    <span class="n">memset</span><span class="p">(</span><span class="n">low</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">low</span><span class="p">));</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">low</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">garbow</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>
@@ -1155,7 +1303,7 @@
     <div class="md-footer-nav">
         <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
             
-            <a href="../MST/" class="md-footer-nav__link md-footer-nav__link--prev"
+            <a href="../topsort/" class="md-footer-nav__link md-footer-nav__link--prev"
                 rel="prev">
                 <div class="md-footer-nav__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
@@ -1165,7 +1313,7 @@
                         <span class="md-footer-nav__direction">
                             上一页
                         </span>
-                        最小生成树
+                        拓扑排序
                     </div>
                 </div>
             </a>
