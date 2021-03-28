@@ -1218,13 +1218,9 @@
                             <h1>最小生成树</h1>
                             
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<ul>
-<li><a href="/posts/graph/#_2">无向</a><a href="/posts/graph/#_8">连通图</a>的<strong>生成树</strong>包含原图所有节点，并且具有树的性质。下图的 <span class="arithmatex">\(b\)</span> 和 <span class="arithmatex">\(c\)</span> 皆为 <span class="arithmatex">\(a\)</span> 的生成树。</li>
-</ul>
-<p><center><img src=/img/graph/MST.png style="zoom:80%"></center></p>
-<ul>
-<li><strong>最小生成树</strong>是所有生成树中边权和最小的树。<span class="arithmatex">\(n\)</span> 个节点的无向图中，最小生成树有 <span class="arithmatex">\(n-1\)</span> 条边。</li>
-</ul>
+<p><a href="/posts/graph/#_2">无向图</a> <span class="arithmatex">\(G\)</span> 的<strong>生成树</strong><a href="/posts/graph/#_8">连通</a>并包含 <span class="arithmatex">\(G\)</span> 的所有节点，且具有树的性质。下图的 <span class="arithmatex">\(b\)</span> 和 <span class="arithmatex">\(c\)</span> 皆为 <span class="arithmatex">\(a\)</span> 的生成树。</p>
+<p><center><img src=/img/graph/MST.png style="zoom:80%"></img></center></p>
+<p><strong>最小生成树</strong>是所有生成树中边权和最小的树。<span class="arithmatex">\(n\)</span> 个节点的无向图中，最小生成树有 <span class="arithmatex">\(n-1\)</span> 条边。</p>
 <h2 id="kruskal">Kruskal 算法<a class="headerlink" href="#kruskal" title="Permanent link">$</a></h2>
 <p>Kruskal 算法是一种贪心算法。</p>
 <ol>
@@ -1236,7 +1232,7 @@
 </li>
 </ol>
 <p>使用<a href="/posts/graph/DSU">并查集</a>判断和维护两个顶点是否连通。</p>
-<p>时间复杂度为 <span class="arithmatex">\(O(m\log{m})\)</span>，适用于<a href="/posts/graph/#_3">稀疏图</a>。</p>
+<p>时间复杂度为 <span class="arithmatex">\(O(m\log{m})\)</span>，适用于稀疏图。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">fa</span><span class="p">[];</span>
 
 <span class="k">struct</span> <span class="nc">edge</span> <span class="p">{</span>
@@ -1276,7 +1272,7 @@
 <p>选择离树最近（<span class="arithmatex">\(dis\)</span> 值最小）的点加入树，对该点的相邻节点进行<a href="/posts/graph/path/#relax">松弛操作</a>。重复执行直到加入 <span class="arithmatex">\(n-1\)</span> 条边。</p>
 </li>
 </ol>
-<p>时间复杂度为 <span class="arithmatex">\(O(n^2)\)</span>，适用于<a href="/posts/graph/#_3">稠密图</a>。</p>
+<p>时间复杂度为 <span class="arithmatex">\(O(n^2)\)</span>，适用于稠密图。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">prim</span><span class="p">()</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="n">memset</span><span class="p">(</span><span class="n">avl</span><span class="p">,</span> <span class="nb">true</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">avl</span><span class="p">);</span>
