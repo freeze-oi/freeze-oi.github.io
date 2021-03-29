@@ -1219,12 +1219,13 @@
 <p>考虑开数组 <span class="arithmatex">\(F[ \ ]\)</span> 保存计算结果，从而避免重复计算。</p>
 <ol>
 <li>
-<p>若 <span class="arithmatex">\(f(x)\)</span> 未被调用，算出 <span class="arithmatex">\(f(x)\)</span> 的结果，并存入 <span class="arithmatex">\(F(x)\)</span>；</p>
+<p>若 <span class="arithmatex">\(f(x)\)</span> 未被调用，算出 <span class="arithmatex">\(f(x)\)</span> 的结果，并存入 <span class="arithmatex">\(F[x]\)</span>；</p>
 </li>
 <li>
-<p>若 <span class="arithmatex">\(f(x)\)</span> 已经被调用过，直接返回 <span class="arithmatex">\(F(x)\)</span> 的值。</p>
+<p>若 <span class="arithmatex">\(f(x)\)</span> 已经被调用过，直接返回 <span class="arithmatex">\(F[x]\)</span> 的值。</p>
 </li>
 </ol>
+<p>此方法和<a href="/posts/basis/dp/">动态规划</a>中的填表思想如出一辙。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">F</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">};</span>
 <span class="kt">int</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="n">F</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="c1">// 如果 F[x] 不为 0，则 f(x) 已经被调用过</span>
@@ -1234,7 +1235,7 @@
 </details>
 <p>执行 <span class="arithmatex">\(f(7)\)</span> 的调用情况如下：</p>
 <p><center><img src=/img/dp/memo-search_2.png style="zoom:80%"></img></center></p>
-<p>记忆化搜索的效率和动态规划相当，设计难度低于动态规划。若<a href="/posts/basis/dp/#2">确定状态转移方程</a>后难以判断<a href="/posts/basis/dp/#4">计算顺序</a>，则可以采用该算法。</p>
+<p>记忆化搜索的效率和动态规划相当，设计难度低于动态规划。若难以判断计算顺序，则可以采用该算法。</p>
                             
                             
                             

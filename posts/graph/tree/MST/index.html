@@ -1218,7 +1218,19 @@
                             <h1>最小生成树</h1>
                             
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p><a href="/posts/graph/#_2">无向图</a> <span class="arithmatex">\(G\)</span> 的<strong>生成树</strong><a href="/posts/graph/#_8">连通</a>并包含 <span class="arithmatex">\(G\)</span> 的所有节点，且具有树的性质。下图的 <span class="arithmatex">\(b\)</span> 和 <span class="arithmatex">\(c\)</span> 皆为 <span class="arithmatex">\(a\)</span> 的生成树。</p>
+<p><a href="/posts/graph/#_2">无向图</a> <span class="arithmatex">\(G\)</span> 的<strong>生成树</strong>同时满足以下性质：</p>
+<ul>
+<li>
+<p>包含 <span class="arithmatex">\(G\)</span> 中的所有节点；</p>
+</li>
+<li>
+<p>任意两个节点都<a href="/posts/graph/#_8">连通</a>；</p>
+</li>
+<li>
+<p>具有树的所有性质。</p>
+</li>
+</ul>
+<p>下图的 <span class="arithmatex">\(b\)</span> 和 <span class="arithmatex">\(c\)</span> 皆为 <span class="arithmatex">\(a\)</span> 的生成树。</p>
 <p><center><img src=/img/graph/MST.png style="zoom:80%"></img></center></p>
 <p><strong>最小生成树</strong>是所有生成树中边权和最小的树。<span class="arithmatex">\(n\)</span> 个节点的无向图中，最小生成树有 <span class="arithmatex">\(n-1\)</span> 条边。</p>
 <h2 id="kruskal">Kruskal 算法<a class="headerlink" href="#kruskal" title="Permanent link">$</a></h2>

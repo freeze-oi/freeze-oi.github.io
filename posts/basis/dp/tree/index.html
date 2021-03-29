@@ -607,7 +607,7 @@
             
             <li class="md-nav__item">
     <a href="#dp" class="md-nav__link">
-        树上背包 DP
+        背包类树形 DP
     </a>
     
 </li>
@@ -1272,7 +1272,7 @@
             
             <li class="md-nav__item">
     <a href="#dp" class="md-nav__link">
-        树上背包 DP
+        背包类树形 DP
     </a>
     
 </li>
@@ -1403,7 +1403,7 @@ f[i]=1+\sum_{v\in Son(i)}f[v]
 </code></pre></div>
 </details>
 <h2 id="_6">拓展<a class="headerlink" href="#_6" title="Permanent link">$</a></h2>
-<h3 id="dp">树上背包 DP<a class="headerlink" href="#dp" title="Permanent link">$</a></h3>
+<h3 id="dp">背包类树形 DP<a class="headerlink" href="#dp" title="Permanent link">$</a></h3>
 <p>处理某些问题时，需要结合树形 DP 和<a href="posts/basis/dp/knapsack/">背包 DP</a>的思想。</p>
 <div class="admonition question">
 <p class="admonition-title">Question</p>
@@ -1456,7 +1456,7 @@ f[u,j]=\max_{v\in Son(u)}\{f[u,j],f[u,j-k]+f[v,k]\}
 <tr>
 <th align="center">初始条件</th>
 <th align="center"><span class="arithmatex">\(f[i,1]=s[i]\)</span></th>
-<th align="center">最终答案</th>
+<th align="center">边界条件</th>
 <th align="center"><span class="arithmatex">\(f[0,m]\)</span></th>
 </tr>
 </thead>

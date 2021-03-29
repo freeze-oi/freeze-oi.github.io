@@ -1217,10 +1217,9 @@
 </ol>
 <p><center><img src=/img/graph/tree/LCA_2.gif style="zoom:80%"></img></center></p>
 <p>时间复杂度：<span class="arithmatex">\(O(n)\)</span>。</p>
-<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">d</span><span class="p">[],</span> <span class="n">fa</span><span class="p">[];</span>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">fa</span><span class="p">[];</span>
 <span class="kt">bool</span> <span class="n">mark</span><span class="p">[];</span>
 <span class="cm">/*</span>
-<span class="cm">    d[i]    : 节点 i 的深度</span>
 <span class="cm">    fa[i]   : 节点 i 的父节点，fa[根节点] = 0</span>
 <span class="cm">    mark[i] : 节点 i 是否被标记</span>
 <span class="cm">*/</span>
