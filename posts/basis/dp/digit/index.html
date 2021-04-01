@@ -564,19 +564,32 @@
         基本原理
     </a>
     
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="基本原理">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
     <a href="#_3" class="md-nav__link">
+        引出问题
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
         预处理
     </a>
     
 </li>
-      
-        <li class="md-nav__item">
-    <a href="#_4" class="md-nav__link">
-        整活
+            
+            <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        实现
     </a>
+    
+</li>
+            
+        </ul>
+    </nav>
     
 </li>
       
@@ -1205,19 +1218,32 @@
         基本原理
     </a>
     
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="基本原理">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
     <a href="#_3" class="md-nav__link">
+        引出问题
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
         预处理
     </a>
     
 </li>
-      
-        <li class="md-nav__item">
-    <a href="#_4" class="md-nav__link">
-        整活
+            
+            <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        实现
     </a>
+    
+</li>
+            
+        </ul>
+    </nav>
     
 </li>
       
@@ -1238,12 +1264,21 @@
                             
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
 <p>如何统计区间 <span class="arithmatex">\([l,r]\)</span> 中有多少个整数满足某条件？</p>
-<p>考虑暴力算法，枚举 <span class="arithmatex">\([l,r]\)</span> 中的每一个整数，逐个判断是否满足条件，此方法遇大数据必 <span class="arithmatex">\(gg\)</span>。<strong>数位 DP</strong>应运而生。</p>
+<ol>
+<li>
+<p>暴力算法，枚举 <span class="arithmatex">\([l,r]\)</span> 中的每一个整数，逐个判断是否满足条件，此方法遇大数据必 <span class="arithmatex">\(gg\)</span>。</p>
+</li>
+<li>
+<p>使用<strong>数位 DP</strong>。</p>
+</li>
+</ol>
 <h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
-<h2 id="_3">预处理<a class="headerlink" href="#_3" title="Permanent link">$</a></h2>
-<p>若统计的整数满足条件「相邻两个数字之差 <span class="arithmatex">\(≥2\)</span>」，并且给定区间范围 <span class="arithmatex">\(l&lt;r≤100\)</span>：</p>
-<p><span class="arithmatex">\(f[i,d]\)</span> 表示「所有最高位为 <span class="arithmatex">\(i\)</span> 的 <span class="arithmatex">\(d\)</span> 位数中，满足条件的个数」。如 <span class="arithmatex">\(f[3,2]=1\)</span> 表示「所有最高位为 <span class="arithmatex">\(3\)</span> 的 <span class="arithmatex">\(2\)</span> 位数中，有 <span class="arithmatex">\(1\)</span> 个满足条件」，且这个数为 <span class="arithmatex">\(31\)</span>。</p>
-<p>通过「相邻两个数字之差 <span class="arithmatex">\(≥2\)</span>」可推出 <span class="arithmatex">\(f[i,d]\)</span> 与 <span class="arithmatex">\(f[?,d-1]\)</span> 的关系：</p>
+<h3 id="_3">引出问题<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
+<p>统计区间 <span class="arithmatex">\([l,r]\)</span>（<span class="arithmatex">\(0≤l&lt;r≤100\)</span>）中有多少个整数满足条件「相邻两个数字之差 <span class="arithmatex">\(≥2\)</span>」。</p>
+<h3 id="_4">预处理<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<p>采用「试填法」：从个位向最高位填数字，如果第 <span class="arithmatex">\(d\)</span> 位填了 <span class="arithmatex">\(3\)</span>，那么第 <span class="arithmatex">\(d+1\)</span> 位只能填 <span class="arithmatex">\(0,1,5,6,7,8,9\)</span>：</p>
+<p><center><img src=\img\dp\digit_1.png style="zoom:80%"></img></center></p>
+<p><span class="arithmatex">\(f[i,d]\)</span> 表示「所有最高位为 <span class="arithmatex">\(i\)</span> 的 <span class="arithmatex">\(d\)</span> 位数中，满足条件的个数」。通过给定条件可推出：</p>
 <div class="arithmatex">\[
 f[i,d]=\sum_{|k-i|≥2} f[k,d-1]
 \]</div>
@@ -1275,8 +1310,47 @@ f[i,d]=\sum_{|k-i|≥2} f[k,d-1]
                 <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">d</span><span class="p">]</span> <span class="o">+=</span> <span class="n">f</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">d</span> <span class="o">-</span> <span class="mi">1</span><span class="p">];</span>
 </code></pre></div>
 </details>
-<h2 id="_4">整活<a class="headerlink" href="#_4" title="Permanent link">$</a></h2>
-<p>Freeze 正在风尘仆仆地开发中 <span class="arithmatex">\(\cdots \ \cdots\)</span></p>
+<h3 id="_5">实现<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
+<p><span class="arithmatex">\(dp(n)\)</span> 表示 <span class="arithmatex">\([0,n]\)</span> 中有多少个数满足条件。由<a href="/posts/basis/dp/basis/#_6">前缀和</a>可知，<span class="arithmatex">\([l,r]\)</span> 中满足条件的个数 <span class="arithmatex">\(=dp(r)-dp(l-1)\)</span>。问题转为求 <span class="arithmatex">\(dp(n)\)</span>。</p>
+<p><span class="arithmatex">\(dp(n)\)</span> 的实现步骤：</p>
+<ol>
+<li>
+<p>提取 <span class="arithmatex">\(n\)</span> 每一位上的数字，存入数组 <span class="arithmatex">\(dgt[]\)</span>：</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dgt</span><span class="p">[];</span>
+<span class="c1">// cnt : n 的位数；dgt[i] : n 的第 i 位数字</span>
+<span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">dgt</span><span class="p">[</span><span class="o">++</span> <span class="n">cnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+</code></pre></div>
+</li>
+<li>
+<p>枚举位数 <span class="arithmatex">\(d=cnt→1\)</span>，统计有多少 <span class="arithmatex">\(≤n\)</span> 的 <span class="arithmatex">\(d\)</span> 位数满足条件：</p>
+<ul>
+<li>
+<p>若位数 <span class="arithmatex">\(d=cnt\)</span>，则该位不为 <span class="arithmatex">\(0\)</span>，共 <span class="arithmatex">\(f[1→dgt[d],d]\)</span> 个数满足条件；</p>
+</li>
+<li>
+<p>否则，共 <span class="arithmatex">\(f[0→dgt[d],d]\)</span> 个数满足条件。</p>
+</li>
+</ul>
+<p>用 <span class="arithmatex">\(last\)</span> 记录上一位填的数字，如果 <span class="arithmatex">\(|last-dgt[d]|&lt;2\)</span>，不满足条件，跳出循环。</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="mi">-2</span><span class="p">;</span>
+<span class="c1">// ans : 满足条件的个数；last : 前一位填的数</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">;</span> <span class="n">d</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">d</span> <span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">d</span> <span class="o">==</span> <span class="n">cnt</span><span class="p">);</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dgt</span><span class="p">[</span><span class="n">d</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">last</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="n">ans</span> <span class="o">+=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">d</span><span class="p">];</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">last</span> <span class="o">-</span> <span class="n">dgt</span><span class="p">[</span><span class="n">d</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="n">dgt</span><span class="p">[</span><span class="n">d</span><span class="p">];</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">d</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</li>
+<li>
+<p>加上「前导 <span class="arithmatex">\(0\)</span>」的特殊情况：</p>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="n">cnt</span><span class="p">;</span> <span class="n">d</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">ans</span> <span class="o">+=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">d</span><span class="p">];</span>
+</code></pre></div>
+</li>
+</ol>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">dp</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 求 [0, n] 中有几个数符合条件 </span>
     <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="mi">-2</span><span class="p">;</span>
     <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">n</span><span class="p">)</span> <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
@@ -1286,7 +1360,7 @@ f[i,d]=\sum_{|k-i|≥2} f[k,d-1]
             <span class="k">if</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">last</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="n">ans</span> <span class="o">+=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">d</span><span class="p">];</span>
         <span class="k">if</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">last</span> <span class="o">-</span> <span class="n">dgt</span><span class="p">[</span><span class="n">d</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
         <span class="n">last</span> <span class="o">=</span> <span class="n">dgt</span><span class="p">[</span><span class="n">d</span><span class="p">];</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">d</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">++</span><span class="p">;</span> 
+        <span class="k">if</span><span class="p">(</span><span class="n">d</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">ans</span> <span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">d</span> <span class="o">&lt;</span> <span class="n">cnt</span><span class="p">;</span> <span class="n">d</span> <span class="o">++</span><span class="p">)</span>
         <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
