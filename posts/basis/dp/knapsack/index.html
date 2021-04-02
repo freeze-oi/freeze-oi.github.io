@@ -1,0 +1,2008 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    
+    
+    
+    
+    <link rel="shortcut icon" href="../../../../img/floppy.png">
+    <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
+    
+    
+    
+    <title>背包 DP - Freeze's Blogs</title>
+    
+    
+    
+    <link rel="stylesheet" href="../../../../assets/stylesheets/main.cb6bc1d0.min.css">
+    
+    
+    <link rel="stylesheet" href="../../../../assets/stylesheets/palette.39b8e14a.min.css">
+    
+    
+    
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    
+    
+    
+    
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:300,400,400i,700%7CFira+Code&display=fallback">
+    <style>
+        body,
+        input {
+            font-family:"Nunito",
+            -apple-system,
+            BlinkMacSystemFont,
+            Helvetica,
+            Arial,
+            sans-serif
+        }
+
+        code,
+        kbd,
+        pre {
+            font-family:"Fira Code",
+            SFMono-Regular,
+            Consolas,
+            Menlo,
+            monospace
+        }
+    </style>
+    
+    
+    
+    
+    
+    
+    
+    
+</head>
+
+
+
+
+
+
+
+
+<body dir="ltr" data-md-color-scheme="" data-md-color-primary="white"
+    data-md-color-accent="">
+    
+    
+        
+        <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+        <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+        <label class="md-overlay" for="__drawer"></label>
+        <div data-md-component="skip">
+            
+            
+            <a href="#01" class="md-skip">
+                跳转至
+            </a>
+            
+        </div>
+        <div data-md-component="announce">
+            
+        </div>
+        
+        
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../../../.." title="Freeze&#39;s Blogs" class="md-header-nav__button md-logo" aria-label="Freeze's Blogs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5.5L18.5 3H17v6a1 1 0 01-1 1H8a1 1 0 01-1-1V3H5m7 1v5h3V4h-3m-5 8h10a1 1 0 011 1v6H6v-6a1 1 0 011-1z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Freeze's Blogs
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              背包 DP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+        
+        <div class="md-container" data-md-component="container">
+            
+            
+            
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+        <ul class="md-tabs__list">
+            
+            
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../.." class="md-tabs__link">
+      主页
+    </a>
+  </li>
+
+            
+            
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../high-pre/" class="md-tabs__link md-tabs__link--active">
+        基础算法
+      </a>
+    </li>
+  
+
+            
+            
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../ds/stack/" class="md-tabs__link">
+        数据结构
+      </a>
+    </li>
+  
+
+            
+            
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../graph/" class="md-tabs__link">
+        图论
+      </a>
+    </li>
+  
+
+            
+            
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../math/prime/" class="md-tabs__link">
+        数论
+      </a>
+    </li>
+  
+
+            
+            
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../calculus/limit/" class="md-tabs__link">
+        微积分
+      </a>
+    </li>
+  
+
+            
+            
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../tools/" class="md-tabs__link">
+        工具
+      </a>
+    </li>
+  
+
+            
+        </ul>
+    </div>
+</nav>
+            
+            
+            <main class="md-main" data-md-component="main">
+                <div class="md-main__inner md-grid">
+                    
+                    
+                    
+                    <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                        <div class="md-sidebar__scrollwrap">
+                            <div class="md-sidebar__inner">
+                                
+
+
+
+
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+    <label class="md-nav__title" for="__drawer">
+        <a href="../../../.." title="Freeze&#39;s Blogs" class="md-nav__button md-logo"
+            aria-label="Freeze's Blogs">
+            
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 3a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5.5L18.5 3H17v6a1 1 0 01-1 1H8a1 1 0 01-1-1V3H5m7 1v5h3V4h-3m-5 8h10a1 1 0 011 1v6H6v-6a1 1 0 011-1z"/></svg>
+
+        </a>
+        Freeze's Blogs
+    </label>
+    
+    <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+        
+        
+
+
+
+
+<li class="md-nav__item">
+    <a href="../../../.." class="md-nav__link">
+        主页
+    </a>
+</li>
+
+
+        
+        
+        
+        
+
+
+
+
+
+
+
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+        基础算法
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="基础算法" data-md-level="1">
+        <label class="md-nav__title" for="nav-2">
+            <span class="md-nav__icon md-icon"></span>
+            基础算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+            
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../high-pre/" class="md-nav__link">
+        高精度
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../dfs/" class="md-nav__link">
+        深度优先搜索
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../bfs/" class="md-nav__link">
+        广度优先搜索
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../sort/" class="md-nav__link">
+        排序算法
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../binary/" class="md-nav__link">
+        二分算法
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../compress/" class="md-nav__link">
+        状态压缩
+    </a>
+</li>
+
+
+            
+            
+
+
+
+
+
+
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-7" type="checkbox" id="nav-2-7" checked>
+    
+    <label class="md-nav__link" for="nav-2-7">
+        动态规划
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="动态规划" data-md-level="2">
+        <label class="md-nav__title" for="nav-2-7">
+            <span class="md-nav__icon md-icon"></span>
+            动态规划
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+            
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../" class="md-nav__link">
+        简介
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../memo-search/" class="md-nav__link">
+        记忆化搜索
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../basis/" class="md-nav__link">
+        基础 DP
+    </a>
+</li>
+
+
+            
+            
+
+
+
+
+
+<li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+    <label class="md-nav__link md-nav__link--active" for="__toc">
+        背包 DP
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+        背包 DP
+    </a>
+    
+    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+    <a href="#01" class="md-nav__link">
+        01 背包
+    </a>
+    
+    <nav class="md-nav" aria-label="01 背包">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_1" class="md-nav__link">
+        空间优化
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_2" class="md-nav__link">
+        完全背包
+    </a>
+    
+    <nav class="md-nav" aria-label="完全背包">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_3" class="md-nav__link">
+        空间优化
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
+        多重背包
+    </a>
+    
+    <nav class="md-nav" aria-label="多重背包">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#01_1" class="md-nav__link">
+        转换为 01 背包
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        分组背包
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_6" class="md-nav__link">
+        二维背包
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_7" class="md-nav__link">
+        拓展
+    </a>
+    
+    <nav class="md-nav" aria-label="拓展">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_8" class="md-nav__link">
+        方案总数
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_9" class="md-nav__link">
+        最优方案总数
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+      
+    </ul>
+  
+</nav>
+    
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../interval/" class="md-nav__link">
+        区间 DP
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../tree/" class="md-nav__link">
+        树形 DP
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../digit/" class="md-nav__link">
+        数位 DP
+    </a>
+</li>
+
+
+            
+        </ul>
+    </nav>
+</li>
+
+
+            
+            
+
+
+
+
+<li class="md-nav__item md-nav__item--nested">
+    
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-8" type="checkbox" id="nav-2-8" >
+    
+    <label class="md-nav__link" for="nav-2-8">
+        字符串算法
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="字符串算法" data-md-level="2">
+        <label class="md-nav__title" for="nav-2-8">
+            <span class="md-nav__icon md-icon"></span>
+            字符串算法
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+            
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../string/hash/" class="md-nav__link">
+        字符串哈希
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../string/hash-table/" class="md-nav__link">
+        哈希表
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../string/KMP/" class="md-nav__link">
+        KMP 算法
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../string/trie/" class="md-nav__link">
+        Trie 树
+    </a>
+</li>
+
+
+            
+        </ul>
+    </nav>
+</li>
+
+
+            
+        </ul>
+    </nav>
+</li>
+
+
+        
+        
+        
+        
+
+
+
+
+
+<li class="md-nav__item md-nav__item--nested">
+    
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+        数据结构
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="数据结构" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+            <span class="md-nav__icon md-icon"></span>
+            数据结构
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+            
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../ds/stack/" class="md-nav__link">
+        栈
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../ds/queue/" class="md-nav__link">
+        队列
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../ds/link/" class="md-nav__link">
+        链表
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../ds/seg-tree/" class="md-nav__link">
+        线段树
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../ds/tree-array/" class="md-nav__link">
+        树状数组
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../ds/STL/" class="md-nav__link">
+        STL
+    </a>
+</li>
+
+
+            
+        </ul>
+    </nav>
+</li>
+
+
+        
+        
+        
+        
+
+
+
+
+
+<li class="md-nav__item md-nav__item--nested">
+    
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+        图论
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="图论" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+            <span class="md-nav__icon md-icon"></span>
+            图论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+            
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/" class="md-nav__link">
+        简介
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/store/" class="md-nav__link">
+        图的存储
+    </a>
+</li>
+
+
+            
+            
+
+
+
+
+<li class="md-nav__item md-nav__item--nested">
+    
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-3" type="checkbox" id="nav-4-3" >
+    
+    <label class="md-nav__link" for="nav-4-3">
+        树
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="树" data-md-level="2">
+        <label class="md-nav__title" for="nav-4-3">
+            <span class="md-nav__icon md-icon"></span>
+            树
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+            
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/tree/" class="md-nav__link">
+        简介
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/tree/ergodic/" class="md-nav__link">
+        树的遍历
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/tree/LCA/" class="md-nav__link">
+        最近公共祖先
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/tree/MST/" class="md-nav__link">
+        最小生成树
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/treap/" class="md-nav__link">
+        二叉平衡树
+    </a>
+</li>
+
+
+            
+        </ul>
+    </nav>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/DSU/" class="md-nav__link">
+        并查集
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/path/" class="md-nav__link">
+        最短路径
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/topsort/" class="md-nav__link">
+        拓扑排序
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../graph/SCC/" class="md-nav__link">
+        强连通分量
+    </a>
+</li>
+
+
+            
+        </ul>
+    </nav>
+</li>
+
+
+        
+        
+        
+        
+
+
+
+
+
+<li class="md-nav__item md-nav__item--nested">
+    
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    
+    <label class="md-nav__link" for="nav-5">
+        数论
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="数论" data-md-level="1">
+        <label class="md-nav__title" for="nav-5">
+            <span class="md-nav__icon md-icon"></span>
+            数论
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+            
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../math/prime/" class="md-nav__link">
+        质数
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../math/factor/" class="md-nav__link">
+        因数
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../math/model/" class="md-nav__link">
+        同余
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../math/stiring/" class="md-nav__link">
+        Stiring 公式
+    </a>
+</li>
+
+
+            
+        </ul>
+    </nav>
+</li>
+
+
+        
+        
+        
+        
+
+
+
+
+
+<li class="md-nav__item md-nav__item--nested">
+    
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-6" type="checkbox" id="nav-6" >
+    
+    <label class="md-nav__link" for="nav-6">
+        微积分
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="微积分" data-md-level="1">
+        <label class="md-nav__title" for="nav-6">
+            <span class="md-nav__icon md-icon"></span>
+            微积分
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+            
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../calculus/limit/" class="md-nav__link">
+        极限
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../calculus/continuty/" class="md-nav__link">
+        连续
+    </a>
+</li>
+
+
+            
+        </ul>
+    </nav>
+</li>
+
+
+        
+        
+        
+        
+
+
+
+
+
+<li class="md-nav__item md-nav__item--nested">
+    
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7" >
+    
+    <label class="md-nav__link" for="nav-7">
+        工具
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="工具" data-md-level="1">
+        <label class="md-nav__title" for="nav-7">
+            <span class="md-nav__icon md-icon"></span>
+            工具
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+            
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../tools/" class="md-nav__link">
+        工具
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../tools/Dev-Cpp/" class="md-nav__link">
+        Dev-C++
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../../tools/Python/" class="md-nav__link">
+        Python
+    </a>
+</li>
+
+
+            
+        </ul>
+    </nav>
+</li>
+
+
+        
+    </ul>
+</nav>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                        <div class="md-sidebar__scrollwrap">
+                            <div class="md-sidebar__inner">
+                                
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+    <a href="#01" class="md-nav__link">
+        01 背包
+    </a>
+    
+    <nav class="md-nav" aria-label="01 背包">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_1" class="md-nav__link">
+        空间优化
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_2" class="md-nav__link">
+        完全背包
+    </a>
+    
+    <nav class="md-nav" aria-label="完全背包">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_3" class="md-nav__link">
+        空间优化
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
+        多重背包
+    </a>
+    
+    <nav class="md-nav" aria-label="多重背包">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#01_1" class="md-nav__link">
+        转换为 01 背包
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        分组背包
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_6" class="md-nav__link">
+        二维背包
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_7" class="md-nav__link">
+        拓展
+    </a>
+    
+    <nav class="md-nav" aria-label="拓展">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_8" class="md-nav__link">
+        方案总数
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_9" class="md-nav__link">
+        最优方案总数
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+      
+    </ul>
+  
+</nav>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    <div class="md-content">
+                        <article class="md-content__inner md-typeset">
+                            
+                            
+                            
+                            <h1>背包 DP</h1>
+                            
+                            <h2 id="01">01 背包<a class="headerlink" href="#01" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p><strong>题目描述</strong></p>
+<p>用体积为 <span class="arithmatex">\(m\)</span> 的背包装 <span class="arithmatex">\(n\)</span> 种物品，每种物品只有 <span class="arithmatex">\(1\)</span> 个。第 <span class="arithmatex">\(i\)</span> 种物品的体积为 <span class="arithmatex">\(w_i\)</span>，价值为 <span class="arithmatex">\(c_i\)</span>，将哪些物品装入背包可使总价值最大？</p>
+</div>
+<p><span class="arithmatex">\(f[i,v]\)</span> 表示把前 <span class="arithmatex">\(i\)</span> 个物品（部分或全部）放入体积为 <span class="arithmatex">\(v\)</span> 的背包，可以获得的最大总价值。</p>
+<p>若只考虑第 <span class="arithmatex">\(i\)</span> 个物品的策略（放或不放），则问题转而只涉及到前 <span class="arithmatex">\(i-1\)</span> 个物品：</p>
+<ul>
+<li>
+<p>若不放第 <span class="arithmatex">\(i\)</span> 个物品，则 <span class="arithmatex">\(f[i,v]=f[i-1,v]\)</span>；</p>
+</li>
+<li>
+<p>若放第 <span class="arithmatex">\(i\)</span> 个物品，则前 <span class="arithmatex">\(i-1\)</span> 个物品只能放在体积为 <span class="arithmatex">\(v-w_i\)</span> 的空间里，故 <span class="arithmatex">\(f[i,v]=f[i-1,v-w_i]+c_i\)</span>。</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+f[i,v] = \max\left\{\begin{aligned}
+&amp;f[i-1,v]\\
+&amp;f[i-1,v-w_i]+c_i,v≥w_i
+\end{aligned}\right.
+\]</div>
+<p>由于 <span class="arithmatex">\(f[i,v]\)</span> 的值只由 <span class="arithmatex">\(f[i-1,v]\)</span> 和 <span class="arithmatex">\(f[i-1,v-w_i]\)</span> 决定，所以先求 <span class="arithmatex">\(f[1,0\cdots m]\)</span>，再求 <span class="arithmatex">\(f[2,0\cdots m]\)</span>，<span class="arithmatex">\(\cdots\)</span>，直到求出 <span class="arithmatex">\(f[n,m]\)</span>。时间复杂度为 <span class="arithmatex">\(O(nm)\)</span>。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>当 <span class="arithmatex">\(v &lt; w_i\)</span> 时，第 <span class="arithmatex">\(i\)</span> 个物品放不进体积为 <span class="arithmatex">\(v\)</span> 的背包，此时 <span class="arithmatex">\(f[i,v]\)</span> 只能等于 <span class="arithmatex">\(f[i-1,v]\)</span>。</p>
+</div>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">++</span><span class="p">)</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">v</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h3 id="_1">空间优化<a class="headerlink" href="#_1" title="Permanent link">$</a></h3>
+<p>假设背包体积为 <span class="arithmatex">\(4\)</span>，物品个数为 <span class="arithmatex">\(3\)</span>，体积和价值如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="center">体积 <span class="arithmatex">\(w\)</span></th>
+<th align="center">价值 <span class="arithmatex">\(c\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="arithmatex">\(1\)</span></td>
+<td align="center"><span class="arithmatex">\(1\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(3\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="arithmatex">\(3\)</span></td>
+<td align="center"><span class="arithmatex">\(1\)</span></td>
+<td align="center"><span class="arithmatex">\(3\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>第 <span class="arithmatex">\(i\)</span> 行第 <span class="arithmatex">\(v\)</span> 列的格子 <span class="arithmatex">\((i,v)\)</span> 存放 <span class="arithmatex">\(f[i,v]\)</span> 的值。运行 01 背包程序可以得到下表：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><span class="arithmatex">\(i\setminus v\)</span></th>
+<th align="center"><span class="arithmatex">\(0\)</span></th>
+<th align="center"><span class="arithmatex">\(1\)</span></th>
+<th align="center"><span class="arithmatex">\(2\)</span></th>
+<th align="center"><span class="arithmatex">\(3\)</span></th>
+<th align="center"><span class="arithmatex">\(4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="arithmatex">\(1\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(3\)</span></td>
+<td align="center"><span class="arithmatex">\(5\)</span></td>
+<td align="center"><span class="arithmatex">\(5\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="arithmatex">\(3\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(3\)</span></td>
+<td align="center"><span class="arithmatex">\(5\)</span></td>
+<td align="center"><span class="arithmatex">\(6\)</span></td>
+<td align="center"><span class="arithmatex">\(8\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>由于每一行的数据只与上一行有关，事实上可以去掉 <span class="arithmatex">\(1\)</span> 维：</p>
+<div class="arithmatex">\[
+f[\textcolor{lightgray}{i,}v] = \max\left\{\begin{aligned}
+&amp;f[\textcolor{lightgray}{i-1,}v]\\
+&amp;f[\textcolor{lightgray}{i-1,}v-w_i]+c_i,v≥w_i
+\end{aligned}\right.
+\]</div>
+<p>需要保证更新 <span class="arithmatex">\(f[v]\)</span> 时，<span class="arithmatex">\(f[v-w_i]\)</span> 在第 <span class="arithmatex">\(i\)</span> 行还没被更新，因此降序枚举 <span class="arithmatex">\(v\)</span>。</p>
+<p>用 <span class="arithmatex">\(1\)</span> 号物品（<span class="arithmatex">\(w_1=1,c_1=2\)</span>）更新 <span class="arithmatex">\(f[4\cdots 0]\)</span>：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><span class="arithmatex">\(f\setminus v\)</span></th>
+<th align="center"><span class="arithmatex">\(0\)</span></th>
+<th align="center"><span class="arithmatex">\(1\)</span></th>
+<th align="center"><span class="arithmatex">\(2\)</span></th>
+<th align="center"><span class="arithmatex">\(3\)</span></th>
+<th align="center"><span class="arithmatex">\(4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="arithmatex">\(f\)</span>（上一行）</td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td align="center">更新 <span class="arithmatex">\(f[4]\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{0}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{f[4-1]}\textcolor{red}{+2}\)</span></td>
+</tr>
+<tr>
+<td align="center">更新 <span class="arithmatex">\(f[3]\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{0}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{f[3-1]}\textcolor{red}{+2}\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+</tr>
+<tr>
+<td align="center">更新 <span class="arithmatex">\(f[2]\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{0}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{f[2-1]}\textcolor{red}{+2}\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+</tr>
+<tr>
+<td align="center">更新 <span class="arithmatex">\(f[1]\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{0}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{f[1-1]}\textcolor{red}{+2}\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+</tr>
+<tr>
+<td align="center">更新 <span class="arithmatex">\(f[0]\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{f[0]=0}\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="arithmatex">\(f\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">--</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</code></pre></div>
+</details>
+<h2 id="_2">完全背包<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>若每种物品都有无限个？</p>
+</div>
+<p><span class="arithmatex">\(f[i,v]\)</span> 表示把前 <span class="arithmatex">\(i\)</span> 种物品放入体积为 <span class="arithmatex">\(v\)</span> 的背包，可以获得的最大总价值。</p>
+<ul>
+<li>
+<p>若不放第 <span class="arithmatex">\(i\)</span> 种物品，则 <span class="arithmatex">\(f[i,v]=f[i-1,v]\)</span>；</p>
+</li>
+<li>
+<p>若多放入 <span class="arithmatex">\(1\)</span> 个第 <span class="arithmatex">\(i\)</span> 种物品，则剩余的前 <span class="arithmatex">\(i\)</span> 种物品只能放在体积为 <span class="arithmatex">\(v-w_i\)</span> 的空间里，故 <span class="arithmatex">\(f[i,v]=f[i,v-w_i]+c_i\)</span>。</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+f[i,v] = \max\left\{\begin{aligned}
+&amp;f[i-1,v]\\
+&amp;f[i,v-w_i]+c_i,v≥w_i
+\end{aligned}\right.
+\]</div>
+<p>时间复杂度为 <span class="arithmatex">\(O(nm)\)</span>。</p>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">++</span><span class="p">)</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">v</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h3 id="_3">空间优化<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
+<p>完全背包同样也可以省去一维：</p>
+<div class="arithmatex">\[
+f[\textcolor{lightgray}{i,}v] = \max\left\{\begin{aligned}
+&amp;f[\textcolor{lightgray}{i-1,}v]\\
+&amp;f[\textcolor{lightgray}{i,}v-w_i]+c_i,v≥w_i
+\end{aligned}\right.
+\]</div>
+<p>需要保证更新 <span class="arithmatex">\(f[v]\)</span> 时，<span class="arithmatex">\(f[v-w_i]\)</span> 在第 <span class="arithmatex">\(i\)</span> 行已经被更新了，因此升序枚举 <span class="arithmatex">\(v\)</span>。</p>
+<p>沿用 <a href="#_1">01 背包的例子</a>，改变 <span class="arithmatex">\(v\)</span> 的枚举顺序为升序：</p>
+<p>用 <span class="arithmatex">\(1\)</span> 号物品（<span class="arithmatex">\(w_1=1,c_1=2\)</span>）更新 <span class="arithmatex">\(f[0\cdots 4]\)</span>：</p>
+<table>
+<thead>
+<tr>
+<th align="center"><span class="arithmatex">\(f\setminus v\)</span></th>
+<th align="center"><span class="arithmatex">\(0\)</span></th>
+<th align="center"><span class="arithmatex">\(1\)</span></th>
+<th align="center"><span class="arithmatex">\(2\)</span></th>
+<th align="center"><span class="arithmatex">\(3\)</span></th>
+<th align="center"><span class="arithmatex">\(4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="arithmatex">\(f\)</span>（上一行）</td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td align="center">更新 <span class="arithmatex">\(f[0]\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{f[0]=0}\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td align="center">更新 <span class="arithmatex">\(f[1]\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{0}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{f[1-1]}\textcolor{red}{+2}\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td align="center">更新 <span class="arithmatex">\(f[2]\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{2}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{f[2-1]}\textcolor{red}{+2}\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td align="center">更新 <span class="arithmatex">\(f[3]\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{4}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{f[3-1]}\textcolor{red}{+2}\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+</tr>
+<tr>
+<td align="center">更新 <span class="arithmatex">\(f[4]\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(4\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{6}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{blue}{f[4-1]}\textcolor{red}{+2}\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="arithmatex">\(f\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(4\)</span></td>
+<td align="center"><span class="arithmatex">\(6\)</span></td>
+<td align="center"><span class="arithmatex">\(8\)</span></td>
+</tr>
+</tbody>
+</table>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="n">v</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</code></pre></div>
+</details>
+<h2 id="_4">多重背包<a class="headerlink" href="#_4" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>若 <span class="arithmatex">\(n\)</span> 种物品分别有 <span class="arithmatex">\(s_1,s_2,\cdots,s_n\)</span> 个？</p>
+</div>
+<p>第 <span class="arithmatex">\(i\)</span> 个物品有 <span class="arithmatex">\(s_i+1\)</span> 种策略（取 <span class="arithmatex">\(0\sim s_i\)</span> 件）。在 <a href="#01">01 背包</a>的基础上，再枚举物品个数 <span class="arithmatex">\(k\)</span>，每次绑定 <span class="arithmatex">\(k\)</span> 个物品当成一个物品。</p>
+<div class="arithmatex">\[
+f[v] = \max\left\{\begin{aligned}
+&amp;f[v]\\
+&amp;f[v-k·w_i]+k·c_i,v≥k·w_i
+\end{aligned}\right.
+\]</div>
+<p>时间复杂度为 <span class="arithmatex">\(O(m\sum s_i)\)</span>。</p>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">--</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;&amp;</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">k</span> <span class="o">++</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span> <span class="o">-</span> <span class="n">k</span> <span class="o">*</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">k</span> <span class="o">*</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</code></pre></div>
+</details>
+<h3 id="01_1">转换为 01 背包<a class="headerlink" href="#01_1" title="Permanent link">$</a></h3>
+<ul>
+<li>
+<p>在 <span class="arithmatex">\(1,2,4,\cdots,2^n\)</span> 中选出若干个相加，可以得到 <span class="arithmatex">\(0\sim 2^{n+1}-1\)</span> 中的任意整数。</p>
+</li>
+<li>
+<p>同理，<span class="arithmatex">\(1,2,4,\cdots,2^k,n-(2^{k+1}-1)\)</span> 可以组合出 <span class="arithmatex">\(0\sim n\)</span> 中的任意整数，其中 <span class="arithmatex">\(k\)</span> 是满足 <span class="arithmatex">\(n-(2^{k+1}-1)&gt;0\)</span> 的最大整数。</p>
+</li>
+</ul>
+<p>将第 <span class="arithmatex">\(i\)</span> 种物品拆分成 <span class="arithmatex">\(\log{s_i}\)</span> 个物品，它们的体积和价值如下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">体积 <span class="arithmatex">\(w\)</span></th>
+<th align="center"><span class="arithmatex">\(w_i\)</span></th>
+<th align="center"><span class="arithmatex">\(2w_i\)</span></th>
+<th align="center"><span class="arithmatex">\(4w_i\)</span></th>
+<th align="center"><span class="arithmatex">\(\cdots\)</span></th>
+<th align="center"><span class="arithmatex">\(2^kw_i\)</span></th>
+<th align="center"><span class="arithmatex">\([s_i-(2^{k+1}-1)]w_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">价值 <span class="arithmatex">\(v\)</span></td>
+<td align="center"><span class="arithmatex">\(c_i\)</span></td>
+<td align="center"><span class="arithmatex">\(2c_i\)</span></td>
+<td align="center"><span class="arithmatex">\(4c_i\)</span></td>
+<td align="center"><span class="arithmatex">\(\cdots\)</span></td>
+<td align="center"><span class="arithmatex">\(2^kc_i\)</span></td>
+<td align="center"><span class="arithmatex">\([s_i-(2^{k+1}-1)]c_i\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>这些物品可以组合出第 <span class="arithmatex">\(i\)</span> 个物品的所有选择方案（取 <span class="arithmatex">\(0\sim s_i\)</span> 件）。用 <a href="#01">01 背包</a>的策略处理出最佳选择方案。时间复杂度为 <span class="arithmatex">\(O(m\sum\log{s_i})\)</span></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p><a href="#_2">完全背包</a>也可以用相同的方法进行优化。</p>
+</div>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">wi</span><span class="p">,</span> <span class="n">ci</span><span class="p">,</span> <span class="n">si</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">wi</span> <span class="o">&gt;&gt;</span> <span class="n">ci</span> <span class="o">&gt;&gt;</span> <span class="n">si</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">k</span> <span class="o">&lt;=</span> <span class="n">si</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">w</span><span class="p">[</span><span class="o">++</span> <span class="n">tot</span><span class="p">]</span> <span class="o">=</span> <span class="n">wi</span> <span class="o">*</span> <span class="n">k</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="n">tot</span><span class="p">]</span> <span class="o">=</span> <span class="n">ci</span> <span class="o">*</span> <span class="n">k</span><span class="p">;</span>
+        <span class="n">si</span> <span class="o">-=</span> <span class="n">k</span><span class="p">,</span> <span class="n">k</span> <span class="o">*=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">w</span><span class="p">[</span><span class="o">++</span> <span class="n">tot</span><span class="p">]</span> <span class="o">=</span> <span class="n">wi</span> <span class="o">*</span> <span class="n">si</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="n">tot</span><span class="p">]</span> <span class="o">=</span> <span class="n">ci</span> <span class="o">*</span> <span class="n">si</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">tot</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">--</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</code></pre></div>
+</details>
+<h2 id="_5">分组背包<a class="headerlink" href="#_5" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>给定 <span class="arithmatex">\(t\)</span> 组物品，第 <span class="arithmatex">\(k\)</span> 组有 <span class="arithmatex">\(s_k\)</span> 个物品，第 <span class="arithmatex">\(k\)</span> 组第 <span class="arithmatex">\(i\)</span> 个物品体积为 <span class="arithmatex">\(w_{k \ i}\)</span>，价值为 <span class="arithmatex">\(c_{k \ i}\)</span>。每组中的物品互相冲突，最多选一件。将哪些物品放入背包可使总价值最大？</p>
+</div>
+<p><span class="arithmatex">\(f[k,v]\)</span> 表示将前 <span class="arithmatex">\(k\)</span> 组的物品放入体积为 <span class="arithmatex">\(v\)</span> 的背包中，可以获得的最大总价值。</p>
+<p>第 <span class="arithmatex">\(k\)</span> 组的选择策略如下：</p>
+<div class="arithmatex">\[
+f[k,v] = \max\left\{\begin{aligned}
+&amp;f[k-1,v]\\
+&amp;\max_{1≤i≤s_k} \ f[k-1,v-w_{k \ i}]+c_{k \ i},v≥w_{k \ i}
+\end{aligned}\right.
+\]</div>
+<p>和 01 背包类似，同样可以省去一维。时间复杂度为 <span class="arithmatex">\(O(nm)\)</span>。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>枚举第 <span class="arithmatex">\(k\)</span> 组物品的循环应放在最内层。若放在外层，则等价于 01 背包，失去了分组的意义。</p>
+</div>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="p">;</span> <span class="n">k</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">--</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="p">[</span><span class="n">k</span><span class="p">];</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">v</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+                <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span><span class="n">f</span><span class="p">[</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+</code></pre></div>
+</details>
+<h2 id="_6">二维背包<a class="headerlink" href="#_6" title="Permanent link">$</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>背包的体积为 <span class="arithmatex">\(m_1\)</span>，承重为 <span class="arithmatex">\(m_2\)</span>；物品个数为 <span class="arithmatex">\(n\)</span>，第 <span class="arithmatex">\(i\)</span> 个物品的体积为 <span class="arithmatex">\({w_1}_i\)</span>，质量为 <span class="arithmatex">\({w_2}_i\)</span>，价值为 <span class="arithmatex">\(c_i\)</span>。在背包不过载的同时，将哪些物品装入背包可使总价值最大？</p>
+</div>
+<p>同时枚举体积和质量即可。</p>
+<div class="arithmatex">\[
+f[v_1,v_2] = \max\left\{\begin{aligned}
+&amp;f[v_1,v_2]\\
+&amp;f[v_1-{w_1}_i,v_2-{w_2}_i]+c_i,v_1≥{w_1}_i,v_2≥{w_2}_i
+\end{aligned}\right.
+\]</div>
+<p>时间复杂度为 <span class="arithmatex">\(O(nm_1m_2)\)</span>。</p>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v1</span> <span class="o">=</span> <span class="n">m1</span><span class="p">;</span> <span class="n">v1</span> <span class="o">&gt;=</span> <span class="n">w1</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v1</span> <span class="o">--</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v2</span> <span class="o">=</span> <span class="n">m2</span><span class="p">;</span> <span class="n">v2</span> <span class="o">&gt;=</span> <span class="n">w2</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v2</span> <span class="o">--</span><span class="p">)</span>
+            <span class="n">f</span><span class="p">[</span><span class="n">v1</span><span class="p">][</span><span class="n">v2</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">v1</span><span class="p">][</span><span class="n">v2</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">v1</span> <span class="o">-</span> <span class="n">w1</span><span class="p">[</span><span class="n">i</span><span class="p">]][</span><span class="n">v2</span> <span class="o">-</span> <span class="n">w2</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</code></pre></div>
+</details>
+<h2 id="_7">拓展<a class="headerlink" href="#_7" title="Permanent link">$</a></h2>
+<h3 id="_8">方案总数<a class="headerlink" href="#_8" title="Permanent link">$</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>在 <a href="#01">01 背包</a>的基础上，将物品放入背包的方案有几种？</p>
+</div>
+<p><span class="arithmatex">\(g[i,v]\)</span> 表示把前 <span class="arithmatex">\(i\)</span> 个物品放入体积为 <span class="arithmatex">\(v\)</span> 的背包的方案总数。</p>
+<ul>
+<li>
+<p>若不放第 <span class="arithmatex">\(i\)</span> 个物品，则方案总数为 <span class="arithmatex">\(g[i-1,v]\)</span>；</p>
+</li>
+<li>
+<p>若放第 <span class="arithmatex">\(i\)</span> 个物品，则方案总数为 <span class="arithmatex">\(g[i,v-w_i]\)</span>。</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+g[i,v]=g[i-1,v]+g[i-1,v-w_i],v≥w_i
+\]</div>
+<p>同样可以省去第一维：</p>
+<div class="arithmatex">\[
+g[v]=g[v]+g[v-w_i],v≥w_i
+\]</div>
+<p>初始条件：<span class="arithmatex">\(g[0]=1\)</span>。因为当背包体积为 <span class="arithmatex">\(0\)</span> 时只有一个方案：不装任何物品。</p>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">--</span><span class="p">)</span>
+        <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+=</span> <span class="n">g</span><span class="p">[</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</code></pre></div>
+</details>
+<h3 id="_9">最优方案总数<a class="headerlink" href="#_9" title="Permanent link">$</a></h3>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>使总价值最大的方案有几种？</p>
+</div>
+<p>已知 <a href="#01">01 背包</a>的状态转移方程：</p>
+<div class="arithmatex">\[
+f[i,v] = \max\left\{\begin{aligned}
+&amp;f[i-1,v]\\
+&amp;f[i-1,v-w_i]+c_i,v≥w_i
+\end{aligned}\right.
+\]</div>
+<p><span class="arithmatex">\(g[i,v]\)</span> 表示把前 <span class="arithmatex">\(i\)</span> 个物品放入体积为 <span class="arithmatex">\(v\)</span> 的背包的方案总数。</p>
+<ul>
+<li>
+<p>若 <span class="arithmatex">\(f[i-1,v]&gt;f[i-1,v-w_i]+c_i\)</span>，则不放物品 <span class="arithmatex">\(i\)</span> 总价值最大，<span class="arithmatex">\(g[i,v]=g[i-1,v]\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(f[i-1,v]&lt;f[i-1,v-w_i]+c_i\)</span>，则放物品 <span class="arithmatex">\(i\)</span> 总价值最大，<span class="arithmatex">\(g[i,v]=g[i-1,v-w_i]\)</span>；</p>
+</li>
+<li>
+<p>若相等，则放或不放都可使总价值最大，<span class="arithmatex">\(g[i,v]=g[i-1,v]+g[i-1,v-w_i]\)</span>。</p>
+</li>
+</ul>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">v</span> <span class="o">&lt;</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="p">],</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="p">])</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">+=</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="n">f</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">][</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">g</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">+=</span> <span class="n">g</span><span class="p">[</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<p>一维优化版：</p>
+<details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="n">v</span> <span class="o">&gt;=</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="n">v</span> <span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">max_f</span> <span class="o">=</span> <span class="n">max</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">max_g</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">max_f</span> <span class="o">==</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">max_g</span> <span class="o">+=</span> <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">max_f</span> <span class="o">==</span> <span class="n">f</span><span class="p">[</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">+</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="n">max_g</span> <span class="o">+=</span> <span class="n">g</span><span class="p">[</span><span class="n">v</span> <span class="o">-</span> <span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+        <span class="n">f</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_f</span><span class="p">,</span> <span class="n">g</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_g</span><span class="p">;</span>
+    <span class="p">}</span>
+</code></pre></div>
+</details>
+<p><style>
+th, td {
+    font-size: 14px;
+}
+.md-typeset table:not([class]) th {
+    min-width: 3rem;
+}
+</style></p>
+                            
+                            
+                            
+                            
+
+
+                            
+                        </article>
+                    </div>
+                </div>
+            </main>
+            
+            <!--
+<footer class="md-footer"> -->
+
+<!-- 
+    <div class="md-footer-nav">
+        <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+            
+            <a href="../basis/" class="md-footer-nav__link md-footer-nav__link--prev"
+                rel="prev">
+                <div class="md-footer-nav__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+                </div>
+                <div class="md-footer-nav__title">
+                    <div class="md-ellipsis">
+                        <span class="md-footer-nav__direction">
+                            上一页
+                        </span>
+                        基础 DP
+                    </div>
+                </div>
+            </a>
+            
+            
+            <a href="../interval/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+                <div class="md-footer-nav__title">
+                    <div class="md-ellipsis">
+                        <span class="md-footer-nav__direction">
+                            下一页
+                        </span>
+                        区间 DP
+                    </div>
+                </div>
+                <div class="md-footer-nav__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+                </div>
+            </a>
+            
+        </nav>
+    </div>
+     -->
+
+<!-- <div class="md-footer-meta md-typeset">
+        <div class="md-footer-meta__inner md-grid">
+            <div class="md-footer-copyright">
+                Powered By
+                <a href="https://freeze.org.cn/" target="_blank" rel="noopener">
+                    Freeze
+                </a>
+            </div>
+            
+        </div>
+    </div>
+</footer> -->
+            
+        </div>
+        
+        <script src="../../../../assets/javascripts/vendor.18f0862e.min.js"></script>
+        <script src="../../../../assets/javascripts/bundle.994580cf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+        
+        <script>
+            app = initialize({
+                base: "../../../..",
+                features: ['navigation.tabs', 'navigation.tabs.sticky'],
+                search: Object.assign({
+                    worker: "../../../../assets/javascripts/worker/search.9c0e82ba.min.js"
+                }, typeof search !== "undefined" && search)
+        })
+        </script>
+        
+        <script src="../../../../js/mathjax.js"></script>
+        
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        
+        
+    </body>
+
+</html>
+
+<style>
+    pre,
+    code {
+        font-size: 14px;
+    }
+
+    span.md-ellipsis {
+        font-weight: bold;
+    }
+
+    li,
+    p,
+    summary,
+    ul {
+        font-size: 15px;
+    }
+
+    th,
+    td {
+        font-size: 14px;
+    }
+
+    .md-typeset table:not([class]) th {
+        min-width: 3rem;
+        color: black;
+        background-color: white;
+    }
+</style>
