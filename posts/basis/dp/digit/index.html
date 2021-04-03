@@ -206,7 +206,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../../../ds/stack/" class="md-tabs__link">
+      <a href="../../../ds/" class="md-tabs__link">
         数据结构
       </a>
     </li>
@@ -719,6 +719,18 @@
 
 
 <li class="md-nav__item">
+    <a href="../../../ds/" class="md-nav__link">
+        简介
+    </a>
+</li>
+
+
+            
+            
+
+
+
+<li class="md-nav__item">
     <a href="../../../ds/stack/" class="md-nav__link">
         栈
     </a>
@@ -769,18 +781,6 @@
 <li class="md-nav__item">
     <a href="../../../ds/tree-array/" class="md-nav__link">
         树状数组
-    </a>
-</li>
-
-
-            
-            
-
-
-
-<li class="md-nav__item">
-    <a href="../../../ds/STL/" class="md-nav__link">
-        STL
     </a>
 </li>
 
@@ -1315,7 +1315,7 @@ f[i,d]=\sum_{|k-i|≥2} f[k,d-1]
 <p><span class="arithmatex">\(dp(n)\)</span> 的实现步骤：</p>
 <ol>
 <li>
-<p>提取 <span class="arithmatex">\(n\)</span> 每一位上的数字，存入数组 <span class="arithmatex">\(at[]\)</span>：</p>
+<p>提取 <span class="arithmatex">\(n\)</span> 每一位上的数字，存入数组 <span class="arithmatex">\(at[ \ ]\)</span>：</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">cap</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">at</span><span class="p">[];</span>
 <span class="c1">// cap : n 的位数；at[i] : n 的第 i 位数字</span>
 <span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="n">at</span><span class="p">[</span><span class="o">++</span> <span class="n">cap</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
@@ -1334,16 +1334,16 @@ f[i,d]=\sum_{|k-i|≥2} f[k,d-1]
 <p>使用「试填法」，枚举 <span class="arithmatex">\(d=cnt→1\)</span>，从最高位填到最低位，并使填的数 <span class="arithmatex">\(&lt;n\)</span>：</p>
 <ul>
 <li>
-<p>若 <span class="arithmatex">\(d=cnt\)</span>，该位不能填 <span class="arithmatex">\(0\)</span>，只能填 <span class="arithmatex">\([1,at[d])\)</span>。统计符合条件的情况；</p>
+<p>若 <span class="arithmatex">\(d=cnt\)</span>，该位不能填 <span class="arithmatex">\(0\)</span>，只能填 <span class="arithmatex">\(1\cdots at[d]-1\)</span>。统计符合条件的情况；</p>
 </li>
 <li>
-<p>若 <span class="arithmatex">\(d≠cnt\)</span>，该位只能填 <span class="arithmatex">\([0,at[d])\)</span>。统计符合条件的情况；</p>
+<p>若 <span class="arithmatex">\(d≠cnt\)</span>，该位只能填 <span class="arithmatex">\(0\cdots at[d]-1\)</span>。统计符合条件的情况；</p>
 <ul>
 <li>若此时 <span class="arithmatex">\(|at[d+1]-at[d]|&lt;2\)</span>，下一位无论怎么填都不符合条件，跳出循环；</li>
 </ul>
 </li>
 <li>
-<p>若 <span class="arithmatex">\(d=cnt\)</span>，说明 <span class="arithmatex">\(n\)</span> 本身也符合条件。但「试填法」最多只填到 <span class="arithmatex">\(n-1\)</span>，故 <span class="arithmatex">\(ans ++\)</span>。</p>
+<p>若上一步未跳出循环且 <span class="arithmatex">\(d=1\)</span>，说明 <span class="arithmatex">\(n\)</span> 本身也符合条件。但「试填法」最多只填到 <span class="arithmatex">\(n-1\)</span>，故还要多算一个。</p>
 </li>
 </ul>
 <div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">cap</span><span class="p">;</span> <span class="n">d</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">d</span> <span class="o">--</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// d : 当前填到第 d 位</span>
@@ -1469,19 +1469,11 @@ f[i,d]=\sum_{|k-i|≥2} f[k,d-1]
 </html>
 
 <style>
-    pre,
-    code {
-        font-size: 14px;
-    }
-
     span.md-ellipsis {
         font-weight: bold;
     }
 
-    li,
-    p,
-    summary,
-    ul {
+    p {
         font-size: 15px;
     }
 
