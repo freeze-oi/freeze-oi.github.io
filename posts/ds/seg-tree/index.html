@@ -1327,6 +1327,7 @@
 </ul>
 <p><center><img src=\img\ds\seg_tree_1.png style=zoom:80%></img></center></p>
 <p><span class="arithmatex">\(build(node,l,r)\)</span>：在 <span class="arithmatex">\(A[l\cdots r]\)</span> 的上方构建以 <span class="arithmatex">\(node\)</span> 为根节点的树。</p>
+<p>实现步骤：</p>
 <ol>
 <li>
 <p>将 <span class="arithmatex">\(A[l\cdots r]\)</span> 均分为 <span class="arithmatex">\(A[l\cdots m],A[m+1\cdots r]\)</span> 两部分；</p>
@@ -1345,7 +1346,7 @@
 <p><center><img src=\img\ds\seg_tree_5.png style=zoom:80%></img></center></p>
 </li>
 </ol>
-<p>时间复杂度为 <span class="arithmatex">\(O(n)\)</span></p>
+<p>时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">node</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 当前节点为叶节点</span>
         <span class="n">t</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">];</span> <span class="k">return</span><span class="p">;</span>
