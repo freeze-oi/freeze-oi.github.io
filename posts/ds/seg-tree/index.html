@@ -759,13 +759,20 @@
             
             <li class="md-nav__item">
     <a href="#_4" class="md-nav__link">
-        区间查询（生产中）
+        区间查询
     </a>
     
 </li>
             
             <li class="md-nav__item">
     <a href="#_5" class="md-nav__link">
+        延迟标记
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_6" class="md-nav__link">
         模板
     </a>
     
@@ -1240,13 +1247,20 @@
             
             <li class="md-nav__item">
     <a href="#_4" class="md-nav__link">
-        区间查询（生产中）
+        区间查询
     </a>
     
 </li>
             
             <li class="md-nav__item">
     <a href="#_5" class="md-nav__link">
+        延迟标记
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_6" class="md-nav__link">
         模板
     </a>
     
@@ -1339,18 +1353,17 @@
 </ul>
 <p><center><img src=\img\ds\seg_tree_1.png style=zoom:80%></img></center></p>
 <p><span class="arithmatex">\(build(node,l,r)\)</span>：在 <span class="arithmatex">\(A[l\cdots r]\)</span> 的上方构建以 <span class="arithmatex">\(node\)</span> 为根节点的树。</p>
-<p>实现步骤：</p>
 <ol>
 <li>
-<p>将 <span class="arithmatex">\(A[l\cdots r]\)</span> 均分为 <span class="arithmatex">\(A[l\cdots m],A[m+1\cdots r]\)</span> 两部分；</p>
+<p>将 <span class="arithmatex">\(A[l\cdots r]\)</span> 均分为 <span class="arithmatex">\(A[l\cdots m],A[m+1\cdots r]\)</span> 两部分，<span class="arithmatex">\(\displaystyle m=\frac{l+r}{2}\)</span>；</p>
 <p><center><img src=\img\ds\seg_tree_2.png style=zoom:80%></img></center></p>
 </li>
 <li>
-<p>在 <span class="arithmatex">\(A[l\cdots m]\)</span> 的上方构建以「<span class="arithmatex">\(node\)</span> 的左子节点」为根的树，即 <span class="arithmatex">\(build(2·node,l,m)\)</span>；</p>
+<p>在 <span class="arithmatex">\(A[l\cdots m]\)</span> 上递归构建以「<span class="arithmatex">\(node\)</span> 的左子节点」为根的树，即 <span class="arithmatex">\(build(2·node,l,m)\)</span>；</p>
 <p><center><img src=\img\ds\seg_tree_3.png style=zoom:80%></img></center></p>
 </li>
 <li>
-<p>在 <span class="arithmatex">\(A[m+1\cdots r]\)</span> 的上方构建以「<span class="arithmatex">\(node\)</span> 的右子节点」为根的树，即 <span class="arithmatex">\(build(2·node+1,m+1,r)\)</span>；</p>
+<p>在 <span class="arithmatex">\(A[m+1\cdots r]\)</span> 上递归构建以「<span class="arithmatex">\(node\)</span> 的右子节点」为根的树，即 <span class="arithmatex">\(build(2·node+1,m+1,r)\)</span>；</p>
 <p><center><img src=\img\ds\seg_tree_4.png style=zoom:80%></img></center></p>
 </li>
 <li>
@@ -1359,24 +1372,62 @@
 </li>
 </ol>
 <p>时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
-<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">node</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="nc">Range</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">rg</span><span class="p">[];</span>
+<span class="c1">// 节点 u 涵盖的区间为 [rg[u].l, rg[u].r]</span>
+
+<span class="kt">void</span> <span class="nf">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">node</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 当前节点为叶节点</span>
-        <span class="n">t</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">];</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">t</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">];</span>
+        <span class="n">rg</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">Range</span><span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">};</span>
+        <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
     <span class="n">build</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
     <span class="n">build</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
+    <span class="n">rg</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">Range</span><span class="p">{</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">};</span>
     <span class="n">t</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_4">区间查询（生产中）<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
-<p>它还没有被生出来 <span class="arithmatex">\(\cdots \ \cdots\)</span></p>
-<h3 id="_5">模板<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
+<h3 id="_4">区间查询<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<p>线段树中，每个节点的值都等于一段区间的元素和。如 <span class="arithmatex">\(t[1]=36=\sum_{i=1}^8A[i]\)</span>。</p>
+<p><center><img src=\img\ds\seg_tree_1.png style=zoom:80%></img></center></p>
+<p>那么 <span class="arithmatex">\(A[l\cdots r]\)</span> 的和 <span class="arithmatex">\(=\)</span> 线段树若干个节点的和。如 <span class="arithmatex">\(\sum_{i=3}^6A[i]=t[5]+t[6]=16\)</span>，因为节点 <span class="arithmatex">\(5,6\)</span> 涵盖的区间恰为 <span class="arithmatex">\([3,6]\)</span>。</p>
+<p><center><img src=\img\ds\seg_tree_6.png style=zoom:80%></img></center></p>
+<p><span class="arithmatex">\(get(node,l,r)\)</span>：从节点 <span class="arithmatex">\(node\)</span> 开始查询 <span class="arithmatex">\(A[l\cdots r]\)</span> 的和。</p>
+<ol>
+<li>
+<p>若 <span class="arithmatex">\(node\)</span> 涵盖的区间被包含于 <span class="arithmatex">\([l,r]\)</span>，直接返回 <span class="arithmatex">\(t[node]\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(node\)</span> 涵盖的区间与 <span class="arithmatex">\([l,r]\)</span> 没有重复部分，返回 <span class="arithmatex">\(0\)</span>；</p>
+</li>
+<li>
+<p>否则在左右子节点中递归查询，返回 <span class="arithmatex">\(get(2·node,l,r)+get(2·node,l,r)\)</span>。</p>
+</li>
+</ol>
+<p>时间复杂度为 <span class="arithmatex">\(O(\log{n})\)</span>。</p>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">node</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">rg</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">rg</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="n">t</span><span class="p">[</span><span class="n">node</span><span class="p">];</span>    <span class="c1">// 1. 被包含</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">rg</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">l</span> <span class="o">||</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">rg</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>       <span class="c1">// 2. 没有重复部分</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="n">get</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span> <span class="c1">// 3. 递归查询</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h3 id="_5">延迟标记<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
+<p>开发中 <span class="arithmatex">\(\cdots \ \cdots\)</span></p>
+<h3 id="_6">模板<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">[],</span> <span class="n">t</span><span class="p">[];</span>
 
+<span class="k">struct</span> <span class="nc">Range</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span> <span class="n">rg</span><span class="p">[];</span>
+
 <span class="kt">void</span> <span class="nf">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">node</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 当前节点为叶节点</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">t</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">];</span> <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
@@ -1395,11 +1446,11 @@
     <span class="n">t</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
 <span class="p">}</span>
 
-<span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">node</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">L</span><span class="p">,</span> <span class="kt">int</span> <span class="n">R</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">R</span> <span class="o">&lt;</span> <span class="n">l</span> <span class="o">||</span> <span class="n">L</span> <span class="o">&gt;</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="n">t</span><span class="p">[</span><span class="n">node</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">node</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">rg</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">rg</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="n">t</span><span class="p">[</span><span class="n">node</span><span class="p">];</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">rg</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">l</span> <span class="o">||</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">rg</span><span class="p">[</span><span class="n">node</span><span class="p">].</span><span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">)</span> <span class="o">+</span> <span class="n">get</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">R</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="n">get</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>
