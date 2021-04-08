@@ -759,21 +759,21 @@
             
             <li class="md-nav__item">
     <a href="#_4" class="md-nav__link">
-        区间查询
-    </a>
-    
-</li>
-            
-            <li class="md-nav__item">
-    <a href="#_5" class="md-nav__link">
         单点修改
     </a>
     
 </li>
             
             <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        区间查询
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
     <a href="#_6" class="md-nav__link">
-        延迟标记
+        区间修改（还在开发中...）
     </a>
     
 </li>
@@ -1254,21 +1254,21 @@
             
             <li class="md-nav__item">
     <a href="#_4" class="md-nav__link">
-        区间查询
-    </a>
-    
-</li>
-            
-            <li class="md-nav__item">
-    <a href="#_5" class="md-nav__link">
         单点修改
     </a>
     
 </li>
             
             <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        区间查询
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
     <a href="#_6" class="md-nav__link">
-        延迟标记
+        区间修改（还在开发中...）
     </a>
     
 </li>
@@ -1304,23 +1304,32 @@
 <p>给定数组 <span class="arithmatex">\(A\)</span>，对其反复进行以下操作共 <span class="arithmatex">\(m\)</span> 次：</p>
 <ul>
 <li>
-<p><strong>区间查询</strong>：查询 <span class="arithmatex">\(A[l\cdots r]\)</span> 的和；</p>
+<p><strong>单点修改</strong>：将 <span class="arithmatex">\(A[id]\)</span> 修改为 <span class="arithmatex">\(v\)</span>。</p>
 </li>
 <li>
-<p><strong>单点修改</strong>：将 <span class="arithmatex">\(A[l\cdots r]\)</span> 的值设定为 <span class="arithmatex">\(v\)</span>。</p>
+<p><strong>区间查询</strong>：查询 <span class="arithmatex">\(A[l\cdots r]\)</span> 的最小值。</p>
+</li>
+<li>
+<p><strong>区间修改</strong>：将 <span class="arithmatex">\(A[l\cdots r]\)</span> 加上 <span class="arithmatex">\(v\)</span>。</p>
 </li>
 </ul>
 <p>首先考虑暴力算法：</p>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">a</span><span class="p">[];</span>
 
-<span class="kt">int</span> <span class="nf">ask</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 区间查询</span>
-    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="n">sum</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-    <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
-<span class="p">}</span>
-
 <span class="kt">void</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 单点修改</span>
     <span class="n">a</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">ask</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 区间查询</span>
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 区间修改</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>
@@ -1335,13 +1344,18 @@
 </thead>
 <tbody>
 <tr>
+<td align="center">单点修改</td>
+<td align="center"><span class="arithmatex">\(\textcolor{green}{O(1)}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{green}{O(\log{n})}\)</span></td>
+</tr>
+<tr>
 <td align="center">区间查询</td>
 <td align="center"><span class="arithmatex">\(\textcolor{red}{O(n)}\)</span></td>
 <td align="center"><span class="arithmatex">\(\textcolor{green}{O(\log{n})}\)</span></td>
 </tr>
 <tr>
-<td align="center">单点修改</td>
-<td align="center"><span class="arithmatex">\(\textcolor{green}{O(1)}\)</span></td>
+<td align="center">区间修改</td>
+<td align="center"><span class="arithmatex">\(\textcolor{red}{O(n)}\)</span></td>
 <td align="center"><span class="arithmatex">\(\textcolor{green}{O(\log{n})}\)</span></td>
 </tr>
 <tr>
@@ -1353,100 +1367,125 @@
 </table>
 <h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <h3 id="_3">构造<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
-<p>线段树使用「节点」表示「区间的元素和」。下图表示 <span class="arithmatex">\(u\)</span> 号节点的值（<span class="arithmatex">\(var\)</span>）为 <span class="arithmatex">\(A[l\cdots r]\)</span> 的和。</p>
+<p>求数组 <span class="arithmatex">\(A=\{6,2,3,7,1,5,4,2\}\)</span> 中的最小值时，通常使用「两两比较法」：每次比较相邻两项，只保留更小的一项。比较的过程可以画成一棵二叉树，树根是答案。</p>
 <p><center><img src=\img\ds\seg_tree_0.png style=zoom:80%></img></center></p>
-<p>节点在代码中用 <span class="arithmatex">\(Node\)</span> 类表示。</p>
-<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="nc">Node</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">val</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
-    <span class="c1">// 节点代表的范围为 [l, r]</span>
-<span class="p">}</span> <span class="n">t</span><span class="p">[];</span> <span class="c1">// u 号节点的值为 t[u]</span>
-</code></pre></div>
-</details>
-<p>用刚才的节点，在数组 <span class="arithmatex">\(A\)</span> 的上方建立二叉树结构（即线段树）。</p>
+<p>这么做又有什么好处呢？假如数列中的 <span class="arithmatex">\(1\)</span> 被改为 <span class="arithmatex">\(7\)</span>，你可以通过修改极少的数值，重新得出正确答案。</p>
 <p><center><img src=\img\ds\seg_tree_1.png style=zoom:80%></img></center></p>
+<p>线段树就是这样一颗二叉树，它的每个节点都代表一段区间中的最小值。<span class="arithmatex">\(u\)</span> 号节点的信息储存于 <span class="arithmatex">\(t[u]\)</span>。</p>
 <p>线段树满足以下性质：</p>
 <ul>
 <li>
-<p>根节点为 <span class="arithmatex">\(t[1]\)</span>，代表的范围为整个数组。</p>
+<p>根节点为 <span class="arithmatex">\(t[1]\)</span>，代表整个数组的最小值。</p>
 </li>
 <li>
-<p><span class="arithmatex">\(t[u]\)</span> 的两个子节点为 <span class="arithmatex">\(t[2u],t[2u+1]\)</span>。</p>
+<p><span class="arithmatex">\(t[u]\)</span> 的左子节点为 <span class="arithmatex">\(t[2u]\)</span>，右子节点为 <span class="arithmatex">\(t[2u+1]\)</span>。</p>
 </li>
 <li>
-<p>任意非叶节点的值 <span class="arithmatex">\(=\)</span> 其左子节点的值 <span class="arithmatex">\(+\)</span> 右子节点的值。</p>
+<p><span class="arithmatex">\(t[u]=\min(t[2u],t[2u+1])\)</span>。</p>
 </li>
 </ul>
+<p><center><img src=\img\ds\seg_tree_2.png style=zoom:80%></img></center></p>
+<p>因此，每个节点需要保存以下信息：</p>
+<ul>
+<li>
+<p>节点的值：<span class="arithmatex">\(val\)</span>。</p>
+</li>
+<li>
+<p>节点代表的区间：<span class="arithmatex">\([l,r]\)</span>。</p>
+</li>
+</ul>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="nc">Node</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
+    <span class="cp">#define t(u) t[u].val</span>
+    <span class="cp">#define l(u) t[u].l</span>
+    <span class="cp">#define r(u) t[u].r</span>
+<span class="p">}</span> <span class="n">t</span><span class="p">[];</span>
+</code></pre></div>
+</details>
 <p><span class="arithmatex">\(build(u,l,r)\)</span>：在 <span class="arithmatex">\(A[l\cdots r]\)</span> 的上方构建以 <span class="arithmatex">\(u\)</span> 为根节点的树。</p>
 <ol>
 <li>
 <p>将 <span class="arithmatex">\([l,r]\)</span> 等分为 <span class="arithmatex">\([l,m],[m+1,r]\)</span> 两部分，且 <span class="arithmatex">\(\displaystyle m=(l+r)÷2\)</span>；</p>
 </li>
 <li>
-<p>在 <span class="arithmatex">\([l,m]\)</span> 上递归构建以「<span class="arithmatex">\(u\)</span> 的左子节点」为根的树：<span class="arithmatex">\(build(2u,l,m)\)</span>；</p>
+<p>在 <span class="arithmatex">\([l,m]\)</span> 上递归构建 <span class="arithmatex">\(t[u]\)</span> 的左子树：<span class="arithmatex">\(build(2u,l,m)\)</span>；</p>
 </li>
 <li>
-<p>在 <span class="arithmatex">\([m+1,r]\)</span> 上递归构建以「<span class="arithmatex">\(u\)</span> 的右子节点」为根的树：<span class="arithmatex">\(build(2u+1,m+1,r)\)</span>；</p>
+<p>在 <span class="arithmatex">\([m+1,r]\)</span> 上递归构建 <span class="arithmatex">\(t[u]\)</span> 的右子树：<span class="arithmatex">\(build(2u+1,m+1,r)\)</span>；</p>
 </li>
 <li>
-<p><span class="arithmatex">\(t[u].val=t[2·u].val+t[2·u+1].val\)</span>。</p>
+<p><span class="arithmatex">\(t[u]=\min(t[2u],t[2u+1])\)</span>。</p>
 </li>
 </ol>
 <p>时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">build</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 当前节点为叶节点</span>
-        <span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">{</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">};</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">Node</span><span class="p">{</span><span class="n">a</span><span class="p">[</span><span class="n">l</span><span class="p">],</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">};</span> <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
     <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="n">build</span><span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
-    <span class="n">build</span><span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
-    <span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">Node</span><span class="p">{</span><span class="n">t</span><span class="p">[</span><span class="n">u</span> <span class="o">*</span> <span class="mi">2</span><span class="p">].</span><span class="n">val</span> <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">].</span><span class="n">val</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">};</span>
+    <span class="n">build</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">);</span>
+    <span class="n">build</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span>
+    <span class="n">l</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">=</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+    <span class="n">t</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">),</span> <span class="n">t</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_4">区间查询<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
-<p>线段树中，每个节点的值都等于一段区间的元素和，如 <span class="arithmatex">\(t[1]=18=A_1+A_2+A_3+A_4\)</span>。</p>
-<p><center><img src=\img\ds\seg_tree_1.png style=zoom:80%></img></center></p>
-<p>那么 <span class="arithmatex">\(A[l\cdots r]\)</span> 的和，就可以对应线段树上若干个节点的和。从根节点往叶节点搜索，找出所有「范围在 <span class="arithmatex">\([l,r]\)</span> 之内的节点」，这些节点值的和 <span class="arithmatex">\(=A[l\cdots r]\)</span> 的和。</p>
-<p><span class="arithmatex">\(get(u,l,r)\)</span>：从节点 <span class="arithmatex">\(u\)</span> 开始搜索 <span class="arithmatex">\(A[l\cdots r]\)</span> 的和。</p>
+<h3 id="_4">单点修改<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<p>假设你要将 <span class="arithmatex">\(A[5]\)</span> 修改为 <span class="arithmatex">\(3\)</span>，则部分节点的值也需要变动。</p>
+<p><center><img src=\img\ds\seg_tree_4.png style=zoom:80%></img></center></p>
+<p>需要变动的节点为 <span class="arithmatex">\(A[5]\)</span> 的所有祖先。从根节点开始搜索出 <span class="arithmatex">\(A[5]\)</span> 的所有祖先，并更新。</p>
+<p><span class="arithmatex">\(set(u,id,v)\)</span>：将 <span class="arithmatex">\(A[id]\)</span> 改为 <span class="arithmatex">\(v\)</span>，并更新它的所有祖先。</p>
 <ol>
 <li>
-<p>若节点 <span class="arithmatex">\(u\)</span> 的范围在 <span class="arithmatex">\([l,r]\)</span> 之内，直接返回 <span class="arithmatex">\(t[u].val\)</span>；</p>
+<p>若 <span class="arithmatex">\(l(u)=r(u)\)</span>，则 <span class="arithmatex">\(u\)</span> 为叶子节点，直接更改 <span class="arithmatex">\(A[id]\)</span> 和 <span class="arithmatex">\(t[u]\)</span> 为 <span class="arithmatex">\(v\)</span>；</p>
 </li>
 <li>
-<p>若节点 <span class="arithmatex">\(u\)</span> 的范围与 <span class="arithmatex">\([l,r]\)</span> 没有重复部分，返回 <span class="arithmatex">\(0\)</span>；</p>
+<p>取区间中点 <span class="arithmatex">\(m=(l(u)+r(u))÷2\)</span>；</p>
 </li>
 <li>
-<p>否则在两个子节点中递归搜索，返回 <span class="arithmatex">\(get(2·u,l,r)+get(2·u,l,r)\)</span>。</p>
+<p>若 <span class="arithmatex">\(id≤m\)</span>，则 <span class="arithmatex">\(A[id]\)</span> 在 <span class="arithmatex">\(t[u]\)</span> 的左子树中：<span class="arithmatex">\(set(2u,id,v)\)</span>；</p>
+</li>
+<li>
+<p>否则 <span class="arithmatex">\(A[id]\)</span> 在 <span class="arithmatex">\(t[u]\)</span> 的右子树中：<span class="arithmatex">\(set(2u+1,id,v)\)</span>。</p>
 </li>
 </ol>
-<p>时间复杂度为 <span class="arithmatex">\(O(\log{n})\)</span>。</p>
-<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">l</span> <span class="o">&amp;&amp;</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">val</span><span class="p">;</span>     <span class="c1">// 1. 被包含</span>
-    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">l</span> <span class="o">&lt;</span> <span class="n">l</span> <span class="o">||</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>         <span class="c1">// 2. 没有重复部分</span>
-    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="n">get</span><span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">);</span> <span class="c1">// 3. 递归查询</span>
-<span class="p">}</span>
-</code></pre></div>
-</details>
-<h3 id="_5">单点修改<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
-<p>假设你要修改 <span class="arithmatex">\(A[2]\)</span> 的值，则部分节点的值也需要变动：</p>
-<p><center><img src=\img\ds\seg_tree_2.png style=zoom:80%></img></center></p>
-<p>和<a href="#_4">区间查询</a>类似，先自顶向下搜索「范围在 <span class="arithmatex">\([l,r]\)</span> 之内的节点」，再更改它们的值。</p>
-<p>时间复杂度为 <span class="arithmatex">\(O(\log{n})\)</span>。</p>
-<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 将 a[id] 修改为 v</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">val</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> <span class="k">return</span><span class="p">;</span>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 将 a[id] 改为 v</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">==</span> <span class="n">r</span><span class="p">(</span><span class="n">u</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">id</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">)</span> <span class="n">set</span><span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>  <span class="c1">// a[id] 在左子树中</span>
-    <span class="k">else</span> <span class="n">set</span><span class="p">(</span><span class="n">u</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// a[id] 在右子树中</span>
-    <span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">].</span><span class="n">val</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span> <span class="o">*</span> <span class="mi">2</span><span class="p">].</span><span class="n">val</span> <span class="o">+</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">].</span><span class="n">val</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">+</span> <span class="n">r</span><span class="p">(</span><span class="n">u</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">id</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">)</span> <span class="n">set</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span> <span class="c1">// a[id] 在左子树</span>
+    <span class="k">else</span> <span class="n">set</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>    <span class="c1">// a[id] 在右子树</span>
+    <span class="n">t</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">),</span> <span class="n">t</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="mi">1</span><span class="p">));</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_6">延迟标记<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
-<p>开发中 <span class="arithmatex">\(\cdots \ \cdots\)</span></p>
+<h3 id="_5">区间查询<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
+<p>如何求 <span class="arithmatex">\(A[l\cdots r]\)</span> 中的最小值？在线段树中搜出「代表区间在 <span class="arithmatex">\([l,r]\)</span> 之内的节点」，取它们的最小值。</p>
+<p>例如我要求 <span class="arithmatex">\(A[3\cdots 6]\)</span> 中的最小值，那么答案就为 <span class="arithmatex">\(\min(t[5],t[6])=1\)</span>。</p>
+<p><center><img src=\img\ds\seg_tree_3.png style=zoom:80%></img></center></p>
+<p><span class="arithmatex">\(get(u,l,r)\)</span>：从节点 <span class="arithmatex">\(u\)</span> 开始搜索 <span class="arithmatex">\(A[l\cdots r]\)</span> 的最小值。</p>
+<ol>
+<li>
+<p>若 <span class="arithmatex">\(t[u]\)</span> 的范围在 <span class="arithmatex">\([l,r]\)</span> 之内：直接返回 <span class="arithmatex">\(t[u].val\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(t[u]\)</span> 的范围与 <span class="arithmatex">\([l,r]\)</span> 没有重复部分：返回 <span class="arithmatex">\(∞\)</span><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>；</p>
+</li>
+<li>
+<p>否则在 <span class="arithmatex">\(t[u]\)</span> 的两个子节点中递归搜索：返回 <span class="arithmatex">\(\min(get(2·u,l,r),get(2·u,l,r))\)</span>。</p>
+</li>
+</ol>
+<p>时间复杂度为 <span class="arithmatex">\(O(\log{n})\)</span>，最终答案是 <span class="arithmatex">\(get(1,l,r)\)</span>。</p>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">l</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">r</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="k">return</span> <span class="n">t</span><span class="p">(</span><span class="n">u</span><span class="p">);</span>                 <span class="c1">// 1. 被包含</span>
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">r</span> <span class="o">||</span> <span class="n">r</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">l</span><span class="p">)</span> <span class="k">return</span> <span class="mh">0x3f3f3f</span><span class="p">;</span>          <span class="c1">// 2. 没有重复部分</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">min</span><span class="p">(</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">),</span> <span class="n">get</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">));</span> <span class="c1">// 3. 递归查询</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h3 id="_6">区间修改（还在开发中...）<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
 <h3 id="_7">模板<a class="headerlink" href="#_7" title="Permanent link">$</a></h3>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">a</span><span class="p">[],</span> <span class="n">t</span><span class="p">[];</span>
 
@@ -1482,6 +1521,14 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><span class="arithmatex">\(\min(∞,a)=a\)</span>，因此返回 <span class="arithmatex">\(∞\)</span> 相当于不参与最小值的比较。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
                             
                             
                             
