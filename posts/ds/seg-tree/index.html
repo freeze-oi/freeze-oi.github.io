@@ -698,7 +698,7 @@
 
 <li class="md-nav__item">
     <a href="../heap/" class="md-nav__link">
-        堆
+        二叉堆
     </a>
 </li>
 
@@ -744,54 +744,41 @@
       
         <li class="md-nav__item">
     <a href="#_2" class="md-nav__link">
-        基本原理
-    </a>
-    
-    <nav class="md-nav" aria-label="基本原理">
-        <ul class="md-nav__list">
-            
-            <li class="md-nav__item">
-    <a href="#_3" class="md-nav__link">
         构造
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_4" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_3" class="md-nav__link">
         单点修改
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_5" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
         区间查询
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_6" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
         区间修改
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_7" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_6" class="md-nav__link">
         模板
     </a>
     
 </li>
-            
-        </ul>
-    </nav>
-    
-</li>
       
         <li class="md-nav__item">
-    <a href="#_8" class="md-nav__link">
+    <a href="#_7" class="md-nav__link">
         变种线段树
     </a>
     
@@ -1246,54 +1233,41 @@
       
         <li class="md-nav__item">
     <a href="#_2" class="md-nav__link">
-        基本原理
-    </a>
-    
-    <nav class="md-nav" aria-label="基本原理">
-        <ul class="md-nav__list">
-            
-            <li class="md-nav__item">
-    <a href="#_3" class="md-nav__link">
         构造
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_4" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_3" class="md-nav__link">
         单点修改
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_5" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
         区间查询
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_6" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
         区间修改
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_7" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_6" class="md-nav__link">
         模板
     </a>
     
 </li>
-            
-        </ul>
-    </nav>
-    
-</li>
       
         <li class="md-nav__item">
-    <a href="#_8" class="md-nav__link">
+    <a href="#_7" class="md-nav__link">
         变种线段树
     </a>
     
@@ -1315,7 +1289,7 @@
                             <h1>线段树</h1>
                             
                             <h2 id="_1">引入问题<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p>给定数组 <span class="arithmatex">\(A\)</span>，对其反复进行以下操作共 <span class="arithmatex">\(m\)</span> 次：</p>
+<p>数组 <span class="arithmatex">\(A\)</span> 中共 <span class="arithmatex">\(n\)</span> 个元素，对其反复进行以下操作共 <span class="arithmatex">\(m\)</span> 次：</p>
 <ul>
 <li>
 <p><strong>单点修改</strong>：将 <span class="arithmatex">\(A[id]\)</span> 修改为 <span class="arithmatex">\(v\)</span>。</p>
@@ -1377,14 +1351,13 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
-<h3 id="_3">构造<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
+<h2 id="_2">构造<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <p>查询数组 <span class="arithmatex">\(A=\{6,2,3,7,1,5,4,2\}\)</span> 中的最小值时，通常使用「两两比较法」：每次比较相邻两项，只保留更小的一项。比较的过程可以画成一棵二叉树，树根是答案。</p>
 <p><center><img src=\img\ds\seg_tree_0.png style=zoom:80%></img></center></p>
 <p>这么做又有什么好处呢？假如数列中的 <span class="arithmatex">\(1\)</span> 被改为 <span class="arithmatex">\(7\)</span>，你可以通过修改极少的数值，重新得出正确答案。</p>
 <p><center><img src=\img\ds\seg_tree_1.png style=zoom:80%></img></center></p>
-<p><strong>线段树</strong>就是这样一颗二叉树，它的每个节点都代表一段区间中的最小值。<span class="arithmatex">\(u\)</span> 号节点的信息储存于 <span class="arithmatex">\(t[u]\)</span>。</p>
-<p>线段树满足以下性质：</p>
+<p><strong>线段树</strong>就是这样的一颗二叉树，它的每个节点都代表一段区间中的最小值。<span class="arithmatex">\(u\)</span> 号节点的信息储存于 <span class="arithmatex">\(t[u]\)</span>。</p>
+<p>线段树具有以下性质：</p>
 <ul>
 <li>
 <p>根节点为 <span class="arithmatex">\(t[1]\)</span>，代表整个数组的最小值。</p>
@@ -1426,7 +1399,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_4">单点修改<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<h2 id="_3">单点修改<a class="headerlink" href="#_3" title="Permanent link">$</a></h2>
 <p>假设你要将 <span class="arithmatex">\(A[5]\)</span> 修改为 <span class="arithmatex">\(3\)</span>，则 <span class="arithmatex">\(A[5]\)</span> 的所有祖先都有可能变动。</p>
 <p><center><img src=\img\ds\seg_tree_3.png style=zoom:80%></img></center></p>
 <p><span class="arithmatex">\(set(u,id,v)\)</span>：令 <span class="arithmatex">\(A[id]=v\)</span>，并从节点 <span class="arithmatex">\(u\)</span> 开始，向下搜索并更新 <span class="arithmatex">\(A[id]\)</span> 的所有祖先。</p>
@@ -1456,7 +1429,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_5">区间查询<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
+<h2 id="_4">区间查询<a class="headerlink" href="#_4" title="Permanent link">$</a></h2>
 <p>线段树中，每个节点代表一个区间。那么反过来想，每个区间都可以用若干节点表示。例如 <span class="arithmatex">\(A[1\cdots 6]\)</span> 的最小值 <span class="arithmatex">\(=\min(t[2],t[6])=2\)</span>。</p>
 <p><center><img src=\img\ds\seg_tree_4.png style=zoom:80%></img></center></p>
 <p>从根节点开始，自顶向下搜索出范围在 <span class="arithmatex">\([l,r]\)</span> 之内的节点，这些节点的最小值即为答案。</p>
@@ -1481,7 +1454,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_6">区间修改<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
+<h2 id="_5">区间修改<a class="headerlink" href="#_5" title="Permanent link">$</a></h2>
 <p>如果一次性将 <span class="arithmatex">\(A[3\cdots 8]\)</span> 每个数加上 <span class="arithmatex">\(v\)</span>，需要更新大量节点，时间复杂度接近 <span class="arithmatex">\(O(n\log{n})\)</span>。这不是我们希望看到的。</p>
 <p><center><img src=\img\ds\seg_tree_5.png style=zoom:80%></img></center></p>
 <p>事实上，大部分节点用不着马上更新——直到它们再次被访问。于是我们可以先给部分节点打标记。</p>
@@ -1535,7 +1508,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h3 id="_7">模板<a class="headerlink" href="#_7" title="Permanent link">$</a></h3>
+<h2 id="_6">模板<a class="headerlink" href="#_6" title="Permanent link">$</a></h2>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="nc">Node</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">val</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
     <span class="cp">#define t(u) t[u].val</span>
@@ -1597,7 +1570,7 @@
 <span class="p">}</span>
 </code></pre></div>
 </details>
-<h2 id="_8">变种线段树<a class="headerlink" href="#_8" title="Permanent link">$</a></h2>
+<h2 id="_7">变种线段树<a class="headerlink" href="#_7" title="Permanent link">$</a></h2>
 <p>线段树经过微调之后，还可以查询区间和。</p>
 <p>令每个节点代表一段区间的元素和，并且 <span class="arithmatex">\(t[u]=t[2u]+t[2u+1]\)</span>。</p>
 <p><center><img src=\img\ds\seg_tree_8.png style=zoom:80%></img></center></p>
@@ -1650,7 +1623,7 @@
                         <span class="md-footer-nav__direction">
                             上一页
                         </span>
-                        堆
+                        二叉堆
                     </div>
                 </div>
             </a>
