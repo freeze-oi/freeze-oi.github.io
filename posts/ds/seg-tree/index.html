@@ -605,6 +605,18 @@
 
 
             
+            
+
+
+
+<li class="md-nav__item">
+    <a href="../../basis/string/ac-automaton/" class="md-nav__link">
+        AC 自动机
+    </a>
+</li>
+
+
+            
         </ul>
     </nav>
 </li>
@@ -1379,7 +1391,7 @@
 <p>节点代表的区间：<span class="arithmatex">\([l,r]\)</span>。</p>
 </li>
 </ul>
-<p>从根节点开始，自顶向下递归构建线段树。时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
+<p>从根节点开始，自顶向下递归构建线段树。时间复杂度为 <span class="arithmatex">\(O(n\log{n})\)</span>。</p>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="k">struct</span> <span class="nc">Node</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">val</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">;</span>
     <span class="cp">#define t(u) t[u].val</span>
@@ -1701,7 +1713,7 @@
     }
 
     .md-typeset table:not([class]) th {
-        min-width: 3rem;
+        min-width: 1rem;
         color: black;
         background-color: white;
     }
