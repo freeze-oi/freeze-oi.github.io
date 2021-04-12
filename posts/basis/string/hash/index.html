@@ -1261,18 +1261,18 @@
                             <h1>字符串哈希</h1>
                             
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p><strong>字符串哈希</strong>通过<strong>哈希函数</strong>将不同字符串转换为不同数字，以便于匹配。通过哈希函数转化得到的数值称为<strong>哈希值</strong>。</p>
+<p><strong>字符串哈希</strong>通过<strong>哈希函数</strong>将不同字符串转换为不同数字，以便于匹配。转化得到的数值称为<strong>哈希值</strong>。</p>
 <h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <p>假定字符串 <code>str</code> 中只含有 <code>a-z</code> 共 <span class="arithmatex">\(26\)</span> 个小写字符。将字符 <code>a-z</code> 看作数字 <span class="arithmatex">\(1\sim 26\)</span>，<code>str</code> 看作 <span class="arithmatex">\(27\)</span> 进制数。如下图，字符串 <code>fantasy</code> 的哈希值可以设计为 <span class="arithmatex">\(6×27^6+1×27^5+14×27^4+\cdots+25×27^0\)</span>：</p>
 <p><center><img src=/img/string/hash_1.png style="zoom:80%"></img></center></p>
-<p>按此方法设计的哈希函数，可保证不同字符串的哈希值必不同。但此方法的缺陷在于，字符串长度过长时，哈希值过大，会超出 <code>int</code> 或 <code>long long</code> 的范围。</p>
+<p>按此方法设计的哈希函数，可保证不同字符串的哈希值必不同。但此方法的缺陷在于，字符串长度过长时，哈希值过大，会超出 <code>long long</code> 的范围。</p>
 <h2 id="_3">滚动哈希<a class="headerlink" href="#_3" title="Permanent link">$</a></h2>
 <p>为解决一般哈希函数适用范围有限的问题，采用<strong>滚动哈希</strong>方法：</p>
 <p>选取两个合适的质数 <span class="arithmatex">\(b,p\)</span>，将 <code>str</code> 看作 <span class="arithmatex">\(b\)</span> 进制数。字符串 <code>fantasy</code> 的哈希值设计为：</p>
 <div class="arithmatex">\[
 (6·b^6+1·b^5+14·b^4+\cdots+25·b^0)\%p
 \]</div>
-<p>按此方法设计的哈希函数，不同字符串的哈希值相同的概率极小，且哈希值不会超出 <code>int</code> 或 <code>long long</code> 的范围。计算长度为 <span class="arithmatex">\(n\)</span> 的字符串的哈希值的时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
+<p>按此方法设计的哈希函数，不同字符串的哈希值相同的概率极小，且哈希值不会超出 <code>long long</code> 的范围。计算长度为 <span class="arithmatex">\(n\)</span> 的字符串的哈希值的时间复杂度为 <span class="arithmatex">\(O(n)\)</span>。</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>质数 <span class="arithmatex">\(b\)</span> 必须比字符种类数大。</p>

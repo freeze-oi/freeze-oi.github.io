@@ -1300,7 +1300,7 @@
 <h3 id="_3">引出问题<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
 <p>统计区间 <span class="arithmatex">\([l,r]\)</span>（<span class="arithmatex">\(0≤l&lt;r≤100\)</span>）中有多少整数符合「相邻两个数字之差 <span class="arithmatex">\(≥2\)</span>」。</p>
 <h3 id="_4">预处理<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
-<p>采用「试填法」：从个位填到最高位，如果第 <span class="arithmatex">\(d\)</span> 位填了 <span class="arithmatex">\(i\)</span>，那么第 <span class="arithmatex">\(d+1\)</span> 位只能填 <span class="arithmatex">\([0,d-1]\)</span> 或 <span class="arithmatex">\([d+1,9]\)</span> 中的整数。</p>
+<p>采用「试填法」：从个位填到最高位，如果第 <span class="arithmatex">\(d\)</span> 位填了 <span class="arithmatex">\(i\)</span>，那么第 <span class="arithmatex">\(d+1\)</span> 位只能填 <span class="arithmatex">\([0,i-1]\)</span> 或 <span class="arithmatex">\([i+1,9]\)</span> 中的整数。</p>
 <p><span class="arithmatex">\(f[i,d]\)</span> 表示「所有最高位为 <span class="arithmatex">\(i\)</span> 的 <span class="arithmatex">\(d\)</span> 位数中，符合条件的个数」。通过给定条件可推出：</p>
 <div class="arithmatex">\[
 f[i,d]=\sum_{|k-i|≥2} f[k,d-1]
@@ -1334,7 +1334,7 @@ f[i,d]=\sum_{|k-i|≥2} f[k,d-1]
 </code></pre></div>
 </details>
 <h3 id="_5">数位统计<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
-<p>直接求区间不怎么现实，可以考虑<a href="/posts/basis/dp/basis/#_6">前缀和</a>思想：</p>
+<p>考虑<a href="/posts/basis/dp/basis/#_6">前缀和</a>思想：</p>
 <p><span class="arithmatex">\(dp(n)\)</span> 表示 <span class="arithmatex">\([0,n]\)</span> 中有多少个数满足条件。<span class="arithmatex">\([l,r]\)</span> 中符合条件的个数 <span class="arithmatex">\(=dp(r)-dp(l-1)\)</span>。</p>
 <p><span class="arithmatex">\(dp(n)\)</span> 的实现步骤：</p>
 <ol>
