@@ -763,6 +763,13 @@
     
 </li>
       
+        <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        模板
+    </a>
+    
+</li>
+      
     </ul>
   
 </nav>
@@ -1243,6 +1250,13 @@
     
 </li>
       
+        <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        模板
+    </a>
+    
+</li>
+      
     </ul>
   
 </nav>
@@ -1259,7 +1273,7 @@
                             <h1>二叉堆</h1>
                             
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p><strong>二叉堆（Binary Heap）</strong>是一棵完全二叉树，分为两种：</p>
+<p><strong>二叉堆（Binary Heap）</strong>是一种基于<a href="/posts/graph/tree/#_7">完全二叉树</a>的数据结构。</p>
 <ul>
 <li>
 <p><strong>小根堆</strong>：任意节点 <span class="arithmatex">\(≥\)</span> 其父节点，根节点最小。</p>
@@ -1269,7 +1283,7 @@
 </li>
 </ul>
 <p><center><img src=\img\ds\heap_1.png style=zoom:80%></img></center></p>
-<p>本篇以小根堆为例。</p>
+<p>本篇以小根堆为例，介绍二叉堆的实现方式。</p>
 <h2 id="_2">构造<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <p>按照「从上到下，从左到右」的顺序给节点编号。</p>
 <p><center><img src=\img\ds\heap_2.png style=zoom:80%></img></center></p>
@@ -1284,7 +1298,11 @@
 <li>
 <p><span class="arithmatex">\(u\)</span> 号节点的左子节点为 <span class="arithmatex">\(2u\)</span>，右子节点为 <span class="arithmatex">\(2u+1\)</span>。</p>
 </li>
+<li>
+<p>二叉堆的任意一条支路都按照升序排序。</p>
+</li>
 </ul>
+<p><center><img src=\img\ds\heap_3.png style=zoom:80%></img></center></p>
 <p>使用数组保存二叉堆。</p>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">t</span><span class="p">[],</span> <span class="n">n</span><span class="p">;</span>
 <span class="c1">// t[u] : u 号节点的值</span>
@@ -1292,15 +1310,24 @@
 </code></pre></div>
 </details>
 <h2 id="_3">插入<a class="headerlink" href="#_3" title="Permanent link">$</a></h2>
-<p>在小根堆中插入新节点，如何调整使其仍为小根堆？</p>
-<p><center><img src=\img\ds\heap_3.png style=zoom:80%></img></center></p>
-<p>将新节点与父节点比较，把小的节点交换到上面，重复直至满足小根堆性质。</p>
+<p>如何往小根堆中插入元素 <span class="arithmatex">\(2\)</span>？</p>
+<ol>
+<li>
+<p>在堆底新建节点，值为 <span class="arithmatex">\(2\)</span>；</p>
+</li>
+<li>
+<p>对新节点所在支路进行排序。重复执行以下步骤：</p>
+<ul>
+<li>若新节点 <span class="arithmatex">\(&lt;\)</span> 其父节点，则交换它们的位置，否则跳出循环。</li>
+</ul>
+</li>
+</ol>
 <p><center><img src=\img\ds\heap_4.png style=zoom:80%></img></center></p>
 <p>时间复杂度为 <span class="arithmatex">\(O(n\log{n})\)</span>。</p>
-<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 插入元素 val</span>
-    <span class="n">t</span><span class="p">[</span><span class="o">++</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">p</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">p</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">[</span><span class="n">p</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span> <span class="n">swap</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">p</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]);</span>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 插入元素 val</span>
+    <span class="n">t</span><span class="p">[</span><span class="o">++</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="c1">// 新建节点</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">u</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">u</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span> <span class="n">swap</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]);</span>
         <span class="k">else</span> <span class="k">break</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
@@ -1309,13 +1336,51 @@
 <h2 id="_4">移除<a class="headerlink" href="#_4" title="Permanent link">$</a></h2>
 <p>将小根堆的根节点移除，如何调整使其仍为小根堆？</p>
 <p><center><img src=\img\ds\heap_5.png style=zoom:80%></img></center></p>
-<p>把小根堆最后一个元素移到根节点，取根节点的两个子节点中较小的与其交换，重复直至满足小根堆性质。</p>
+<ol>
+<li>
+<p>把堆底最后一个元素移到根节点；</p>
+</li>
+<li>
+<p>从根节点 <span class="arithmatex">\(u=1\)</span> 开始，重复执行以下步骤：</p>
+<ul>
+<li>
+<p>比较 <span class="arithmatex">\(u\)</span> 的两个子节点，取最小的一个，记为 <span class="arithmatex">\(v\)</span>；</p>
+</li>
+<li>
+<p>若 <span class="arithmatex">\(t[u]&gt;t[v]\)</span>，交换节点 <span class="arithmatex">\(u\)</span> 和 <span class="arithmatex">\(v\)</span> 的位置，并使 <span class="arithmatex">\(u=v\)</span>，否则跳出循环。</p>
+</li>
+</ul>
+</li>
+</ol>
 <p><center><img src=\img\ds\heap_6.png style=zoom:80%></img></center></p>
-<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">extract</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// 移除根节点</span>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">pop</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// 移除根节点</span>
     <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">n</span> <span class="o">--</span><span class="p">];</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="p">)</span> <span class="p">{</span>
-        <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">p</span> <span class="o">+</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">p</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span> <span class="o">*</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span> <span class="c1">// 取左右子节点中较小的</span>
-        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">[</span><span class="n">p</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span> <span class="n">swap</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">p</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">p</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]);</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">u</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">v</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">t</span><span class="p">[</span><span class="n">v</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">v</span> <span class="o">++</span><span class="p">;</span> <span class="c1">// 取最小的子节点</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">swap</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">v</span><span class="p">]),</span> <span class="n">u</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="_5">模板<a class="headerlink" href="#_5" title="Permanent link">$</a></h2>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">t</span><span class="p">[],</span> <span class="n">n</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">t</span><span class="p">[</span><span class="o">++</span> <span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span> <span class="n">u</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">u</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span> <span class="o">/</span> <span class="mi">2</span><span class="p">])</span> <span class="n">swap</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">u</span> <span class="o">/</span> <span class="mi">2</span><span class="p">]);</span>
+        <span class="k">else</span> <span class="k">break</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">pop</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="n">n</span> <span class="o">--</span><span class="p">];</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">u</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">v</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">t</span><span class="p">[</span><span class="n">v</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">t</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">v</span> <span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">[</span><span class="n">v</span><span class="p">])</span> <span class="n">swap</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="n">u</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="n">v</span><span class="p">]),</span> <span class="n">u</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
         <span class="k">else</span> <span class="k">break</span><span class="p">;</span>
     <span class="p">}</span>
 <span class="p">}</span>
