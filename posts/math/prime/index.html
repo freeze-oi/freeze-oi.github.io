@@ -574,7 +574,7 @@
 
 
 <li class="md-nav__item">
-    <a href="../../basis/string/hash-table/" class="md-nav__link">
+    <a href="../../basis/string/hash-map/" class="md-nav__link">
         哈希表
     </a>
 </li>
@@ -1337,10 +1337,7 @@
 </li>
 </ul>
 <h2 id="_2">质数的判定<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>判定非负整数 <span class="arithmatex">\(n\)</span> 是否为质数？</p>
-</div>
+<p>判定非负整数 <span class="arithmatex">\(n\)</span> 是否为质数。</p>
 <h3 id="_3">试除法<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
 <p>若 <span class="arithmatex">\(n\)</span> 为合数，则 <span class="arithmatex">\(n\)</span> 一定有因子 <span class="arithmatex">\(≤\sqrt{n}\)</span>。</p>
 <p>判断 <span class="arithmatex">\(n\)</span> 能否整除 <span class="arithmatex">\([2,\sqrt n]\)</span> 中的整数，对于 <span class="arithmatex">\(n=0\)</span> 或 <span class="arithmatex">\(1\)</span> 需要特判。时间复杂度为 <span class="arithmatex">\(O(\sqrt n)\)</span>。</p>
@@ -1353,10 +1350,7 @@
 </code></pre></div>
 </details>
 <h2 id="_4">质数筛法<a class="headerlink" href="#_4" title="Permanent link">$</a></h2>
-<div class="admonition question">
-<p class="admonition-title">Question</p>
-<p>如何求出 <span class="arithmatex">\(n\)</span> 以内的所有质数？</p>
-</div>
+<p>求出 <span class="arithmatex">\(n\)</span> 以内的所有质数。</p>
 <h3 id="_5">朴素算法<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
 <p>对 <span class="arithmatex">\([2,n]\)</span> 中的所有整数进行一次判断。时间复杂度为 <span class="arithmatex">\(O(n\sqrt{n})\)</span>。</p>
 <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">bool</span> <span class="nf">isPrime</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
@@ -1407,7 +1401,9 @@
 </details>
 <h3 id="_6">线性筛法<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
 <p>在埃氏筛法中，有些合数会被重复标记，如 <span class="arithmatex">\(12\)</span> 会在 <span class="arithmatex">\(i=2\)</span> 和 <span class="arithmatex">\(i=3\)</span> 时被分别标记。让每个合数只被生成一次，就能避免重复标记。</p>
-<p><span class="arithmatex">\(fact[i]\)</span> 表示 <span class="arithmatex">\(i\)</span> 的最小质因子。标记 <span class="arithmatex">\(i\)</span> 的倍数时，枚举质数 <span class="arithmatex">\(prime[j=0,1,2,\cdots]\)</span> 与 <span class="arithmatex">\(i\)</span> 相乘，构造合数：</p>
+<p><span class="arithmatex">\(prime[i]\)</span>：第 <span class="arithmatex">\(i\)</span> 个质数。</p>
+<p><span class="arithmatex">\(fact[i]\)</span>：<span class="arithmatex">\(i\)</span> 的最小质因子。</p>
+<p>标记 <span class="arithmatex">\(i\)</span> 的倍数时，枚举质数 <span class="arithmatex">\(prime[j=0,1,2,\cdots]\)</span> 与 <span class="arithmatex">\(i\)</span> 相乘，构造合数：</p>
 <ul>
 <li>
 <p>若 <span class="arithmatex">\(prime[j]≤fact[i]\)</span>，则 <span class="arithmatex">\(prime[j]\)</span> 为 <span class="arithmatex">\(i·prime[j]\)</span> 的最小质因子，标记该合数：<span class="arithmatex">\(fact[i·prime[j]] = prime[j]\)</span>；</p>

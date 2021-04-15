@@ -616,6 +616,40 @@
         基本原理
     </a>
     
+    <nav class="md-nav" aria-label="基本原理">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_3" class="md-nav__link">
+        引出问题
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
+        构造
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        哈希函数
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_6" class="md-nav__link">
+        模板
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
 </li>
       
     </ul>
@@ -1215,6 +1249,40 @@
         基本原理
     </a>
     
+    <nav class="md-nav" aria-label="基本原理">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_3" class="md-nav__link">
+        引出问题
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
+        构造
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        哈希函数
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_6" class="md-nav__link">
+        模板
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
 </li>
       
     </ul>
@@ -1233,27 +1301,93 @@
                             <h1>哈希表</h1>
                             
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
-<p><span class="arithmatex">\(C++\)</span> 的原生数组有很多令人不爽之处：</p>
+<p><strong>哈希表</strong>由<a href="/posts/basis/string/hash/">哈希函数</a>和<a href="/posts/ds/link/">链表</a>组成，相当于「超级数组」。</p>
 <ul>
 <li>
-<p>数组不能开太大，否则会导致运行时错误，如 <span class="arithmatex">\(int \ a[1000000000000000000]\)</span>。</p>
+<p>数组的下标<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>可以是整数，浮点数，字符串等。</p>
 </li>
 <li>
-<p>数组的下标<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>不能是字符串（或小数等），如 <span class="arithmatex">\(a[fantasy]\)</span>。</p>
-<p><span class="arithmatex">\(\cdots \ \cdots\)</span></p>
-</li>
-</ul>
-<p>出于解决问题的需要，<strong>哈希表</strong>诞生了。它相当于「超级数组」：</p>
-<ul>
-<li>
-<p>不需要定义数组大小。</p>
-</li>
-<li>
-<p>下标可以是任何东西。</p>
+<p>不用定义数组的长度。</p>
 </li>
 </ul>
 <h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
-<p>持续日更中 <span class="arithmatex">\(\cdots \ \cdots\)</span></p>
+<h3 id="_3">引出问题<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
+<p>医院的排队系统需要记录每个病人对应的问诊顺序。此处假设每个病人的名称都是数字。</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center"><span class="arithmatex">\(32\)</span></th>
+<th align="center"><span class="arithmatex">\(26\)</span></th>
+<th align="center"><span class="arithmatex">\(75\)</span></th>
+<th align="center"><span class="arithmatex">\(4\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">问诊顺序</td>
+<td align="center"><span class="arithmatex">\(1\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(3\)</span></td>
+<td align="center"><span class="arithmatex">\(4\)</span></td>
+</tr>
+</tbody>
+</table>
+<p><span class="arithmatex">\(p[i]\)</span> 表示「名称为 <span class="arithmatex">\(i\)</span> 的病人的问诊顺序」。查询问诊顺序的时间复杂度为 <span class="arithmatex">\(O(1)\)</span>。然而总有些病人不按套路取名。</p>
+<table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center"><span class="arithmatex">\(114514\)</span></th>
+<th align="center"><span class="arithmatex">\(2333\)</span></th>
+<th align="center"><span class="arithmatex">\(45467333433233\)</span></th>
+<th align="center"><span class="arithmatex">\(404\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">问诊顺序</td>
+<td align="center"><span class="arithmatex">\(1\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(3\)</span></td>
+<td align="center"><span class="arithmatex">\(4\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>要存储 <span class="arithmatex">\(p[45467333433233]=3\)</span>，得先开一个长度为 <span class="arithmatex">\(45467333433233\)</span> 的数组。这明显不现实。</p>
+<h3 id="_4">构造<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<p>开一个如此丑陋的数组，会浪费超过 <span class="arithmatex">\(99\%\)</span> 的空间。毕竟你只用到了 <span class="arithmatex">\(p[114514]\)</span>，<span class="arithmatex">\(p[2333]\)</span>，<span class="arithmatex">\(p[45467333433233]\)</span>，<span class="arithmatex">\(p[404]\)</span> 这四个元素。有没有办法使数组只占很少空间？</p>
+<p>设计<strong>哈希函数</strong> <span class="arithmatex">\(getHash()\)</span>，用 <span class="arithmatex">\(p[getHash(i)]\)</span> 表示病人 <span class="arithmatex">\(i\)</span> 的问诊顺序。对于本例，<span class="arithmatex">\(getHash()\)</span> 可以为：</p>
+<div class="arithmatex">\[ getHash(i)=i\%5 \]</div>
+<p>这样，数组就只要开到 <span class="arithmatex">\(p[5]\)</span>。但这么做会导致其它问题：病人 <span class="arithmatex">\(114514\)</span> 和病人 <span class="arithmatex">\(404\)</span> 的问诊顺序会同时存入 <span class="arithmatex">\(p[4]\)</span>，因为 <span class="arithmatex">\(getHash(114514)=getHash(404)=4\)</span>。于是我们可以将 <span class="arithmatex">\(getHash()\)</span> 相同的病人放在同一个链表。</p>
+<p><center><img src=/img/string/hash-map_1.png style="zoom:80%"></img></center></p>
+<p>查询病人 <span class="arithmatex">\(i\)</span> 的问诊顺序时，只需在 <span class="arithmatex">\(getHash(i)\)</span> 开头的链表中找到该病人。</p>
+<h3 id="_5">哈希函数<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
+<p><span class="arithmatex">\(getHash()\)</span> 有多种构造方式：</p>
+<ol>
+<li>
+<p>取模法</p>
+<div class="arithmatex">\[
+getHash(x)=x\%p
+\]</div>
+<p>其中 <span class="arithmatex">\(p\)</span> 为质数（如 <span class="arithmatex">\(999997\)</span>）。</p>
+</li>
+<li>
+<p>乘积取整法</p>
+<div class="arithmatex">\[
+getHash(x)=\lfloor A·x\rfloor\%p
+\]</div>
+<p>其中 <span class="arithmatex">\(p\)</span> 为质数，<span class="arithmatex">\(A\)</span> 为区间 <span class="arithmatex">\((0,1)\)</span> 中的无理数（如 <span class="arithmatex">\(\displaystyle\frac{\sqrt{5}-1}{2}\)</span>）。</p>
+</li>
+<li>
+<p>数位分析法</p>
+<div class="arithmatex">\[
+getHash(s)=(s[0]+s[1]·b+s[2]·b^2+s[3]·b^3+\cdots)\%p
+\]</div>
+<p>其中 <span class="arithmatex">\(s\)</span> 为字符串，<span class="arithmatex">\(b,p\)</span> 为质数。详见<a href="/posts/basis/string/hash/">哈希函数</a>。</p>
+</li>
+</ol>
+<h3 id="_6">模板<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="k">static</span> <span class="k">struct</span> <span class="nc">hash_map</span> <span class="p">{</span>
     <span class="cp">#define MOD (999997) </span>
 
@@ -1262,10 +1396,10 @@
     <span class="p">}</span> <span class="n">edge</span><span class="p">[</span><span class="n">MOD</span><span class="p">];</span>
 
     <span class="kt">int</span> <span class="n">head</span><span class="p">[</span><span class="n">MOD</span><span class="p">],</span> <span class="n">cnt</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="nf">hash</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">key</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="nf">getHash</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">;</span> <span class="p">}</span>
 
     <span class="kt">int</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="n">h</span> <span class="o">=</span> <span class="n">getHash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
         <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span> <span class="o">=</span> <span class="n">head</span><span class="p">[</span><span class="n">h</span><span class="p">];</span> <span class="n">p</span><span class="p">;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">edge</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">next</span><span class="p">)</span>
             <span class="k">if</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">key</span> <span class="o">==</span> <span class="n">key</span><span class="p">)</span> <span class="k">return</span> <span class="n">edge</span><span class="p">[</span><span class="n">p</span><span class="p">].</span><span class="n">val</span><span class="p">;</span>
         <span class="n">edge</span><span class="p">[</span><span class="o">++</span> <span class="n">cnt</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">node</span><span class="p">){</span><span class="mi">0</span><span class="p">,</span> <span class="n">head</span><span class="p">[</span><span class="n">h</span><span class="p">],</span> <span class="n">key</span><span class="p">},</span> <span class="n">head</span><span class="p">[</span><span class="n">h</span><span class="p">]</span> <span class="o">=</span> <span class="n">cnt</span><span class="p">;</span>
@@ -1283,7 +1417,7 @@
 <hr />
 <ol>
 <li id="fn:1">
-<p>中括号里的数称之为「下标」。例如 <span class="arithmatex">\(a[10]\)</span> 是数组 <span class="arithmatex">\(a\)</span> 中「下标为 <span class="arithmatex">\(10\)</span>」的元素。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>中括号里的数称之为「下标」。例如 <span class="arithmatex">\(a[10]\)</span> 的下标为 <span class="arithmatex">\(10\)</span>。&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>

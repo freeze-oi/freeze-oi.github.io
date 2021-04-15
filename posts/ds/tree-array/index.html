@@ -574,7 +574,7 @@
 
 
 <li class="md-nav__item">
-    <a href="../../basis/string/hash-table/" class="md-nav__link">
+    <a href="../../basis/string/hash-map/" class="md-nav__link">
         哈希表
     </a>
 </li>
@@ -809,6 +809,13 @@
         <li class="md-nav__item">
     <a href="#_6" class="md-nav__link">
         区间查询
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_7" class="md-nav__link">
+        模板
     </a>
     
 </li>
@@ -1271,6 +1278,13 @@
     
 </li>
       
+        <li class="md-nav__item">
+    <a href="#_7" class="md-nav__link">
+        模板
+    </a>
+    
+</li>
+      
     </ul>
   
 </nav>
@@ -1384,8 +1398,7 @@
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 将 a[p] 增加 k</span>
-    <span class="n">a</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">k</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(;</span> <span class="n">p</span><span class="p">;</span> <span class="n">p</span> <span class="o">+=</span> <span class="n">lowbit</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="n">c</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">k</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">p</span> <span class="o">+=</span> <span class="n">lowbit</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="n">c</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">k</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
 </details>
@@ -1397,7 +1410,7 @@
 <p><span class="arithmatex">\(C_7=A_7\)</span>；</p>
 <p>因而 <span class="arithmatex">\(sum[7]=C_4+C_6+C_7\)</span>。</p>
 <p>查询 <span class="arithmatex">\(sum[x]\)</span> 时，从 <span class="arithmatex">\(C_x\)</span> 开始依次遍历「左上方最近节点」，这些节点值的和即为答案。时间复杂度为 <span class="arithmatex">\(O(\log{n})\)</span>。</p>
-<details class="note" open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">ask</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 查询 A[1...p] 的和</span>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">ask</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 查询 A[1...p] 的和</span>
     <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">for</span><span class="p">(;</span> <span class="n">p</span><span class="p">;</span> <span class="n">p</span> <span class="o">-=</span> <span class="n">lowbit</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="n">sum</span> <span class="o">+=</span> <span class="n">c</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
     <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
@@ -1409,7 +1422,27 @@
 <div class="arithmatex">\[
 get(l,r)=sum[r]-sum[l-1];
 \]</div>
-<details class="note" open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 查询 A[l...r] 的和</span>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 查询 A[l...r] 的和</span>
+    <span class="k">return</span> <span class="n">ask</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">-</span> <span class="n">ask</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h2 id="_7">模板<a class="headerlink" href="#_7" title="Permanent link">$</a></h2>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">lowbit</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">&amp;</span> <span class="o">-</span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">,</span> <span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(;</span> <span class="n">p</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="n">p</span> <span class="o">+=</span> <span class="n">lowbit</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="n">c</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">+=</span> <span class="n">k</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">ask</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(;</span> <span class="n">p</span><span class="p">;</span> <span class="n">p</span> <span class="o">-=</span> <span class="n">lowbit</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="n">sum</span> <span class="o">+=</span> <span class="n">c</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">sum</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">ask</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="o">-</span> <span class="n">ask</span><span class="p">(</span><span class="n">l</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div>
