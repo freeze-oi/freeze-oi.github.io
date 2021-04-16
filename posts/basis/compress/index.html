@@ -1285,24 +1285,24 @@
 </ul>
 <p>因此，「<span class="arithmatex">\(0\)</span> 与 <span class="arithmatex">\(1\)</span>」，「<span class="arithmatex">\(2\)</span> 与 <span class="arithmatex">\(3\)</span>」，「<span class="arithmatex">\(4\)</span> 与 <span class="arithmatex">\(5\)</span>」，<span class="arithmatex">\(\cdots\)</span> 关于 <span class="arithmatex">\(\rm xor \ 1\)</span> 运算构成「成对变换」。此特性应用于临接表的<a href="/posts/graph/store/#_4">反向边访问</a>。</p>
 <h2 id="lowbit">Lowbit 运算<a class="headerlink" href="#lowbit" title="Permanent link">$</a></h2>
-<p><span class="arithmatex">\(\rm lowbit(n)\)</span> 为 <span class="arithmatex">\(n\)</span> 在二进制表示下「最低位的 <span class="arithmatex">\(1\)</span> 及其后所有的 <span class="arithmatex">\(0\)</span>」构成的数值。例如：<span class="arithmatex">\(n=10=(1010)_2\)</span>，<span class="arithmatex">\(\rm lowbit(n)=(10)_2=2\)</span>。</p>
-<p>假设 <span class="arithmatex">\(n\)</span> 的第 <span class="arithmatex">\(k\)</span> 位为 <span class="arithmatex">\(1\)</span>，第 <span class="arithmatex">\(0\sim k-1\)</span> 位都为 <span class="arithmatex">\(0\)</span>：</p>
-<ul>
+<p><span class="arithmatex">\(lowbit(n)\)</span> 为 <span class="arithmatex">\(n\)</span> 在二进制表示下「最低位的 <span class="arithmatex">\(1\)</span> 和其后所有的 <span class="arithmatex">\(0\)</span>」构成的数。例如 <span class="arithmatex">\(n=(101000)_2\)</span>，<span class="arithmatex">\(lowbit(n)=(1000)_2\)</span>。</p>
+<p><span class="arithmatex">\(n[i]\)</span>：<span class="arithmatex">\(n\)</span> 在二进制表示下的第 <span class="arithmatex">\(i\)</span> 位数字。假设 <span class="arithmatex">\(n[k]=1\)</span>，<span class="arithmatex">\(n[0\cdots k-1]=0\)</span>。</p>
+<ol>
 <li>
-<p>将 <span class="arithmatex">\(n\)</span> 取反，此时 <span class="arithmatex">\(n\)</span> 的第 <span class="arithmatex">\(k\)</span> 位为 <span class="arithmatex">\(0\)</span>，第 <span class="arithmatex">\(0\sim k-1\)</span> 位为 <span class="arithmatex">\(1\)</span>，第 <span class="arithmatex">\(k+1\)</span> 到最高位和原来相反；</p>
+<p>将 <span class="arithmatex">\(n\)</span> 的每一位取反，即 <span class="arithmatex">\(n=\sim n\)</span>，此时 <span class="arithmatex">\(n[k]=0\)</span>，<span class="arithmatex">\(n[0\cdots k-1]=1\)</span>，其它位和原来相反；</p>
 </li>
 <li>
-<p>令 <span class="arithmatex">\(n=n+1\)</span>，此时第 <span class="arithmatex">\(k\)</span> 位为 <span class="arithmatex">\(1\)</span>，第 <span class="arithmatex">\(0\sim k-1\)</span> 位为 <span class="arithmatex">\(0\)</span>，第 <span class="arithmatex">\(k+1\)</span> 到最高位仍与原来相反；</p>
+<p>令 <span class="arithmatex">\(n=n+1\)</span>，此时 <span class="arithmatex">\(n[k]=1\)</span>，<span class="arithmatex">\(n[0\cdots k-1]=0\)</span>，其它位仍和原来相反；</p>
 </li>
 <li>
-<p>此时 <span class="arithmatex">\(n\&amp;(\sim n+1)\)</span> 仅有第 <span class="arithmatex">\(k\)</span> 位为 <span class="arithmatex">\(1\)</span>。</p>
+<p>因此 <span class="arithmatex">\(n\&amp;(\sim n+1)\)</span> 仅有第 <span class="arithmatex">\(k\)</span> 位为 <span class="arithmatex">\(1\)</span>。</p>
 </li>
-</ul>
+</ol>
 <p>由于在补码表示下 <span class="arithmatex">\(-n=\sim n+1\)</span>，因此：</p>
 <div class="arithmatex">\[
-\rm lowbit(n)=n\&amp;(\sim n+1)=n\&amp;-n
+lowbit(n)=n\&amp;(\sim n+1)=n\&amp;-n
 \]</div>
-<p>时间复杂度为 <span class="arithmatex">\(O(1)\)</span>。</p>
+<p>时间复杂度为 <span class="arithmatex">\(O(1)\)</span>。结合样例理解。</p>
 <table>
 <thead>
 <tr>
@@ -1318,6 +1318,12 @@
 <td align="center"><span class="arithmatex">\((\)</span>010111<span class="arithmatex">\()_2\)</span></td>
 <td align="center"><span class="arithmatex">\((\)</span>011000<span class="arithmatex">\()_2\)</span></td>
 <td align="center"><span class="arithmatex">\((\)</span>001000<span class="arithmatex">\()_2\)</span></td>
+</tr>
+<tr>
+<td align="center"><span class="arithmatex">\((\)</span>101100<span class="arithmatex">\()_2\)</span></td>
+<td align="center"><span class="arithmatex">\((\)</span>010011<span class="arithmatex">\()_2\)</span></td>
+<td align="center"><span class="arithmatex">\((\)</span>010100<span class="arithmatex">\()_2\)</span></td>
+<td align="center"><span class="arithmatex">\((\)</span>000100<span class="arithmatex">\()_2\)</span></td>
 </tr>
 </tbody>
 </table>
