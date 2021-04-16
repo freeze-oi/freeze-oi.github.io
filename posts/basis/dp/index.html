@@ -1393,8 +1393,8 @@ f[3]=f[1]+f[2]=1+1=2
 </details>
 <h2 id="_3">专业术语<a class="headerlink" href="#_3" title="Permanent link">$</a></h2>
 <h3 id="_4">问题和子问题<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
-<p>打个比方，求 <span class="arithmatex">\(f[n](n≥3)\)</span> 是<strong>（主）问题</strong>，则求 <span class="arithmatex">\(f[n-1]\)</span> 和 <span class="arithmatex">\(f[n-2]\)</span> 就是该问题的<strong>子问题</strong>。</p>
-<p>子问题必须先于主问题被填进表。例如求 <span class="arithmatex">\(f[n](n≥3)\)</span> 时，<span class="arithmatex">\(f[n-1]\)</span> 和 <span class="arithmatex">\(f[n-2]\)</span> 必须先被填进表。</p>
+<p>打个比方，求 <span class="arithmatex">\(f[n]\)</span> 是<strong>（主）问题</strong>，则求 <span class="arithmatex">\(f[n-1]\)</span> 和 <span class="arithmatex">\(f[n-2]\)</span> 就是该问题的<strong>子问题</strong>。</p>
+<p>子问题必须先于主问题被填进表。例如求 <span class="arithmatex">\(f[n]\)</span> 时，<span class="arithmatex">\(f[n-1]\)</span> 和 <span class="arithmatex">\(f[n-2]\)</span> 必须先被填进表。</p>
 <h3 id="_5">状态转移方程<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
 <p><strong>状态转移方程</strong>用于表示<a href="#_4">问题和子问题</a>之间的关系：</p>
 <div class="arithmatex">\[
@@ -1404,8 +1404,8 @@ f[n]=\left\{\begin{aligned}
 \end{aligned}\right.
 \]</div>
 <h3 id="_6">初始、边界条件<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
-<p><strong>初始条件</strong>为「<span class="arithmatex">\(f[1]=f[2]=1\)</span>」。</p>
-<p><strong>边界条件</strong>为「<span class="arithmatex">\(f[n]\)</span> 被求出」。</p>
+<p><strong>初始条件</strong>：<span class="arithmatex">\(f[1]=f[2]=1\)</span>。</p>
+<p><strong>边界条件</strong>：<span class="arithmatex">\(f[n]\)</span> 被求出。</p>
 <p>动态规划从初始条件出发，一直填表计算到边界条件才结束。</p>
                             
                             
