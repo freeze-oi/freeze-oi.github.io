@@ -1404,6 +1404,20 @@
 <p><strong>区间查询</strong>：查询 <span class="arithmatex">\(A[l\cdots r]\)</span> 的和。</p>
 </li>
 </ul>
+<details open="open"><summary>暴力算法</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">a</span><span class="p">[];</span>
+
+<span class="kt">void</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 单点修改</span>
+    <span class="n">a</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">ask</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 区间查询</span>
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">ans</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
 <table>
 <thead>
 <tr>
@@ -1430,20 +1444,6 @@
 </tr>
 </tbody>
 </table>
-<details open="open"><summary>暴力算法</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">a</span><span class="p">[];</span>
-
-<span class="kt">void</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 单点修改</span>
-    <span class="n">a</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">ask</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 区间查询</span>
-    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
-        <span class="n">ans</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-</details>
 <h2 id="_3">基本原理<a class="headerlink" href="#_3" title="Permanent link">$</a></h2>
 <h3 id="_4">构造<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
 <p>在原数组的上方构建树型结构，每个节点表示一段区间和：</p>
@@ -1480,7 +1480,7 @@
 <p><center><img src=\img\ds\tree-array_2.png style="zoom:80%"></img></center></p>
 <ul>
 <li>
-<p><span class="arithmatex">\(C[\)</span>00<font color="red">11</font><span class="arithmatex">\(]\)</span> 的左邻节点为 <span class="arithmatex">\(C[\)</span>00<font color="red">10</font><span class="arithmatex">\(]\)</span>。</p>
+<p><span class="arithmatex">\(C[\)</span>001<font color="red">1</font><span class="arithmatex">\(]\)</span> 的左邻节点为 <span class="arithmatex">\(C[\)</span>001<font color="red">0</font><span class="arithmatex">\(]\)</span>。</p>
 </li>
 <li>
 <p><span class="arithmatex">\(C[\)</span>010<font color="red">1</font><span class="arithmatex">\(]\)</span> 的左邻节点为 <span class="arithmatex">\(C[\)</span>010<font color="red">0</font><span class="arithmatex">\(]\)</span>。</p>
@@ -1511,15 +1511,15 @@
 </code></pre></div>
 </details>
 <h3 id="_8">区间查询<a class="headerlink" href="#_8" title="Permanent link">$</a></h3>
-<p>采用<a href="/posts/basis/dp/basis/#_6">前缀和</a>思想。<span class="arithmatex">\(sum[x]\)</span> 表示 <span class="arithmatex">\(A[1\cdots x]\)</span> 的和，则：</p>
+<p>采用<a href="/posts/basis/dp/basis/#_6">前缀和</a>思想。<span class="arithmatex">\(sum[x]\)</span> 表示 <span class="arithmatex">\(A[1]+A[2]+\cdots+A[x]\)</span>，则：</p>
 <p><center><span class="arithmatex">\(A[l\cdots r]\)</span> 的和 <span class="arithmatex">\(=sum[r]-sum[l-1]\)</span></center></p>
-<p>自此问题转换为求 <span class="arithmatex">\(sum[x]\)</span>。以 <span class="arithmatex">\(sum[7]\)</span> 为例：</p>
+<p>自此，问题转换为求 <span class="arithmatex">\(sum[x]\)</span>。以 <span class="arithmatex">\(sum[7]\)</span> 为例：</p>
 <p><center><img src=\img\ds\tree-array_5.png style="zoom:80%"></img></center></p>
 <p><span class="arithmatex">\(C_4=A_1+A_2+A_3+A_4\)</span>；</p>
 <p><span class="arithmatex">\(C_6=A_5+A_6\)</span>；</p>
 <p><span class="arithmatex">\(C_7=A_7\)</span>；</p>
 <p>因而 <span class="arithmatex">\(sum[7]=C_4+C_6+C_7\)</span>。</p>
-<p>查询 <span class="arithmatex">\(sum[x]\)</span> 时，从 <span class="arithmatex">\(C_x\)</span> 开始依次遍历<a href="#_6">左邻节点</a>，这些节点值的和即为答案。时间复杂度为 <span class="arithmatex">\(O(\log{n})\)</span>。</p>
+<p>查询 <span class="arithmatex">\(sum[x]\)</span> 时，从 <span class="arithmatex">\(C_x\)</span> 开始依次遍历<a href="#_6">左邻节点</a>。时间复杂度为 <span class="arithmatex">\(O(\log{n})\)</span>。</p>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="nf">ask</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 查询 A[1...p] 的和</span>
     <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="k">for</span><span class="p">(;</span> <span class="n">p</span><span class="p">;</span> <span class="n">p</span> <span class="o">-=</span> <span class="n">lowbit</span><span class="p">(</span><span class="n">p</span><span class="p">))</span> <span class="n">sum</span> <span class="o">+=</span> <span class="n">c</span><span class="p">[</span><span class="n">p</span><span class="p">];</span>
@@ -1649,7 +1649,7 @@
         <script>
             app = initialize({
                 base: "../../..",
-                features: ['navigation.tabs', 'navigation.tabs.sticky'],
+                features: ['navigation.tabs', 'navigation.tabs.sticky', 'navigation.instant'],
                 search: Object.assign({
                     worker: "../../../assets/javascripts/worker/search.9c0e82ba.min.js"
                 }, typeof search !== "undefined" && search)

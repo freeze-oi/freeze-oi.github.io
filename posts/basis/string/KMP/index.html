@@ -84,6 +84,11 @@
         <label class="md-overlay" for="__drawer"></label>
         <div data-md-component="skip">
             
+            
+            <a href="#_1" class="md-skip">
+                跳转至
+            </a>
+            
         </div>
         <div data-md-component="announce">
             
@@ -591,9 +596,63 @@
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
     
+    <label class="md-nav__link md-nav__link--active" for="__toc">
+        KMP 算法
+        <span class="md-nav__icon md-icon"></span>
+    </label>
+    
     <a href="./" class="md-nav__link md-nav__link--active">
         KMP 算法
     </a>
+    
+    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+    <a href="#_1" class="md-nav__link">
+        简介
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_2" class="md-nav__link">
+        基本原理
+    </a>
+    
+    <nav class="md-nav" aria-label="基本原理">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_3" class="md-nav__link">
+        引出问题
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
+        模板
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+      
+    </ul>
+  
+</nav>
     
 </li>
 
@@ -1150,6 +1209,62 @@
                     
                     
                     
+                    <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                        <div class="md-sidebar__scrollwrap">
+                            <div class="md-sidebar__inner">
+                                
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+    <a href="#_1" class="md-nav__link">
+        简介
+    </a>
+    
+</li>
+      
+        <li class="md-nav__item">
+    <a href="#_2" class="md-nav__link">
+        基本原理
+    </a>
+    
+    <nav class="md-nav" aria-label="基本原理">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_3" class="md-nav__link">
+        引出问题
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
+        模板
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+      
+    </ul>
+  
+</nav>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
                     <div class="md-content">
                         <article class="md-content__inner md-typeset">
                             
@@ -1157,7 +1272,37 @@
                             
                             <h1>KMP 算法</h1>
                             
-                            <details class="note" open="open"><summary>Code</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">next</span><span class="p">[];</span>
+                            <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
+<p><span class="arithmatex">\(KMP\)</span> 算法并不能用来看毛片，它是一种字符串匹配算法。<span class="arithmatex">\(KMP\)</span> 是该算法的发明者 <span class="arithmatex">\(Kruth\)</span>，<span class="arithmatex">\(Morris\)</span> 和 <span class="arithmatex">\(Pratt\)</span> 的名字缩写。</p>
+<p><center><img src=\img\string\kmp_1.png style="zoom:80%"></img></center></p>
+<h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
+<h3 id="_3">引出问题<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
+<p>给定字符串 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span>，问 <span class="arithmatex">\(A\)</span> 中是否包含 <span class="arithmatex">\(B\)</span> ？</p>
+<details open="open"><summary>暴力算法</summary><div class="highlight"><pre><span></span><code><span class="kt">bool</span> <span class="nf">involve</span><span class="p">(</span><span class="n">string</span> <span class="n">a</span><span class="p">,</span> <span class="n">string</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">break</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<table>
+<thead>
+<tr>
+<th align="center">暴力算法（<span class="arithmatex">\(\textcolor{red}{×}\)</span>）</th>
+<th align="center"><span class="arithmatex">\(KMP\)</span> 算法（<span class="arithmatex">\(\textcolor{green}{√}\)</span>）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="arithmatex">\(\textcolor{red}{O(n^2)}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{green}{O(n)}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">模板<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">next</span><span class="p">[];</span>
 
 <span class="kt">void</span> <span class="nf">getnext</span><span class="p">(</span><span class="n">string</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">next</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">-1</span><span class="p">;</span>
@@ -1254,7 +1399,7 @@
         <script>
             app = initialize({
                 base: "../../../..",
-                features: ['navigation.tabs', 'navigation.tabs.sticky'],
+                features: ['navigation.tabs', 'navigation.tabs.sticky', 'navigation.instant'],
                 search: Object.assign({
                     worker: "../../../../assets/javascripts/worker/search.9c0e82ba.min.js"
                 }, typeof search !== "undefined" && search)

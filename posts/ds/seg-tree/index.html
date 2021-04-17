@@ -1313,6 +1313,25 @@
 <p><strong>区间修改</strong>：将 <span class="arithmatex">\(A[l\cdots r]\)</span> 每个数加上 <span class="arithmatex">\(v\)</span>。</p>
 </li>
 </ul>
+<details open="open"><summary>暴力算法</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">a</span><span class="p">[];</span>
+
+<span class="kt">void</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 单点修改</span>
+    <span class="n">a</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">ask</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 区间查询</span>
+    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 区间修改</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
+        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
 <table>
 <thead>
 <tr>
@@ -1344,25 +1363,6 @@
 </tr>
 </tbody>
 </table>
-<details open="open"><summary>暴力算法</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">a</span><span class="p">[];</span>
-
-<span class="kt">void</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">id</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 单点修改</span>
-    <span class="n">a</span><span class="p">[</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="nf">ask</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 区间查询</span>
-    <span class="kt">int</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
-        <span class="n">ans</span> <span class="o">=</span> <span class="n">min</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 区间修改</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
-        <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-</details>
 <h2 id="_2">构造<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <p>查询数组 <span class="arithmatex">\(A=\{6,2,3,7,1,5,4,2\}\)</span> 中的最小值时，通常使用「两两比较法」：每次比较相邻两项，只保留更小的一项。比较的过程可以画成一棵二叉树，树根是答案。</p>
 <p><center><img src=\img\ds\seg_tree_0.png style=zoom:80%></img></center></p>
@@ -1490,7 +1490,7 @@
 <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">u</span><span class="p">,</span> <span class="kt">int</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 将 A[l...r] 每个数加上 v</span>
     <span class="k">if</span><span class="p">(</span><span class="n">l</span> <span class="o">&lt;=</span> <span class="n">l</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">r</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 完全覆盖</span>
         <span class="n">t</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">+=</span> <span class="n">v</span><span class="p">,</span> <span class="n">mark</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">+=</span> <span class="n">v</span><span class="p">;</span> <span class="k">return</span><span class="p">;</span> <span class="c1">// 标记</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">r</span> <span class="o">||</span> <span class="n">r</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">l</span><span class="p">)</span> <span class="k">return</span> <span class="mh">0x3f3f3f</span><span class="p">;</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">l</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">r</span> <span class="o">||</span> <span class="n">r</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">l</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
     <span class="n">spread</span><span class="p">(</span><span class="n">u</span><span class="p">);</span> <span class="c1">// 下传标记</span>
     <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
     <span class="n">add</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">u</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
@@ -1680,7 +1680,7 @@
         <script>
             app = initialize({
                 base: "../../..",
-                features: ['navigation.tabs', 'navigation.tabs.sticky'],
+                features: ['navigation.tabs', 'navigation.tabs.sticky', 'navigation.instant'],
                 search: Object.assign({
                     worker: "../../../assets/javascripts/worker/search.9c0e82ba.min.js"
                 }, typeof search !== "undefined" && search)
