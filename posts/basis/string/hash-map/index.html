@@ -1334,12 +1334,18 @@
 </tbody>
 </table>
 <p><span class="arithmatex">\(p[i]\)</span> 表示「名称为 <span class="arithmatex">\(i\)</span> 的病人的问诊顺序」。查询问诊顺序的时间复杂度为 <span class="arithmatex">\(O(1)\)</span>。</p>
-<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// 记录 i 号病人的问诊顺序为 x</span>
+<details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">p</span><span class="p">[];</span>
 
-<span class="kt">int</span> <span class="nf">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span> <span class="c1">// 查询 i 号病人的问诊顺序</span>
+<span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 记录病人 i 的问诊顺序为 x</span>
+    <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">query</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// 查询病人 i 的问诊顺序</span>
+    <span class="k">return</span> <span class="n">p</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="p">}</span>
 </code></pre></div>
 </details>
-<p>然而总有些病人不按套路取名。</p>
+<p>然而总有某些病人不按套路取名。</p>
 <table>
 <thead>
 <tr>
@@ -1363,7 +1369,7 @@
 <p>要存储 <span class="arithmatex">\(p[45467333433233]=3\)</span>，得先开一个长度为 <span class="arithmatex">\(45467333433233\)</span> 的数组。这明显不现实。</p>
 <h3 id="_4">构造<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
 <p>开一个如此丑陋的数组，会浪费超过 <span class="arithmatex">\(99\%\)</span> 的空间。毕竟只用到了其中的四个元素。有没有办法使数组只占很少空间？</p>
-<p>设计<strong>哈希函数</strong> <span class="arithmatex">\(getHash()\)</span>，用 <span class="arithmatex">\(p[getHash(i)]\)</span> 表示病人 <span class="arithmatex">\(i\)</span> 的问诊顺序。对于本例的，有：</p>
+<p>设计<strong>哈希函数</strong> <span class="arithmatex">\(getHash()\)</span>，用 <span class="arithmatex">\(p[getHash(i)]\)</span> 表示病人 <span class="arithmatex">\(i\)</span> 的问诊顺序。对于本例，有：</p>
 <div class="arithmatex">\[ getHash(i)=i\%5 \]</div>
 <p>这样，数组就只要开到 <span class="arithmatex">\(p[5]\)</span>。但这么做会导致其它问题：病人 <span class="arithmatex">\(114514\)</span> 和病人 <span class="arithmatex">\(404\)</span> 的问诊顺序会同时存入 <span class="arithmatex">\(p[4]\)</span>，因为 <span class="arithmatex">\(getHash(114514)=getHash(404)=4\)</span>。于是我们可以将 <span class="arithmatex">\(getHash()\)</span> 相同的病人放在同一个链表。</p>
 <p><center><img src=/img/string/hash-map_1.png style="zoom:80%"></img></center></p>

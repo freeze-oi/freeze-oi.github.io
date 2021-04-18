@@ -640,6 +640,33 @@
             
             <li class="md-nav__item">
     <a href="#_4" class="md-nav__link">
+        预处理
+    </a>
+    
+    <nav class="md-nav" aria-label="预处理">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        前缀和后缀
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#next" class="md-nav__link">
+        next 数组
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_6" class="md-nav__link">
         模板
     </a>
     
@@ -1247,6 +1274,33 @@
             
             <li class="md-nav__item">
     <a href="#_4" class="md-nav__link">
+        预处理
+    </a>
+    
+    <nav class="md-nav" aria-label="预处理">
+        <ul class="md-nav__list">
+            
+            <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
+        前缀和后缀
+    </a>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#next" class="md-nav__link">
+        next 数组
+    </a>
+    
+</li>
+            
+        </ul>
+    </nav>
+    
+</li>
+            
+            <li class="md-nav__item">
+    <a href="#_6" class="md-nav__link">
         模板
     </a>
     
@@ -1277,12 +1331,21 @@
 <p><center><img src=\img\string\kmp_1.png style="zoom:80%"></img></center></p>
 <h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <h3 id="_3">引出问题<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
-<p>给定字符串 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span>，问 <span class="arithmatex">\(A\)</span> 中是否包含 <span class="arithmatex">\(B\)</span> ？</p>
+<p>给定字符串 <span class="arithmatex">\(A\)</span>（长度为 <span class="arithmatex">\(m\)</span>）和 <span class="arithmatex">\(B\)</span>（长度为 <span class="arithmatex">\(n\)</span>），问 <span class="arithmatex">\(A\)</span> 中是否包含 <span class="arithmatex">\(B\)</span> ？</p>
+<p><center><img src=\img\string\kmp_2.png style="zoom:80%"></img></center></p>
+<p>首先，比较 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 的第一个字符。因为 <span class="arithmatex">\(b\)</span> 与 <span class="arithmatex">\(a\)</span> 不匹配，所以 <span class="arithmatex">\(B\)</span> 向后移一位。</p>
+<p><center><img src=\img\string\kmp_3.png style="zoom:80%"></img></center></p>
+<p>继续比较，直到不匹配时，再将 <span class="arithmatex">\(B\)</span> 向后移。</p>
+<p><center><img src=\img\string\kmp_4.png style="zoom:80%"></img></center></p>
+<p>这么做虽然可行，但是效率太低。</p>
 <details open="open"><summary>暴力算法</summary><div class="highlight"><pre><span></span><code><span class="kt">bool</span> <span class="nf">involve</span><span class="p">(</span><span class="n">string</span> <span class="n">a</span><span class="p">,</span> <span class="n">string</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span>
-        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="n">j</span> <span class="o">++</span><span class="p">)</span>
-            <span class="k">if</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">break</span><span class="p">;</span>
-            <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span> <span class="n">n</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span><span class="p">(</span><span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">b</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="n">j</span> <span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">n</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="n">i</span> <span class="o">++</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
     <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
@@ -1296,12 +1359,47 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><span class="arithmatex">\(\textcolor{red}{O(n^2)}\)</span></td>
-<td align="center"><span class="arithmatex">\(\textcolor{green}{O(n)}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{red}{O(mn)}\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{green}{O(m+n)}\)</span></td>
 </tr>
 </tbody>
 </table>
-<h3 id="_4">模板<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<h3 id="_4">预处理<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<p>其实，刚才匹配到这一步时，<span class="arithmatex">\(B\)</span> 串可以直接向后移 <span class="arithmatex">\(2\)</span> 位，从黄色处开始比较。</p>
+<p><center><img src=\img\string\kmp_5.png style="zoom:80%"></img></center></p>
+<p>为什么呢？因为 <span class="arithmatex">\(B\)</span> 串的这两段相等。</p>
+<p><center><img src=\img\string\kmp_6.png style="zoom:80%"></img></center></p>
+<p>而此时 <span class="arithmatex">\(A\)</span> 串和 <span class="arithmatex">\(B\)</span> 串绿色部分必定相等，黑框框住的这两段也相等。</p>
+<p><center><img src=\img\string\kmp_7.png style="zoom:80%"></img></center></p>
+<p>因此 <span class="arithmatex">\(A\)</span> 串和 <span class="arithmatex">\(B\)</span> 串的这两段也相等，可以直接把 <span class="arithmatex">\(B\)</span> 串往右移，移到这两段处于同一竖直位置。</p>
+<p><center><img src=\img\string\kmp_8.png style="zoom:80%"></img></center></p>
+<p>再举个例子。</p>
+<p><center><img src=\img\string\kmp_9.png style="zoom:80%"></img></center></p>
+<p><span class="arithmatex">\(KMP\)</span> 算法快就快在这。不过它还需要预处理 <span class="arithmatex">\(next[ \ ]\)</span> 数组。</p>
+<h4 id="_5">前缀和后缀<a class="headerlink" href="#_5" title="Permanent link">$</a></h4>
+<p>首先我们得了解「前缀」和「后缀」的概念。</p>
+<p>字符串 <span class="arithmatex">\(abcde\)</span> 的前缀有：</p>
+<p><span class="arithmatex">\(\begin{align}
+&amp;a\\
+&amp;ab\\
+&amp;abc\\
+&amp;abcd\\
+\end{align}\)</span></p>
+<p>它的后缀有：</p>
+<p><span class="arithmatex">\(\begin{align}
+e&amp;\\
+de&amp;\\
+cde&amp;\\
+bcde&amp;\\
+\end{align}\)</span></p>
+<p>并且前后缀长度 <span class="arithmatex">\(&lt;\)</span> 字符串本身的长度。</p>
+<h4 id="next">next 数组<a class="headerlink" href="#next" title="Permanent link">$</a></h4>
+<p><span class="arithmatex">\(next[i]\)</span>：<span class="arithmatex">\(B[0\cdots i]\)</span> 中最长的「公共前后缀」的长度。</p>
+<p>例如刚才的 <span class="arithmatex">\(B[0\cdots 3]\)</span> 中，<span class="arithmatex">\(B[0\cdots 1]\)</span>（前缀）和 <span class="arithmatex">\(B[2\cdots 3]\)</span>（后缀）相等，且它们的长度为 <span class="arithmatex">\(2\)</span>，因此 <span class="arithmatex">\(next[3]=2\)</span>。</p>
+<p><center><img src=\img\string\kmp_10.png style="zoom:80%"></img></center></p>
+<p>公共前后缀也可以重叠。下图中 <span class="arithmatex">\(next[4]=3\)</span>。</p>
+<p><center><img src=\img\string\kmp_11.png style="zoom:80%"></img></center></p>
+<h3 id="_6">模板<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">next</span><span class="p">[];</span>
 
 <span class="kt">void</span> <span class="nf">getnext</span><span class="p">(</span><span class="n">string</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
