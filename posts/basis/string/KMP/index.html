@@ -648,7 +648,7 @@
             
             <li class="md-nav__item">
     <a href="#_5" class="md-nav__link">
-        前缀和后缀
+        前缀&amp;后缀
     </a>
     
 </li>
@@ -1282,7 +1282,7 @@
             
             <li class="md-nav__item">
     <a href="#_5" class="md-nav__link">
-        前缀和后缀
+        前缀&amp;后缀
     </a>
     
 </li>
@@ -1371,21 +1371,20 @@
 <p><center><img src=\img\string\kmp_6.png style="zoom:80%"></img></center></p>
 <p>而此时 <span class="arithmatex">\(A\)</span> 串和 <span class="arithmatex">\(B\)</span> 串绿色部分必定相等，黑框框住的这两段也相等。</p>
 <p><center><img src=\img\string\kmp_7.png style="zoom:80%"></img></center></p>
-<p>因此 <span class="arithmatex">\(A\)</span> 串和 <span class="arithmatex">\(B\)</span> 串的这两段也相等，可以直接把 <span class="arithmatex">\(B\)</span> 串往右移，移到这两段处于同一竖直位置。</p>
+<p>因此 <span class="arithmatex">\(A\)</span> 串和 <span class="arithmatex">\(B\)</span> 串的这两段也相等，可以直接把 <span class="arithmatex">\(B\)</span> 串往右移，直到这两段处于同一竖直位置。</p>
 <p><center><img src=\img\string\kmp_8.png style="zoom:80%"></img></center></p>
 <p>再举个例子。</p>
 <p><center><img src=\img\string\kmp_9.png style="zoom:80%"></img></center></p>
-<p><span class="arithmatex">\(KMP\)</span> 算法快就快在这。不过它还需要预处理 <span class="arithmatex">\(next[ \ ]\)</span> 数组。</p>
-<h4 id="_5">前缀和后缀<a class="headerlink" href="#_5" title="Permanent link">$</a></h4>
-<p>首先我们得了解「前缀」和「后缀」的概念。</p>
-<p>字符串 <span class="arithmatex">\(abcde\)</span> 的前缀有：</p>
+<p><span class="arithmatex">\(KMP\)</span> 算法快就快在这。</p>
+<h4 id="_5">前缀&amp;后缀<a class="headerlink" href="#_5" title="Permanent link">$</a></h4>
+<p>字符串 <span class="arithmatex">\(abcde\)</span> 的「前缀」有：</p>
 <p><span class="arithmatex">\(\begin{align}
 &amp;a\\
 &amp;ab\\
 &amp;abc\\
 &amp;abcd\\
 \end{align}\)</span></p>
-<p>它的后缀有：</p>
+<p>它的「后缀」有：</p>
 <p><span class="arithmatex">\(\begin{align}
 e&amp;\\
 de&amp;\\
@@ -1393,12 +1392,26 @@ cde&amp;\\
 bcde&amp;\\
 \end{align}\)</span></p>
 <p>并且前后缀长度 <span class="arithmatex">\(&lt;\)</span> 字符串本身的长度。</p>
+<p>若字符串的某个前缀和某个后缀相等，则相等的这部分称为「公共前后缀」。例如 <span class="arithmatex">\(abcabc\)</span> 的公共前后缀为 <span class="arithmatex">\(abc\)</span>。</p>
 <h4 id="next">next 数组<a class="headerlink" href="#next" title="Permanent link">$</a></h4>
-<p><span class="arithmatex">\(next[i]\)</span>：<span class="arithmatex">\(B[0\cdots i]\)</span> 中最长的「公共前后缀」的长度。</p>
-<p>例如刚才的 <span class="arithmatex">\(B[0\cdots 3]\)</span> 中，<span class="arithmatex">\(B[0\cdots 1]\)</span>（前缀）和 <span class="arithmatex">\(B[2\cdots 3]\)</span>（后缀）相等，且它们的长度为 <span class="arithmatex">\(2\)</span>，因此 <span class="arithmatex">\(next[3]=2\)</span>。</p>
+<p><span class="arithmatex">\(next[i]\)</span>：<span class="arithmatex">\(B[0\cdots i]\)</span> 中最长的「公共前后缀」的长度。注意字符串的下标从 <span class="arithmatex">\(0\)</span> 开始。</p>
+<p>如下图，单独取出 <span class="arithmatex">\(B\)</span> 串的前 <span class="arithmatex">\(4\)</span> 个字符（<span class="arithmatex">\(B[0\cdots 3]\)</span>），发现 <span class="arithmatex">\(B[0\cdots 1]=B[2\cdots 3]\)</span>，且它们的长度为 <span class="arithmatex">\(2\)</span>，因此 <span class="arithmatex">\(next[3]=2\)</span>。</p>
 <p><center><img src=\img\string\kmp_10.png style="zoom:80%"></img></center></p>
 <p>公共前后缀也可以重叠。下图中 <span class="arithmatex">\(next[4]=3\)</span>。</p>
 <p><center><img src=\img\string\kmp_11.png style="zoom:80%"></img></center></p>
+<p>以字符串 <span class="arithmatex">\(abacabac\)</span> 为例：</p>
+<div class="arithmatex">\[
+\begin{align}
+&amp;a\textcolor{lightgrey}{bacabac}&amp;next[0]=0\\
+&amp;ab\textcolor{lightgrey}{acabac}&amp;next[1]=0\\
+&amp;\underline{\textcolor{red}{a}}b\underline{\textcolor{red}{a}}\textcolor{lightgrey}{cabac}&amp;next[2]=1\\
+&amp;abac\textcolor{lightgrey}{abac}&amp;next[3]=0\\
+&amp;\underline{\textcolor{red}{a}}bac\underline{\textcolor{red}{a}}\textcolor{lightgrey}{bac}&amp;next[4]=1\\
+&amp;\underline{\textcolor{red}{ab}}ac\underline{\textcolor{red}{ab}}\textcolor{lightgrey}{ac}&amp;next[5]=2\\
+&amp;\underline{\textcolor{red}{aba}}c\underline{\textcolor{red}{aba}}\textcolor{lightgrey}{c}&amp;next[6]=3\\
+&amp;abacabac&amp;next[7]=0\\
+\end{align}
+\]</div>
 <h3 id="_6">模板<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">next</span><span class="p">[];</span>
 
