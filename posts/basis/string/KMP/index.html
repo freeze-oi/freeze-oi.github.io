@@ -625,42 +625,29 @@
       
         <li class="md-nav__item">
     <a href="#_2" class="md-nav__link">
-        基本原理
-    </a>
-    
-    <nav class="md-nav" aria-label="基本原理">
-        <ul class="md-nav__list">
-            
-            <li class="md-nav__item">
-    <a href="#_3" class="md-nav__link">
         引出问题
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_4" class="md-nav__link">
-        基本思想
+      
+        <li class="md-nav__item">
+    <a href="#_3" class="md-nav__link">
+        基本原理
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_5" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
         预处理
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_6" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
         模板
     </a>
-    
-</li>
-            
-        </ul>
-    </nav>
     
 </li>
       
@@ -1246,42 +1233,29 @@
       
         <li class="md-nav__item">
     <a href="#_2" class="md-nav__link">
-        基本原理
-    </a>
-    
-    <nav class="md-nav" aria-label="基本原理">
-        <ul class="md-nav__list">
-            
-            <li class="md-nav__item">
-    <a href="#_3" class="md-nav__link">
         引出问题
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_4" class="md-nav__link">
-        基本思想
+      
+        <li class="md-nav__item">
+    <a href="#_3" class="md-nav__link">
+        基本原理
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_5" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_4" class="md-nav__link">
         预处理
     </a>
     
 </li>
-            
-            <li class="md-nav__item">
-    <a href="#_6" class="md-nav__link">
+      
+        <li class="md-nav__item">
+    <a href="#_5" class="md-nav__link">
         模板
     </a>
-    
-</li>
-            
-        </ul>
-    </nav>
     
 </li>
       
@@ -1303,8 +1277,7 @@
                             <h2 id="_1">简介<a class="headerlink" href="#_1" title="Permanent link">$</a></h2>
 <p><span class="arithmatex">\(KMP\)</span> 算法并不能用来看毛片，它是一种字符串匹配算法。<span class="arithmatex">\(KMP\)</span> 是该算法的发明者 <span class="arithmatex">\(Kruth\)</span>，<span class="arithmatex">\(Morris\)</span> 和 <span class="arithmatex">\(Pratt\)</span> 的名字缩写。</p>
 <p><center><img src=\img\string\kmp_1.png style="zoom:80%"></img></center></p>
-<h2 id="_2">基本原理<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
-<h3 id="_3">引出问题<a class="headerlink" href="#_3" title="Permanent link">$</a></h3>
+<h2 id="_2">引出问题<a class="headerlink" href="#_2" title="Permanent link">$</a></h2>
 <p>给定字符串 <span class="arithmatex">\(A\)</span>（长度为 <span class="arithmatex">\(m\)</span>）和 <span class="arithmatex">\(B\)</span>（长度为 <span class="arithmatex">\(n\)</span>），问 <span class="arithmatex">\(A\)</span> 中是否包含 <span class="arithmatex">\(B\)</span> ？</p>
 <p><center><img src=\img\string\kmp_2.png style="zoom:80%"></img></center></p>
 <p>首先将 <span class="arithmatex">\(A\)</span> 和 <span class="arithmatex">\(B\)</span> 的左端对齐，发现 <span class="arithmatex">\(\textcolor{red}{a}\)</span> 与 <span class="arithmatex">\(\textcolor{red}{c}\)</span> 不匹配，于是将 <span class="arithmatex">\(B\)</span> 向右移一位。</p>
@@ -1337,11 +1310,11 @@
 </tr>
 </tbody>
 </table>
-<h3 id="_4">基本思想<a class="headerlink" href="#_4" title="Permanent link">$</a></h3>
+<h2 id="_3">基本原理<a class="headerlink" href="#_3" title="Permanent link">$</a></h2>
 <p>其实，刚才匹配到这一步时，<span class="arithmatex">\(B\)</span> 串可以直接向后移 <span class="arithmatex">\(2\)</span> 位，从黄色处开始比较。</p>
 <p><center><img src=\img\string\kmp_5.png style="zoom:80%"></img></center></p>
 <p>为什么可以这么做呢？</p>
-<p>首先，<span class="arithmatex">\(B\)</span> 串框出的这两段相等。</p>
+<p>首先，观察得出 <span class="arithmatex">\(B\)</span> 串的这两段相等。</p>
 <p><center><img src=\img\string\kmp_6.png style="zoom:80%"></img></center></p>
 <p>而此时 <span class="arithmatex">\(A\)</span> 串和 <span class="arithmatex">\(B\)</span> 串的绿色部分相等，框出的这两段也相等。</p>
 <p><center><img src=\img\string\kmp_7.png style="zoom:80%"></img></center></p>
@@ -1351,12 +1324,14 @@
 <p><center><img src=\img\string\kmp_9.png style="zoom:80%"></img></center></p>
 <p>下面一例中，容易证明 <span class="arithmatex">\(B\)</span> 串在右移 <span class="arithmatex">\(1\sim 3\)</span> 位时都匹配不成，因此至少向右移 <span class="arithmatex">\(4\)</span> 位。</p>
 <p><center><img src=\img\string\kmp_10.png style="zoom:80%"></img></center></p>
+<p>即当不匹配时，从 <span class="arithmatex">\(B\)</span> 串的绿色子段中，找出前后两段相等的，再把 <span class="arithmatex">\(B\)</span> 串右移，直到到这两段位于同一竖直位置，再从黄色处继续匹配（配合下图理解）。</p>
+<p><center><img src=\img\string\kmp_10.1.png style="zoom:80%"></img></center></p>
 <p><span class="arithmatex">\(KMP\)</span> 算法快就快在这。</p>
-<h3 id="_5">预处理<a class="headerlink" href="#_5" title="Permanent link">$</a></h3>
-<p>当务之急是，在出现不匹配的情况时，从 <span class="arithmatex">\(B\)</span> 串的绿色部分中找出相同的「前缀」和「后缀」。</p>
+<h2 id="_4">预处理<a class="headerlink" href="#_4" title="Permanent link">$</a></h2>
+<p>当务之急是，在不匹配时，从 <span class="arithmatex">\(B\)</span> 串的绿色子段中找出相同的「前缀」和「后缀」。</p>
 <p>下面一例中，<span class="arithmatex">\(\textcolor{green}{joxjo}\)</span> 的前缀（<span class="arithmatex">\(\textcolor{green}{jo}\)</span>）和后缀（<span class="arithmatex">\(\textcolor{green}{jo}\)</span>）相同。<span class="arithmatex">\(\textcolor{green}{jo}\)</span> 称为 <span class="arithmatex">\(\textcolor{green}{joxjo}\)</span> 的「公共前后缀」。</p>
 <p><center><img src=\img\string\kmp_11.png style="zoom:80%"></img></center></p>
-<p>注意：公共前后缀不能和原字符串相等。</p>
+<p>注意：公共前后缀不能和原字符串相等。即 <span class="arithmatex">\(joxjo\)</span> 的公共前后缀不能是 <span class="arithmatex">\(joxjo\)</span>。</p>
 <p><span class="arithmatex">\(next[i]\)</span>：<span class="arithmatex">\(B[0\cdots i]\)</span> 的最长公共前后缀的长度。</p>
 <table>
 <thead>
@@ -1418,12 +1393,12 @@
 </tr>
 </tbody>
 </table>
-<p>如何编程求出 <span class="arithmatex">\(next[ \ ]\)</span> 数组？以字符串 <span class="arithmatex">\(aabaabaaa\)</span> 为例。</p>
+<p>如何编程求出 <span class="arithmatex">\(next[ \ ]\)</span> 数组？这里以字符串 <span class="arithmatex">\(aabaabaaa\)</span> 为例。</p>
 <p>对于任意字符串 <span class="arithmatex">\(B\)</span>，<span class="arithmatex">\(next[0]=0\)</span>。</p>
 <table>
 <thead>
 <tr>
-<th align="center"><span class="arithmatex">\(i\)</span></th>
+<th align="center"><span class="arithmatex">\(x\)</span></th>
 <th align="center"><span class="arithmatex">\(0\)</span></th>
 <th align="center"><span class="arithmatex">\(1\)</span></th>
 <th align="center"><span class="arithmatex">\(2\)</span></th>
@@ -1437,7 +1412,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><span class="arithmatex">\(next[i]\)</span></td>
+<td align="center"><span class="arithmatex">\(next[x]\)</span></td>
 <td align="center"><span class="arithmatex">\(\textcolor{red}{0}\)</span></td>
 <td align="center"></td>
 <td align="center"></td>
@@ -1456,7 +1431,7 @@
 <table>
 <thead>
 <tr>
-<th align="center"><span class="arithmatex">\(i\)</span></th>
+<th align="center"><span class="arithmatex">\(x\)</span></th>
 <th align="center"><span class="arithmatex">\(0\)</span></th>
 <th align="center"><span class="arithmatex">\(1\)</span></th>
 <th align="center"><span class="arithmatex">\(2\)</span></th>
@@ -1470,7 +1445,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><span class="arithmatex">\(next[i]\)</span></td>
+<td align="center"><span class="arithmatex">\(next[x]\)</span></td>
 <td align="center"><span class="arithmatex">\(0\)</span></td>
 <td align="center"><span class="arithmatex">\(\textcolor{red}{1}\)</span></td>
 <td align="center"></td>
@@ -1485,11 +1460,11 @@
 </table>
 <p><span class="arithmatex">\(i\)</span> 和 <span class="arithmatex">\(j\)</span> 同时向后移一位，看下一位是否也相等。</p>
 <p><center><img src=\img\string\kmp_13.png style="zoom:80%"></img></center></p>
-<p><span class="arithmatex">\(B[i]≠B[j]\)</span>，<span class="arithmatex">\(next[2]=0\)</span>。</p>
+<p><span class="arithmatex">\(B[i]≠B[j]\)</span>，出现了不匹配的情况，<span class="arithmatex">\(next[2]=0\)</span>。</p>
 <table>
 <thead>
 <tr>
-<th align="center"><span class="arithmatex">\(i\)</span></th>
+<th align="center"><span class="arithmatex">\(x\)</span></th>
 <th align="center"><span class="arithmatex">\(0\)</span></th>
 <th align="center"><span class="arithmatex">\(1\)</span></th>
 <th align="center"><span class="arithmatex">\(2\)</span></th>
@@ -1503,7 +1478,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><span class="arithmatex">\(next[i]\)</span></td>
+<td align="center"><span class="arithmatex">\(next[x]\)</span></td>
 <td align="center"><span class="arithmatex">\(0\)</span></td>
 <td align="center"><span class="arithmatex">\(1\)</span></td>
 <td align="center"><span class="arithmatex">\(\textcolor{red}{0}\)</span></td>
@@ -1522,7 +1497,7 @@
 <table>
 <thead>
 <tr>
-<th align="center"><span class="arithmatex">\(i\)</span></th>
+<th align="center"><span class="arithmatex">\(x\)</span></th>
 <th align="center"><span class="arithmatex">\(0\)</span></th>
 <th align="center"><span class="arithmatex">\(1\)</span></th>
 <th align="center"><span class="arithmatex">\(2\)</span></th>
@@ -1536,7 +1511,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><span class="arithmatex">\(next[i]\)</span></td>
+<td align="center"><span class="arithmatex">\(next[x]\)</span></td>
 <td align="center"><span class="arithmatex">\(0\)</span></td>
 <td align="center"><span class="arithmatex">\(1\)</span></td>
 <td align="center"><span class="arithmatex">\(0\)</span></td>
@@ -1555,7 +1530,7 @@
 <table>
 <thead>
 <tr>
-<th align="center"><span class="arithmatex">\(i\)</span></th>
+<th align="center"><span class="arithmatex">\(x\)</span></th>
 <th align="center"><span class="arithmatex">\(0\)</span></th>
 <th align="center"><span class="arithmatex">\(1\)</span></th>
 <th align="center"><span class="arithmatex">\(2\)</span></th>
@@ -1569,7 +1544,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><span class="arithmatex">\(next[i]\)</span></td>
+<td align="center"><span class="arithmatex">\(next[x]\)</span></td>
 <td align="center"><span class="arithmatex">\(0\)</span></td>
 <td align="center"><span class="arithmatex">\(1\)</span></td>
 <td align="center"><span class="arithmatex">\(0\)</span></td>
@@ -1588,7 +1563,7 @@
 <table>
 <thead>
 <tr>
-<th align="center"><span class="arithmatex">\(i\)</span></th>
+<th align="center"><span class="arithmatex">\(x\)</span></th>
 <th align="center"><span class="arithmatex">\(0\)</span></th>
 <th align="center"><span class="arithmatex">\(1\)</span></th>
 <th align="center"><span class="arithmatex">\(2\)</span></th>
@@ -1602,7 +1577,7 @@
 </thead>
 <tbody>
 <tr>
-<td align="center"><span class="arithmatex">\(next[i]\)</span></td>
+<td align="center"><span class="arithmatex">\(next[x]\)</span></td>
 <td align="center"><span class="arithmatex">\(0\)</span></td>
 <td align="center"><span class="arithmatex">\(1\)</span></td>
 <td align="center"><span class="arithmatex">\(0\)</span></td>
@@ -1617,18 +1592,50 @@
 </table>
 <p><span class="arithmatex">\(i\)</span> 和 <span class="arithmatex">\(j\)</span> 同时向后移一位。</p>
 <p><span class="arithmatex">\(\cdots \ \cdots\)</span></p>
-<p>就这样一直比较到最后一位，再次出现了不匹配的情况。</p>
+<p>就这样一直比较到最后一位，再次出现了不匹配的情况。所以 <span class="arithmatex">\(next[8]\)</span> 应该填 <span class="arithmatex">\(0\)</span> 吗？显然不是。</p>
 <p><center><img src=\img\string\kmp_17.png style="zoom:80%"></img></center></p>
-<p>这意味着 <span class="arithmatex">\(B[i]\)</span> 前的 <span class="arithmatex">\(5\)</span> 个字符和 <span class="arithmatex">\(B[j]\)</span> 前的 <span class="arithmatex">\(5\)</span> 个字符相等。</p>
+<p>查询表格得到 <span class="arithmatex">\(next[7]=5\)</span>，这对应图中的两个绿色子段相等。</p>
 <p><center><img src=\img\string\kmp_18.png style="zoom:80%"></img></center></p>
-<p>我们发现 <span class="arithmatex">\(next[i-1]=next[4]=2\)</span>，即图上的这两段相等。</p>
+<p>查询表格得到 <span class="arithmatex">\(next[i-1]=next[4]=2\)</span>，即图上的这两段相等。</p>
 <p><center><img src=\img\string\kmp_19.png style="zoom:80%"></img></center></p>
 <p>这代表 <span class="arithmatex">\(B\)</span> 串中的这四段都相等。</p>
 <p><center><img src=\img\string\kmp_20.png style="zoom:80%"></img></center></p>
-<p>于是比较黄色的字符，如果相等，则 <span class="arithmatex">\(next[8]=next[4]+1=3\)</span>。但是黄色的字符不相等。</p>
+<p>于是令 <span class="arithmatex">\(i=next[i-1]=2\)</span>，如果 <span class="arithmatex">\(B[i]=B[j]\)</span>，则 <span class="arithmatex">\(next[8]=i+1=3\)</span>。但是它们并不相等。</p>
 <p><center><img src=\img\string\kmp_21.png style="zoom:80%"></img></center></p>
-<p><span class="arithmatex">\(\cdots\)</span> 未完待续 <span class="arithmatex">\(\cdots\)</span></p>
-<h3 id="_6">模板<a class="headerlink" href="#_6" title="Permanent link">$</a></h3>
+<p>于是我们完全可以故技重施，再次令 <span class="arithmatex">\(i=next[i-1]=1\)</span>，结果发现这一次 <span class="arithmatex">\(B[i]=B[j]\)</span>。</p>
+<p><center><img src=\img\string\kmp_22.png style="zoom:80%"></img></center></p>
+<p>因此 <span class="arithmatex">\(next[8]=i+1=2\)</span>。</p>
+<table>
+<thead>
+<tr>
+<th align="center"><span class="arithmatex">\(x\)</span></th>
+<th align="center"><span class="arithmatex">\(0\)</span></th>
+<th align="center"><span class="arithmatex">\(1\)</span></th>
+<th align="center"><span class="arithmatex">\(2\)</span></th>
+<th align="center"><span class="arithmatex">\(3\)</span></th>
+<th align="center"><span class="arithmatex">\(4\)</span></th>
+<th align="center"><span class="arithmatex">\(5\)</span></th>
+<th align="center"><span class="arithmatex">\(6\)</span></th>
+<th align="center"><span class="arithmatex">\(7\)</span></th>
+<th align="center"><span class="arithmatex">\(8\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><span class="arithmatex">\(next[x]\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(1\)</span></td>
+<td align="center"><span class="arithmatex">\(0\)</span></td>
+<td align="center"><span class="arithmatex">\(1\)</span></td>
+<td align="center"><span class="arithmatex">\(2\)</span></td>
+<td align="center"><span class="arithmatex">\(3\)</span></td>
+<td align="center"><span class="arithmatex">\(4\)</span></td>
+<td align="center"><span class="arithmatex">\(5\)</span></td>
+<td align="center"><span class="arithmatex">\(\textcolor{red}{2}\)</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">模板<a class="headerlink" href="#_5" title="Permanent link">$</a></h2>
 <details open="open"><summary>代码</summary><div class="highlight"><pre><span></span><code><span class="kt">int</span> <span class="n">next</span><span class="p">[];</span>
 
 <span class="kt">void</span> <span class="nf">getnext</span><span class="p">(</span><span class="n">string</span> <span class="n">str</span><span class="p">)</span> <span class="p">{</span>
