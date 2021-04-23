@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>Freeze&#39;s Blogs</title>
+<title>Basics | Freeze&#39;s Blogs</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.0" />
 <link rel="stylesheet" href="https://freeze.org.cn/css/eureka.min.css">
@@ -62,14 +62,28 @@
 
 
 
-<meta property="og:title" content="Freeze&#39;s Blogs" />
+
+<script type="application/ld+json">
+{
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "itemListElement":[{
+            "@type":"ListItem",
+            "position":  1 ,
+            "name": "Basics",
+            "description": "Contains the simplest algorithms.",
+            "url": "https://freeze.org.cn/docs/basics/"
+        }
+    ]
+}
+</script><meta property="og:title" content="Basics | Freeze&#39;s Blogs" />
 <meta property="og:type" content="website" />
 
 
 <meta property="og:image" content="https://freeze.org.cn/images/icon.png">
 
 
-<meta property="og:url" content="https://freeze.org.cn/" />
+<meta property="og:url" content="https://freeze.org.cn/docs/" />
 
 
 
@@ -95,10 +109,10 @@
 
 
 
-<meta property="article:section" content="" />
+<meta property="article:section" content="docs" />
 
 
-<link rel="alternate" type="application/rss+xml" href="https://freeze.org.cn/index.xml" title="Freeze's Blogs" />
+<link rel="alternate" type="application/rss+xml" href="https://freeze.org.cn/docs/index.xml" title="Freeze's Blogs" />
 
 <body class="flex flex-col min-h-screen">
   <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
@@ -152,115 +166,76 @@
 </div>
   </header>
   <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+<article class="mx-6 my-8">
+  <h1 class="font-bold text-3xl text-primary-text">Basics</h1>
   
+</article>
+<div class="bg-secondary-bg rounded px-6">
+  <div class="overflow-hidden divide-y">
   
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
   
-    
-      
-  
-
-  
-
-  
-  
-  
-
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-  
-
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-    
-
-    
-    
-    
-    
-    
-  
-
-  <div class="pl-scrollbar bg-secondary-bg" 
-    >
-    <div class="max-w-screen-xl mx-auto">
-      <div id="about" class="lg:w-3/4 mx-auto px-6 md:px-8 xl:px-12 py-12">
-        
-  
-
-  
-    <div class="flex flex-col md:flex-row items-center justify-center mb-12">
-  
-  
-    <div class="flex-none w-48 mx-auto md:ml-0 md:mr-8 md:pr-8 md:border-r" style=zoom:60%>
-      
-      <img src="https://freeze.org.cn/Freeze.png" alt="Avatar">
-    </div>
-  
-  <div class="flex-grow mt-4 md:mt-0">
-    <div class="text-3xl py-4">Freeze</div>
-    <div class="w-3/12 xl:w-2/12 border-b"></div>
-
-    
-
-    
-      
-      <div class="text-lg py-4">
-        Oier
-      </div>
-    
-  </div>
-  <div class="flex md:flex-col justify-center items-end ml-8">
-    
-    
-  </div>
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://freeze.org.cn/docs/basics/" class="font-bold text-xl hover:text-eureka">Basics</a>
 </div>
 <div class="content">
-  <h2 id="introduction">Introduction</h2>
-<p>Here you have a rabbit:</p>
-<p><img src="rabbit.png" alt=""></p>
-<p>Suppose someone gives you another rabbit:</p>
-<p><img src="rabbits.png" alt=""></p>
-<p>Now, count the number of rabbits you have, and you will get two. That is to say, one rabbit plus one rabbit equals two rabbits, that is, one plus one equals two.</p>
-<p>$$
-1+1=2
-$$</p>
-<p>This is how arithmetic works.</p>
-<p>Well, now that you have a certain understanding of the basic principles of arithmetic, let&rsquo;s take a look at the following simple example to put the knowledge into practice.</p>
-<p>$$
-\log\Pi(N)=(N+\frac{1}{2})\log{N}-N+A-\int_{N}^{∞}\frac{\overline{B_1}(x)dx}{x},
-\newline
-A=1+\int_{1}^{∞}\frac{\overline{B_1}(x)dx}{x}\log\Pi(s)=(s+\frac{1}{2})\log{s}-s+A-\int_{0}^{∞}\frac{\overline{B_1}(t)dt}{t+s}
-$$</p>
-<p>Actually, that&rsquo;s the algorithm you&rsquo;ve learned and the problem you&rsquo;re going to solve.</p>
+  Contains the simplest algorithms.
+</div>
+
+<div class="px-6 pt-4">
+  
+  <div class="">
+      <div class="mb-2">
+          <a href="https://freeze.org.cn/docs/basics/sort/" class="font-semibold hover:text-eureka">排序算法</a>
+      </div>
+      <div class="">选择排序 每次找出第 $i$ 小的元素，与数组第 $i$ 个位置上的元素交换。时间复杂度为 $O(n^2)$。 for(int i = 1; i &amp;lt;= n; i &#43;&#43;) for(int j = i &#43; 1; j &amp;lt;= n; j &#43;&#43;) if(a[j] &amp;lt; a[k]) swap(a[i],a[k]); 冒泡排序 每次</div>
+  </div>
+  
+  
+  <div class="-mx-4 my-4 border-t"></div>
+  <div class="">
+      <div class="mb-2">
+          <a href="https://freeze.org.cn/docs/basics/segtree/" class="font-semibold hover:text-eureka">线段树</a>
+      </div>
+      <div class=""></div>
+  </div>
+  
+  
+  <div class="-mx-4 my-4 border-t"></div>
+  <div class="">
+      <div class="mb-2">
+          <a href="https://freeze.org.cn/docs/basics/hipre/" class="font-semibold hover:text-eureka">高精度</a>
+      </div>
+      <div class="">简介 高精度是一套支持高位数的运算系统，例如求两个 114514 位数的和。 输入 先输入字符串，再把每一位取出，存入数组。 void init(int a[]) { memset(a, 0, sizeof a); // 清空数组 a string s; cin &amp;gt;&amp;gt; s; a[0] = s.length(); //</div>
+  </div>
+  
+  <div class="pt-6 hover:text-eureka">
+      <a href="https://freeze.org.cn/docs/basics/" class="font-semibold">Read More</a>
+      <i class="fas fa-caret-right ml-1"></i>
+  </div>
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+</div>
+
 
 </div>
 
-  
+
+
 
       </div>
     </div>
-  </div>
-
     
-
-  
-  
   </main>
   <footer class="pl-scrollbar">
     <div class="w-full max-w-screen-xl mx-auto">
