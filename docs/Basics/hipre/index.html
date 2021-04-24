@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang='en' ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>高精度 | Basics | Freeze&#39;s Blogs</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.0" />
+<link rel="stylesheet" href="https://freeze.org.cn/css/eureka.min.css">
+<script defer src="https://freeze.org.cn/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.font.im/css?family=Fira+Mono|Ubuntu"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/languages/dart.min.js"
+     crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+   integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" 
+  integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+   integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.9.2/dist/mermaid.min.js" 
+  integrity="sha256-Zmpaaj&#43;GXFsPF5WdPArSrnW3b30dovldeKsW00xBVwE="  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="https://freeze.org.cn/images/icon_hu058f38a35ae76fcb0e5bf87bd10ebd39_1853_32x32_fill_box_center_2.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://freeze.org.cn/images/icon_hu058f38a35ae76fcb0e5bf87bd10ebd39_1853_180x180_fill_box_center_2.png">
+
+<meta name="description"
+  content="简介 高精度是一套支持高位数的运算系统，例如求两个 114514 位数的和。 输入 先输入字符串，再把每一位取出，存入数组。 void init(int a[]) { memset(a, 0, sizeof a); // 清空数组 a string s; cin &gt;&gt; s; a[0] = s.length(); //">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Basics",
+      "item":"https://freeze.org.cn/docs/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Basics",
+      "item":"https://freeze.org.cn/docs/basics/"},{
+      "@type": "ListItem",
+      "position": 3 ,
+      "name":"高精度",
+      "item":"https://freeze.org.cn/docs/basics/hipre/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://freeze.org.cn/docs/basics/hipre/"
+    },
+    "headline": "高精度 | Basics | Freeze\u0027s Blogs","wordCount":  1253 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "C. Wang",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://freeze.org.cn/images/icon.png"
+        }
+        },
+    "description": "简介 高精度是一套支持高位数的运算系统，例如求两个 114514 位数的和。 输入 先输入字符串，再把每一位取出，存入数组。 void init(int a[]) { memset(a, 0, sizeof a); \/\/ 清空数组 a string s; cin \u0026gt;\u0026gt; s; a[0] = s.length(); \/\/"
+}
+</script><meta property="og:title" content="高精度 | Basics | Freeze&#39;s Blogs" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="https://freeze.org.cn/images/icon.png">
+
+
+<meta property="og:url" content="https://freeze.org.cn/docs/basics/hipre/" />
+
+
+
+
+<meta property="og:description" content="简介 高精度是一套支持高位数的运算系统，例如求两个 114514 位数的和。 输入 先输入字符串，再把每一位取出，存入数组。 void init(int a[]) { memset(a, 0, sizeof a); // 清空数组 a string s; cin &gt;&gt; s; a[0] = s.length(); //" />
+
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="Freeze&#39;s Blogs" />
+
+
+
+
+
+
+
+
+
+<meta property="article:section" content="docs" />
+
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if (((storageColorScheme == 'Auto' || storageColorScheme == null) && window.matchMedia("(prefers-color-scheme: dark)").matches) || storageColorScheme == "Dark") {
+        document.getElementsByTagName('html')[0].classList.add('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">Freeze&#39;s Blogs</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-lg md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/docs/basics/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  mr-4">Basics</a>
+        </div>
+
+        
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == null || storageColorScheme == 'Auto') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    } else if (storageColorScheme == "Dark") {
+        element.firstElementChild.classList.remove('fa-adjust')
+        element.firstElementChild.setAttribute("data-icon", 'moon')
+        element.firstElementChild.classList.add('fa-moon')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="lg:pt-12">
+    <div class="flex flex-col md:flex-row bg-secondary-bg rounded">
+        <div class="md:w-1/4 lg:w-1/5 border-r">
+            <div class="sticky top-16 pt-6">
+                
+
+
+
+
+
+
+
+
+
+
+<div id="sidebar-title" class="md:hidden mx-4 px-2 pt-4 pb-2 md:border-b text-tertiary-text md:text-primary-text">
+    <span class="font-semibold">Table of Contents</span>
+    <i class="fas fa-caret-right ml-1"></i>
+</div>
+
+<div id="sidebar-toc"
+    class="hidden md:block overflow-y-auto mx-6 md:mx-0 pr-6 pt-2 md:max-h-doc-sidebar bg-primary-bg md:bg-transparent">
+    <div class="flex flex-wrap ml-4 -mr-2 p-2 bg-secondary-bg md:bg-primary-bg rounded">
+        <a class=" hover:text-eureka"
+            href="https://freeze.org.cn/docs/basics/">Basics</a>
+        
+        
+        
+
+
+    </div>
+    
+<ul class="pl-6">
+    
+    
+    
+    <li class="py-2">
+        <div class="">
+            <a class=" hover:text-eureka"
+                href="https://freeze.org.cn/docs/basics/sort/">排序算法</a>
+        </div>
+        
+    </li>
+    
+    
+    
+    
+    <li class="py-2">
+        <div class="">
+            <a class=" hover:text-eureka"
+                href="https://freeze.org.cn/docs/basics/segtree/">线段树</a>
+        </div>
+        
+    </li>
+    
+    
+    
+    
+    <li class="py-2">
+        <div class="">
+            <a class=" text-eureka  hover:text-eureka"
+                href="https://freeze.org.cn/docs/basics/hipre/">高精度</a>
+        </div>
+        
+    </li>
+    
+    
+</ul>
+
+</div>
+
+
+
+
+
+            </div>
+
+        </div>
+        <div class="w-full md:w-3/4 lg:w-4/5 pb-8 pt-2 md:pt-8">
+            <div class="w-full lg:w-3/4 pl-6 ml-0 mr-auto">
+                <h1 class="font-bold text-3xl text-primary-text">高精度</h1>
+                <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3 min read</span>
+    </div>
+    
+    
+
+    
+</div>
+            </div>
+            <div class="flex">
+                <div class="w-full lg:w-3/4 px-6">
+                    
+                    
+                    <div class="content">
+                        <h2 id="简介">简介</h2>
+<p>高精度是一套支持高位数的运算系统，例如求两个 114514 位数的和。</p>
+<h2 id="输入">输入</h2>
+<p>先输入字符串，再把每一位取出，存入数组。</p>
+<pre><code class="language-cpp">void init(int a[]) {
+    memset(a, 0, sizeof a); // 清空数组 a
+    string s; cin &gt;&gt; s;
+    a[0] = s.length(); // a[0] 用于储存数的长度
+    for(int i = 1; i &lt;= a[0]; i ++)
+        a[i] = s[a[0] - i] - '0'; // 将字符串倒序储存，便于按位计算
+}
+</code></pre>
+<p>也可以逐个读入字符。</p>
+<pre><code class="language-cpp">void init(int a[]) {
+    memset(a, 0, sizeof a);
+    int i = 0; char s = getchar();
+    while(s &lt; '0' || s &gt; '9') s = getchar();
+    while(s &gt;= '0' &amp;&amp; s &lt;= '9')
+        a[++ i] = s – '0', s = getchar();
+    a[0] = i;
+}
+</code></pre>
+<h2 id="比较">比较</h2>
+<p>先比较位数，若位数相同则从高位到低位逐位比较。</p>
+<pre><code class="language-cpp">int cmp(int a[], int b[]) { // a &gt; b 则返回 1，a &lt; b 则返回 -1，否则返回 0
+    if(a[0] != b[0]) return a[0] &gt; b[0] ? 1 : -1;
+    for(int i = a[0]; i &gt;= 1; i --)
+        if(a[i] != b[i]) return a[i] &gt; b[i] ? 1 : -1;
+    return 0; 
+}
+</code></pre>
+<h2 id="高精度加法">高精度加法</h2>
+<p>从个位开始，将两个数对应位置的数字相加，超过 $10$ 要进位。</p>
+<pre><code class="language-cpp">void plus(int a[], int b[], int c[]) { // 将 a + b 的结果存入 c
+    memset(c, 0, sizeof c);
+    c[0] = max(a[0], b[0]);
+    for(int i = 1; i &lt;= c[0]; i ++) {
+        c[i] += a[i] + b[i];
+        if(c[i] &gt;= 10) // 进 1
+            c[i + 1] += 1, c[i] %= 10;
+    }
+    while(c[c[0] + 1] != 0) c[0] ++; // 修正位数
+}
+</code></pre>
+<h2 id="高精度减法">高精度减法</h2>
+<p>从个位开始，将两个数对应位置的数字相减，小于 $0$ 要借位。</p>
+<pre><code class="language-cpp">void minus(int a[], int b[], int c[]) { // 将 a - b 的结果存入 c
+    memset(c, 0, sizeof c);
+    c[0] = max(a[0], b[0]);
+    for(int i = 1; i &lt;= c[0]; i ++) {
+        if(a[i] &lt; b[i]) // 借位
+            a[i + 1] --, a[i] += 10;
+        c[i] = a[i] - b[i];
+    }
+    while(c[c[0]] == 0 &amp;&amp; c[0] &gt;= 1) c[0] --; // 修正位数
+}
+</code></pre>
+<h2 id="高精度乘法">高精度乘法</h2>
+<h3 id="高精--低精">高精 × 低精</h3>
+<p>从个位开始，将高精度数的每一位乘以低精度数，超过 $10$ 要进位。</p>
+<pre><code class="language-cpp">void mult(int a[], int b, int c[]) { // 将 a × b 的结果存入 c
+    memset(c, 0, sizeof c);
+    c[0] = a[0];
+    for(int i = 1; i &lt;= a[0]; i ++) {
+        c[i] += a[i] * b;
+        if(c[i] &gt;= 10)
+            c[i + 1]  += c[i] / 10, c[i] /= 10;
+    }
+    while(c[c[0] + 1]) // 处理多余的进位
+        c[c[0] + 1] += c[c[0]] / 10, c[c[0]] /= 10, c[0] ++;
+}
+</code></pre>
+<h3 id="高精--高精">高精 × 高精</h3>
+<p>做竖式乘法时，$a$ 的第 $i$ 位乘 $b$ 的第 $j$ 位最终会加在答案的第 $i+j-1$ 位上。</p>
+<p><img src="basics/hipre_1.png" alt=""></p>
+<p>计算结束后要去掉最高位多余的 $0$。</p>
+<pre><code class="language-cpp">void mult(int a[], int b[], int c[]) { // 将 a × b 的结果存入 c
+    memset(c, 0, sizeof c);
+    c[0] = a[0] + b[0]; 
+    int d; // 用于存放进位
+    for(int i = 1; i &lt;= a[0]; i ++) {
+        d = 0;
+        for(int j = 1; j &lt;= b[0]; j ++) {
+            c[i + j - 1] += a[i] * b[j] + d;
+            d = c[i + j - 1] / 10, c[i + j - 1] %= 10; 
+        }
+        c[i + b[0]] =  d; // 多余的进位
+    }
+    while(c[c[0]] == 0 &amp;&amp; c[0] &gt; 1) c[0] --; // 去掉最高位多余的 0
+}
+</code></pre>
+<h2 id="高精度除法">高精度除法</h2>
+<p>做竖式除法时，将除数的最高位和被除数对齐，逐位「试商」，如下图（空位已用 $0$ 填补）：</p>
+<p><img src="basics/hipre_2.png" alt=""></p>
+<p>高精度除法步骤：</p>
+<ol>
+<li>
+<p>将除数的最高位和被除数对齐；</p>
+</li>
+<li>
+<p>将被除数一直减去除数，直到被除数 &lt; 除数，记录减的次数；</p>
+</li>
+<li>
+<p>重复上两步，直到除到个位；</p>
+</li>
+<li>
+<p>按顺序输出减的次数，得到整个式子的商。最后的被除数是余数。</p>
+</li>
+</ol>
+<p>计算结束后要去掉最高位多余的 $0$。</p>
+<p>样例程序的 <code>dev()</code> 函数执行结束后，数组 <code>a</code> 存储的数变为 <code>a÷b</code> 的余数。</p>
+<pre><code class="language-cpp">void shift(int a[], int d) { // 在 a 的后面补 d 个 0（若 d &lt; 0 则去掉|d|个 0）
+    int b[100001] = {};
+    for(int i = a[0] + d; i &gt;= max(0, 1 + d); i --)
+        b[i] =  a[i - d];
+    a[0] += d;
+    for(int i = 1; i &lt;= max(a[0], a[0] - d); i ++)
+        a[i] = b[i];
+}
+
+void dev(int a[], int b[], int c[]) { // 将 a ÷ b 的结果存入 c
+    memset(c, 0, sizeof c);
+    if(b[0] == 1 &amp;&amp; b[1] == 0) return; // 除数为 0 时无意义
+    if(cmp(a, b) == -1) { // 被除数 &lt; 除数时，商为 0
+        c[0] = 1, c[1] = 0; return;
+    }
+    c[0] = a[0] - b[0] + 1;
+    shift(b, a[0] - b[0]); // 调整 b 的位数，使 b 和 a 对齐
+    for(int i = c[0]; i &gt;= 1; i --) {
+        while(cmp(a, b) &gt;= 0) { // 用高精度减法模拟「试商」
+            c[i] ++;
+            for(int j = 1; j &lt;= a[0]; j ++) {
+                if(a[j] &lt; b[j])
+                    a[j + 1] --, a[j] += 10;
+                a[j] -= b[j];
+            }
+            while(a[a[0]] == 0 &amp;&amp; a[0] &gt; 1) a[0] --; // 去掉最高位多余的 0
+        }
+        shift(b, -1); // 将 b 减小一位，和新的被除数对齐
+    }
+    while(c[c[0]] == 0 &amp;&amp; c[0] &gt; 1) c[0]--; // 去掉最高位多余的 0
+}
+</code></pre>
+<h2 id="输出">输出</h2>
+<p>数据是倒序储存的，故倒序输出：</p>
+<pre><code class="language-cpp">void print(int a[]) {
+    for(int i = a[0]; i &gt;= 1; i --)
+        printf(&quot;%d&quot;, a[i]);
+    printf(&quot;\n&quot;);
+}
+</code></pre>
+
+                    </div>
+                    
+                    
+
+                    
+
+
+
+                    
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">Previous</span>
+        <a href="https://freeze.org.cn/docs/basics/segtree/" class="block">线段树</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+    </div>
+</div>
+
+                    
+
+
+
+                </div>
+                
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        hljs.initHighlightingOnLoad();
+        changeSidebarHeight();
+        switchDocToc();
+    })
+</script>
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto">
+
+<style>
+    th {
+        font-weight: normal;
+    }
+</style></div>
+  </footer>
+</body>
+
+</html>

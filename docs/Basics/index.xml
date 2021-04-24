@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>基础算法 on Freeze&#39;s Blogs</title>
+    <link>https://freeze.org.cn/docs/Basics/</link>
+    <description>Recent content in 基础算法 on Freeze&#39;s Blogs</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/Basics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>排序算法</title>
+      <link>https://freeze.org.cn/docs/Basics/sort/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/sort/</guid>
+      <description>选择排序 $  每次找出第 $i$ 小的元素，与数组第 $i$ 个位置上的元素交换。时间复杂度为 $O(n^2)$。
+for(int i = 1; i &amp;lt;= n; i ++) for(int j = i + 1; j &amp;lt;= n; j ++) if(a[j] &amp;lt; a[k]) swap(a[i],a[k]); 冒泡排序 $  每次检查相邻两个元素，如果前一个大于后一个，就交换它们的位置。当没有可交换的元素时，排序结束。时间复杂度为 $O(n^2)$。
+在程序的执行过程中，较大的元素像气泡般「浮」到数列的末尾，故叫做冒泡排序。
+while(true) { bool solve = false; for(int i = 1; i &amp;lt;= n; i ++) if(a[i] &amp;gt; a[i + 1]) swap(a[i], a[i + 1]), solve = true; if(!solve) break; } 插入排序 $  将数列分为「已排序」和「未排序」两部分，每次从「未排序」区域中选择一个元素插入「已排序」区域的正确位置。时间复杂度为 $O(n^2)$。</description>
+    </item>
+    
+  </channel>
+</rss>
