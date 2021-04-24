@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-<<<<<<< HEAD
-    <title>Introduction on Freeze&#39;s Blogs</title>
-    <link>https://freeze.org.cn/</link>
-    <description>Recent content in Introduction on Freeze&#39;s Blogs</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>排序算法</title>
-      <link>https://freeze.org.cn/docs/Basics/sort/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Basics/sort/</guid>
-      <description>选择排序 $  每次找出第 $i$ 小的元素，与数组第 $i$ 个位置上的元素交换。时间复杂度为 $O(n^2)$。
-for(int i = 1; i &amp;lt;= n; i ++) for(int j = i + 1; j &amp;lt;= n; j ++) if(a[j] &amp;lt; a[k]) swap(a[i],a[k]); 冒泡排序 $  每次检查相邻两个元素，如果前一个大于后一个，就交换它们的位置。当没有可交换的元素时，排序结束。时间复杂度为 $O(n^2)$。
-在程序的执行过程中，较大的元素像气泡般「浮」到数列的末尾，故叫做冒泡排序。
-while(true) { bool solve = false; for(int i = 1; i &amp;lt;= n; i ++) if(a[i] &amp;gt; a[i + 1]) swap(a[i], a[i + 1]), solve = true; if(!solve) break; } 插入排序 $  将数列分为「已排序」和「未排序」两部分，每次从「未排序」区域中选择一个元素插入「已排序」区域的正确位置。时间复杂度为 $O(n^2)$。</description>
-    </item>
-    
+    <title>动态规划 on Freeze&#39;s Blogs</title>
+    <link>https://freeze.org.cn/docs/DP/</link>
+    <description>Recent content in 动态规划 on Freeze&#39;s Blogs</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/DP/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>简介</title>
       <link>https://freeze.org.cn/docs/DP/intro/</link>
@@ -62,47 +49,6 @@ $f[i,v]$ 表示把前 $i$ 个物品（部分或全部）放入体积为 $v$ 的�
   若放第 $i$ 个物品，则前 $i-1$ 个物品只能放在体积为 $v-w_i$ 的空间里，故 $f[i,v]=f[i-1,v-w_i]+c_i$。
   $$f[i,v] = \max\left\{\begin{aligned}&amp;f[i-1,v]\\&amp;f[i-1,v-w_i]+c_i,v≥w_i\end{aligned}\right.$$由于 $f[i,v]$ 的值只由 $f[i-1,v]$ 和 $f[i-1,v-w_i]$ 决定，所以先求 $f[1,0\cdots m]$，再求 $f[2,0\cdots m]$，$\cdots$，直到求出 $f[n,m]$。时间复杂度为 $O(nm)$。
 当 $v &amp;lt; w_i$ 时，第 $i$ 个物品放不进体积为 $v$ 的背包，此时 $f[i,v]$ 只能等于 $f[i-1,v]$。  for(int i = 1; i &amp;lt;= n; i ++) { for(int v = 0; v &amp;lt; w[i]; v ++) f[i][v] = f[i - 1][v]; for(int v = w[i]; v &amp;lt;= m; v ++) f[i][v] = max(f[i - 1][v], f[i - 1][v - w[i]] + c[i]); } 空间优化 $  假设背包体积为 $4$，物品个数为 $3$，体积和价值如下：</description>
-=======
-    <title>Freeze&#39;s Blogs</title>
-    <link>https://freeze.org.cn/</link>
-    <description>Recent content on Freeze&#39;s Blogs</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="https://freeze.org.cn/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title></title>
-      <link>https://freeze.org.cn/homepage/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/homepage/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>排序算法</title>
-      <link>https://freeze.org.cn/docs/basics/sort/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/basics/sort/</guid>
-      <description>选择排序 每次找出第 $i$ 小的元素，与数组第 $i$ 个位置上的元素交换。时间复杂度为 $O(n^2)$。 for(int i = 1; i &amp;lt;= n; i ++) for(int j = i + 1; j &amp;lt;= n; j ++) if(a[j] &amp;lt; a[k]) swap(a[i],a[k]); 冒泡排序 每次</description>
-    </item>
-    
-    <item>
-      <title>线段树</title>
-      <link>https://freeze.org.cn/docs/basics/segtree/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/basics/segtree/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>高精度</title>
-      <link>https://freeze.org.cn/docs/basics/hipre/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/basics/hipre/</guid>
-      <description>简介 高精度是一套支持高位数的运算系统，例如求两个 114514 位数的和。 输入 先输入字符串，再把每一位取出，存入数组。 void init(int a[]) { memset(a, 0, sizeof a); // 清空数组 a string s; cin &amp;gt;&amp;gt; s; a[0] = s.length(); //</description>
->>>>>>> cefae902a10d8b4cd824fae711b702dab8cdc3a5
     </item>
     
   </channel>
