@@ -11,7 +11,8 @@ $f[i,v]$ 表示把前 $i$ 个物品（部分或全部）放入体积为 $v$ 的�
   若不放第 $i$ 个物品，则 $f[i,v]=f[i-1,v]$；
   若放第 $i$ 个物品，则前 $i-1$ 个物品只能放在体积为 $v-w_i$ 的空间里，故 $f[i,v]=f[i-1,v-w_i]&#43;c_i$。
   $$f[i,v] = \max\left\{\begin{aligned}&f[i-1,v]\\&f[i-1,v-w_i]&#43;c_i,v≥w_i\end{aligned}\right.$$由于 $f[i,v]$ 的值只由 $f[i-1,v]$ 和 $f[i-1,v-w_i]$ 决定，所以先求 $f[1,0\cdots m]$，再求 $f[2,0\cdots m]$，$\cdots$，直到求出 $f[n,m]$。时间复杂度为 $O(nm)$。
-当 $v &lt; w_i$ 时，第 $i$ 个物品放不进体积为 $v$ 的背包，此时 $f[i,v]$ 只能等于 $f[i-1,v]$。  for(int i = 1; i &lt;= n; i &#43;&#43;) { for(int v = 0; v &lt; w[i]; v &#43;&#43;) f[i][v] = f[i - 1][v]; for(int v = w[i]; v &lt;= m; v &#43;&#43;) f[i][v] = max(f[i - 1][v], f[i - 1][v - w[i]] &#43; c[i]); } 空间优化 $  假设背包体积为 $4$，物品个数为 $3$，体积和价值如下：">
+Warning
+当 $v &lt; w_i$ 时，第 $i$ 个物品放不进体积为 $v$ 的背包，此时 $f[i,v]$ 只能等于 $f[i-1,v]$。">
 <meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="背包 DP" />
 <meta property="og:description" content="01 背包 $  用体积为 $m$ 的背包装 $n$ 种物品，每种物品只有 $1$ 个。第 $i$ 种物品的体积为 $w_i$，价值为 $c_i$，将哪些物品装入背包可使总价值最大？
 $f[i,v]$ 表示把前 $i$ 个物品（部分或全部）放入体积为 $v$ 的背包，可以获得的最大总价值。
@@ -19,7 +20,8 @@ $f[i,v]$ 表示把前 $i$ 个物品（部分或全部）放入体积为 $v$ 的�
   若不放第 $i$ 个物品，则 $f[i,v]=f[i-1,v]$；
   若放第 $i$ 个物品，则前 $i-1$ 个物品只能放在体积为 $v-w_i$ 的空间里，故 $f[i,v]=f[i-1,v-w_i]&#43;c_i$。
   $$f[i,v] = \max\left\{\begin{aligned}&f[i-1,v]\\&f[i-1,v-w_i]&#43;c_i,v≥w_i\end{aligned}\right.$$由于 $f[i,v]$ 的值只由 $f[i-1,v]$ 和 $f[i-1,v-w_i]$ 决定，所以先求 $f[1,0\cdots m]$，再求 $f[2,0\cdots m]$，$\cdots$，直到求出 $f[n,m]$。时间复杂度为 $O(nm)$。
-当 $v &lt; w_i$ 时，第 $i$ 个物品放不进体积为 $v$ 的背包，此时 $f[i,v]$ 只能等于 $f[i-1,v]$。  for(int i = 1; i &lt;= n; i &#43;&#43;) { for(int v = 0; v &lt; w[i]; v &#43;&#43;) f[i][v] = f[i - 1][v]; for(int v = w[i]; v &lt;= m; v &#43;&#43;) f[i][v] = max(f[i - 1][v], f[i - 1][v - w[i]] &#43; c[i]); } 空间优化 $  假设背包体积为 $4$，物品个数为 $3$，体积和价值如下：" />
+Warning
+当 $v &lt; w_i$ 时，第 $i$ 个物品放不进体积为 $v$ 的背包，此时 $f[i,v]$ 只能等于 $f[i-1,v]$。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://freeze.org.cn/docs/DP/knap/" /><meta property="article:section" content="docs" />
 
@@ -29,7 +31,7 @@ $f[i,v]$ 表示把前 $i$ 个物品（部分或全部）放入体积为 $v$ 的�
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
-<script defer src="/en.search.min.cc719c12c885ed3d2dac469f2805cc1d9865d54902545176456fbf066b379209.js" integrity="sha256-zHGcEsiF7T0trEafKAXMHZhl1UkCVFF2RW&#43;/Bms3kgk="></script>
+<script defer src="/en.search.min.90b7210c13fc5d17c040724fad6a838aed921f9f84322f66bd602771e6d51076.js" integrity="sha256-kLchDBP8XRfAQHJPrWqDiu2SH5&#43;EMi9mvWAncebVEHY="></script>
 
 <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk="></script>
 <!--
@@ -149,6 +151,19 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="https://freeze.org.cn/docs/DP/basics/" class="">基础 DP</a>
   
 
@@ -163,6 +178,45 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://freeze.org.cn/docs/DP/knap/" class=" active">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
   
 
         </li>
@@ -355,7 +409,9 @@ $$
 </xmp>
 <p>由于 $f[i,v]$ 的值只由 $f[i-1,v]$ 和 $f[i-1,v-w_i]$ 决定，所以先求 $f[1,0\cdots m]$，再求 $f[2,0\cdots m]$，$\cdots$，直到求出 $f[n,m]$。时间复杂度为 $O(nm)$。</p>
 <blockquote class="book-hint warning">
-  当 $v &lt; w_i$ 时，第 $i$ 个物品放不进体积为 $v$ 的背包，此时 $f[i,v]$ 只能等于 $f[i-1,v]$。
+  <p><strong>Warning</strong></p>
+<p>当 $v &lt; w_i$ 时，第 $i$ 个物品放不进体积为 $v$ 的背包，此时 $f[i,v]$ 只能等于 $f[i-1,v]$。</p>
+
 </blockquote>
 
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
@@ -703,7 +759,9 @@ $$
 <p>这些物品可以组合出第 $i$ 个物品的所有选择方案（取 $0\sim s_i$ 件）。用 
   <a href="/docs/DP/knap/#01-%e8%83%8c%e5%8c%85">01 背包</a>的策略处理出最佳选择方案。时间复杂度为 $O(m\sum\log{s_i})$</p>
 <blockquote class="book-hint info">
-  <a href="/docs/DP/knap/#%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85">完全背包</a>也可以用相同的方法进行优化。
+  <p><strong>Info</strong></p>
+<p><a href="/docs/DP/knap/#%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85">完全背包</a>也可以用相同的方法进行优化。</p>
+
 </blockquote>
 
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
@@ -807,10 +865,10 @@ $$
 <p>$g[i,v]$ 表示把前 $i$ 个物品放入体积为 $v$ 的背包的方案总数。</p>
 <ul>
 <li>
-<p>若 $f[i-1,v]&gt;f[i-1,v-w_i]+c_i$，则不放物品 $i$ 总价值最大，$g[i,v]=g[i-1,v]$；</p>
+<p>若 $f[i-1,v]&gt;f[i-1,v-w_i]+c_i$，不放物品 $i$ 总价值最大，$g[i,v]=g[i-1,v]$；</p>
 </li>
 <li>
-<p>若 $f[i-1,v]&lt;f[i-1,v-w_i]+c_i$，则放物品 $i$ 总价值最大，$g[i,v]=g[i-1,v-w_i]$；</p>
+<p>若 $f[i-1,v]&lt;f[i-1,v-w_i]+c_i$，放物品 $i$ 总价值最大，$g[i,v]=g[i-1,v-w_i]$；</p>
 </li>
 <li>
 <p>若相等，则放或不放都可使总价值最大，$g[i,v]=g[i-1,v]+g[i-1,v-w_i]$。</p>
@@ -901,46 +959,26 @@ $$
     
   </main>
 
-  <script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
 
-MathJax.Hub.Config({
-    showProcessingMessages: false,
-    messageStyle: "none",
-    tex2jax: {
-        inlineMath: [['$','$'], ['\\(','\\)']],
-        displayMath: [['$$','$$'], ['\[\[','\]\]']],
-        processEscapes: true,
-        processEnvironments: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    },
-    "HTML-CSS": {
-        showMathMenu: false,
-        linebreaks: { automatic: true, width: "container" }   
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className = 'xmp';
-    }
-});
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
 </script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-
-.MathJax { outline:0; }
-</style>
-
 </body>
 
 </html>

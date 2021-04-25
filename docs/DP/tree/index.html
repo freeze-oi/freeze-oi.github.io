@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="generator" content="Hugo 0.82.0" />
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="简介 $  树形 DP 所解决的问题基于「树形结构」。例如：给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。
+引出问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
+基本原理 $  $f[i]$ 表示以节点 $i$ 为根的子树大小，$Son(i)$ 表示 $i$ 的子节点集合。易知：
+$$ f[i]=1&#43;\sum_{v\in Son(i)}f[v] $$
+$f[i]$ 由 $f[i$ 的子节点$]$ 推出，计算顺序应为 $f[$子节点$]→f[$父节点]。使用记忆化搜索。
+vector&lt;int&gt; son[]; // son[u] : 节点 u 的子节点集合  void dfs(int u) { // 求以 u 为根的子树中节点个数  f[u] = 1; for(int i = 0; i &lt; son[u].size(); i &#43;&#43;) { int v = son[u][i]; // 节点 u 的第 i 个子节点  dfs(v); f[u] &#43;= f[v]; } } 例题 $  没有上司的舞会 $  公司有 $n$ 个人（编号 $1\cdots n$），现要举⾏⼀场晚会，并规定如果邀请了某个⼈，那么⼀定不会邀请他的上司（他上司的上司，上司的上司的上司 $\cdots$ 都可以邀请）。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="树形 DP" />
+<meta property="og:description" content="简介 $  树形 DP 所解决的问题基于「树形结构」。例如：给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。
+引出问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
+基本原理 $  $f[i]$ 表示以节点 $i$ 为根的子树大小，$Son(i)$ 表示 $i$ 的子节点集合。易知：
+$$ f[i]=1&#43;\sum_{v\in Son(i)}f[v] $$
+$f[i]$ 由 $f[i$ 的子节点$]$ 推出，计算顺序应为 $f[$子节点$]→f[$父节点]。使用记忆化搜索。
+vector&lt;int&gt; son[]; // son[u] : 节点 u 的子节点集合  void dfs(int u) { // 求以 u 为根的子树中节点个数  f[u] = 1; for(int i = 0; i &lt; son[u].size(); i &#43;&#43;) { int v = son[u][i]; // 节点 u 的第 i 个子节点  dfs(v); f[u] &#43;= f[v]; } } 例题 $  没有上司的舞会 $  公司有 $n$ 个人（编号 $1\cdots n$），现要举⾏⼀场晚会，并规定如果邀请了某个⼈，那么⼀定不会邀请他的上司（他上司的上司，上司的上司的上司 $\cdots$ 都可以邀请）。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeze.org.cn/docs/DP/tree/" /><meta property="article:section" content="docs" />
+
+
+
+<title>树形 DP | Freeze&#39;s Blogs</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
+<script defer src="/en.search.min.90b7210c13fc5d17c040724fad6a838aed921f9f84322f66bd602771e6d51076.js" integrity="sha256-kLchDBP8XRfAQHJPrWqDiu2SH5&#43;EMi9mvWAncebVEHY="></script>
+
+<script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+
+  
+</head>
+
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
+      <a  class="">基础算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序算法</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle" checked />
+    <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
+      <a  class="">动态规划</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/basics/" class="">基础 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/knap/" class="">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class=" active">树形 DP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle"  />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a  class="">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
+    <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
+      <a  class="">图论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ce95f89a1d24a8066e4c63de0cb15986" class="toggle"  />
+    <label for="section-ce95f89a1d24a8066e4c63de0cb15986" class="flex justify-between">
+      <a  class="">数论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>树形 DP</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#引出问题">引出问题</a></li>
+        <li><a href="#基本原理">基本原理</a></li>
+        <li><a href="#例题">例题</a>
+          <ul>
+            <li><a href="#没有上司的舞会">没有上司的舞会</a></li>
+          </ul>
+        </li>
+        <li><a href="#树形-dp--背包-dp">树形 DP + 背包 DP</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h2 id="简介">
+  简介
+  <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
+</h2>
+<p><strong>树形 DP</strong> 所解决的问题基于「树形结构」。例如：给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。</p>
+<center><img src=\DP\tree_1.png style=zoom:80%></img></center>
+<h2 id="引出问题">
+  引出问题
+  <a class="anchor" href="#%e5%bc%95%e5%87%ba%e9%97%ae%e9%a2%98">$</a>
+</h2>
+<p>给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？</p>
+<h2 id="基本原理">
+  基本原理
+  <a class="anchor" href="#%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86">$</a>
+</h2>
+<p>$f[i]$ 表示以节点 $i$ 为根的子树大小，$Son(i)$ 表示 $i$ 的子节点集合。易知：</p>
+<p>$$
+f[i]=1+\sum_{v\in Son(i)}f[v]
+$$</p>
+<p>$f[i]$ 由 $f[i$ 的子节点$]$ 推出，计算顺序应为 $f[$子节点$]→f[$父节点]。使用记忆化搜索。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">vector</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">son</span><span style="color:#000;font-weight:bold">[];</span> <span style="color:#8f5902;font-style:italic">// son[u] : 节点 u 的子节点集合
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">dfs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">u</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 求以 u 为根的子树中节点个数
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">son</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">son</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">];</span> <span style="color:#8f5902;font-style:italic">// 节点 u 的第 i 个子节点
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000">dfs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">);</span>
+        <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="例题">
+  例题
+  <a class="anchor" href="#%e4%be%8b%e9%a2%98">$</a>
+</h2>
+<h3 id="没有上司的舞会">
+  没有上司的舞会
+  <a class="anchor" href="#%e6%b2%a1%e6%9c%89%e4%b8%8a%e5%8f%b8%e7%9a%84%e8%88%9e%e4%bc%9a">$</a>
+</h3>
+<p>公司有 $n$ 个人（编号 $1\cdots n$），现要举⾏⼀场晚会，并规定如果邀请了某个⼈，那么⼀定不会邀请他的上司（他上司的上司，上司的上司的上司 $\cdots$ 都可以邀请）。</p>
+<p>每个⼈都有⼀个欢乐值，给出公司所有人的上下级关系，求⼀个邀请⽅案，使欢乐值的和最⼤。</p>
+<p>$f[i,j]$ 表示从以 $i$ 为根的子树中邀请部分职员参会的最欢乐值之和，当 $j=0$ 时 $i$ 号员工不参会，$j=1$ 时参会。</p>
+<ul>
+<li>
+<p>若 $i$ 号员工的下属 $v$ 不参会，则总欢乐值为 $f[v,0]$；</p>
+</li>
+<li>
+<p>若 $i$ 号员工的下属 $v$ 参会，则总欢乐值为 $f[v,1]$。</p>
+</li>
+</ul>
+<p>显然，若 $i$ 号员工参会，他的直接下属必不来：</p>
+<p>$$f[i,1]=H_i+\sum_{v\in Son(i)}f[v,0]$$</p>
+<p>若 $i$ 号员工参会，他的直接下属爱来不来：</p>
+<p>$$f[i,0]=\sum_{v\in Son(i)}\max{f[v,0],f[v,1]}$$</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">dfs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">u</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 求出 u 号员工对应的 f[u][0] 和 f[u][1]
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">h</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">u</span> <span style="color:#a40000">的每个子节点</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">dfs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">);</span>
+        <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">max</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]);</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="树形-dp--背包-dp">
+  树形 DP + 背包 DP
+  <a class="anchor" href="#%e6%a0%91%e5%bd%a2-dp--%e8%83%8c%e5%8c%85-dp">$</a>
+</h2>
+<p>处理某些问题时，需要结合树形 DP 和
+  <a href="/docs/DP/knap/">背包 DP</a> 的思想。</p>
+<p>现有 $n$ 门课程，第 $i$ 门课程的学分为 $s_i$，每门课程有 $0$ 或 $1$ 门先修课。有先修课的课程需要先学完先修课，才能学习该课程。求学习 $m$ 门课程能获得的最多学分。</p>
+<p>将每门课程看作树中的节点，先修和后修的关系用有向边描述，则本题的输入样例可以用树形图表示（$a→b$ 代表 $a$ 比 $b$ 先修）：</p>
+<center><img src=/DP/tree_2.png style="zoom:80%"></img></center>
+<p>为了方便解决问题，新增 $0$ 号节点，使其指向所有无先修课的课程：</p>
+<center><img src=/DP/tree_3.png style="zoom:80%"></img></center>
+<p>$f[u,j]$ 表示以 $u$ 为根节点，选 $j$ 个节点，获得的最大学分。</p>
+<p>$dfs(u)$ 的功能是算出以 $u$ 为根节点时，分别选 $0\sim m$ 个节点时能获得的最大学分。</p>
+<p>执行 $dfs(u)$ 时，枚举 $u$ 的子节点 $v$，在内层循环枚举选取的节点数 $j=m→1$：</p>
+<ul>
+<li>
+<p>将 $j$ 个节点分成两组，一组 $k$ 个，另一组 $j-k$ 个；</p>
+</li>
+<li>
+<p>将第一组 $k$ 个节点放在以 $v$ 为根节点的子树中，最大学分为 $f[v][k]$；</p>
+</li>
+<li>
+<p>将第二组 $j-k$ 个节点放在以 $u$ 为根节点的子树中，但不放在以 $v$ 为根节点的子树中，最大学分为 $f[u][j-k]$。</p>
+</li>
+</ul>
+<p>$$
+f[u,j]=\max_{v\in Son(u)}{f[u,j],f[u,j-k]+f[v,k]}
+$$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">初始条件</th>
+<th style="text-align:center">$f[i,1]=s[i]$</th>
+<th style="text-align:center">边界条件</th>
+<th style="text-align:center">$f[0,m]$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">时间复杂度</td>
+<td style="text-align:center">$O(n^3)$</td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>在主程序中执行 $dfs(0)$ 后输出 $f[0,m]$ 即可。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">dfs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">u</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">son</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">son</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#000">dfs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">);</span>
+        <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">--</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">k</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">k</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">k</span> <span style="color:#ce5c00;font-weight:bold">--</span><span style="color:#000;font-weight:bold">)</span>
+                <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">max</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">k</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">k</span><span style="color:#000;font-weight:bold">]);</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+ 
+        
+      </footer>
+
+      
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#引出问题">引出问题</a></li>
+        <li><a href="#基本原理">基本原理</a></li>
+        <li><a href="#例题">例题</a>
+          <ul>
+            <li><a href="#没有上司的舞会">没有上司的舞会</a></li>
+          </ul>
+        </li>
+        <li><a href="#树形-dp--背包-dp">树形 DP + 背包 DP</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+

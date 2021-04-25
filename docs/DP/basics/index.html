@@ -25,7 +25,7 @@ $$ f[n]=f[n-1]&#43;f[n-2],n≥3 $$
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
-<script defer src="/en.search.min.cc719c12c885ed3d2dac469f2805cc1d9865d54902545176456fbf066b379209.js" integrity="sha256-zHGcEsiF7T0trEafKAXMHZhl1UkCVFF2RW&#43;/Bms3kgk="></script>
+<script defer src="/en.search.min.90b7210c13fc5d17c040724fad6a838aed921f9f84322f66bd602771e6d51076.js" integrity="sha256-kLchDBP8XRfAQHJPrWqDiu2SH5&#43;EMi9mvWAncebVEHY="></script>
 
 <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk="></script>
 <!--
@@ -145,6 +145,19 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="https://freeze.org.cn/docs/DP/basics/" class=" active">基础 DP</a>
   
 
@@ -159,6 +172,45 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://freeze.org.cn/docs/DP/knap/" class="">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
   
 
         </li>
@@ -443,7 +495,9 @@ $$</p>
 <p>状态转移方程恰好和
   <a href="/docs/DP/basics/#%e6%96%90%e6%b3%a2%e9%82%a3%e5%a5%91%e6%95%b0%e5%88%97">斐波那契数列</a>相同。</p>
 <blockquote class="book-hint info">
-  不同问题的状态转移方程可能相同。
+  <p><strong>Info</strong></p>
+<p>不同问题的状态转移方程可能相同。</p>
+
 </blockquote>
 
 <h2 id="平面分割">
@@ -489,7 +543,8 @@ $$</p>
   <a class="anchor" href="#%e6%9c%80%e9%95%bf%e4%b8%8a%e5%8d%87%e5%ad%90%e5%ba%8f%e5%88%97lis">$</a>
 </h2>
 <blockquote class="book-hint info">
-  <p>$A$ 的任意子序列 $B$ 可以表示为 $B={A_{k_1} \ ,A_{k_2} \ ,\cdots,A_{k_p} \ }$ ，其中 $k_1&lt;k_2&lt;\cdots&lt;k_p$ 。</p>
+  <p><strong>Info</strong></p>
+<p>$A$ 的任意子序列 $B$ 可以表示为 $B={A_{k_1} \ ,A_{k_2} \ ,\cdots,A_{k_p} \ }$ ，其中 $k_1&lt;k_2&lt;\cdots&lt;k_p$ 。</p>
 <p>若 $A$ 的子序列 $B$ 满足 $A_{k_1}&lt;A_{k_2}&lt;\cdots&lt;A_{k_p}$ ，则 $B$ 是 $A$ 的上升子序列。</p>
 
 </blockquote>
@@ -556,7 +611,9 @@ $$</p>
   <a class="anchor" href="#%e6%9c%80%e9%95%bf%e5%85%ac%e5%85%b1%e5%ad%90%e5%ba%8f%e5%88%97lcs">$</a>
 </h2>
 <blockquote class="book-hint info">
-  若一个序列既是 $A$ 的子序列，又是 $B$ 的子序列，则它是 $A$ 和 $B$ 的公共子序列。
+  <p><strong>Info</strong></p>
+<p>若一个序列既是 $A$ 的子序列，又是 $B$ 的子序列，则它是 $A$ 和 $B$ 的公共子序列。</p>
+
 </blockquote>
 
 <p>给定长度分别为 $n$ 和 $m$ 的两个字符串 $A$、$B$，求 $A$ 和 $B$ 的最长公共子序列[^LCS]长度。</p>
@@ -648,7 +705,9 @@ $$
 </tbody>
 </table>
 <blockquote class="book-hint warning">
-  当 $j=1$ 或 $j=i$ 时，$f[i-1,j-1]$ 和 $f[i-1,j]$ 会越界。读入数据前要将 $f$ 数组初始化为 $-∞$，从而使越界的元素在取最大值时被自动淘汰。
+  <p><strong>Warning</strong></p>
+<p>当 $j=1$ 或 $j=i$ 时，$f[i-1,j-1]$ 和 $f[i-1,j]$ 会越界。读入数据前要将 $f$ 数组初始化为 $-∞$，从而使越界的元素在取最大值时被自动淘汰。</p>
+
 </blockquote>
 
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">memset</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0x80</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">sizeof</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">);</span>
@@ -697,7 +756,9 @@ $$
 </tbody>
 </table>
 <blockquote class="book-hint warning">
-  当 $i=1$ 或 $j=1$ 时，$f[i-1,j]$ 和 $f[i,j-1]$ 会越界。同样需要将 $f$ 数组初始化为 $-∞$。
+  <p><strong>Warning</strong></p>
+<p>当 $i=1$ 或 $j=1$ 时，$f[i-1,j]$ 和 $f[i,j-1]$ 会越界。同样需要将 $f$ 数组初始化为 $-∞$。</p>
+
 </blockquote>
 
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">memset</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0x80</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">sizeof</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">);</span>
@@ -915,46 +976,26 @@ $$</p>
     
   </main>
 
-  <script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
 
-MathJax.Hub.Config({
-    showProcessingMessages: false,
-    messageStyle: "none",
-    tex2jax: {
-        inlineMath: [['$','$'], ['\\(','\\)']],
-        displayMath: [['$$','$$'], ['\[\[','\]\]']],
-        processEscapes: true,
-        processEnvironments: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    },
-    "HTML-CSS": {
-        showMathMenu: false,
-        linebreaks: { automatic: true, width: "container" }   
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className = 'xmp';
-    }
-});
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
 </script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-
-.MathJax { outline:0; }
-</style>
-
 </body>
 
 </html>

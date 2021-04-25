@@ -15,7 +15,7 @@
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
-<script defer src="/en.search.min.cc719c12c885ed3d2dac469f2805cc1d9865d54902545176456fbf066b379209.js" integrity="sha256-zHGcEsiF7T0trEafKAXMHZhl1UkCVFF2RW&#43;/Bms3kgk="></script>
+<script defer src="/en.search.min.90b7210c13fc5d17c040724fad6a838aed921f9f84322f66bd602771e6d51076.js" integrity="sha256-kLchDBP8XRfAQHJPrWqDiu2SH5&#43;EMi9mvWAncebVEHY="></script>
 
 <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk="></script>
 <link rel="alternate" type="application/rss+xml" href="https://freeze.org.cn/docs/Basics/index.xml" title="Freeze's Blogs" />
@@ -136,6 +136,19 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="https://freeze.org.cn/docs/DP/basics/" class="">基础 DP</a>
   
 
@@ -150,6 +163,45 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://freeze.org.cn/docs/DP/knap/" class="">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
   
 
         </li>
@@ -325,46 +377,26 @@ https://github.com/alex-shpak/hugo-book
     
   </main>
 
-  <script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
 
-MathJax.Hub.Config({
-    showProcessingMessages: false,
-    messageStyle: "none",
-    tex2jax: {
-        inlineMath: [['$','$'], ['\\(','\\)']],
-        displayMath: [['$$','$$'], ['\[\[','\]\]']],
-        processEscapes: true,
-        processEnvironments: true,
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    },
-    "HTML-CSS": {
-        showMathMenu: false,
-        linebreaks: { automatic: true, width: "container" }   
-    }
-});
-
-MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className = 'xmp';
-    }
-});
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
 </script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
-}
-
-.MathJax { outline:0; }
-</style>
-
 </body>
 
 </html>
