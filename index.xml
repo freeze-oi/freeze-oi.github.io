@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Introduction on Freeze&#39;s Blogs</title>
+    <title>首页 on Freeze&#39;s Blogs</title>
     <link>https://freeze.org.cn/</link>
-    <description>Recent content in Introduction on Freeze&#39;s Blogs</description>
+    <description>Recent content in 首页 on Freeze&#39;s Blogs</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>排序算法</title>
-      <link>https://freeze.org.cn/docs/Basics/sort/</link>
+      <title>广度优先搜索</title>
+      <link>https://freeze.org.cn/docs/Basics/bfs/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://freeze.org.cn/docs/Basics/sort/</guid>
-      <description>选择排序 $  每次找出第 $i$ 小的元素，与数组第 $i$ 个位置上的元素交换。时间复杂度为 $O(n^2)$。
-for(int i = 1; i &amp;lt;= n; i ++) for(int j = i + 1; j &amp;lt;= n; j ++) if(a[j] &amp;lt; a[k]) swap(a[i],a[k]); 冒泡排序 $  每次检查相邻两个元素，如果前一个大于后一个，就交换它们的位置。当没有可交换的元素时，排序结束。时间复杂度为 $O(n^2)$。
-在程序的执行过程中，较大的元素像气泡般「浮」到数列的末尾，故叫做冒泡排序。
-while(true) { bool solve = false; for(int i = 1; i &amp;lt;= n; i ++) if(a[i] &amp;gt; a[i + 1]) swap(a[i], a[i + 1]), solve = true; if(!solve) break; } 插入排序 $  将数列分为「已排序」和「未排序」两部分，每次从「未排序」区域中选择一个元素插入「已排序」区域的正确位置。时间复杂度为 $O(n^2)$。</description>
+      <guid>https://freeze.org.cn/docs/Basics/bfs/</guid>
+      <description>简介 $  广度优先搜索（Breadth First Search，简称 BFS）按照层次顺序查找节点，如下图：
+  访问节点 0（根节点）；
+  访问节点 0 的所有子结点（结点 1、2）；
+  访问节点 1、2 的所有子结点（结点 3、4、5）；
+$\cdots \ \cdots$
+  重复访问子结点的操作，直到访问到目标节点。
+基本原理 $    定义一个队列，用于存放节点编号；
+  将根节点编号插入队尾（入队）；
+  将队头的所有子节点入队，移除队头元素（出队），重复直到队列为空。
+  Warning
+为了避免重复访问同一节点，已经进过队列的结点不能再次入队。
+ bool vis[]; // vis[i] 代表节点 i 是否进过队列  void bfs(int s, int e) { // 在根节点为 s 的图中找到节点 e memset(vis, false, sizeof vis); queue&amp;lt;int&amp;gt; Q; Q.</description>
     </item>
     
     <item>
@@ -33,6 +41,19 @@ while(true) { bool solve = false; for(int i = 1; i &amp;lt;= n; i ++) if(a[i] &a
  $f[n]$ 表示数列的第 $n$ 项，则：
 $$f[n]=\left\{\begin{aligned}&amp; 1, n=1, 2\\&amp; f[n-1]+f[n-2], n≥3\end{aligned}\right.$$先把特殊的 $f[1]=f[2]=1$ 填进表：
    $f[1]$ $f[2]$     $1$ $1$    根据公式计算 $f[3]$ 时，需要用到 $f[1]$ 和 $f[2]$。在表中查找它们的值，代入计算：</description>
+    </item>
+    
+    <item>
+      <title>深度优先搜索</title>
+      <link>https://freeze.org.cn/docs/Basics/dfs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/dfs/</guid>
+      <description>简介 $  深度优先搜索（Depth First Search，简称 DFS）在查找节点时，尽可能往更深处搜索，如下图：
+基本原理 $  DFS 算法在本质上是一种递归：
+  若当前结点为目标结点，直接返回；
+  递归搜索当前结点的每个子节点。
+  void dfs(int s, int e) { // 从节点 i 出发，查找结点 e  if(s == e) return; // 找到结点 e  for(int i = 结点 k 的子节点编号) dfs(i, e); // 搜索  return; // 回溯（此处可以省略） } </description>
     </item>
     
     <item>
@@ -62,6 +83,40 @@ $f[n]$ 表示数列的第 $n$ 项，则：
 $$ f[n]=f[n-1]+f[n-2],n≥3 $$
    初始条件 $f[1]=f[2]=1$ 计算顺序 $f[3\rightarrow n]$     边界条件 $f[n]$ 时间复杂度 $O(n)$    int f[]; f[1] = f[2] = 1; for(int i = 3; i &amp;lt;= n; i ++) f[i] = f[i - 1] + f[i - 2]; 汉诺塔问题 $  汉诺塔由 $n$ 个大小不同的圆盘和三根杆子 $a,b,c$ 组成。初始时，$n$个圆盘从大到小依次套在 $a$ 杆上，如下图所示：
 现在要求把 $a$ 杆上的 $n$ 个圆盘按以下规则移到 $c$ 杆上：</description>
+    </item>
+    
+    <item>
+      <title>排序算法</title>
+      <link>https://freeze.org.cn/docs/Basics/sort/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/sort/</guid>
+      <description>选择排序 $  每次找出第 $i$ 小的元素，与数组第 $i$ 个位置上的元素交换。时间复杂度为 $O(n^2)$。
+for(int i = 1; i &amp;lt;= n; i ++) for(int j = i + 1; j &amp;lt;= n; j ++) if(a[j] &amp;lt; a[k]) swap(a[i],a[k]); 冒泡排序 $  每次检查相邻两个元素，如果前一个大于后一个，就交换它们的位置。当没有可交换的元素时，排序结束。时间复杂度为 $O(n^2)$。
+在程序的执行过程中，较大的元素像气泡般「浮」到数列的末尾，故叫做冒泡排序。
+while(true) { bool solve = false; for(int i = 1; i &amp;lt;= n; i ++) if(a[i] &amp;gt; a[i + 1]) swap(a[i], a[i + 1]), solve = true; if(!solve) break; } 插入排序 $  将数列分为「已排序」和「未排序」两部分，每次从「未排序」区域中选择一个元素插入「已排序」区域的正确位置。时间复杂度为 $O(n^2)$。</description>
+    </item>
+    
+    <item>
+      <title>二分算法</title>
+      <link>https://freeze.org.cn/docs/Basics/binary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/binary/</guid>
+      <description>简介 $  玩过「数字炸弹」游戏吗？
+  叫你的朋友在你背后写一个 $[1,1000]$ 中的正整数 $n$；
+  每轮你都会给出数字 $x$，你朋友只能回答「$n$ 比 $x$ 大」「$n$ 比 $x$ 小」或「猜中」。
+  一旦猜中，数字炸弹就会爆炸。你能求出引爆炸弹的最少次数吗？
+最初 $n∈(0,1001)$。你可以先猜 $500$：
+  若 $n&amp;gt;500$，则可以进一步确定 $n∈(500,1001)$；
+  若 $n&amp;lt;500$，则可以进一步确定 $n∈(0,500)$；
+  否则 $n=500$，猜中。
+  重复猜范围的中间数，每次都会将 $n$ 的范围缩小一半，最多 $\log{n}$ 次就可以确定 $n$ 的值。
+通过若干次折半范围实现快速查询，是二分算法的基本思想。
+基本原理 $  $l$ 表示 $n$ 所在范围的左端点，$r$ 表示右端点，即 $n∈(l,r)$。重复执行以下操作：
+  取范围的中间数 $m=\lfloor(l+r)/2\rfloor$；
+  若 $n&amp;gt;m$，则可以确定 $n∈(m,r)$，令 $l=m$；
+  若 $n&amp;lt;m$，则可以确定 $n∈(l,m)$，令 $r=m$；</description>
     </item>
     
     <item>
@@ -101,6 +156,16 @@ $$ f[l,r]=\min_{l≤k&amp;lt;r}{f[l,k]+f[k+1,r]}+sum[r]-sum[l-1] $$
     </item>
     
     <item>
+      <title>状态压缩</title>
+      <link>https://freeze.org.cn/docs/Basics/zip/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/zip/</guid>
+      <description>简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ `n   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp; (~(1 &amp;lt;&amp;lt; (k - 1)))    可以直接使用 STL Bitset。</description>
+    </item>
+    
+    <item>
       <title>数位 DP</title>
       <link>https://freeze.org.cn/docs/DP/digit/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -114,6 +179,18 @@ $$ f[l,r]=\min_{l≤k&amp;lt;r}{f[l,k]+f[k+1,r]}+sum[r]-sum[l-1] $$
 $f[i,d]$ 表示「所有最高位为 $i$ 的 $d$ 位数中，符合条件的个数」。通过给定条件可推出：
 $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
    初始条件 $f[i,1]=1$ 计算顺序 $f[0→9,2→n]$     时间复杂度 $O(10^2\log{n})$      int f[][]; for(int i = 0; i &amp;lt;= 9; i ++) f[i][1] = 1; // 初始条件 for(int d = 2; d &amp;lt;= N; d ++) // N : 位数的上限，N ≈ log(r) 	for(int i = 0; i &amp;lt;= 9; i ++) for(int k = 0; k &amp;lt;= 9; k ++) if(abs(k - i) &amp;gt;= 2) f[i][d] += f[k][d - 1]; 数位统计 $  考虑 前缀和 思想：</description>
+    </item>
+    
+    <item>
+      <title>高精度</title>
+      <link>https://freeze.org.cn/docs/Basics/hipre/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/hipre/</guid>
+      <description>简介 $  高精度是一套支持高位数的运算系统，例如求两个 114514 位数的和。
+输入 $  先输入字符串，再把每一位取出，存入数组。
+void init(int a[]) { memset(a, 0, sizeof a); // 清空数组 a  string s; cin &amp;gt;&amp;gt; s; a[0] = s.length(); // a[0] 用于储存数的长度  for(int i = 1; i &amp;lt;= a[0]; i ++) a[i] = s[a[0] - i] - &amp;#39;0&amp;#39;; // 将字符串倒序储存，便于按位计算 } 也可以逐个读入字符。
+void init(int a[]) { memset(a, 0, sizeof a); int i = 0; char s = getchar(); while(s &amp;lt; &amp;#39;0&amp;#39; || s &amp;gt; &amp;#39;9&amp;#39;) s = getchar(); while(s &amp;gt;= &amp;#39;0&amp;#39; &amp;amp;&amp;amp; s &amp;lt;= &amp;#39;9&amp;#39;) a[++ i] = s – &amp;#39;0&amp;#39;, s = getchar(); a[0] = i; } 比较 $  先比较位数，若位数相同则从高位到低位逐位比较。</description>
     </item>
     
     <item>

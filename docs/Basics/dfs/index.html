@@ -5,20 +5,29 @@
   <meta name="generator" content="Hugo 0.82.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Docs" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://freeze.org.cn/docs/" />
+<meta name="description" content="简介 $  深度优先搜索（Depth First Search，简称 DFS）在查找节点时，尽可能往更深处搜索，如下图：
+基本原理 $  DFS 算法在本质上是一种递归：
+  若当前结点为目标结点，直接返回；
+  递归搜索当前结点的每个子节点。
+  void dfs(int s, int e) { // 从节点 i 出发，查找结点 e  if(s == e) return; // 找到结点 e  for(int i = 结点 k 的子节点编号) dfs(i, e); // 搜索  return; // 回溯（此处可以省略） } ">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="深度优先搜索" />
+<meta property="og:description" content="简介 $  深度优先搜索（Depth First Search，简称 DFS）在查找节点时，尽可能往更深处搜索，如下图：
+基本原理 $  DFS 算法在本质上是一种递归：
+  若当前结点为目标结点，直接返回；
+  递归搜索当前结点的每个子节点。
+  void dfs(int s, int e) { // 从节点 i 出发，查找结点 e  if(s == e) return; // 找到结点 e  for(int i = 结点 k 的子节点编号) dfs(i, e); // 搜索  return; // 回溯（此处可以省略） } " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeze.org.cn/docs/Basics/dfs/" /><meta property="article:section" content="docs" />
 
-<title>Docs | Freeze&#39;s Blogs</title>
+
+
+<title>深度优先搜索 | Freeze&#39;s Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
 <script defer src="/en.search.min.9c1da1ea13b72b8bfd8dda2f787be24ba79261f3a3713be791fb7477c897c73a.js" integrity="sha256-nB2h6hO3K4v9jdoveHviS6eSYfOjcTvnkft0d8iXxzo="></script>
 
 <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk="></script>
-<link rel="alternate" type="application/rss+xml" href="https://freeze.org.cn/docs/index.xml" title="Freeze's Blogs" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -71,7 +80,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle" checked />
     <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
       <a  class="">基础算法</a>
       <span>▾</span>
@@ -101,7 +110,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/dfs/" class="">深度优先搜索</a>
+    <a href="https://freeze.org.cn/docs/Basics/dfs/" class=" active">深度优先搜索</a>
   
 
         </li>
@@ -379,7 +388,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Docs</strong>
+  <strong>深度优先搜索</strong>
 
   <label for="toc-control">
     
@@ -393,7 +402,16 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#基本原理">基本原理</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
 
@@ -404,7 +422,32 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"></article>
+  <article class="markdown"><h2 id="简介">
+  简介
+  <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
+</h2>
+<p><strong>深度优先搜索</strong>（Depth First Search，简称 DFS）在查找节点时，尽可能往更深处搜索，如下图：</p>
+<center><img src=/Basics/dfs_1.gif style="zoom:80%"></img></center>
+<h2 id="基本原理">
+  基本原理
+  <a class="anchor" href="#%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86">$</a>
+</h2>
+<p>DFS 算法在本质上是一种递归：</p>
+<ul>
+<li>
+<p>若当前结点为目标结点，直接返回；</p>
+</li>
+<li>
+<p>递归搜索当前结点的每个子节点。</p>
+</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">dfs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">e</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 从节点 i 出发，查找结点 e
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">e</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">return</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 找到结点 e
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#a40000">结点</span> <span style="color:#000">k</span> <span style="color:#a40000">的子节点编号</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">dfs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">e</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#8f5902;font-style:italic">// 搜索
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">return</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 回溯（此处可以省略）
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></article>
  
       
 
@@ -433,7 +476,16 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#基本原理">基本原理</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
  

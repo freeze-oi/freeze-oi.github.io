@@ -4,17 +4,23 @@
   <url>
     <loc>https://freeze.org.cn/docs/Basics/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/docs/Basics/sort/</loc>
+    <loc>https://freeze.org.cn/docs/Basics/bfs/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/intro/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/Basics/dfs/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/DP/memo/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/basics/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/Basics/sort/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/DS/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Basics/binary/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/</loc>
   </url><url>
@@ -24,7 +30,11 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/Math/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/Basics/zip/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/DP/digit/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Basics/hipre/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/tree/</loc>
   </url><url>
@@ -32,8 +42,8 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/</loc>
-  </url><url>
     <loc>https://freeze.org.cn/tags/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/</loc>
   </url>
 </urlset>

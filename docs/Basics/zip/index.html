@@ -5,20 +5,23 @@
   <meta name="generator" content="Hugo 0.82.0" />
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="Docs" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://freeze.org.cn/docs/" />
+<meta name="description" content="简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &gt;&gt; (k - 1)) &amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &lt;&lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ `n   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp; (~(1 &lt;&lt; (k - 1)))    可以直接使用 STL Bitset。">
+<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="状态压缩" />
+<meta property="og:description" content="简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &gt;&gt; (k - 1)) &amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &lt;&lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ `n   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp; (~(1 &lt;&lt; (k - 1)))    可以直接使用 STL Bitset。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeze.org.cn/docs/Basics/zip/" /><meta property="article:section" content="docs" />
 
-<title>Docs | Freeze&#39;s Blogs</title>
+
+
+<title>状态压缩 | Freeze&#39;s Blogs</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
 <script defer src="/en.search.min.9c1da1ea13b72b8bfd8dda2f787be24ba79261f3a3713be791fb7477c897c73a.js" integrity="sha256-nB2h6hO3K4v9jdoveHviS6eSYfOjcTvnkft0d8iXxzo="></script>
 
 <script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk="></script>
-<link rel="alternate" type="application/rss+xml" href="https://freeze.org.cn/docs/index.xml" title="Freeze's Blogs" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -71,7 +74,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle" checked />
     <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
       <a  class="">基础算法</a>
       <span>▾</span>
@@ -140,7 +143,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class=" active">状态压缩</a>
   
 
         </li>
@@ -379,7 +382,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Docs</strong>
+  <strong>状态压缩</strong>
 
   <label for="toc-control">
     
@@ -393,7 +396,17 @@ https://github.com/alex-shpak/hugo-book
   <aside class="hidden clearfix">
     
   
-
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#成对变换">成对变换</a></li>
+        <li><a href="#lowbit-运算">Lowbit 运算</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
 
@@ -404,7 +417,101 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"></article>
+  <article class="markdown"><h2 id="简介">
+  简介
+  <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
+</h2>
+<p>将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。</p>
+<center><img src=/Basics/zip_1.png style="zoom:80%"></img></center>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">操作</th>
+<th style="text-align:left">运算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">取出二进制数 $n$ 的第 $k$ 位</td>
+<td style="text-align:left"><code>(n &gt;&gt; (k - 1)) &amp; 1</code></td>
+</tr>
+<tr>
+<td style="text-align:left">将二进制数 $n$ 的第 $k$ 位取反</td>
+<td style="text-align:left"><code>n ^ (1 &lt;&lt; (k - 1))</code></td>
+</tr>
+<tr>
+<td style="text-align:left">将二进制数 $n$ 的第 $k$ 位赋值为 $1$</td>
+<td style="text-align:left">`n</td>
+</tr>
+<tr>
+<td style="text-align:left">将二进制数 $n$ 的第 $k$ 位赋值为 $0$</td>
+<td style="text-align:left"><code>n &amp; (~(1 &lt;&lt; (k - 1)))</code></td>
+</tr>
+</tbody>
+</table>
+<p>可以直接使用 <code>STL Bitset</code>。</p>
+<h2 id="成对变换">
+  成对变换
+  <a class="anchor" href="#%e6%88%90%e5%af%b9%e5%8f%98%e6%8d%a2">$</a>
+</h2>
+<ul>
+<li>
+<p>若 $n&gt;0$ 为偶数，则 $n \ \rm xor \ 1=n+1$；</p>
+</li>
+<li>
+<p>若 $n&gt;0$ 为奇数，则 $n \ \rm xor \ 1=n-1$。</p>
+</li>
+</ul>
+<p>因此，「$0$ 与 $1$」，「$2$ 与 $3$」，「$4$ 与 $5$」，$\cdots$ 关于 $\rm xor \ 1$ 运算构成「成对变换」。</p>
+<h2 id="lowbit-运算">
+  Lowbit 运算
+  <a class="anchor" href="#lowbit-%e8%bf%90%e7%ae%97">$</a>
+</h2>
+<p>$lowbit(n)$ 为 $n$ 在二进制表示下「最低位的 $1$ 和其后所有的 $0$」构成的数。例如 $n=(101000)_2$，$lowbit(n)=(1000)_2$。</p>
+<p>$n[i]$：$n$ 在二进制表示下的第 $i$ 位数字。假设 $n[k]=1$，$n[0\cdots k-1]=0$。</p>
+<ol>
+<li>
+<p>将 $n$ 的每一位取反，即 $n=\sim n$，此时 $n[k]=0$，$n[0\cdots k-1]=1$，其它位和原来相反；</p>
+</li>
+<li>
+<p>令 $n=n+1$，此时 $n[k]=1$，$n[0\cdots k-1]=0$，其它位仍和原来相反；</p>
+</li>
+<li>
+<p>因此 $n\&amp;(\sim n+1)$ 仅有第 $k$ 位为 $1$。</p>
+</li>
+</ol>
+<p>由于在补码表示下 $-n=\sim n+1$，因此：</p>
+<xmp>
+$$
+lowbit(n)=n\&(\sim n+1)=n\&-n
+$$
+</xmp>
+<p>时间复杂度为 $O(1)$。结合样例理解。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$n$</th>
+<th style="text-align:center">$\sim n$</th>
+<th style="text-align:center">$\sim n+1$</th>
+<th style="text-align:center">$n\&amp;(\sim n+1)$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$($101000$)_2$</td>
+<td style="text-align:center">$($010111$)_2$</td>
+<td style="text-align:center">$($011000$)_2$</td>
+<td style="text-align:center">$($001000$)_2$</td>
+</tr>
+<tr>
+<td style="text-align:center">$($101100$)_2$</td>
+<td style="text-align:center">$($010011$)_2$</td>
+<td style="text-align:center">$($010100$)_2$</td>
+<td style="text-align:center">$($000100$)_2$</td>
+</tr>
+</tbody>
+</table>
+</article>
  
       
 
@@ -433,7 +540,17 @@ https://github.com/alex-shpak/hugo-book
       <div class="book-toc-content">
         
   
-
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#成对变换">成对变换</a></li>
+        <li><a href="#lowbit-运算">Lowbit 运算</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
 
 
  
