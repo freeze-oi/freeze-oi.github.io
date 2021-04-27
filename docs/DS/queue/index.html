@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en" dir=" ltr ">
+
+<head>
+    <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="简介 $  队列是一种「先进先出」的数据结构。元素从队列的前端进入（入队），从末端离开（出队），类似于排队。基本操作见 STL Queue。
+双向队列 $  队列元素只能从一端进，另一端出，有时无法满足问题的需要。双向队列应运而生，它支持从两端插入或删除元素。
+双向队列的基本操作见 STL Deque。
+单调队列 $  单调队列的元素从队头到队尾满足单调性，适用于查询某一动态区间的最大（或最小）元素。
+插入元素 $  将 $A[i]$ 入队，维护队列单调性，同时保证队列元素在 $A[p\cdots i]$ 范围内。以单调递增队列为例：
+  重复弹出队头，直到队头 $≥p$；
+  重复弹出队尾，直到 $A[$队尾$]&lt;A[i]$（若单调递减，则重复直到 $A[$队尾$]&gt;A[i]$）。
+  将 $i$ 入队。
+  涉及双端操作，须使用双向队列。此时 $A[p\cdots i]$ 范围内最小元素为 $A[$队头$]$。
+deque&lt;int&gt; q; // 存储元素下标  void insert(int i, int p) { // 将 a[i] 入队，维护队列元素在 a[p...i] 范围内  while(!q.empty() &amp;&amp; q.front() &lt; p) q."><meta property="og:title" content="队列" />
+<meta property="og:description" content="简介 $  队列是一种「先进先出」的数据结构。元素从队列的前端进入（入队），从末端离开（出队），类似于排队。基本操作见 STL Queue。
+双向队列 $  队列元素只能从一端进，另一端出，有时无法满足问题的需要。双向队列应运而生，它支持从两端插入或删除元素。
+双向队列的基本操作见 STL Deque。
+单调队列 $  单调队列的元素从队头到队尾满足单调性，适用于查询某一动态区间的最大（或最小）元素。
+插入元素 $  将 $A[i]$ 入队，维护队列单调性，同时保证队列元素在 $A[p\cdots i]$ 范围内。以单调递增队列为例：
+  重复弹出队头，直到队头 $≥p$；
+  重复弹出队尾，直到 $A[$队尾$]&lt;A[i]$（若单调递减，则重复直到 $A[$队尾$]&gt;A[i]$）。
+  将 $i$ 入队。
+  涉及双端操作，须使用双向队列。此时 $A[p\cdots i]$ 范围内最小元素为 $A[$队头$]$。
+deque&lt;int&gt; q; // 存储元素下标  void insert(int i, int p) { // 将 a[i] 入队，维护队列元素在 a[p...i] 范围内  while(!q.empty() &amp;&amp; q.front() &lt; p) q." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeze.org.cn/docs/DS/queue/" /><meta property="article:section" content="docs" />
+
+
+
+<title>队列 | Freeze&#39;s Blogs</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
+<script defer src="/en.search.min.798f6ebbe354f909026c046c5903f6e971a9934f5e2bdf0b3f9e6d8c43ea93d6.js" integrity="sha256-eY9uu&#43;NU&#43;QkCbARsWQP26XGpk09eK98LP55tjEPqk9Y="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+--> 
+</head>
+
+<body dir=" ltr ">
+    <input type="checkbox" class="hidden toggle" id="menu-control" />
+    <input type="checkbox" class="hidden toggle" id="toc-control" />
+    <main class="container flex">
+        <aside class="book-menu">
+            <div class="book-menu-content">
+                 <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
+      <a  class="">基础算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/bfs/" class="">广度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/dfs/" class="">深度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二分算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/hipre/" class="">高精度</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle"  />
+    <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
+      <a  class="">动态规划</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/basics/" class="">基础 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/knap/" class="">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle" checked />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a  class="">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/stack/" class="">栈</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/link/" class="">链表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/queue/" class=" active">队列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/heap/" class="">二叉堆</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/DSU/" class="">并查集</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/treearray/" class="">树状数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
+    <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
+      <a  class="">图论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ce95f89a1d24a8066e4c63de0cb15986" class="toggle"  />
+    <label for="section-ce95f89a1d24a8066e4c63de0cb15986" class="flex justify-between">
+      <a  class="">数论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+ 
+                
+            </div>
+        </aside>
+
+        <div class="book-page">
+            <header class="book-header">
+                 <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>队列</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+ 
+<aside class="hidden clearfix">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#双向队列">双向队列</a></li>
+        <li><a href="#单调队列">单调队列</a>
+          <ul>
+            <li><a href="#插入元素">插入元素</a></li>
+            <li><a href="#滑动窗口">滑动窗口</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>  
+</aside>
+ 
+                
+            </header>
+
+             
+<article class="markdown"><h2 id="简介">
+  简介
+  <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
+</h2>
+<p>队列是一种「先进先出」的数据结构。元素从队列的前端进入（入队），从末端离开（出队），类似于排队。基本操作见 <code>STL Queue</code>。</p>
+<center><img src=/DS/queue.png style="zoom:80%"></img></center>
+<h2 id="双向队列">
+  双向队列
+  <a class="anchor" href="#%e5%8f%8c%e5%90%91%e9%98%9f%e5%88%97">$</a>
+</h2>
+<p>队列元素只能从一端进，另一端出，有时无法满足问题的需要。双向队列应运而生，它支持从两端插入或删除元素。</p>
+<p>双向队列的基本操作见 <code>STL Deque</code>。</p>
+<h2 id="单调队列">
+  单调队列
+  <a class="anchor" href="#%e5%8d%95%e8%b0%83%e9%98%9f%e5%88%97">$</a>
+</h2>
+<p>单调队列的元素从队头到队尾满足单调性，适用于查询某一动态区间的最大（或最小）元素。</p>
+<h3 id="插入元素">
+  插入元素
+  <a class="anchor" href="#%e6%8f%92%e5%85%a5%e5%85%83%e7%b4%a0">$</a>
+</h3>
+<p>将 $A[i]$ 入队，维护队列单调性，同时保证队列元素在 $A[p\cdots i]$ 范围内。以单调递增队列为例：</p>
+<ul>
+<li>
+<p>重复弹出队头，直到队头 $≥p$；</p>
+</li>
+<li>
+<p>重复弹出队尾，直到 $A[$队尾$]&lt;A[i]$（若单调递减，则重复直到 $A[$队尾$]&gt;A[i]$）。</p>
+</li>
+<li>
+<p>将 $i$ 入队。</p>
+</li>
+</ul>
+<p>涉及双端操作，须使用双向队列。此时 $A[p\cdots i]$ 范围内最小元素为 $A[$队头$]$。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">deque</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 存储元素下标
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">insert</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 将 a[i] 入队，维护队列元素在 a[p...i] 范围内
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">empty</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">front</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">pop_front</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">empty</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">back</span><span style="color:#000;font-weight:bold">()]</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">pop_back</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">push_back</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h3 id="滑动窗口">
+  滑动窗口
+  <a class="anchor" href="#%e6%bb%91%e5%8a%a8%e7%aa%97%e5%8f%a3">$</a>
+</h3>
+<p>一个滑动窗口（长度为 $k$）从数组 $A$ （长度为 $n$）的左端移动到右端，每次只向右移一位。求每次滑动时窗口区中的最大值。</p>
+<p>示例（$k=3,n=8$，红色数值在窗口区内）：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$A_1$</th>
+<th style="text-align:center">$A_2$</th>
+<th style="text-align:center">$A_3$</th>
+<th style="text-align:center">$A_4$</th>
+<th style="text-align:center">$A_5$</th>
+<th style="text-align:center">$A_6$</th>
+<th style="text-align:center">$A_7$</th>
+<th style="text-align:center">$A_8$</th>
+<th style="text-align:center">最大值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><font color="red"><b>1</td>
+<td style="text-align:center"><font color="red"><b>3</td>
+<td style="text-align:center"><font color="red"><b>-1</td>
+<td style="text-align:center">-3</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center"><b>3</b></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center"><font color="red"><b>3</td>
+<td style="text-align:center"><font color="red"><b>-1</td>
+<td style="text-align:center"><font color="red"><b>-3</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center"><b>3</b></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center"><font color="red"><b>-1</td>
+<td style="text-align:center"><font color="red"><b>-3</td>
+<td style="text-align:center"><font color="red"><b>5</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center"><b>5</b></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center"><font color="red"><b>-3</td>
+<td style="text-align:center"><font color="red"><b>5</td>
+<td style="text-align:center"><font color="red"><b>3</td>
+<td style="text-align:center">6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center"><b>5</b></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">-3</td>
+<td style="text-align:center"><font color="red"><b>5</td>
+<td style="text-align:center"><font color="red"><b>3</td>
+<td style="text-align:center"><font color="red"><b>6</td>
+<td style="text-align:center">7</td>
+<td style="text-align:center"><b>6</b></td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">-1</td>
+<td style="text-align:center">-3</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center"><font color="red"><b>3</td>
+<td style="text-align:center"><font color="red"><b>6</td>
+<td style="text-align:center"><font color="red"><b>7</td>
+<td style="text-align:center"><b>7</b></td>
+</tr>
+</tbody>
+</table>
+<h4 id="朴素算法">
+  朴素算法
+  <a class="anchor" href="#%e6%9c%b4%e7%b4%a0%e7%ae%97%e6%b3%95">$</a>
+</h4>
+<p>枚举 $i=k\rightarrow n$，枚举出区间 $[i-k+1,i]$ 中的最大整数。时间复杂度为 $O(nk)$。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">k</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">maxn</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">k</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">maxn</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">max</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">maxn</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">]);</span>
+    <span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">maxn</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06">&#39; &#39;</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h4 id="单调队列优化">
+  单调队列优化
+  <a class="anchor" href="#%e5%8d%95%e8%b0%83%e9%98%9f%e5%88%97%e4%bc%98%e5%8c%96">$</a>
+</h4>
+<p>使用单调递减队列优化「查找区间 $[i-k+1,i]$ 中的最大整数」的效率。时间复杂度为 $O(n)$。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">deque</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">;</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">insert</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">empty</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">front</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">pop_front</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">empty</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">back</span><span style="color:#000;font-weight:bold">()]</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">pop_back</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">push_back</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">insert</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">k</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#000">k</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">front</span><span style="color:#000;font-weight:bold">()]</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06">&#39; &#39;</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></article>
+
+            
+            
+
+            <footer class="book-footer">
+                 <div class="flex flex-wrap justify-between">
+      
+    <div style="margin:0 auto">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <span>闽 ICP 备 2021002587 号</span>
+        </a>
+    </div>
+</div> 
+                
+                
+            </footer>
+
+              
+            
+
+            <label for="menu-control" class="hidden book-menu-overlay"></label>
+        </div>
+
+        
+        <aside class="book-toc">
+            <div class="book-toc-content">
+                  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#双向队列">双向队列</a></li>
+        <li><a href="#单调队列">单调队列</a>
+          <ul>
+            <li><a href="#插入元素">插入元素</a></li>
+            <li><a href="#滑动窗口">滑动窗口</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>  
+                
+            </div>
+        </aside>
+        
+    </main>
+
+    
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
+</script>
+</body>
+
+</html>
+
+     

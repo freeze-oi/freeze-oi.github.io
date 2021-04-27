@@ -22,7 +22,7 @@ $$ f[n]=f[n-1]&#43;f[n-2],n≥3 $$
 <title>基础 DP | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
-<script defer src="/en.search.min.9c1da1ea13b72b8bfd8dda2f787be24ba79261f3a3713be791fb7477c897c73a.js" integrity="sha256-nB2h6hO3K4v9jdoveHviS6eSYfOjcTvnkft0d8iXxzo="></script>
+<script defer src="/en.search.min.798f6ebbe354f909026c046c5903f6e971a9934f5e2bdf0b3f9e6d8c43ea93d6.js" integrity="sha256-eY9uu&#43;NU&#43;QkCbARsWQP26XGpk09eK98LP55tjEPqk9Y="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -294,6 +294,110 @@ https://github.com/alex-shpak/hugo-book
 
           
   <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/stack/" class="">栈</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/link/" class="">链表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/queue/" class="">队列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/heap/" class="">二叉堆</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/DSU/" class="">并查集</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/treearray/" class="">树状数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
+  
+
+        </li>
+      
     
   </ul>
 
@@ -638,8 +742,8 @@ $$</p>
   单调栈优化
   <a class="anchor" href="#%e5%8d%95%e8%b0%83%e6%a0%88%e4%bc%98%e5%8c%96">$</a>
 </h3>
-<p>运用
-  <a href="/posts/ds/stack/#_6">单调栈</a>优化时间复杂度。依次扫描数组元素：</p>
+<p>运用 
+  <a href="/docs/DS/stack/#%e5%8d%95%e8%b0%83%e6%a0%88">单调栈</a> 优化时间复杂度。依次扫描数组元素：</p>
 <ul>
 <li>
 <p>若当前元素大于栈顶元素，则将其插入单调栈；</p>
@@ -648,7 +752,7 @@ $$</p>
 <p>否则二分查找栈中第一个比当前元素大的元素，并替换。</p>
 </li>
 </ul>
-<p>由于 STL Stack 不支持访问栈内元素，故使用 STL Vector 模拟栈。最终的答案是栈的长度。时间复杂度为 $O(n\log{n})$。</p>
+<p>由于 <code>STL Stack</code> 不支持访问栈内元素，故使用 <code>STL Vector</code> 模拟栈。最终的答案是栈的长度。时间复杂度为 $O(n\log{n})$。</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">vector</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]);</span>
 <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">back</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">push_back</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]);</span>
