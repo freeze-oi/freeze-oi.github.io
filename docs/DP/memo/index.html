@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir=" ltr ">
 
 <head>
-  <meta name="generator" content="Hugo 0.82.0" />
-  <meta charset="UTF-8">
+    <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="普通搜索 $  求 斐波那契数列 第 $i$ 项（$f[i]$）的深搜程序如下：
 int f(int x) { if(x &lt;= 2) return 1; return f(x - 1) &#43; f(x - 2); } 执行 $f(7)$ 的调用情况如下：
@@ -12,8 +11,7 @@ int f(int x) { if(x &lt;= 2) return 1; return f(x - 1) &#43; f(x - 2); } 执行 
   若 $f(x)$ 未被调用，算出 $f(x)$ 的结果，并存入 $F[\text{x}]$；
   若 $f(x)$ 已经被调用过，直接返回 $F[\text{x}]$。
   和 动态规划 中的填表思想如出一辙。
-int F[] = {0, 1, 1}; int f(int x) { if(F[x] !">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="记忆化搜索" />
+int F[] = {0, 1, 1}; int f(int x) { if(F[x] !"><meta property="og:title" content="记忆化搜索" />
 <meta property="og:description" content="普通搜索 $  求 斐波那契数列 第 $i$ 项（$f[i]$）的深搜程序如下：
 int f(int x) { if(x &lt;= 2) return 1; return f(x - 1) &#43; f(x - 2); } 执行 $f(7)$ 的调用情况如下：
 随着 $n$ 的增大，$f(n)$ 的时间复杂度呈指数级增长。如果遇到大数据，你的程序就会：
@@ -28,28 +26,22 @@ int F[] = {0, 1, 1}; int f(int x) { if(F[x] !" />
 
 
 <title>记忆化搜索 | Freeze&#39;s Blogs</title>
-<link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
 <script defer src="/en.search.min.9c1da1ea13b72b8bfd8dda2f787be24ba79261f3a3713be791fb7477c897c73a.js" integrity="sha256-nB2h6hO3K4v9jdoveHviS6eSYfOjcTvnkft0d8iXxzo="></script>
-
-<script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
--->
-
-  
+--> 
 </head>
 
-<body dir="ltr">
-  <input type="checkbox" class="hidden toggle" id="menu-control" />
-  <input type="checkbox" class="hidden toggle" id="toc-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      <div class="book-menu-content">
-        
-  <nav>
+<body dir=" ltr ">
+    <input type="checkbox" class="hidden toggle" id="menu-control" />
+    <input type="checkbox" class="hidden toggle" id="toc-control" />
+    <main class="container flex">
+        <aside class="book-menu">
+            <div class="book-menu-content">
+                 <nav>
 <h2 class="book-brand">
   <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
   </a>
@@ -381,15 +373,14 @@ https://github.com/alex-shpak/hugo-book
 
   <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
-
  
-      </div>
-    </aside>
+                
+            </div>
+        </aside>
 
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
+        <div class="book-page">
+            <header class="book-header">
+                 <div class="flex align-center justify-between">
   <label for="menu-control">
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
@@ -402,13 +393,9 @@ https://github.com/alex-shpak/hugo-book
     
   </label>
 </div>
-
-
-  
-  <aside class="hidden clearfix">
-    
-  
-<nav id="TableOfContents">
+ 
+<aside class="hidden clearfix">
+      <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -417,18 +404,14 @@ https://github.com/alex-shpak/hugo-book
       </ul>
     </li>
   </ul>
-</nav>
-
-
-
-  </aside>
-  
+</nav>  
+</aside>
  
-      </header>
+                
+            </header>
 
-      
-      
-  <article class="markdown"><h2 id="普通搜索">
+             
+<article class="markdown"><h2 id="普通搜索">
   普通搜索
   <a class="anchor" href="#%e6%99%ae%e9%80%9a%e6%90%9c%e7%b4%a2">$</a>
 </h2>
@@ -466,35 +449,33 @@ https://github.com/alex-shpak/hugo-book
 <center><img src=/DP/memo_2.png style="zoom:80%"></img></center>
 <p>记忆化搜索的效率和动态规划相当，设计难度低于动态规划。若难以判断计算顺序，则可以采用该算法。</p>
 </article>
- 
+
+            
+            
+
+            <footer class="book-footer">
+                 <div class="flex flex-wrap justify-between">
       
-
-      <footer class="book-footer">
-        
-  <div class="flex flex-wrap justify-between">
-
-
-
-
-
-</div>
- 
-        
-      </footer>
-
-      
-  
- 
-
-      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    <div style="margin:0 auto">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <span>闽 ICP 备 2021002587 号</span>
+        </a>
     </div>
+</div> 
+                
+                
+            </footer>
 
-    
-    <aside class="book-toc">
-      <div class="book-toc-content">
+              
+            
+
+            <label for="menu-control" class="hidden book-menu-overlay"></label>
+        </div>
+
         
-  
-<nav id="TableOfContents">
+        <aside class="book-toc">
+            <div class="book-toc-content">
+                  <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -503,16 +484,14 @@ https://github.com/alex-shpak/hugo-book
       </ul>
     </li>
   </ul>
-</nav>
+</nav>  
+                
+            </div>
+        </aside>
+        
+    </main>
 
-
- 
-      </div>
-    </aside>
     
-  </main>
-
-  
 <link rel="stylesheet" href="/katex/katex.min.css">
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/auto-render.min.js"></script>
@@ -536,13 +515,4 @@ https://github.com/alex-shpak/hugo-book
 
 </html>
 
-
-
-
-
-
-
-
-
-
-
+     

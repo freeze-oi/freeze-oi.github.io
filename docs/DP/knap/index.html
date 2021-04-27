@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir=" ltr ">
 
 <head>
-  <meta name="generator" content="Hugo 0.82.0" />
-  <meta charset="UTF-8">
+    <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="01 背包 $  用体积为 $m$ 的背包装 $n$ 种物品，每种物品只有 $1$ 个。第 $i$ 种物品的体积为 $w_i$，价值为 $c_i$，将哪些物品装入背包可使总价值最大？
 $f[i,v]$ 表示把前 $i$ 个物品（部分或全部）放入体积为 $v$ 的背包，可以获得的最大总价值。
@@ -12,8 +11,7 @@ $f[i,v]$ 表示把前 $i$ 个物品（部分或全部）放入体积为 $v$ 的�
   若放第 $i$ 个物品，则前 $i-1$ 个物品只能放在体积为 $v-w_i$ 的空间里，故 $f[i,v]=f[i-1,v-w_i]&#43;c_i$。
   $$f[i,v] = \max\left\{\begin{aligned}&f[i-1,v]\\&f[i-1,v-w_i]&#43;c_i,v≥w_i\end{aligned}\right.$$由于 $f[i,v]$ 的值只由 $f[i-1,v]$ 和 $f[i-1,v-w_i]$ 决定，所以先求 $f[1,0\cdots m]$，再求 $f[2,0\cdots m]$，$\cdots$，直到求出 $f[n,m]$。时间复杂度为 $O(nm)$。
 Warning
-当 $v &lt; w_i$ 时，第 $i$ 个物品放不进体积为 $v$ 的背包，此时 $f[i,v]$ 只能等于 $f[i-1,v]$。">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="背包 DP" />
+当 $v &lt; w_i$ 时，第 $i$ 个物品放不进体积为 $v$ 的背包，此时 $f[i,v]$ 只能等于 $f[i-1,v]$。"><meta property="og:title" content="背包 DP" />
 <meta property="og:description" content="01 背包 $  用体积为 $m$ 的背包装 $n$ 种物品，每种物品只有 $1$ 个。第 $i$ 种物品的体积为 $w_i$，价值为 $c_i$，将哪些物品装入背包可使总价值最大？
 $f[i,v]$ 表示把前 $i$ 个物品（部分或全部）放入体积为 $v$ 的背包，可以获得的最大总价值。
 若只考虑第 $i$ 个物品的策略（放或不放），则问题转而只涉及到前 $i-1$ 个物品：
@@ -28,28 +26,22 @@ Warning
 
 
 <title>背包 DP | Freeze&#39;s Blogs</title>
-<link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
 <script defer src="/en.search.min.9c1da1ea13b72b8bfd8dda2f787be24ba79261f3a3713be791fb7477c897c73a.js" integrity="sha256-nB2h6hO3K4v9jdoveHviS6eSYfOjcTvnkft0d8iXxzo="></script>
-
-<script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
--->
-
-  
+--> 
 </head>
 
-<body dir="ltr">
-  <input type="checkbox" class="hidden toggle" id="menu-control" />
-  <input type="checkbox" class="hidden toggle" id="toc-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      <div class="book-menu-content">
-        
-  <nav>
+<body dir=" ltr ">
+    <input type="checkbox" class="hidden toggle" id="menu-control" />
+    <input type="checkbox" class="hidden toggle" id="toc-control" />
+    <main class="container flex">
+        <aside class="book-menu">
+            <div class="book-menu-content">
+                 <nav>
 <h2 class="book-brand">
   <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
   </a>
@@ -381,15 +373,14 @@ https://github.com/alex-shpak/hugo-book
 
   <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
-
  
-      </div>
-    </aside>
+                
+            </div>
+        </aside>
 
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
+        <div class="book-page">
+            <header class="book-header">
+                 <div class="flex align-center justify-between">
   <label for="menu-control">
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
@@ -402,13 +393,9 @@ https://github.com/alex-shpak/hugo-book
     
   </label>
 </div>
-
-
-  
-  <aside class="hidden clearfix">
-    
-  
-<nav id="TableOfContents">
+ 
+<aside class="hidden clearfix">
+      <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -438,18 +425,14 @@ https://github.com/alex-shpak/hugo-book
       </ul>
     </li>
   </ul>
-</nav>
-
-
-
-  </aside>
-  
+</nav>  
+</aside>
  
-      </header>
+                
+            </header>
 
-      
-      
-  <article class="markdown"><h2 id="01-背包">
+             
+<article class="markdown"><h2 id="01-背包">
   01 背包
   <a class="anchor" href="#01-%e8%83%8c%e5%8c%85">$</a>
 </h2>
@@ -957,35 +940,33 @@ $$
         <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">max_f</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">max_g</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div></article>
- 
+
+            
+            
+
+            <footer class="book-footer">
+                 <div class="flex flex-wrap justify-between">
       
-
-      <footer class="book-footer">
-        
-  <div class="flex flex-wrap justify-between">
-
-
-
-
-
-</div>
- 
-        
-      </footer>
-
-      
-  
- 
-
-      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    <div style="margin:0 auto">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <span>闽 ICP 备 2021002587 号</span>
+        </a>
     </div>
+</div> 
+                
+                
+            </footer>
 
-    
-    <aside class="book-toc">
-      <div class="book-toc-content">
+              
+            
+
+            <label for="menu-control" class="hidden book-menu-overlay"></label>
+        </div>
+
         
-  
-<nav id="TableOfContents">
+        <aside class="book-toc">
+            <div class="book-toc-content">
+                  <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -1015,16 +996,14 @@ $$
       </ul>
     </li>
   </ul>
-</nav>
+</nav>  
+                
+            </div>
+        </aside>
+        
+    </main>
 
-
- 
-      </div>
-    </aside>
     
-  </main>
-
-  
 <link rel="stylesheet" href="/katex/katex.min.css">
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/auto-render.min.js"></script>
@@ -1048,13 +1027,4 @@ $$
 
 </html>
 
-
-
-
-
-
-
-
-
-
-
+     

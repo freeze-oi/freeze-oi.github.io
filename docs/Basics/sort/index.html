@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir=" ltr ">
 
 <head>
-  <meta name="generator" content="Hugo 0.82.0" />
-  <meta charset="UTF-8">
+    <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="选择排序 $  每次找出第 $i$ 小的元素，与数组第 $i$ 个位置上的元素交换。时间复杂度为 $O(n^2)$。
 for(int i = 1; i &lt;= n; i &#43;&#43;) for(int j = i &#43; 1; j &lt;= n; j &#43;&#43;) if(a[j] &lt; a[k]) swap(a[i],a[k]); 冒泡排序 $  每次检查相邻两个元素，如果前一个大于后一个，就交换它们的位置。当没有可交换的元素时，排序结束。时间复杂度为 $O(n^2)$。
 在程序的执行过程中，较大的元素像气泡般「浮」到数列的末尾，故叫做冒泡排序。
-while(true) { bool solve = false; for(int i = 1; i &lt;= n; i &#43;&#43;) if(a[i] &gt; a[i &#43; 1]) swap(a[i], a[i &#43; 1]), solve = true; if(!solve) break; } 插入排序 $  将数列分为「已排序」和「未排序」两部分，每次从「未排序」区域中选择一个元素插入「已排序」区域的正确位置。时间复杂度为 $O(n^2)$。">
-<meta name="theme-color" content="#FFFFFF"><meta property="og:title" content="排序算法" />
+while(true) { bool solve = false; for(int i = 1; i &lt;= n; i &#43;&#43;) if(a[i] &gt; a[i &#43; 1]) swap(a[i], a[i &#43; 1]), solve = true; if(!solve) break; } 插入排序 $  将数列分为「已排序」和「未排序」两部分，每次从「未排序」区域中选择一个元素插入「已排序」区域的正确位置。时间复杂度为 $O(n^2)$。"><meta property="og:title" content="排序算法" />
 <meta property="og:description" content="选择排序 $  每次找出第 $i$ 小的元素，与数组第 $i$ 个位置上的元素交换。时间复杂度为 $O(n^2)$。
 for(int i = 1; i &lt;= n; i &#43;&#43;) for(int j = i &#43; 1; j &lt;= n; j &#43;&#43;) if(a[j] &lt; a[k]) swap(a[i],a[k]); 冒泡排序 $  每次检查相邻两个元素，如果前一个大于后一个，就交换它们的位置。当没有可交换的元素时，排序结束。时间复杂度为 $O(n^2)$。
 在程序的执行过程中，较大的元素像气泡般「浮」到数列的末尾，故叫做冒泡排序。
@@ -20,28 +18,22 @@ while(true) { bool solve = false; for(int i = 1; i &lt;= n; i &#43;&#43;) if(a[i
 
 
 <title>排序算法 | Freeze&#39;s Blogs</title>
-<link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
 <script defer src="/en.search.min.9c1da1ea13b72b8bfd8dda2f787be24ba79261f3a3713be791fb7477c897c73a.js" integrity="sha256-nB2h6hO3K4v9jdoveHviS6eSYfOjcTvnkft0d8iXxzo="></script>
-
-<script defer src="/sw.min.6f6f90fcb8eb1c49ec389838e6b801d0de19430b8e516902f8d75c3c8bd98739.js" integrity="sha256-b2&#43;Q/LjrHEnsOJg45rgB0N4ZQwuOUWkC&#43;NdcPIvZhzk="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
--->
-
-  
+--> 
 </head>
 
-<body dir="ltr">
-  <input type="checkbox" class="hidden toggle" id="menu-control" />
-  <input type="checkbox" class="hidden toggle" id="toc-control" />
-  <main class="container flex">
-    <aside class="book-menu">
-      <div class="book-menu-content">
-        
-  <nav>
+<body dir=" ltr ">
+    <input type="checkbox" class="hidden toggle" id="menu-control" />
+    <input type="checkbox" class="hidden toggle" id="toc-control" />
+    <main class="container flex">
+        <aside class="book-menu">
+            <div class="book-menu-content">
+                 <nav>
 <h2 class="book-brand">
   <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
   </a>
@@ -373,15 +365,14 @@ https://github.com/alex-shpak/hugo-book
 
   <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
-
  
-      </div>
-    </aside>
+                
+            </div>
+        </aside>
 
-    <div class="book-page">
-      <header class="book-header">
-        
-  <div class="flex align-center justify-between">
+        <div class="book-page">
+            <header class="book-header">
+                 <div class="flex align-center justify-between">
   <label for="menu-control">
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
@@ -394,13 +385,9 @@ https://github.com/alex-shpak/hugo-book
     
   </label>
 </div>
-
-
-  
-  <aside class="hidden clearfix">
-    
-  
-<nav id="TableOfContents">
+ 
+<aside class="hidden clearfix">
+      <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -416,18 +403,14 @@ https://github.com/alex-shpak/hugo-book
       </ul>
     </li>
   </ul>
-</nav>
-
-
-
-  </aside>
-  
+</nav>  
+</aside>
  
-      </header>
+                
+            </header>
 
-      
-      
-  <article class="markdown"><h2 id="选择排序">
+             
+<article class="markdown"><h2 id="选择排序">
   选择排序
   <a class="anchor" href="#%e9%80%89%e6%8b%a9%e6%8e%92%e5%ba%8f">$</a>
 </h2>
@@ -626,35 +609,33 @@ https://github.com/alex-shpak/hugo-book
 </blockquote>
 
 </article>
- 
+
+            
+            
+
+            <footer class="book-footer">
+                 <div class="flex flex-wrap justify-between">
       
-
-      <footer class="book-footer">
-        
-  <div class="flex flex-wrap justify-between">
-
-
-
-
-
-</div>
- 
-        
-      </footer>
-
-      
-  
- 
-
-      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    <div style="margin:0 auto">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <span>闽 ICP 备 2021002587 号</span>
+        </a>
     </div>
+</div> 
+                
+                
+            </footer>
 
-    
-    <aside class="book-toc">
-      <div class="book-toc-content">
+              
+            
+
+            <label for="menu-control" class="hidden book-menu-overlay"></label>
+        </div>
+
         
-  
-<nav id="TableOfContents">
+        <aside class="book-toc">
+            <div class="book-toc-content">
+                  <nav id="TableOfContents">
   <ul>
     <li>
       <ul>
@@ -670,16 +651,14 @@ https://github.com/alex-shpak/hugo-book
       </ul>
     </li>
   </ul>
-</nav>
+</nav>  
+                
+            </div>
+        </aside>
+        
+    </main>
 
-
- 
-      </div>
-    </aside>
     
-  </main>
-
-  
 <link rel="stylesheet" href="/katex/katex.min.css">
 <script src="/katex/katex.min.js"></script>
 <script src="/katex/auto-render.min.js"></script>
@@ -703,13 +682,4 @@ https://github.com/alex-shpak/hugo-book
 
 </html>
 
-
-
-
-
-
-
-
-
-
-
+     
