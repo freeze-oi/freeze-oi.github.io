@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" dir=" ltr ">
+
+<head>
+    <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="long m,n,tot=0,root;; long a[30010]; long fa[30010],left[30010],right[30010],data[30010],key[30010],size[30010]; void Init() { long i; scanf(&#34;%ld%ld&#34;,&amp;m,&amp;n); for(i=1; i&lt;=m; i&#43;&#43;) scanf(&#34;%ld&#34;,&amp;a[i]); } void Rotate(long x) { long y,z; y=fa[x]; z=fa[y]; fa[x]=z; fa[y]=x; if(x==left[y]) { fa[right[x]]=y; left[y]=right[x]; right[x]=y; } else { fa[left[x]]=y; right[y]=left[x]; left[x]=y; } if(y==left[z]) left[z]=x; else right[z]=x; size[y]=size[left[y]]&#43;size[right[y]]&#43;1; size[x]=size[left[x]]&#43;size[right[x]]&#43;1; if(y==root) root=x; } void Insert(long x) { long p,q; if(tot==0) { tot&#43;&#43;; root=tot; fa[tot]=left[tot]=right[tot]=0; data[tot]=x; key[tot]=rand()&#43;rand()&#43;rand(); size[tot]=1; return; } p=root; while(1) { q=p; size[q]&#43;&#43;; if(data[q]&lt;=x) p=right[q]; else p=left[q]; if(p==0) break; } tot&#43;&#43;; fa[tot]=q; left[tot]=right[tot]=0; data[tot]=x; size[tot]=1; key[tot]=rand()&#43;rand()&#43;rand(); if(data[q]&lt;=x) right[q]=tot; else left[q]=tot; p=tot; while(key[p]&gt;key[fa[p]]) Rotate(p); } long Find(long x) { long p=root; while(1) { if(size[left[p]]&#43;1==x) return data[p]; if(size[left[p]]&#43;1&lt;x) { x=x-size[left[p]]-1; p=right[p]; } else p=left[p]; } } void Work() { long i,j,x,now=0; key[0]=2147483647; for(i=1; i&lt;=n; i&#43;&#43;) { scanf(&#34;%ld&#34;,&amp;x); for(j=now&#43;1; j&lt;=x; j&#43;&#43;) Insert(a[j]); now=x; printf(&#34;%ld\n&#34;,Find(i)); } } "><meta property="og:title" content="Treap 平衡树" />
+<meta property="og:description" content="long m,n,tot=0,root;; long a[30010]; long fa[30010],left[30010],right[30010],data[30010],key[30010],size[30010]; void Init() { long i; scanf(&#34;%ld%ld&#34;,&amp;m,&amp;n); for(i=1; i&lt;=m; i&#43;&#43;) scanf(&#34;%ld&#34;,&amp;a[i]); } void Rotate(long x) { long y,z; y=fa[x]; z=fa[y]; fa[x]=z; fa[y]=x; if(x==left[y]) { fa[right[x]]=y; left[y]=right[x]; right[x]=y; } else { fa[left[x]]=y; right[y]=left[x]; left[x]=y; } if(y==left[z]) left[z]=x; else right[z]=x; size[y]=size[left[y]]&#43;size[right[y]]&#43;1; size[x]=size[left[x]]&#43;size[right[x]]&#43;1; if(y==root) root=x; } void Insert(long x) { long p,q; if(tot==0) { tot&#43;&#43;; root=tot; fa[tot]=left[tot]=right[tot]=0; data[tot]=x; key[tot]=rand()&#43;rand()&#43;rand(); size[tot]=1; return; } p=root; while(1) { q=p; size[q]&#43;&#43;; if(data[q]&lt;=x) p=right[q]; else p=left[q]; if(p==0) break; } tot&#43;&#43;; fa[tot]=q; left[tot]=right[tot]=0; data[tot]=x; size[tot]=1; key[tot]=rand()&#43;rand()&#43;rand(); if(data[q]&lt;=x) right[q]=tot; else left[q]=tot; p=tot; while(key[p]&gt;key[fa[p]]) Rotate(p); } long Find(long x) { long p=root; while(1) { if(size[left[p]]&#43;1==x) return data[p]; if(size[left[p]]&#43;1&lt;x) { x=x-size[left[p]]-1; p=right[p]; } else p=left[p]; } } void Work() { long i,j,x,now=0; key[0]=2147483647; for(i=1; i&lt;=n; i&#43;&#43;) { scanf(&#34;%ld&#34;,&amp;x); for(j=now&#43;1; j&lt;=x; j&#43;&#43;) Insert(a[j]); now=x; printf(&#34;%ld\n&#34;,Find(i)); } } " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeze.org.cn/docs/Graph/treap/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Treap 平衡树 | Freeze&#39;s Blogs</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
+<script defer src="/en.search.min.4c57398875ec51f0692c1f62ab0946fb1c8ae742e8d16304a12e4b2b7a0acfbc.js" integrity="sha256-TFc5iHXsUfBpLB9iqwlG&#43;xyK50Lo0WMEoS5LK3oKz7w="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+--> 
+</head>
+
+<body dir=" ltr ">
+    <input type="checkbox" class="hidden toggle" id="menu-control" />
+    <input type="checkbox" class="hidden toggle" id="toc-control" />
+    <main class="container flex">
+        <aside class="book-menu">
+            <div class="book-menu-content">
+                 <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
+      <a  class="">基础算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/bfs/" class="">广度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/dfs/" class="">深度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二分算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/hipre/" class="">高精度</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle"  />
+    <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
+      <a  class="">动态规划</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/basics/" class="">基础 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/knap/" class="">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle"  />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a  class="">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/stack/" class="">栈</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/link/" class="">链表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/queue/" class="">队列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/heap/" class="">二叉堆</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/DSU/" class="">并查集</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/treearray/" class="">树状数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle" checked />
+    <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
+      <a  class="">图论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/store/" class="">图的存储</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/path/" class="">最短路</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/topsort/" class="">拓扑排序</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/SCC/" class="">强连通分量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/treap/" class=" active">Treap 平衡树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ce95f89a1d24a8066e4c63de0cb15986" class="toggle"  />
+    <label for="section-ce95f89a1d24a8066e4c63de0cb15986" class="flex justify-between">
+      <a  class="">数论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Tools/" class="">工具</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+ 
+                
+            </div>
+        </aside>
+
+        <div class="book-page">
+            <header class="book-header">
+                 <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Treap 平衡树</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+ 
+<aside class="hidden clearfix">
+      <nav id="TableOfContents"></nav>  
+</aside>
+ 
+                
+            </header>
+
+             
+<article class="markdown"><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">tot</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">root</span><span style="color:#000;font-weight:bold">;;</span>
+<span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">30010</span><span style="color:#000;font-weight:bold">];</span>
+<span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">30010</span><span style="color:#000;font-weight:bold">],</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">30010</span><span style="color:#000;font-weight:bold">],</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">30010</span><span style="color:#000;font-weight:bold">],</span><span style="color:#000">data</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">30010</span><span style="color:#000;font-weight:bold">],</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">30010</span><span style="color:#000;font-weight:bold">],</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">30010</span><span style="color:#000;font-weight:bold">];</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">Init</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">scanf</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;%ld%ld&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">m</span><span style="color:#000;font-weight:bold">,</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span><span style="color:#ce5c00;font-weight:bold">&lt;=</span><span style="color:#000">m</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span><span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">scanf</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;%ld&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]);</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">Rotate</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">z</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">y</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#000">z</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">z</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#ce5c00;font-weight:bold">==</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">]]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">]]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">y</span><span style="color:#ce5c00;font-weight:bold">==</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">z</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">z</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">z</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">]]</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">]]</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">]]</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">]]</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">y</span><span style="color:#ce5c00;font-weight:bold">==</span><span style="color:#000">root</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">root</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">Insert</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">tot</span><span style="color:#ce5c00;font-weight:bold">==</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">tot</span><span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">root</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">data</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">key</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">rand</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#000">rand</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#000">rand</span><span style="color:#000;font-weight:bold">();</span>
+        <span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#204a87;font-weight:bold">return</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">root</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">q</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">data</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">&lt;=</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">==</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">break</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000">tot</span><span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">data</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">key</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">rand</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#000">rand</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#000">rand</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">data</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">&lt;=</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">&gt;</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]])</span> <span style="color:#000">Rotate</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">Find</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">root</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]]</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#ce5c00;font-weight:bold">==</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">data</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]]</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#000">x</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">x</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]]</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+            <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">right</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#000;font-weight:bold">}</span> <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">left</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">Work</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">now</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">key</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">2147483647</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span><span style="color:#ce5c00;font-weight:bold">&lt;=</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span><span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">scanf</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;%ld&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">);</span>
+        <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">j</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">now</span><span style="color:#ce5c00;font-weight:bold">+</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">j</span><span style="color:#ce5c00;font-weight:bold">&lt;=</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">j</span><span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">Insert</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">]);</span>
+        <span style="color:#000">now</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">printf</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;%ld</span><span style="color:#4e9a06">\n</span><span style="color:#4e9a06">&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">Find</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">));</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></article>
+
+            
+            
+
+            <footer class="book-footer">
+                 <div class="flex flex-wrap justify-between">
+      
+    <div style="margin:0 auto">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <span>闽 ICP 备 2021002587 号</span>
+        </a>
+    </div>
+</div> 
+                
+                
+            </footer>
+
+              
+            
+
+            <label for="menu-control" class="hidden book-menu-overlay"></label>
+        </div>
+
+        
+        <aside class="book-toc">
+            <div class="book-toc-content">
+                  <nav id="TableOfContents"></nav>  
+                
+            </div>
+        </aside>
+        
+    </main>
+
+    
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
+</script>
+</body>
+
+</html>
+
+     

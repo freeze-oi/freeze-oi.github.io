@@ -10,7 +10,11 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/intro/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/Graph/intro/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/DP/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Graph/store/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/stack/</loc>
   </url><url>
@@ -24,6 +28,8 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/Graph/path/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/DS/link/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/queue/</loc>
@@ -34,15 +40,23 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/Graph/topsort/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/DP/knap/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/interval/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/DSU/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/Graph/SCC/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/Math/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Basics/zip/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Graph/treap/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Tools/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/digit/</loc>
   </url><url>
