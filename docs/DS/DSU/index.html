@@ -10,26 +10,16 @@
   合并两个集合为一个集合。
   基本原理 $  若 $a \ b$，$e \ c$，$e \ d$ 分别在同一个集合，则一共有几个集合？$b$ 和 $d$ 是否同集？
 构造并查集 $  把属于同一集合的两个节点连一起，易知集合数 $=$ 连通图数。若两个节点连通，则它们同集。
-<<<<<<< HEAD
 并查集在每个集合中选取一个代表元素作为根节点，构造「树型结构」。如下图，$a$ 和 $e$ 分别是两个集合的代表元素。
  mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) flowchart TDsubgraph &nbspe((e))--c((c))e((e))--d((d))endsubgraph &nbspa((a))--b((b)) end$fa[i]$ 代表节点 $i$ 的父节点编号。如上图，$fa[b]=a$，$fa[d]=e$，$fa[c]=e$。根节点没有父节点，其 $fa$ 值都设为 $0$，如 $fa[a]=0$，$fa[e]=0$。"><meta property="og:title" content="并查集" />
-=======
- mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) flowchart TDsubgraph &nbspe((e))---c((c))e((e))---d((d))endsubgraph &nbspa((a))---b((b)) end并查集在每个集合中选取一个代表元素作为根节点，构造「树型结构」。如下图，$a$ 和 $e$ 分别是两个集合的代表元素。
-flowchart TDsubgraph &nbspe((e))--c((c))e((e))--d((d))endsubgraph &nbspa((a))--b((b)) end$fa[i]$ 代表节点 $i$ 的父节点编号。如上图，$fa[b]=a$，$fa[d]=e$，$fa[c]=e$。根节点没有父节点，其 $fa$ 值都设为 $0$，如 $fa[a]=0$，$fa[e]=0$。"><meta property="og:title" content="并查集" />
->>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
 <meta property="og:description" content="简介 $  并查集 支持以下操作：
   往一个集合中加入元素；
   快速查询两个元素是否在同一集合；
   合并两个集合为一个集合。
   基本原理 $  若 $a \ b$，$e \ c$，$e \ d$ 分别在同一个集合，则一共有几个集合？$b$ 和 $d$ 是否同集？
 构造并查集 $  把属于同一集合的两个节点连一起，易知集合数 $=$ 连通图数。若两个节点连通，则它们同集。
-<<<<<<< HEAD
 并查集在每个集合中选取一个代表元素作为根节点，构造「树型结构」。如下图，$a$ 和 $e$ 分别是两个集合的代表元素。
  mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) flowchart TDsubgraph &nbspe((e))--c((c))e((e))--d((d))endsubgraph &nbspa((a))--b((b)) end$fa[i]$ 代表节点 $i$ 的父节点编号。如上图，$fa[b]=a$，$fa[d]=e$，$fa[c]=e$。根节点没有父节点，其 $fa$ 值都设为 $0$，如 $fa[a]=0$，$fa[e]=0$。" />
-=======
- mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) flowchart TDsubgraph &nbspe((e))---c((c))e((e))---d((d))endsubgraph &nbspa((a))---b((b)) end并查集在每个集合中选取一个代表元素作为根节点，构造「树型结构」。如下图，$a$ 和 $e$ 分别是两个集合的代表元素。
-flowchart TDsubgraph &nbspe((e))--c((c))e((e))--d((d))endsubgraph &nbspa((a))--b((b)) end$fa[i]$ 代表节点 $i$ 的父节点编号。如上图，$fa[b]=a$，$fa[d]=e$，$fa[c]=e$。根节点没有父节点，其 $fa$ 值都设为 $0$，如 $fa[a]=0$，$fa[e]=0$。" />
->>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://freeze.org.cn/docs/DS/DSU/" /><meta property="article:section" content="docs" />
 
@@ -38,11 +28,7 @@ flowchart TDsubgraph &nbspe((e))--c((c))e((e))--d((d))endsubgraph &nbspa((
 <title>并查集 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
-<<<<<<< HEAD
 <script defer src="/en.search.min.cdfcd48357937d7f498e8985d72e47f3d305448b8e6e08d74660d1e7f03978db.js" integrity="sha256-zfzUg1eTfX9JjomF1y5H89MFRIuObgjXRmDR5/A5eNs="></script>
-=======
-<script defer src="/en.search.min.4c57398875ec51f0692c1f62ab0946fb1c8ae742e8d16304a12e4b2b7a0acfbc.js" integrity="sha256-TFc5iHXsUfBpLB9iqwlG&#43;xyK50Lo0WMEoS5LK3oKz7w="></script>
->>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -474,7 +460,6 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-<<<<<<< HEAD
     <input type="checkbox" id="section-51cd7eb0a868c10bd862407a54c9232a" class="toggle"  />
     <label for="section-51cd7eb0a868c10bd862407a54c9232a" class="flex justify-between">
       <a  class="">树</a>
@@ -549,8 +534,6 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-=======
->>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
     <a href="https://freeze.org.cn/docs/Graph/path/" class="">最短路</a>
   
 
@@ -656,24 +639,6 @@ https://github.com/alex-shpak/hugo-book
 
         </li>
       
-    
-  </ul>
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/Tools/" class="">工具</a>
-  
-
-          
-  <ul>
     
   </ul>
 
@@ -812,23 +777,6 @@ https://github.com/alex-shpak/hugo-book
 <p class="mermaid">
 flowchart TD
 subgraph &nbsp
-<<<<<<< HEAD
-=======
-e((e))---c((c))
-e((e))---d((d))
-end
-subgraph &nbsp
-a((a))---b((b)) 
-end
-</p>
-
-<p><strong>并查集</strong>在每个集合中选取一个<strong>代表元素</strong>作为根节点，构造「树型结构」。如下图，$a$ 和 $e$ 分别是两个集合的代表元素。</p>
-
-
-<p class="mermaid">
-flowchart TD
-subgraph &nbsp
->>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
 e((e))-->c((c))
 e((e))-->d((d))
 end

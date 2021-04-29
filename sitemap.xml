@@ -12,7 +12,6 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/intro/</loc>
   </url><url>
-<<<<<<< HEAD
     <loc>https://freeze.org.cn/docs/Graph/Tree/intro/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Math/prime/</loc>
@@ -21,10 +20,6 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/Math/factor/</loc>
   </url><url>
-=======
-    <loc>https://freeze.org.cn/docs/DP/</loc>
-  </url><url>
->>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
     <loc>https://freeze.org.cn/docs/Graph/store/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/stack/</loc>
@@ -47,11 +42,8 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/path/</loc>
   </url><url>
-<<<<<<< HEAD
     <loc>https://freeze.org.cn/docs/Graph/Tree/LCA/</loc>
   </url><url>
-=======
->>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
     <loc>https://freeze.org.cn/docs/DS/link/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/queue/</loc>
@@ -64,11 +56,8 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/topsort/</loc>
   </url><url>
-<<<<<<< HEAD
     <loc>https://freeze.org.cn/docs/Graph/Tree/MST/</loc>
   </url><url>
-=======
->>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
     <loc>https://freeze.org.cn/docs/DP/knap/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/interval/</loc>
