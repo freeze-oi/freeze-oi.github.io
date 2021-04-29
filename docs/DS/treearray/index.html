@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en" dir=" ltr ">
+
+<head>
+    <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="前置知识 $  你得先学会 $lowbit(n)$ 的计算方式。
+引入问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
+  单点修改：将 $A[ x]$ 加上 $k$。
+  区间查询：查询 $A[l\cdots r]$ 的和。
+  int a[]; void set(int id, int v) { // 单点修改  a[id] = v; } int ask(int l, int r) { // 区间查询  int ans = 0; for(int i = l; i &lt;= r; i &#43;&#43;) ans &#43;= a[i]; return ans; }     暴力算法（$\textcolor{red}{×}$） 树状数组（$\textcolor{green}{√}$）     单点修改 $\textcolor{green}{O(1)}$ $\textcolor{green}{O(\log{n})}$   区间查询 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   $m$ 次操作 $\textcolor{red}{O(mn)}$ $\textcolor{green}{O(m\log{n})}$    构造 $  在原数组的上方构建树型结构，每个节点表示一段区间和："><meta property="og:title" content="树状数组" />
+<meta property="og:description" content="前置知识 $  你得先学会 $lowbit(n)$ 的计算方式。
+引入问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
+  单点修改：将 $A[ x]$ 加上 $k$。
+  区间查询：查询 $A[l\cdots r]$ 的和。
+  int a[]; void set(int id, int v) { // 单点修改  a[id] = v; } int ask(int l, int r) { // 区间查询  int ans = 0; for(int i = l; i &lt;= r; i &#43;&#43;) ans &#43;= a[i]; return ans; }     暴力算法（$\textcolor{red}{×}$） 树状数组（$\textcolor{green}{√}$）     单点修改 $\textcolor{green}{O(1)}$ $\textcolor{green}{O(\log{n})}$   区间查询 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   $m$ 次操作 $\textcolor{red}{O(mn)}$ $\textcolor{green}{O(m\log{n})}$    构造 $  在原数组的上方构建树型结构，每个节点表示一段区间和：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeze.org.cn/docs/DS/treearray/" /><meta property="article:section" content="docs" />
+
+
+
+<title>树状数组 | Freeze&#39;s Blogs</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
+<script defer src="/en.search.min.cdfcd48357937d7f498e8985d72e47f3d305448b8e6e08d74660d1e7f03978db.js" integrity="sha256-zfzUg1eTfX9JjomF1y5H89MFRIuObgjXRmDR5/A5eNs="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+--> 
+</head>
+
+<body dir=" ltr ">
+    <input type="checkbox" class="hidden toggle" id="menu-control" />
+    <input type="checkbox" class="hidden toggle" id="toc-control" />
+    <main class="container flex">
+        <aside class="book-menu">
+            <div class="book-menu-content">
+                 <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
+      <a  class="">基础算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/bfs/" class="">广度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/dfs/" class="">深度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二分算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/hipre/" class="">高精度</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle"  />
+    <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
+      <a  class="">动态规划</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/basics/" class="">基础 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/knap/" class="">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle" checked />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a  class="">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/stack/" class="">栈</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/link/" class="">链表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/queue/" class="">队列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/heap/" class="">二叉堆</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/DSU/" class="">并查集</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/treearray/" class=" active">树状数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
+    <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
+      <a  class="">图论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/store/" class="">图的存储</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-51cd7eb0a868c10bd862407a54c9232a" class="toggle"  />
+    <label for="section-51cd7eb0a868c10bd862407a54c9232a" class="flex justify-between">
+      <a  class="">树</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/traversal/" class="">树的遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/LCA/" class="">最近公共祖先</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/MST/" class="">最小生成树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/path/" class="">最短路</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/topsort/" class="">拓扑排序</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/SCC/" class="">强连通分量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/treap/" class="">Treap 平衡树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ce95f89a1d24a8066e4c63de0cb15986" class="toggle"  />
+    <label for="section-ce95f89a1d24a8066e4c63de0cb15986" class="flex justify-between">
+      <a  class="">数论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/prime/" class="">质数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/factor/" class="">因数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/mod/" class="">同余</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Tools/" class="">工具</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+ 
+                
+            </div>
+        </aside>
+
+        <div class="book-page">
+            <header class="book-header">
+                 <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>树状数组</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+ 
+<aside class="hidden clearfix">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前置知识">前置知识</a></li>
+        <li><a href="#引入问题">引入问题</a></li>
+        <li><a href="#构造">构造</a>
+          <ul>
+            <li><a href="#父节点">父节点</a></li>
+            <li><a href="#左邻节点">左邻节点</a></li>
+          </ul>
+        </li>
+        <li><a href="#单点修改">单点修改</a></li>
+        <li><a href="#区间查询">区间查询</a></li>
+        <li><a href="#模板">模板</a></li>
+        <li><a href="#拓展">拓展</a>
+          <ul>
+            <li><a href="#区间修改">区间修改</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>  
+</aside>
+ 
+                
+            </header>
+
+             
+<article class="markdown"><h2 id="前置知识">
+  前置知识
+  <a class="anchor" href="#%e5%89%8d%e7%bd%ae%e7%9f%a5%e8%af%86">$</a>
+</h2>
+<p>你得先学会 
+  <a href="/docs/Basics/zip/#lowbit-%e8%bf%90%e7%ae%97">$lowbit(n)$</a> 的计算方式。</p>
+<h2 id="引入问题">
+  引入问题
+  <a class="anchor" href="#%e5%bc%95%e5%85%a5%e9%97%ae%e9%a2%98">$</a>
+</h2>
+<p>数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：</p>
+<ul>
+<li>
+<p><strong>单点修改</strong>：将 $A[ x]$ 加上 $k$。</p>
+</li>
+<li>
+<p><strong>区间查询</strong>：查询 $A[l\cdots r]$ 的和。</p>
+</li>
+</ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[];</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">set</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">id</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 单点修改
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">id</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">ask</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 区间查询
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">ans</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">ans</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">ans</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">暴力算法（$\textcolor{red}{×}$）</th>
+<th style="text-align:center">树状数组（$\textcolor{green}{√}$）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">单点修改</td>
+<td style="text-align:center">$\textcolor{green}{O(1)}$</td>
+<td style="text-align:center">$\textcolor{green}{O(\log{n})}$</td>
+</tr>
+<tr>
+<td style="text-align:center">区间查询</td>
+<td style="text-align:center">$\textcolor{red}{O(n)}$</td>
+<td style="text-align:center">$\textcolor{green}{O(\log{n})}$</td>
+</tr>
+<tr>
+<td style="text-align:center">$m$ 次操作</td>
+<td style="text-align:center">$\textcolor{red}{O(mn)}$</td>
+<td style="text-align:center">$\textcolor{green}{O(m\log{n})}$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="构造">
+  构造
+  <a class="anchor" href="#%e6%9e%84%e9%80%a0">$</a>
+</h2>
+<p>在原数组的上方构建树型结构，每个节点表示一段区间和：</p>
+<center><img src=\DS\treearray_1.png style="zoom:80%"></img></center>
+<p>$C_1=A_1$；</p>
+<p>$C_2=A_1+A_2$；</p>
+<p>$C_3=A_3$；</p>
+<p>$C_4=A_1+A_2+A_3+A_4$；</p>
+<p>$\cdots \ \cdots$</p>
+<h3 id="父节点">
+  父节点
+  <a class="anchor" href="#%e7%88%b6%e8%8a%82%e7%82%b9">$</a>
+</h3>
+<p>如何求 $C_i$ 的父节点？</p>
+<p>将 $C$ 数组的下标转换成二进制数，观察该图。</p>
+<center><img src=\DS\treearray_2.png style="zoom:80%"></img></center>
+<ul>
+<li>
+<p>$C[$000<font color="red">1</font>$]$ 的父节点为 $C[$00<font color="red">10</font>$]$。</p>
+</li>
+<li>
+<p>$C[$0<font color="red">100</font>$]$ 的父节点为 $C[$<font color="red">1000</font>$]$。</p>
+</li>
+<li>
+<p>$C[$010<font color="red">1</font>$]$ 的父节点为 $C[$01<font color="red">10</font>$]$。</p>
+<p>$\cdots \ \cdots$</p>
+</li>
+</ul>
+<p>不难总结出规律：</p>
+<ul>
+<li>$C_i$ 的父节点为 $C[i+$ 
+  <a href="/docs/Basics/zip/#lowbit-%e8%bf%90%e7%ae%97">$lowbit(i)$</a> $]$。</li>
+</ul>
+<h3 id="左邻节点">
+  左邻节点
+  <a class="anchor" href="#%e5%b7%a6%e9%82%bb%e8%8a%82%e7%82%b9">$</a>
+</h3>
+<p>$C_i$ 的「左邻节点」与 $C_i$ 的左端相邻。例如 $C_5$ 的左邻节点为 $C_4$。</p>
+<center><img src=\DS\treearray_3.png style="zoom:80%"></img></center>
+<p>观察同一张图：</p>
+<center><img src=\DS\treearray_2.png style="zoom:80%"></img></center>
+<ul>
+<li>
+<p>$C[$001<font color="red">1</font>$]$ 的左邻节点为 $C[$001<font color="red">0</font>$]$。</p>
+</li>
+<li>
+<p>$C[$010<font color="red">1</font>$]$ 的左邻节点为 $C[$010<font color="red">0</font>$]$。</p>
+</li>
+<li>
+<p>$C[$01<font color="red">10</font>$]$ 的左邻节点为 $C[$01<font color="red">00</font>$]$。</p>
+</li>
+</ul>
+<p>总结规律：</p>
+<ul>
+<li>$C_i$ 的左邻节点为 $C[i-lowbit(i)]$。</li>
+</ul>
+<h2 id="单点修改">
+  单点修改
+  <a class="anchor" href="#%e5%8d%95%e7%82%b9%e4%bf%ae%e6%94%b9">$</a>
+</h2>
+<p>将 $A[x]$ 增加 $k$，$A[x]$ 的所有祖先都会跟着变动。以 $A_3$ 为例：</p>
+<center><img src=\DS\treearray_4.png style="zoom:80%"></img></center>
+<p>$C_3=\textcolor{red}{A_3}$；</p>
+<p>$C_4=A_1+A_2+\textcolor{red}{A_3}+A_4$；</p>
+<p>$C_8=A_1+A_2+\textcolor{red}{A_3}+A_4+A_5+A_6+A_7+A_8$。</p>
+<p>因此，修改 $A[3]$ 的同时，$C_3,C_4,C_8$ 也需要加上 $k$。</p>
+<p>对于给定的 $x$，从 $C_x$ 开始逐层访问
+  <a href="/docs/DS/treearray/#%e7%88%b6%e8%8a%82%e7%82%b9">父节点</a>，并给其值加上 $k$。时间复杂度为 $O(\log{n})$。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">lowbit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">k</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 将 a[p] 增加 k
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">lowbit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">k</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="区间查询">
+  区间查询
+  <a class="anchor" href="#%e5%8c%ba%e9%97%b4%e6%9f%a5%e8%af%a2">$</a>
+</h2>
+<p>采用 
+  <a href="/docs/DP/basics/#%e5%89%8d%e7%bc%80%e5%92%8c">前缀和</a> 思想。$sum[x]$ 表示 $A[1]+A[2]+\cdots+A[x]$，则：</p>
+<center>$A[l\cdots r]$ 的和 $=sum[r]-sum[l-1]$</center>
+<p>自此，问题转换为求 $sum[x]$。以 $sum[7]$ 为例：</p>
+<center><img src=\DS\treearray_5.png style="zoom:80%"></img></center>
+<p>$C_4=A_1+A_2+A_3+A_4$；</p>
+<p>$C_6=A_5+A_6$；</p>
+<p>$C_7=A_7$；</p>
+<p>因而 $sum[7]=C_4+C_6+C_7$。</p>
+<p>查询 $sum[x]$ 时，从 $C_x$ 开始依次遍历
+  <a href="/docs/DS/treearray/#%e5%b7%a6%e9%82%bb%e8%8a%82%e7%82%b9">左邻节点</a>。时间复杂度为 $O(\log{n})$。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">ask</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 查询 A[1...p] 的和
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">sum</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(;</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">-=</span> <span style="color:#000">lowbit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000">sum</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">sum</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">get</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 查询 A[l...r] 的和
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">ask</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">r</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">ask</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="模板">
+  模板
+  <a class="anchor" href="#%e6%a8%a1%e6%9d%bf">$</a>
+</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">lowbit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">k</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">lowbit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">k</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">ask</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">sum</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(;</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">-=</span> <span style="color:#000">lowbit</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000">sum</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">sum</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">get</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">ask</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">r</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">ask</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="拓展">
+  拓展
+  <a class="anchor" href="#%e6%8b%93%e5%b1%95">$</a>
+</h2>
+<h3 id="区间修改">
+  区间修改
+  <a class="anchor" href="#%e5%8c%ba%e9%97%b4%e4%bf%ae%e6%94%b9">$</a>
+</h3>
+<p>如果你已经学过 
+  <a href="/docs/DP/basics/#%e5%b7%ae%e5%88%86">差分</a>，区间修改就容易的多。</p>
+<ol>
+<li>
+<p>在数组 $A$ 的「差分数组」上建立树状数组。</p>
+</li>
+<li>
+<p>将 $A[l\cdots r]$ 所有元素都加上 $v$ 时，$f[l]$ 增加了 $v$，$f[r+1]$ 减少了 $v$。</p>
+</li>
+</ol>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">seg_add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 将 A[l...r] 加上 v
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">r</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#8f5902;font-style:italic">/* 输入部分省略 */</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">add</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]);</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></article>
+
+            
+            
+
+            <footer class="book-footer">
+                 <div class="flex flex-wrap justify-between">
+      
+    <div style="margin:0 auto">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <span>闽 ICP 备 2021002587 号</span>
+        </a>
+    </div>
+</div> 
+                
+                
+            </footer>
+
+              
+            
+
+            <label for="menu-control" class="hidden book-menu-overlay"></label>
+        </div>
+
+        
+        <aside class="book-toc">
+            <div class="book-toc-content">
+                  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前置知识">前置知识</a></li>
+        <li><a href="#引入问题">引入问题</a></li>
+        <li><a href="#构造">构造</a>
+          <ul>
+            <li><a href="#父节点">父节点</a></li>
+            <li><a href="#左邻节点">左邻节点</a></li>
+          </ul>
+        </li>
+        <li><a href="#单点修改">单点修改</a></li>
+        <li><a href="#区间查询">区间查询</a></li>
+        <li><a href="#模板">模板</a></li>
+        <li><a href="#拓展">拓展</a>
+          <ul>
+            <li><a href="#区间修改">区间修改</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>  
+                
+            </div>
+        </aside>
+        
+    </main>
+
+    
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
+</script>
+</body>
+
+</html>
+
+     

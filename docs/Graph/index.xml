@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>图论 on Freeze&#39;s Blogs</title>
+    <link>https://freeze.org.cn/docs/Graph/</link>
+    <description>Recent content in 图论 on Freeze&#39;s Blogs</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/Graph/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>简介</title>
+      <link>https://freeze.org.cn/docs/Graph/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Graph/intro/</guid>
+      <description>图的定义 $  图（Graph）由若干顶点和边组成。用大写字母 $G$ 表示图，$V$ 表示顶点集合，$E$ 表示边集合，记作 $G=(V,E)$。
+ 图是描述实际问题的工具。如进行城市道规划时，可将每个城市视作顶点，连接城市的道路视作边。
+有向图和无向图 $    如果图的每条边都规定起点和终点，则图被称作有向图；
+  相反，边没有方向（可以理解为双向）的图称为无向图（双向图）。
+   边权和点权 $  为解决实际问题，引入边权和点权的概念：
+  边权及边的长度。解决最短路径问题时，将城市视作顶点，城市之间的道路长度视作边权；
+  点权即点的大小。解决最小收费问题时，将收费站视作顶点，收费站之间的道路视作边，通过收费站支付的费用视作点权。
+  度数 $  若图中有 $d$ 条边与节点 $i$ 相连，则节点 $i$ 的度数为 $d$（即节点的连边个数）。如下图，节点 $1$ 的度为 $5$：
+   若有向图中有 $d$ 条边的终点是节点 $i$，则节点 $i$ 的入度为 $d$（即节点的入边个数）；
+  若有向图中有 $d$ 条边的起点是节点 $i$，则节点 $i$ 的出度为 $d$（即节点的出边个数）；
+  子图 $  图 $G$ 的子图 $H$ 满足以下条件：</description>
+    </item>
+    
+    <item>
+      <title>图的存储</title>
+      <link>https://freeze.org.cn/docs/Graph/store/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Graph/store/</guid>
+      <description>直接存边 $  把每条边的起点、终点、长度存入结构体数组中。
+struct node { int from, to, len; } edge[]; 也可以分成三个数组来存储。
+int from[], to[], len[]; 邻接矩阵 $  用二维数组 $g[ \ ][ \ ]$（邻接矩阵）存储边长。$g[i][j]$ 表示节点 $i$ 和 $j$ 之间的边的权值。
+缺点：不能存储重边；浪费空间。
+邻接表 $  把节点 $i$ 的所有相邻节点插入以 $head[i]$ 开头的 链表中（链表最后一个元素的 next 指向 0）。
+int top, head[]; struct Node { int val, len; int next; // 这里只需要用到单向链表 } edge[]; void insert(int u, int v, int len) { // 追加一条从 u 到 v 长度为 len 的边  edge[++ top] = Node{v, len, head[u]}; head[u] = top; } int path(int u, int v) { // 获取以 u, v 为端点的边的长度（没有边则返回 -1）  for(int p = head[u]; p; p = edge[p].</description>
+    </item>
+    
+    <item>
+      <title>最短路</title>
+      <link>https://freeze.org.cn/docs/Graph/path/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Graph/path/</guid>
+      <description>松弛操作（relax） $  用 邻接矩阵 $g[ \ ][ \ ]$ 存储边。如果 $g[i][k] + g[k][j] &amp;lt; g[i][j]$，则说明「先从 $i$ 走到 $k$，再走到 $j$」比原先的路径更快，此时令 $g[i][j] = g[i][k] + g[k][j]$。
+Floyed 算法 $  $g[k][i][j]$ 表示只允许经过节点 $1 \sim k$ 时，从节点 $i$ 到 $j$ 的最短路径。
+当节点 $k$ 被允许经过时，枚举路径的两个端点 $i$ 和 $j$：
+  若不经过节点 k，则 $g[k][i][j] = g[k - 1][i][j]$；
+  若经过节点 k，则 $g[k][i][j] = g[k - 1][i][k] + g[k - 1][k][j]$。
+  $g[k][i][j] = max(g[k - 1][i][j], g[k - 1][i][k] + g[k - 1][k][j])$。</description>
+    </item>
+    
+    <item>
+      <title>拓扑排序</title>
+      <link>https://freeze.org.cn/docs/Graph/topsort/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Graph/topsort/</guid>
+      <description>AOV 网 $  给出几组关系：$a &amp;gt; b$，$a &amp;gt; c$，$b &amp;gt; c$，$b &amp;gt; d$，$\cdots$，求可能的 $a \ b \ c \ d \cdots$ 的大小顺序？
+将上述关系转化为有向图，其中 $a → b$ 代表 $a &amp;gt; b$。这类能表示节点大小关系的图称做 AOV 网。
+基本原理 $  拓扑排序 求的是合法的优先顺序，求得的序列称为 拓扑序列。同一张 AOV 网可能有多个合法的拓扑序列。
+Info
+没被箭头指着的节点（入度为 $0$ 的节点）是当前最大的节点。
+ Step 1 节点 $a$ 的入度为 $0$。在拓扑序列中追加 $a$，并删除 $a$ 和它的所有邻边：
+拓扑序列：$a$。
+Step 2 节点 $e$ 的入度为 $0$。在拓扑序列中追加 $e$，并删除 $e$ 和它的所有邻边：
+拓扑序列：$a \ e$。</description>
+    </item>
+    
+    <item>
+      <title>强连通分量</title>
+      <link>https://freeze.org.cn/docs/Graph/SCC/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Graph/SCC/</guid>
+      <description>Tarjan 算法 $  int dep[], low[], tot; stack&amp;lt;int&amp;gt; s; void tarjan(int u) { dep[u] = low[u] = ++ tot; s.push(u), avl[u] = true; for(int i = 0; i &amp;lt; g[u].size(); i ++) { int y = g[u][i]; if(!dep[y]) { tarjan(y); low[u] = min(low[u], low[y]); } else if(avl[y]) low[u] = min(low[u], dep[y]); } if(dep[u] == low[u]) { ans ++; while(u != s.top()) avl[s.top()] = false, s.pop(); avl[u] = false, s.pop(); } } Kosaraju 算法 $  void dfs1(int u) { vis[u] = true; for(int v : g[u]) if(!</description>
+    </item>
+    
+    <item>
+      <title>Treap 平衡树</title>
+      <link>https://freeze.org.cn/docs/Graph/treap/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Graph/treap/</guid>
+      <description>long m,n,tot=0,root;; long a[30010]; long fa[30010],left[30010],right[30010],data[30010],key[30010],size[30010]; void Init() { long i; scanf(&amp;#34;%ld%ld&amp;#34;,&amp;amp;m,&amp;amp;n); for(i=1; i&amp;lt;=m; i++) scanf(&amp;#34;%ld&amp;#34;,&amp;amp;a[i]); } void Rotate(long x) { long y,z; y=fa[x]; z=fa[y]; fa[x]=z; fa[y]=x; if(x==left[y]) { fa[right[x]]=y; left[y]=right[x]; right[x]=y; } else { fa[left[x]]=y; right[y]=left[x]; left[x]=y; } if(y==left[z]) left[z]=x; else right[z]=x; size[y]=size[left[y]]+size[right[y]]+1; size[x]=size[left[x]]+size[right[x]]+1; if(y==root) root=x; } void Insert(long x) { long p,q; if(tot==0) { tot++; root=tot; fa[tot]=left[tot]=right[tot]=0; data[tot]=x; key[tot]=rand()+rand()+rand(); size[tot]=1; return; } p=root; while(1) { q=p; size[q]++; if(data[q]&amp;lt;=x) p=right[q]; else p=left[q]; if(p==0) break; } tot++; fa[tot]=q; left[tot]=right[tot]=0; data[tot]=x; size[tot]=1; key[tot]=rand()+rand()+rand(); if(data[q]&amp;lt;=x) right[q]=tot; else left[q]=tot; p=tot; while(key[p]&amp;gt;key[fa[p]]) Rotate(p); } long Find(long x) { long p=root; while(1) { if(size[left[p]]+1==x) return data[p]; if(size[left[p]]+1&amp;lt;x) { x=x-size[left[p]]-1; p=right[p]; } else p=left[p]; } } void Work() { long i,j,x,now=0; key[0]=2147483647; for(i=1; i&amp;lt;=n; i++) { scanf(&amp;#34;%ld&amp;#34;,&amp;amp;x); for(j=now+1; j&amp;lt;=x; j++) Insert(a[j]); now=x; printf(&amp;#34;%ld\n&amp;#34;,Find(i)); } } </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数论 on Freeze&#39;s Blogs</title>
+    <link>https://freeze.org.cn/docs/Math/</link>
+    <description>Recent content in 数论 on Freeze&#39;s Blogs</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/Math/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>质数</title>
+      <link>https://freeze.org.cn/docs/Math/prime/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Math/prime/</guid>
+      <description>定义 $    质数不能被 $1$ 和它本身之外的任何自然数整除，合数则相反。$1$ 既不是质数，也不是合数。
+  $\pi(n)$ 表示 $n$ 以内的质数个数，$\displaystyle\pi(n)≈\frac{n}{\ln{n}}$ 。
+  第 $n$ 个质数的渐进估计为 $p(n)\sim n\ln{n}$。
+  质数的判定 $  判定非负整数 $n$ 是否为质数。
+试除法 $  若 $n$ 为合数，则 $n$ 一定有因子 $≤\sqrt{n}$。
+判断 $n$ 能否整除 $[2,\sqrt n]$ 中的整数，对于 $n=0$ 或 $1$ 需要特判。时间复杂度为 $O(\sqrt n)$。
+bool isPrime(int n) { if(n &amp;lt; 2) return false; for(int i = 2; i &amp;lt;= sqrt(n); i ++) if(n % i == 0) return false; return true; } 质数筛法 $  求出 $n$ 以内的所有质数。</description>
+    </item>
+    
+    <item>
+      <title>因数</title>
+      <link>https://freeze.org.cn/docs/Math/factor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Math/factor/</guid>
+      <description>定义 $  若整数 $n%d=0$，则 $d$ 是 $n$ 的 因数，记为 $d|n$。
+算数基本定理 $  任意 $n\in Z^{+}$ 都能唯一分解为有限个质数的乘积：
+$$ n=p_1^{c_1}×p_2^{c_2}×&amp;hellip;×p_m^{c_m} \ , \ p_i∈\mathbb{P},c_i\in Z^{+} $$
+欧几里得算法 $  最大公因数 $  如何求 $a$ 和 $b$ 的最大公因数？
+$gcd(a,b)$ 表示 $a$ 和 $b$ 的最大公因数。
+设 $a &amp;gt; b$，$gcd(a, b)=x$，则 $a|x, b|x,(a%b)|x$，
+$∴gcd(a,b)=gcd(b,a%b)(a &amp;gt; b &amp;gt; a%b)$。
+于是「求 $gcd(a,b)$」的问题被转化为「求 $gcd(b,a%b)$」这一范围更小的问题。当 $b=0$ 时，$a$ 即为最大公因数。
+时间复杂度为 $O(log{(a+b)})$。
+int gcd(a, b) { if(!b) return a; return gcd(b, a % b); } 最小公倍数 $  如何求 $a$ 和 $b$ 的最小公倍数？</description>
+    </item>
+    
+    <item>
+      <title>同余</title>
+      <link>https://freeze.org.cn/docs/Math/mod/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Math/mod/</guid>
+      <description>定义 $  若 $a,b,m\in Z,a\%m=b\%m$，则 $a$ 和 $b$ 模 $m$ 同余，记作 $a≡b\pmod{m}$。
+同余类 $    对于任意 $a,k,m\in Z$，都有 $a+km≡a\pmod{m}$。集合 ${a+km}$ 为模 $m$ 的 同余类，简记为 $\overline{a}$。$a$ 是该同余类的 代表元。
+  模 $m$ 的同余类有 $m$ 个，为 $\overline{0},\overline{1},\overline{2},\cdots,\overline{m-1}$。
+  同余系 $    从模 $m$ 的所有同余类中各取一个数，构成的集合是 $m$ 的 完全同余系。
+  模 $m$ 的同余类中，代表元与 $m$ 互质的有 $\phi(m)$ 个。从这些同余类中各取一个数，构成的集合是 $m$ 的 简化同余系。
+  乘法封闭 $  若 $a,b\in[1,m)$ 分别与 $m$ 互质，则 $ab$ 与 $m$ 互质。</description>
+    </item>
+    
+  </channel>
+</rss>

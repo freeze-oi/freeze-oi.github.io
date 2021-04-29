@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en" dir=" ltr ">
+
+<head>
+    <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="简介 $    链表只能按顺序依次访问元素，而数组支持随机访问。
+  链表支持在任意位置插入或删除元素，而数组不支持。
+  链表节点 $  用一个结构体表示链表的节点，其中可以存储任意数据。另外用 prev 和 next 两个指针指向前后相邻的节点。
+struct Node { int val; // 数据（可以是任意类型）  Node *prev, *next; // 指针 }; 初始化 $  初始化链表时，额外建立两个节点 head 和 tail 代表链表头尾，把实际节点存储在 head 与 tail 之间，简化链表边界的判断。
+Node *head, *tail; void init() { head = new Node(); tail = new Node(); head-&gt;next = tail; tail-&gt;prev = next; } 插入/删除节点 $  如何在 $1$ 和 $2$ 之间插入 $3$ ？"><meta property="og:title" content="链表" />
+<meta property="og:description" content="简介 $    链表只能按顺序依次访问元素，而数组支持随机访问。
+  链表支持在任意位置插入或删除元素，而数组不支持。
+  链表节点 $  用一个结构体表示链表的节点，其中可以存储任意数据。另外用 prev 和 next 两个指针指向前后相邻的节点。
+struct Node { int val; // 数据（可以是任意类型）  Node *prev, *next; // 指针 }; 初始化 $  初始化链表时，额外建立两个节点 head 和 tail 代表链表头尾，把实际节点存储在 head 与 tail 之间，简化链表边界的判断。
+Node *head, *tail; void init() { head = new Node(); tail = new Node(); head-&gt;next = tail; tail-&gt;prev = next; } 插入/删除节点 $  如何在 $1$ 和 $2$ 之间插入 $3$ ？" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeze.org.cn/docs/DS/link/" /><meta property="article:section" content="docs" />
+
+
+
+<title>链表 | Freeze&#39;s Blogs</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.03f1ef6f89a29f5bb3a1013af5f27d000ba3e08765de06c8c9487bfb6c5ecd6a.css" integrity="sha256-A/Hvb4min1uzoQE69fJ9AAuj4Idl3gbIyUh7&#43;2xezWo=">
+<script defer src="/en.search.min.cdfcd48357937d7f498e8985d72e47f3d305448b8e6e08d74660d1e7f03978db.js" integrity="sha256-zfzUg1eTfX9JjomF1y5H89MFRIuObgjXRmDR5/A5eNs="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+--> 
+</head>
+
+<body dir=" ltr ">
+    <input type="checkbox" class="hidden toggle" id="menu-control" />
+    <input type="checkbox" class="hidden toggle" id="toc-control" />
+    <main class="container flex">
+        <aside class="book-menu">
+            <div class="book-menu-content">
+                 <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
+      <a  class="">基础算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/bfs/" class="">广度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/dfs/" class="">深度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二分算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/hipre/" class="">高精度</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle"  />
+    <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
+      <a  class="">动态规划</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/basics/" class="">基础 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/knap/" class="">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle" checked />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a  class="">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/stack/" class="">栈</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/link/" class=" active">链表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/queue/" class="">队列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/heap/" class="">二叉堆</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/DSU/" class="">并查集</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/treearray/" class="">树状数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
+    <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
+      <a  class="">图论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/store/" class="">图的存储</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-51cd7eb0a868c10bd862407a54c9232a" class="toggle"  />
+    <label for="section-51cd7eb0a868c10bd862407a54c9232a" class="flex justify-between">
+      <a  class="">树</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/traversal/" class="">树的遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/LCA/" class="">最近公共祖先</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/MST/" class="">最小生成树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/path/" class="">最短路</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/topsort/" class="">拓扑排序</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/SCC/" class="">强连通分量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/treap/" class="">Treap 平衡树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ce95f89a1d24a8066e4c63de0cb15986" class="toggle"  />
+    <label for="section-ce95f89a1d24a8066e4c63de0cb15986" class="flex justify-between">
+      <a  class="">数论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/prime/" class="">质数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/factor/" class="">因数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/mod/" class="">同余</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Tools/" class="">工具</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+ 
+                
+            </div>
+        </aside>
+
+        <div class="book-page">
+            <header class="book-header">
+                 <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>链表</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+ 
+<aside class="hidden clearfix">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#链表节点">链表节点</a></li>
+        <li><a href="#初始化">初始化</a></li>
+        <li><a href="#插入删除节点">插入/删除节点</a></li>
+        <li><a href="#查找节点">查找节点</a></li>
+        <li><a href="#清空链表">清空链表</a></li>
+        <li><a href="#用数组模拟链表">用数组模拟链表</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>  
+</aside>
+ 
+                
+            </header>
+
+             
+<article class="markdown"><h2 id="简介">
+  简介
+  <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
+</h2>
+<ul>
+<li>
+<p><strong>链表</strong>只能按顺序依次访问元素，而数组支持随机访问。</p>
+</li>
+<li>
+<p><strong>链表</strong>支持在任意位置插入或删除元素，而数组不支持。</p>
+</li>
+</ul>
+<h2 id="链表节点">
+  链表节点
+  <a class="anchor" href="#%e9%93%be%e8%a1%a8%e8%8a%82%e7%82%b9">$</a>
+</h2>
+<p>用一个结构体表示链表的节点，其中可以存储任意数据。另外用 <code>prev</code> 和 <code>next</code> 两个指针指向前后相邻的节点。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">Node</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 数据（可以是任意类型）
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">Node</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">prev</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 指针
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">};</span>
+</code></pre></div><h2 id="初始化">
+  初始化
+  <a class="anchor" href="#%e5%88%9d%e5%a7%8b%e5%8c%96">$</a>
+</h2>
+<p>初始化链表时，额外建立两个节点 <code>head</code> 和 <code>tail</code> 代表链表头尾，把实际节点存储在 <code>head</code> 与 <code>tail</code> 之间，简化链表边界的判断。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">Node</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">head</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">tail</span><span style="color:#000;font-weight:bold">;</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">init</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">head</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Node</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#000">tail</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Node</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000">head</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">tail</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">tail</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">prev</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="插入删除节点">
+  插入/删除节点
+  <a class="anchor" href="#%e6%8f%92%e5%85%a5%e5%88%a0%e9%99%a4%e8%8a%82%e7%82%b9">$</a>
+</h2>
+<p>如何在 $1$ 和 $2$ 之间插入 $3$ ？</p>
+
+
+<script src="/mermaid.min.js"></script>
+
+  <script>mermaid.initialize({
+  "flowchart": {
+    "useMaxWidth":true
+  },
+  "theme": "default"
+}
+)</script>
+
+
+
+
+<p class="mermaid">
+flowchart LR
+3((3))
+1((1))<-->2((2))
+</p>
+
+<ol>
+<li>让 $3$ 的 <code>next</code> 指向 $2$，$2$ 的 <code>prev</code> 指向 $3$：</li>
+</ol>
+
+
+<p class="mermaid">
+flowchart LR
+1((1))<-->2((2))
+3((3))<-->2((2))
+</p>
+
+<ol start="2">
+<li>让 $1$ 的 <code>next</code> 指向 $3$，$3$ 的 <code>prev</code> 指向 $1$：</li>
+</ol>
+
+
+<p class="mermaid">
+flowchart TD
+1((1)) & 2((2))<-->3((3))
+</p>
+
+<p>删除节点运用到类似的方法。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">insert</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Node</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pri</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 在节点 pri 后面插入数据为 val 的新节点
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">q</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Node</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#000">q</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">val</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">val</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">Node</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">aft</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">pre</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">aft</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">prev</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">q</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">aft</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 步骤 1
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">pri</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">q</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">prev</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">pri</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 步骤 2
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">remote</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Node</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 删除节点 p
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">prev</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">next</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">prev</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">prev</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">delete</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="查找节点">
+  查找节点
+  <a class="anchor" href="#%e6%9f%a5%e6%89%be%e8%8a%82%e7%82%b9">$</a>
+</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">Node</span><span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">indexOf</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 返回链表中第一个出现的值为 val 的节点指针
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Node</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">head</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#000">tail</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">val</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">val</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">NULL</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="清空链表">
+  清空链表
+  <a class="anchor" href="#%e6%b8%85%e7%a9%ba%e9%93%be%e8%a1%a8">$</a>
+</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">clear</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">head</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#000">tail</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">head</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">head</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#204a87;font-weight:bold">delete</span> <span style="color:#000">head</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">prev</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#204a87;font-weight:bold">delete</span> <span style="color:#000">tail</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="用数组模拟链表">
+  用数组模拟链表
+  <a class="anchor" href="#%e7%94%a8%e6%95%b0%e7%bb%84%e6%a8%a1%e6%8b%9f%e9%93%be%e8%a1%a8">$</a>
+</h2>
+<p>使用指针动态分配空间，效率较低且不稳定。一般使用数组模拟链表。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">Node</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">prev</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span> <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[];</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">head</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">tail</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">init</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">head</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">tail</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">tot</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">head</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">tail</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tail</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">prev</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">head</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">insert</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">q</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">++</span> <span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">val</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">val</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">prev</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">remove</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">prev</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">prev</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">prev</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">indexOf</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">val</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">head</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#000">tail</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">node</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">val</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">val</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">clear</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">head</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">tail</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">tot</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">memset</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">node</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">sizeof</span> <span style="color:#000">node</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></article>
+
+            
+            
+
+            <footer class="book-footer">
+                 <div class="flex flex-wrap justify-between">
+      
+    <div style="margin:0 auto">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <span>闽 ICP 备 2021002587 号</span>
+        </a>
+    </div>
+</div> 
+                
+                
+            </footer>
+
+              
+            
+
+            <label for="menu-control" class="hidden book-menu-overlay"></label>
+        </div>
+
+        
+        <aside class="book-toc">
+            <div class="book-toc-content">
+                  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#链表节点">链表节点</a></li>
+        <li><a href="#初始化">初始化</a></li>
+        <li><a href="#插入删除节点">插入/删除节点</a></li>
+        <li><a href="#查找节点">查找节点</a></li>
+        <li><a href="#清空链表">清空链表</a></li>
+        <li><a href="#用数组模拟链表">用数组模拟链表</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>  
+                
+            </div>
+        </aside>
+        
+    </main>
+
+    
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
+</script>
+</body>
+
+</html>
+
+     
