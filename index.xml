@@ -88,6 +88,7 @@ $\cdots \ \cdots$
     </item>
     
     <item>
+<<<<<<< HEAD
       <title>简介</title>
       <link>https://freeze.org.cn/docs/Graph/Tree/intro/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -142,6 +143,8 @@ int gcd(a, b) { if(!b) return a; return gcd(b, a % b); } 最小公倍数 $  如�
     </item>
     
     <item>
+=======
+>>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
       <title>图的存储</title>
       <link>https://freeze.org.cn/docs/Graph/store/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -269,6 +272,7 @@ Floyed 算法 $  $g[k][i][j]$ 表示只允许经过节点 $1 \sim k$ 时，从�
     </item>
     
     <item>
+<<<<<<< HEAD
       <title>最近公共祖先</title>
       <link>https://freeze.org.cn/docs/Graph/Tree/LCA/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -282,6 +286,8 @@ int fa[]; bool mark[]; /* fa[i] : 节点 i 的父节点，fa[根节点] = 0 mark
     </item>
     
     <item>
+=======
+>>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
       <title>链表</title>
       <link>https://freeze.org.cn/docs/DS/link/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -374,6 +380,7 @@ Step 2 节点 $e$ 的入度为 $0$。在拓扑序列中追加 $e$，并删除 $e
     </item>
     
     <item>
+<<<<<<< HEAD
       <title>最小生成树</title>
       <link>https://freeze.org.cn/docs/Graph/Tree/MST/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -394,6 +401,8 @@ int n, m, fa[]; struct edge { int x, y, len; } g[]; bool cmp(edge x, edge y) { r
     </item>
     
     <item>
+=======
+>>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
       <title>背包 DP</title>
       <link>https://freeze.org.cn/docs/DP/knap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -441,8 +450,13 @@ $$ f[l,r]=\min_{l≤k&amp;lt;r}{f[l,k]+f[k+1,r]}+sum[r]-sum[l-1] $$
   合并两个集合为一个集合。
   基本原理 $  若 $a \ b$，$e \ c$，$e \ d$ 分别在同一个集合，则一共有几个集合？$b$ 和 $d$ 是否同集？
 构造并查集 $  把属于同一集合的两个节点连一起，易知集合数 $=$ 连通图数。若两个节点连通，则它们同集。
+<<<<<<< HEAD
 并查集在每个集合中选取一个代表元素作为根节点，构造「树型结构」。如下图，$a$ 和 $e$ 分别是两个集合的代表元素。
  mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) flowchart TDsubgraph &amp;nbspe((e))--c((c))e((e))--d((d))endsubgraph &amp;nbspa((a))--b((b)) end$fa[i]$ 代表节点 $i$ 的父节点编号。如上图，$fa[b]=a$，$fa[d]=e$，$fa[c]=e$。根节点没有父节点，其 $fa$ 值都设为 $0$，如 $fa[a]=0$，$fa[e]=0$。</description>
+=======
+ mermaid.initialize({ &#34;flowchart&#34;: { &#34;useMaxWidth&#34;:true }, &#34;theme&#34;: &#34;default&#34; } ) flowchart TDsubgraph &amp;nbspe((e))---c((c))e((e))---d((d))endsubgraph &amp;nbspa((a))---b((b)) end并查集在每个集合中选取一个代表元素作为根节点，构造「树型结构」。如下图，$a$ 和 $e$ 分别是两个集合的代表元素。
+flowchart TDsubgraph &amp;nbspe((e))--c((c))e((e))--d((d))endsubgraph &amp;nbspa((a))--b((b)) end$fa[i]$ 代表节点 $i$ 的父节点编号。如上图，$fa[b]=a$，$fa[d]=e$，$fa[c]=e$。根节点没有父节点，其 $fa$ 值都设为 $0$，如 $fa[a]=0$，$fa[e]=0$。</description>
+>>>>>>> 348abda768c2d46f07ff3fdeed20cbb5f111c98c
     </item>
     
     <item>
