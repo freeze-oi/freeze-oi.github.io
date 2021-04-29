@@ -1,122 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>动态规划 on Freeze&#39;s Blogs</title>
-    <link>https://freeze.org.cn/docs/DP/</link>
-    <description>Recent content in 动态规划 on Freeze&#39;s Blogs</description>
-    <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/DP/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>简介</title>
-      <link>https://freeze.org.cn/docs/DP/intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DP/intro/</guid>
-      <description>简介 $  动态规划（DP） 是「打表」的最高境界，原理和考试时查草稿差不多。
-假如一道填空题需要求 $1024×768$，正常学生会在草稿纸上计算出它的值 $=768432$。
-此时某道应用题中再次出现了 $1024×768$：
-部分学生会在打过的草稿里找到 $1024×768=768432$，直接抄进答题卡，省得再计算。更专业的学生会把草稿打成表格，方便查表和检验。
-动态规划将「草稿纸」的参考性利用到极致，极大提高解题效率。
-基本原理 $  Info
-斐波那契数列是形如 $1, 1, 2, 3, 5, 8, \cdots$ 的数列。求数列的第 $n$ 项。
- $f[n]$ 表示数列的第 $n$ 项，则：
-$$f[n]=\left\{\begin{aligned}&amp; 1, n=1, 2\\&amp; f[n-1]+f[n-2], n≥3\end{aligned}\right.$$先把特殊的 $f[1]=f[2]=1$ 填进表：
-   $f[1]$ $f[2]$     $1$ $1$    根据公式计算 $f[3]$ 时，需要用到 $f[1]$ 和 $f[2]$。在表中查找它们的值，代入计算：</description>
-    </item>
-    
-    <item>
-      <title>记忆化搜索</title>
-      <link>https://freeze.org.cn/docs/DP/memo/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DP/memo/</guid>
-      <description>普通搜索 $  求 斐波那契数列 第 $i$ 项（$f[i]$）的深搜程序如下：
-int f(int x) { if(x &amp;lt;= 2) return 1; return f(x - 1) + f(x - 2); } 执行 $f(7)$ 的调用情况如下：
-随着 $n$ 的增大，$f(n)$ 的时间复杂度呈指数级增长。如果遇到大数据，你的程序就会：
-记忆化搜索 $  考虑开数组 $F[ \ ]$ 保存计算结果，从而避免重复计算。
-  若 $f(x)$ 未被调用，算出 $f(x)$ 的结果，并存入 $F[\text{x}]$；
-  若 $f(x)$ 已经被调用过，直接返回 $F[\text{x}]$。
-  和 动态规划 中的填表思想如出一辙。
-int F[] = {0, 1, 1}; int f(int x) { if(F[x] !</description>
-    </item>
-    
-    <item>
-      <title>基础 DP</title>
-      <link>https://freeze.org.cn/docs/DP/basics/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DP/basics/</guid>
-      <description>斐波那契数列 $  斐波那契数列是形如 $1,1,2,3,5,8,\cdots$ 的数列。求数列的第 $n$ 项。
-$f[n]$ 表示数列的第 $n$ 项，则：
-$$ f[n]=f[n-1]+f[n-2],n≥3 $$
-   初始条件 $f[1]=f[2]=1$ 计算顺序 $f[3\rightarrow n]$     边界条件 $f[n]$ 时间复杂度 $O(n)$    int f[]; f[1] = f[2] = 1; for(int i = 3; i &amp;lt;= n; i ++) f[i] = f[i - 1] + f[i - 2]; 汉诺塔问题 $  汉诺塔由 $n$ 个大小不同的圆盘和三根杆子 $a,b,c$ 组成。初始时，$n$个圆盘从大到小依次套在 $a$ 杆上，如下图所示：
-现在要求把 $a$ 杆上的 $n$ 个圆盘按以下规则移到 $c$ 杆上：</description>
-    </item>
-    
-    <item>
-      <title>背包 DP</title>
-      <link>https://freeze.org.cn/docs/DP/knap/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DP/knap/</guid>
-      <description>01 背包 $  用体积为 $m$ 的背包装 $n$ 种物品，每种物品只有 $1$ 个。第 $i$ 种物品的体积为 $w_i$，价值为 $c_i$，将哪些物品装入背包可使总价值最大？
-$f[i,v]$ 表示把前 $i$ 个物品（部分或全部）放入体积为 $v$ 的背包，可以获得的最大总价值。
-若只考虑第 $i$ 个物品的策略（放或不放），则问题转而只涉及到前 $i-1$ 个物品：
-  若不放第 $i$ 个物品，则 $f[i,v]=f[i-1,v]$；
-  若放第 $i$ 个物品，则前 $i-1$ 个物品只能放在体积为 $v-w_i$ 的空间里，故 $f[i,v]=f[i-1,v-w_i]+c_i$。
-  $$f[i,v] = \max\left\{\begin{aligned}&amp;f[i-1,v]\\&amp;f[i-1,v-w_i]+c_i,v≥w_i\end{aligned}\right.$$由于 $f[i,v]$ 的值只由 $f[i-1,v]$ 和 $f[i-1,v-w_i]$ 决定，所以先求 $f[1,0\cdots m]$，再求 $f[2,0\cdots m]$，$\cdots$，直到求出 $f[n,m]$。时间复杂度为 $O(nm)$。
-Warning
-当 $v &amp;lt; w_i$ 时，第 $i$ 个物品放不进体积为 $v$ 的背包，此时 $f[i,v]$ 只能等于 $f[i-1,v]$。</description>
-    </item>
-    
-    <item>
-      <title>区间 DP</title>
-      <link>https://freeze.org.cn/docs/DP/interval/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DP/interval/</guid>
-      <description>引出问题 $  $n$ 堆石子排成一列，第 $i$ 堆石子重量为 $A_i$。每次合并相邻两堆石子为一堆，消耗的体力值为这两堆石子的重量和。求将所有石子合并为一堆，最少消耗多少体力。
-基本原理 $  $f[l,r]$ 表示合并区间 $[l,r]$ 内的石子（第 $l$ 堆至第 $r$ 堆石子）花费的最少体力值。
-枚举 $k=l→r-1$：
-  合并区间 $[l,k]$ 内的石子为一堆石子，消耗体力值 $f[l,k]$；
-  合并区间 $[k+1,r]$ 内的石子为一堆石子，消耗体力值 $f[k+1,r]$；
-  合并剩下两堆石子，消耗体力值 $A_l+A_{l+1}+\cdots+A_r$。
-  $$ f[l,r]=\min_{l≤k&amp;lt;r}{f[l,k]+f[k+1,r]}+\sum_{i=l}^r A_i $$
-使用 前缀和 进一步优化查询区间石子质量和的效率：
-$$ f[l,r]=\min_{l≤k&amp;lt;r}{f[l,k]+f[k+1,r]}+sum[r]-sum[l-1] $$
-由于大区间的「最少体力值」由小区间推出，故计算顺序为从小区间到大区间。
-枚举区间长度 $len=2→n$，每次计算所有长度为 $len$ 的区间的「最少体力值」。
-   初始条件 $f[i,i]=0$，其余为 $∞$ 计算顺序 $f[$小区间$]→f[$大区间$]$     最终答案 $f[1,n]$ 时间复杂度 $O(n^3)$    .</description>
-    </item>
-    
-    <item>
-      <title>数位 DP</title>
-      <link>https://freeze.org.cn/docs/DP/digit/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DP/digit/</guid>
-      <description>简介 $  如何统计区间 $[l,r]$ 中有多少整数符合某条件？
-  暴力算法，枚举 $[l,r]$ 中的每一个整数，逐个判断是否满足条件，此方法遇大数据必 $gg$。
-  优雅地使用数位 DP。
-  引出问题 $  统计区间 $[l,r]$（$0≤l&amp;lt;r≤100$）中有多少整数符合「相邻两个数字之差 $≥2$」。
-预处理 $  采用「试填法」：从个位填到最高位，如果第 $d$ 位填了 $i$，那么第 $d+1$ 位只能填 $[0,i-1]$ 或 $[i+1,9]$ 中的整数。
-$f[i,d]$ 表示「所有最高位为 $i$ 的 $d$ 位数中，符合条件的个数」。通过给定条件可推出：
-$$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
-   初始条件 $f[i,1]=1$ 计算顺序 $f[0→9,2→n]$     时间复杂度 $O(10^2\log{n})$      int f[][]; for(int i = 0; i &amp;lt;= 9; i ++) f[i][1] = 1; // 初始条件 for(int d = 2; d &amp;lt;= N; d ++) // N : 位数的上限，N ≈ log(r) 	for(int i = 0; i &amp;lt;= 9; i ++) for(int k = 0; k &amp;lt;= 9; k ++) if(abs(k - i) &amp;gt;= 2) f[i][d] += f[k][d - 1]; 数位统计 $  考虑 前缀和 思想：</description>
-    </item>
-    
-    <item>
-      <title>树形 DP</title>
-      <link>https://freeze.org.cn/docs/DP/tree/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DP/tree/</guid>
-      <description>简介 $  树形 DP 所解决的问题基于「树形结构」。例如：给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。
-引出问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
-基本原理 $  $f[i]$ 表示以节点 $i$ 为根的子树大小，$Son(i)$ 表示 $i$ 的子节点集合。易知：
-$$ f[i]=1+\sum_{v\in Son(i)}f[v] $$
-$f[i]$ 由 $f[i$ 的子节点$]$ 推出，计算顺序应为 $f[$子节点$]→f[$父节点]。使用记忆化搜索。
-vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void dfs(int u) { // 求以 u 为根的子树中节点个数  f[u] = 1; for(int i = 0; i &amp;lt; son[u].size(); i ++) { int v = son[u][i]; // 节点 u 的第 i 个子节点  dfs(v); f[u] += f[v]; } } 例题 $  没有上司的舞会 $  公司有 $n$ 个人（编号 $1\cdots n$），现要举⾏⼀场晚会，并规定如果邀请了某个⼈，那么⼀定不会邀请他的上司（他上司的上司，上司的上司的上司 $\cdots$ 都可以邀请）。</description>
-    </item>
-    
-  </channel>
-</rss>
