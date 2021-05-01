@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://freeze.org.cn/docs/String/hash/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/Basics/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Basics/bfs/</loc>
@@ -18,6 +20,8 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/String/hash-map/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/Math/factor/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/store/</loc>
@@ -31,6 +35,8 @@
     <loc>https://freeze.org.cn/docs/Basics/dfs/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/memo/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/String/KMP/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Math/mod/</loc>
   </url><url>
@@ -48,11 +54,13 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/queue/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/String/trie/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/Basics/binary/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/heap/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/docs/Graph/</loc>
+    <loc>https://freeze.org.cn/docs/String/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/topsort/</loc>
   </url><url>
@@ -60,31 +68,37 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/knap/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/String/AC-atm/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/DP/interval/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Graph/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/DSU/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/SCC/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/docs/Math/</loc>
-  </url><url>
     <loc>https://freeze.org.cn/docs/Basics/zip/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/treap/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/docs/Tools/</loc>
-  </url><url>
     <loc>https://freeze.org.cn/docs/DP/digit/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Math/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/treearray/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Basics/hipre/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Tools/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/tree/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/segtree/</loc>
   </url><url>
     <loc>https://freeze.org.cn/categories/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Tools/Dev-cpp/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/</loc>
   </url><url>

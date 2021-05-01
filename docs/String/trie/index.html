@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en" dir=" ltr ">
+
+<head>
+    <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="int trie[][], tot; bool end[]; void insert(string str) { // 往 trie 树中插入字符串 str  int p = 0; for(int i = 0; i &lt; str.size(); i &#43;&#43;) { int ch = str.at(i); if(!trie[p][ch]) trie[p][ch] = &#43;&#43; tot; p = trie[p][ch]; } end[p] = true; } bool search(string str) { // 查询 trie 树中是否有字符串 str  int p = 0; for(int i = 0; i &lt; str.size(); i &#43;&#43;) { int ch = str."><meta property="og:title" content="Trie 树" />
+<meta property="og:description" content="int trie[][], tot; bool end[]; void insert(string str) { // 往 trie 树中插入字符串 str  int p = 0; for(int i = 0; i &lt; str.size(); i &#43;&#43;) { int ch = str.at(i); if(!trie[p][ch]) trie[p][ch] = &#43;&#43; tot; p = trie[p][ch]; } end[p] = true; } bool search(string str) { // 查询 trie 树中是否有字符串 str  int p = 0; for(int i = 0; i &lt; str.size(); i &#43;&#43;) { int ch = str." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeze.org.cn/docs/String/trie/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Trie 树 | Freeze&#39;s Blogs</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.a3257f50d833654618880354a2e206e16703b41a9810e2b899d2d5ed9161d7e8.css" integrity="sha256-oyV/UNgzZUYYiANUouIG4WcDtBqYEOK4mdLV7ZFh1&#43;g=">
+<script defer src="/en.search.min.f34bb25b28fc6953db0d159497b66cbfe36282f76a892129b943af6177835782.js" integrity="sha256-80uyWyj8aVPbDRWUl7Zsv&#43;NigvdqiSEpuUOvYXeDV4I="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+--> 
+</head>
+
+<body dir=" ltr ">
+    <input type="checkbox" class="hidden toggle" id="menu-control" />
+    <input type="checkbox" class="hidden toggle" id="toc-control" />
+    <main class="container flex">
+        <aside class="book-menu">
+            <div class="book-menu-content">
+                 <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
+      <a  class="">基础算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/bfs/" class="">广度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/dfs/" class="">深度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二分算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/hipre/" class="">高精度</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle"  />
+    <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
+      <a  class="">动态规划</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/basics/" class="">基础 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/knap/" class="">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle"  />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a  class="">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/stack/" class="">栈</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/link/" class="">链表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/queue/" class="">队列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/heap/" class="">二叉堆</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/DSU/" class="">并查集</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/treearray/" class="">树状数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-676d83afa8d0b27104552182cc42cf5c" class="toggle" checked />
+    <label for="section-676d83afa8d0b27104552182cc42cf5c" class="flex justify-between">
+      <a  class="">字符串算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/hash/" class="">哈希函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/hash-map/" class="">哈希表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/KMP/" class="">KMP 算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/trie/" class=" active">Trie 树</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/AC-atm/" class="">AC 自动机</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
+    <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
+      <a  class="">图论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/store/" class="">图的存储</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-51cd7eb0a868c10bd862407a54c9232a" class="toggle"  />
+    <label for="section-51cd7eb0a868c10bd862407a54c9232a" class="flex justify-between">
+      <a  class="">树</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/traversal/" class="">树的遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/LCA/" class="">最近公共祖先</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/MST/" class="">最小生成树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/path/" class="">最短路</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/topsort/" class="">拓扑排序</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/SCC/" class="">强连通分量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/treap/" class="">Treap 平衡树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ce95f89a1d24a8066e4c63de0cb15986" class="toggle"  />
+    <label for="section-ce95f89a1d24a8066e4c63de0cb15986" class="flex justify-between">
+      <a  class="">数论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/prime/" class="">质数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/factor/" class="">因数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/mod/" class="">同余</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Tools/" class="">工具</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+ 
+                
+            </div>
+        </aside>
+
+        <div class="book-page">
+            <header class="book-header">
+                 <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Trie 树</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+ 
+<aside class="hidden clearfix">
+      <nav id="TableOfContents"></nav>  
+</aside>
+ 
+                
+            </header>
+
+             
+<article class="markdown"><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">trie</span><span style="color:#000;font-weight:bold">[][],</span> <span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">end</span><span style="color:#000;font-weight:bold">[];</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">insert</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">string</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 往 trie 树中插入字符串 str
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">ch</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">at</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">);</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000">trie</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">ch</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">trie</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">ch</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">++</span> <span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">trie</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">ch</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000">end</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">true</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">search</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">string</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 查询 trie 树中是否有字符串 str
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">ch</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">at</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">);</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000">trie</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">ch</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">false</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">trie</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">ch</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">end</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">];</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></article>
+
+            
+            
+
+            <footer class="book-footer">
+                 <div class="flex flex-wrap justify-between">
+      
+    <div style="margin:0 auto">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <span>闽 ICP 备 2021002587 号</span>
+        </a>
+    </div>
+</div> 
+                
+                
+            </footer>
+
+              
+            
+
+            <label for="menu-control" class="hidden book-menu-overlay"></label>
+        </div>
+
+        
+        <aside class="book-toc">
+            <div class="book-toc-content">
+                  <nav id="TableOfContents"></nav>  
+                
+            </div>
+        </aside>
+        
+    </main>
+
+    
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    String.prototype.pxWidth = function(font) {
+        var canvas = String.prototype.pxWidth.canvas || (String.prototype.pxWidth.canvas = document.createElement("canvas")),
+            context = canvas.getContext("2d"); 
+        font && (context.font = font);
+        var metrics = context.measureText(this);
+        return metrics.width;
+    }
+    var len = document.getElementsByClassName("book-btn").length;
+    for(var i = 0; i < len; i ++) {
+        var str = document.getElementsByClassName("book-btn")[i].innerHTML;
+        var wid = (100 - str.pxWidth(document.getElementsByClassName("book-btn")[i].style.font)) / 2.3;
+        document.getElementsByClassName("book-btn")[i].style.padding = "0 " + wid.toString() + "px";
+    }
+</script>
+</body>
+
+</html>
+
+     

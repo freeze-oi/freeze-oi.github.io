@@ -1,0 +1,1336 @@
+<!DOCTYPE html>
+<html lang="en" dir=" ltr ">
+
+<head>
+    <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="简介 $  $KMP$ 算法并不能用来看毛片，它是一种字符串匹配算法。$KMP$ 是该算法的发明者 $Kruth$，$Morris$ 和 $Pratt$ 的名字缩写。
+引出问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
+$$\begin{aligned}A&=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\textcolor{red}{a}$ 与 $\textcolor{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
+$$\begin{aligned}A&=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\B&=\color{green}a \ b \ a \ b \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。"><meta property="og:title" content="KMP 算法" />
+<meta property="og:description" content="简介 $  $KMP$ 算法并不能用来看毛片，它是一种字符串匹配算法。$KMP$ 是该算法的发明者 $Kruth$，$Morris$ 和 $Pratt$ 的名字缩写。
+引出问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
+$$\begin{aligned}A&=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\textcolor{red}{a}$ 与 $\textcolor{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
+$$\begin{aligned}A&=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\B&=\color{green}a \ b \ a \ b \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeze.org.cn/docs/String/KMP/" /><meta property="article:section" content="docs" />
+
+
+
+<title>KMP 算法 | Freeze&#39;s Blogs</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.a3257f50d833654618880354a2e206e16703b41a9810e2b899d2d5ed9161d7e8.css" integrity="sha256-oyV/UNgzZUYYiANUouIG4WcDtBqYEOK4mdLV7ZFh1&#43;g=">
+<script defer src="/en.search.min.f34bb25b28fc6953db0d159497b66cbfe36282f76a892129b943af6177835782.js" integrity="sha256-80uyWyj8aVPbDRWUl7Zsv&#43;NigvdqiSEpuUOvYXeDV4I="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+--> 
+</head>
+
+<body dir=" ltr ">
+    <input type="checkbox" class="hidden toggle" id="menu-control" />
+    <input type="checkbox" class="hidden toggle" id="toc-control" />
+    <main class="container flex">
+        <aside class="book-menu">
+            <div class="book-menu-content">
+                 <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
+      <a  class="">基础算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/bfs/" class="">广度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/dfs/" class="">深度优先搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二分算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/hipre/" class="">高精度</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle"  />
+    <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
+      <a  class="">动态规划</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/basics/" class="">基础 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/knap/" class="">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle"  />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a  class="">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/stack/" class="">栈</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/link/" class="">链表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/queue/" class="">队列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/heap/" class="">二叉堆</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/DSU/" class="">并查集</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/treearray/" class="">树状数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-676d83afa8d0b27104552182cc42cf5c" class="toggle" checked />
+    <label for="section-676d83afa8d0b27104552182cc42cf5c" class="flex justify-between">
+      <a  class="">字符串算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/hash/" class="">哈希函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/hash-map/" class="">哈希表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/KMP/" class=" active">KMP 算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/trie/" class="">Trie 树</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/AC-atm/" class="">AC 自动机</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
+    <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
+      <a  class="">图论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/store/" class="">图的存储</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-51cd7eb0a868c10bd862407a54c9232a" class="toggle"  />
+    <label for="section-51cd7eb0a868c10bd862407a54c9232a" class="flex justify-between">
+      <a  class="">树</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/intro/" class="">简介</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/traversal/" class="">树的遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/LCA/" class="">最近公共祖先</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/MST/" class="">最小生成树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/path/" class="">最短路</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/topsort/" class="">拓扑排序</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/SCC/" class="">强连通分量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/treap/" class="">Treap 平衡树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ce95f89a1d24a8066e4c63de0cb15986" class="toggle"  />
+    <label for="section-ce95f89a1d24a8066e4c63de0cb15986" class="flex justify-between">
+      <a  class="">数论</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/prime/" class="">质数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/factor/" class="">因数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/mod/" class="">同余</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Tools/" class="">工具</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+ 
+                
+            </div>
+        </aside>
+
+        <div class="book-page">
+            <header class="book-header">
+                 <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>KMP 算法</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+ 
+<aside class="hidden clearfix">
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#引出问题">引出问题</a></li>
+        <li><a href="#基本原理">基本原理</a></li>
+        <li><a href="#预处理">预处理</a></li>
+        <li><a href="#模板">模板</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>  
+</aside>
+ 
+                
+            </header>
+
+             
+<article class="markdown"><h2 id="简介">
+  简介
+  <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
+</h2>
+<p>$KMP$ 算法并不能用来看毛片，它是一种字符串匹配算法。$KMP$ 是该算法的发明者 $Kruth$，$Morris$ 和 $Pratt$ 的名字缩写。</p>
+<center><img src=\String\kmp_1.png style="zoom:80%"></img></center>
+<h2 id="引出问题">
+  引出问题
+  <a class="anchor" href="#%e5%bc%95%e5%87%ba%e9%97%ae%e9%a2%98">$</a>
+</h2>
+<p>给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？</p>
+<xmp>
+$$
+\begin{aligned}
+A&=a \ b \ a \ b \ a \ b \ a \ b \ c\\
+B&=a \ b \ a \ b \ c
+\end{aligned}
+$$
+</xmp>
+<p>首先将 $A$ 和 $B$ 的左端对齐，发现 $\textcolor{red}{a}$ 与 $\textcolor{red}{c}$ 不匹配，于是将 $B$ 向右移一位。</p>
+<xmp>
+$$
+\begin{aligned}
+A&=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\
+B&=\color{green}a \ b \ a \ b \ \color{red}c\\
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A=\color{lightgrey}a\color{black} \ &b \ a \ b \ a \ b \ a \ b \ c\\
+→B= \ &a \ b \ a \ b \ c
+\end{aligned}
+$$
+</xmp>
+<p>重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。</p>
+<xmp>
+$$
+\begin{aligned}
+A=\color{lightgrey}a \ &\color{red}b\color{black} \ a \ b \ a \ b \ a \ b \ c\\
+B= \ &\color{red}a\color{black} \ b \ a \ b \ c
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A=\color{lightgrey}a \ b \ &\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ c\\
+→B= \ &\color{green}a \ b \ a \ b \ \color{red}c\color{black}
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A=\color{lightgrey}a \ b \ a \ &\color{red}b\color{black} \ a \ b \ a \ b \ c\\
+→B= \ &\color{red}a\color{black} \ b \ a \ b \ c
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A=\color{lightgrey}a \ b \ a \ b \ &\color{green}a \ b \ a \ b \ c\color{black}\\
+→B= \ &\color{green}a \ b \ a \ b \ c
+\end{aligned}
+$$
+</xmp>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">match</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">string</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">string</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">m</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">(),</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">true</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">false</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><table>
+<thead>
+<tr>
+<th style="text-align:center">暴力算法（$\textcolor{red}{×}$）</th>
+<th style="text-align:center">$KMP$ 算法（$\textcolor{green}{√}$）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$\textcolor{red}{O(mn)}$</td>
+<td style="text-align:center">$\textcolor{green}{O(m+n)}$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="基本原理">
+  基本原理
+  <a class="anchor" href="#%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86">$</a>
+</h2>
+<p>其实，刚才匹配到这一步时，$B$ 串可以直接向后移 $2$ 位，从黄色处开始比较。</p>
+<center><img src=\String\kmp_5.png style="zoom:80%"></img></center>
+<p>为什么可以这么做呢？</p>
+<p>首先，观察得出 $B$ 串的这两段相等。</p>
+<center><img src=\String\kmp_6.png style="zoom:80%"></img></center>
+<p>而此时 $A$ 串和 $B$ 串的绿色部分相等，框出的这两段也相等。</p>
+<center><img src=\String\kmp_7.png style="zoom:80%"></img></center>
+<p>因此 $A$ 串和 $B$ 串的这两段也相等。</p>
+<center><img src=\String\kmp_8.png style="zoom:80%"></img></center>
+<p>容易证明，若 $B$ 串只向右移 $1$ 位，肯定匹配不成。因此 $B$ 串至少需要向右移 $2$ 位。</p>
+<center><img src=\String\kmp_9.png style="zoom:80%"></img></center>
+<p>下面一例中，容易证明 $B$ 串在右移 $1\sim 3$ 位时都匹配不成，因此至少向右移 $4$ 位。</p>
+<center><img src=\String\kmp_10.png style="zoom:80%"></img></center>
+<p>即当不匹配时，从 $B$ 串的绿色子段中，找出前后两段相等的，再把 $B$ 串右移，直到到这两段位于同一竖直位置，再从黄色处继续匹配（配合下图理解）。</p>
+<center><img src=\String\kmp_10.1.png style="zoom:80%"></img></center>
+<p>$KMP$ 算法快就快在这。</p>
+<h2 id="预处理">
+  预处理
+  <a class="anchor" href="#%e9%a2%84%e5%a4%84%e7%90%86">$</a>
+</h2>
+<p>当务之急是，在不匹配时，从 $B$ 串的绿色子段中找出相同的「前缀」和「后缀」。</p>
+<p>下面一例中，$\textcolor{green}{joxjo}$ 的前缀（$\textcolor{green}{jo}$）和后缀（$\textcolor{green}{jo}$）相同。$\textcolor{green}{jo}$ 称为 $\textcolor{green}{joxjo}$ 的「公共前后缀」。</p>
+<center><img src=\String\kmp_11.png style="zoom:80%"></img></center>
+<p>注意：公共前后缀不能和原字符串相等。即 $joxjo$ 的公共前后缀不能是 $joxjo$。</p>
+<p>$next[i]$：$B[0\cdots i]$ 的最长公共前后缀的长度。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$i$</th>
+<th style="text-align:center">$B[0\cdots i]$</th>
+<th style="text-align:center">公共前后缀</th>
+<th style="text-align:center">$next[i]$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$j$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$jo$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$jox$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$3$</td>
+<td style="text-align:center">$\underline{\textcolor{red}{j}}ox\underline{\textcolor{red}{j}}$</td>
+<td style="text-align:center">$\textcolor{red}{j}$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+<tr>
+<td style="text-align:center">$4$</td>
+<td style="text-align:center">$\underline{\textcolor{red}{jo}}x\underline{\textcolor{red}{jo}}$</td>
+<td style="text-align:center">$\textcolor{red}{jo}$</td>
+<td style="text-align:center">$2$</td>
+</tr>
+<tr>
+<td style="text-align:center">$5$</td>
+<td style="text-align:center">$\underline{\textcolor{red}{jox}}\underline{\textcolor{red}{jox}}$</td>
+<td style="text-align:center">$\textcolor{red}{jox}$</td>
+<td style="text-align:center">$3$</td>
+</tr>
+<tr>
+<td style="text-align:center">$6$</td>
+<td style="text-align:center">$joxjoxx$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">$0$</td>
+</tr>
+<tr>
+<td style="text-align:center">$7$</td>
+<td style="text-align:center">$joxjoxxx$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">$0$</td>
+</tr>
+</tbody>
+</table>
+<p>如何编程求出 $next[ \ ]$ 数组？这里以字符串 $aabaabaaa$ 为例。</p>
+<p>对于任意字符串 $B$，$next[0]=0$。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x$</th>
+<th style="text-align:center">$0$</th>
+<th style="text-align:center">$1$</th>
+<th style="text-align:center">$2$</th>
+<th style="text-align:center">$3$</th>
+<th style="text-align:center">$4$</th>
+<th style="text-align:center">$5$</th>
+<th style="text-align:center">$6$</th>
+<th style="text-align:center">$7$</th>
+<th style="text-align:center">$8$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$next[x]$</td>
+<td style="text-align:center">$\textcolor{red}{0}$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>使 $i$ 指向 $B[0]$，$j$ 指向 $B[1]$，即 $i=0,j=1$。</p>
+<center><img src=\String\kmp_12.png style="zoom:80%"></img></center>
+<p>由于 $B[i]=B[j]$，因此 $next[1]=1$。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x$</th>
+<th style="text-align:center">$0$</th>
+<th style="text-align:center">$1$</th>
+<th style="text-align:center">$2$</th>
+<th style="text-align:center">$3$</th>
+<th style="text-align:center">$4$</th>
+<th style="text-align:center">$5$</th>
+<th style="text-align:center">$6$</th>
+<th style="text-align:center">$7$</th>
+<th style="text-align:center">$8$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$next[x]$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$\textcolor{red}{1}$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>$i$ 和 $j$ 同时向后移一位，看下一位是否也相等。</p>
+<center><img src=\String\kmp_13.png style="zoom:80%"></img></center>
+<p>$B[i]≠B[j]$，出现了不匹配的情况，$next[2]=0$。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x$</th>
+<th style="text-align:center">$0$</th>
+<th style="text-align:center">$1$</th>
+<th style="text-align:center">$2$</th>
+<th style="text-align:center">$3$</th>
+<th style="text-align:center">$4$</th>
+<th style="text-align:center">$5$</th>
+<th style="text-align:center">$6$</th>
+<th style="text-align:center">$7$</th>
+<th style="text-align:center">$8$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$next[x]$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$\textcolor{red}{0}$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>$i$ 移回 $0$，$j$ 再向后移一位。</p>
+<center><img src=\String\kmp_14.png style="zoom:80%"></img></center>
+<p>$B[i]=B[j]$，$next[3]=1$。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x$</th>
+<th style="text-align:center">$0$</th>
+<th style="text-align:center">$1$</th>
+<th style="text-align:center">$2$</th>
+<th style="text-align:center">$3$</th>
+<th style="text-align:center">$4$</th>
+<th style="text-align:center">$5$</th>
+<th style="text-align:center">$6$</th>
+<th style="text-align:center">$7$</th>
+<th style="text-align:center">$8$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$next[x]$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$\textcolor{red}{1}$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>$i$ 和 $j$ 同时向后移一位。</p>
+<center><img src=\String\kmp_15.png style="zoom:80%"></img></center>
+<p>$B[i]=B[j]$，$next[4]=next[3]+1=2$。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x$</th>
+<th style="text-align:center">$0$</th>
+<th style="text-align:center">$1$</th>
+<th style="text-align:center">$2$</th>
+<th style="text-align:center">$3$</th>
+<th style="text-align:center">$4$</th>
+<th style="text-align:center">$5$</th>
+<th style="text-align:center">$6$</th>
+<th style="text-align:center">$7$</th>
+<th style="text-align:center">$8$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$next[x]$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$\textcolor{red}{2}$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>$i$ 和 $j$ 同时向后移一位。</p>
+<center><img src=\String\kmp_16.png style="zoom:80%"></img></center>
+<p>$B[i]=B[j]$，$next[5]=next[4]+1=3$。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x$</th>
+<th style="text-align:center">$0$</th>
+<th style="text-align:center">$1$</th>
+<th style="text-align:center">$2$</th>
+<th style="text-align:center">$3$</th>
+<th style="text-align:center">$4$</th>
+<th style="text-align:center">$5$</th>
+<th style="text-align:center">$6$</th>
+<th style="text-align:center">$7$</th>
+<th style="text-align:center">$8$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$next[x]$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$\textcolor{red}{3}$</td>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>$i$ 和 $j$ 同时向后移一位。</p>
+<p>$\cdots \ \cdots$</p>
+<p>就这样一直比较到最后一位，再次出现了不匹配的情况。所以 $next[8]$ 应该填 $0$ 吗？显然不是。</p>
+<center><img src=\String\kmp_17.png style="zoom:80%"></img></center>
+<p>查询表格得到 $next[7]=5$，这对应图中的两个绿色子段相等。</p>
+<center><img src=\String\kmp_18.png style="zoom:80%"></img></center>
+<p>查询表格得到 $next[i-1]=next[4]=2$，即图上的这两段相等。</p>
+<center><img src=\String\kmp_19.png style="zoom:80%"></img></center>
+<p>这代表 $B$ 串中的这四段都相等。</p>
+<center><img src=\String\kmp_20.png style="zoom:80%"></img></center>
+<p>于是令 $i=next[i-1]=2$，如果 $B[i]=B[j]$，则 $next[8]=i+1=3$。但是它们并不相等。</p>
+<center><img src=\String\kmp_21.png style="zoom:80%"></img></center>
+<p>于是我们完全可以故技重施，再次令 $i=next[i-1]=1$，结果发现这一次 $B[i]=B[j]$。</p>
+<center><img src=\String\kmp_22.png style="zoom:80%"></img></center>
+<p>因此 $next[8]=i+1=2$。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">$x$</th>
+<th style="text-align:center">$0$</th>
+<th style="text-align:center">$1$</th>
+<th style="text-align:center">$2$</th>
+<th style="text-align:center">$3$</th>
+<th style="text-align:center">$4$</th>
+<th style="text-align:center">$5$</th>
+<th style="text-align:center">$6$</th>
+<th style="text-align:center">$7$</th>
+<th style="text-align:center">$8$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$next[x]$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$0$</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$3$</td>
+<td style="text-align:center">$4$</td>
+<td style="text-align:center">$5$</td>
+<td style="text-align:center">$\textcolor{red}{2}$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="模板">
+  模板
+  <a class="anchor" href="#%e6%a8%a1%e6%9d%bf">$</a>
+</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">next</span><span style="color:#000;font-weight:bold">[];</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">getnext</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">string</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">next</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">next</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#000">next</span><span style="color:#000;font-weight:bold">[</span><span style="color:#ce5c00;font-weight:bold">++</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">++</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">kmp</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">string</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">string</span> <span style="color:#000">substr</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">getnext</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">substr</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">str</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#000">substr</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">next</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">substr</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#000">printf</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;Fount pattern at %d</span><span style="color:#4e9a06">\n</span><span style="color:#4e9a06">&#34;</span><span style="color:#000;font-weight:bold">,</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">),</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">next</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></article>
+
+            
+            
+
+            <footer class="book-footer">
+                 <div class="flex flex-wrap justify-between">
+      
+    <div style="margin:0 auto">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <span>闽 ICP 备 2021002587 号</span>
+        </a>
+    </div>
+</div> 
+                
+                
+            </footer>
+
+              
+            
+
+            <label for="menu-control" class="hidden book-menu-overlay"></label>
+        </div>
+
+        
+        <aside class="book-toc">
+            <div class="book-toc-content">
+                  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#引出问题">引出问题</a></li>
+        <li><a href="#基本原理">基本原理</a></li>
+        <li><a href="#预处理">预处理</a></li>
+        <li><a href="#模板">模板</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>  
+                
+            </div>
+        </aside>
+        
+    </main>
+
+    
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    String.prototype.pxWidth = function(font) {
+        var canvas = String.prototype.pxWidth.canvas || (String.prototype.pxWidth.canvas = document.createElement("canvas")),
+            context = canvas.getContext("2d"); 
+        font && (context.font = font);
+        var metrics = context.measureText(this);
+        return metrics.width;
+    }
+    var len = document.getElementsByClassName("book-btn").length;
+    for(var i = 0; i < len; i ++) {
+        var str = document.getElementsByClassName("book-btn")[i].innerHTML;
+        var wid = (100 - str.pxWidth(document.getElementsByClassName("book-btn")[i].style.font)) / 2.3;
+        document.getElementsByClassName("book-btn")[i].style.padding = "0 " + wid.toString() + "px";
+    }
+</script>
+</body>
+
+</html>
+
+     

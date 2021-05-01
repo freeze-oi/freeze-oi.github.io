@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>字符串算法 on Freeze&#39;s Blogs</title>
+    <link>https://freeze.org.cn/docs/String/</link>
+    <description>Recent content in 字符串算法 on Freeze&#39;s Blogs</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/String/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>哈希函数</title>
+      <link>https://freeze.org.cn/docs/String/hash/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/String/hash/</guid>
+      <description>简介 $  哈希函数 $getHash()$ 能够将字符串转化成整数，并保证字符串不同，对应的整数也不同。该整数称为哈希值。这样，判断两个字符串是否相等，就只要判断它们的哈希值是否相等。
+基本原理 $  假设所有字符串中只包含小写字符 $a\sim z$。以字符串 $fantasy$ 为例：
+  将字符 $a\sim z$ 替换为数字 $1\sim 26$，得到一个数列。如 $fantasy→[6,1,14,20,1,19,25]$。
+  将该数列看作一个 $27$ 进制数（逢 $27$ 进一）。
+  $$getHash(fantasy)=6·27^6+1·27^5+14·27^4+\cdots+25·27^0$$
+按此方法设计的哈希函数，可保证不同字符串的哈希值必不同。但字符串长度过长时，哈希值会超出 long long 的范围。
+滚动哈希 $  为解决一般哈希函数适用范围有限的问题，采用滚动哈希方法。
+选取两个合适的质数 $b,p$，将字符串看作 $b$ 进制数（$b&amp;gt;$ 字符种数）。则：
+$$ getHash(fantasy)=(6·b^6+1·b^5+14·b^4+\cdots+25·b^0)%p $$
+按此方法设计的哈希函数，不同字符串的哈希值相同的概率较小，且哈希值不会超出 long long 的范围。时间复杂度为 $O(n)$。
+typedef long long LL; const LL b = 29, p = 10000019; LL getHash(string str) { // 返回 str 的哈希值  LL h = 0; for(int i = 0; i &amp;lt; str.</description>
+    </item>
+    
+    <item>
+      <title>哈希表</title>
+      <link>https://freeze.org.cn/docs/String/hash-map/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/String/hash-map/</guid>
+      <description>简介 $  哈希表由 哈希函数 和 链表 组成，相当于「超级数组」。
+  数组的下标1可以是整数，浮点数，字符串等。
+  不用定义数组的长度。
+  引出问题 $  医院的排队系统需要记录每个病人对应的问诊顺序。此处假设每个病人的名称都是数字。
+   名称 $32$ $26$ $75$ $4$     问诊顺序 $1$ $2$ $3$ $4$    $p[i]$ 表示「名称为 $i$ 的病人的问诊顺序」。查询问诊顺序的时间复杂度为 $O(1)$。
+int p[]; void update(int i, int x) { // 记录病人 i 的问诊顺序为 x  p[i] = x; } int query(int i) { // 查询病人 i 的问诊顺序  return p[i]; } 然而总有某些病人不按套路取名。</description>
+    </item>
+    
+    <item>
+      <title>KMP 算法</title>
+      <link>https://freeze.org.cn/docs/String/KMP/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/String/KMP/</guid>
+      <description>简介 $  $KMP$ 算法并不能用来看毛片，它是一种字符串匹配算法。$KMP$ 是该算法的发明者 $Kruth$，$Morris$ 和 $Pratt$ 的名字缩写。
+引出问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
+$$\begin{aligned}A&amp;=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&amp;=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\textcolor{red}{a}$ 与 $\textcolor{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
+$$\begin{aligned}A&amp;=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\B&amp;=\color{green}a \ b \ a \ b \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &amp;b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &amp;a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。</description>
+    </item>
+    
+    <item>
+      <title>Trie 树</title>
+      <link>https://freeze.org.cn/docs/String/trie/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/String/trie/</guid>
+      <description>int trie[][], tot; bool end[]; void insert(string str) { // 往 trie 树中插入字符串 str  int p = 0; for(int i = 0; i &amp;lt; str.size(); i ++) { int ch = str.at(i); if(!trie[p][ch]) trie[p][ch] = ++ tot; p = trie[p][ch]; } end[p] = true; } bool search(string str) { // 查询 trie 树中是否有字符串 str  int p = 0; for(int i = 0; i &amp;lt; str.size(); i ++) { int ch = str.</description>
+    </item>
+    
+    <item>
+      <title>AC 自动机</title>
+      <link>https://freeze.org.cn/docs/String/AC-atm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/String/AC-atm/</guid>
+      <description>void build() { for(int i = 0; i &amp;lt; 26; i ++) if(tr[0][i]) q.push(tr[0][i]); while(q.size()) { int u = q.front(); q.pop(); for(int i = 0; i &amp;lt; 26; i ++) if(tr[u][i]) fail[tr[u][i]] = tr[fail[u]][i], q.push(tr[u][i]); else tr[u][i] = tr[fail[u]][i]; } } void insert(char *s) { int u = 0; for(int i = 1; s[i]; i ++) { if(!tr[u][s[i] - &amp;#39;a&amp;#39;]) tr[u][s[i] - &amp;#39;a&amp;#39;] = ++ tot; u = tr[u][s[i] - &amp;#39;a&amp;#39;]; } e[u]++; } int query(char *t) { int u = 0, res = 0; for(int i = 1; t[i]; i ++) { u = tr[u][t[i] - &amp;#39;a&amp;#39;]; for(int j = u; j &amp;amp;&amp;amp; e[j] !</description>
+    </item>
+    
+  </channel>
+</rss>
