@@ -19,8 +19,8 @@
 
 <title>KMP 算法 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
-<link rel="stylesheet" href="/book.min.a3257f50d833654618880354a2e206e16703b41a9810e2b899d2d5ed9161d7e8.css" integrity="sha256-oyV/UNgzZUYYiANUouIG4WcDtBqYEOK4mdLV7ZFh1&#43;g=">
-<script defer src="/en.search.min.f34bb25b28fc6953db0d159497b66cbfe36282f76a892129b943af6177835782.js" integrity="sha256-80uyWyj8aVPbDRWUl7Zsv&#43;NigvdqiSEpuUOvYXeDV4I="></script>
+<link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
+<script defer src="/en.search.min.c13de99d66db20467461531568aaa180f4bffc9fb741b5662ced864ba7347689.js" integrity="sha256-wT3pnWbbIEZ0YVMVaKqhgPS//J&#43;3QbVmLO2GS6c0dok="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -397,6 +397,19 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/ST/" class="">ST 表</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -411,7 +424,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-676d83afa8d0b27104552182cc42cf5c" class="toggle" checked />
     <label for="section-676d83afa8d0b27104552182cc42cf5c" class="flex justify-between">
-      <a  class="">字符串算法</a>
+      <a  class="">字符串</a>
       <span>▾</span>
     </label>
   
@@ -844,25 +857,25 @@ $$
 <xmp>
 $$
 \begin{aligned}
-A=\color{lightgrey}a \ &\color{red}b\color{black} \ a \ b \ a \ b \ a \ b \ c\\
-B= \ &\color{red}a\color{black} \ b \ a \ b \ c
+A=\color{lightgrey}a \ &\color{black}b\ \ a \ b \ a \ b \ a \ b \ c\\
+B= \ &a \ b \ a \ b \ c
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A=\color{lightgrey}a \ b \ &\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ c\\
-→B= \ &\color{green}a \ b \ a \ b \ \color{red}c\color{black}
+A=\color{lightgrey}a \ b \ &\color{black}a \ b \ a \ b \ a \ b \ c\\
+→B= \ &a \ b \ a \ b \ c
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A=\color{lightgrey}a \ b \ a \ &\color{red}b\color{black} \ a \ b \ a \ b \ c\\
-→B= \ &\color{red}a\color{black} \ b \ a \ b \ c
+A=\color{lightgrey}a \ b \ a \ &\color{black}b \ a \ b \ a \ b \ c\\
+→B= \ &a\ b \ a \ b \ c
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A=\color{lightgrey}a \ b \ a \ b \ &\color{green}a \ b \ a \ b \ c\color{black}\\
+A=\color{lightgrey}a \ b \ a \ b \ &\color{black}\color{green}a \ b \ a \ b \ c\\
 →B= \ &\color{green}a \ b \ a \ b \ c
 \end{aligned}
 $$
@@ -895,38 +908,180 @@ $$
   基本原理
   <a class="anchor" href="#%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86">$</a>
 </h2>
-<p>其实，刚才匹配到这一步时，$B$ 串可以直接向后移 $2$ 位，从黄色处开始比较。</p>
-<center><img src=\String\kmp_5.png style="zoom:80%"></img></center>
+<p>其实，匹配到这一步时，$B$ 串可以直接向后移 $2$ 位。</p>
+<xmp>
+$$
+\begin{aligned}
+A&=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\
+B&=\color{green}a \ b \ a \ b \ \color{red}c\\
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A=\color{lightgrey}a \ b \ \color{black} &a \ b \ a \ b \ a \ b \ c\\
+→B= \ &a \ b \ a \ b \ c
+\end{aligned}
+$$
+</xmp>
 <p>为什么可以这么做呢？</p>
-<p>首先，观察得出 $B$ 串的这两段相等。</p>
-<center><img src=\String\kmp_6.png style="zoom:80%"></img></center>
-<p>而此时 $A$ 串和 $B$ 串的绿色部分相等，框出的这两段也相等。</p>
-<center><img src=\String\kmp_7.png style="zoom:80%"></img></center>
-<p>因此 $A$ 串和 $B$ 串的这两段也相等。</p>
-<center><img src=\String\kmp_8.png style="zoom:80%"></img></center>
+<p>我们发现 $B$ 串的这两段相等。</p>
+<p>$$
+B= \ \underline{a \ b} \ \underline{a \ b} \ c
+$$</p>
+<p>此时 $A$ 串和 $B$ 串的绿色部分是匹配的，上下两段也相等。</p>
+<xmp>
+$$
+\begin{aligned}
+A&=\color{green}a \ b \ \underline{a \ b} \ \color{red}a\color{black} \ b \ a \ b \ c\\
+B&=\color{green}a \ b \ \underline{a \ b} \ \color{red}c\\
+\end{aligned}
+$$
+</xmp>
+<p>因而 $A$ 串和 $B$ 串的这两段也相等。</p>
+<xmp>
+$$
+\begin{aligned}
+A&=a \ b \ \color{green}\underline{a \ b}\color{black} \ a \ b \ a \ b \ c\\
+B&=\color{green}\underline{a \ b}\color{black} \ a \ b \ c\\
+\end{aligned}
+$$
+</xmp>
 <p>容易证明，若 $B$ 串只向右移 $1$ 位，肯定匹配不成。因此 $B$ 串至少需要向右移 $2$ 位。</p>
-<center><img src=\String\kmp_9.png style="zoom:80%"></img></center>
-<p>下面一例中，容易证明 $B$ 串在右移 $1\sim 3$ 位时都匹配不成，因此至少向右移 $4$ 位。</p>
-<center><img src=\String\kmp_10.png style="zoom:80%"></img></center>
-<p>即当不匹配时，从 $B$ 串的绿色子段中，找出前后两段相等的，再把 $B$ 串右移，直到到这两段位于同一竖直位置，再从黄色处继续匹配（配合下图理解）。</p>
-<center><img src=\String\kmp_10.1.png style="zoom:80%"></img></center>
-<p>$KMP$ 算法快就快在这。</p>
+<xmp>
+$$
+\begin{aligned}
+A= a \ &b \ \underline{a \ b} \ a \ b \ a \ b \ c\\
+→B= &\underline{a \ b} \ a \ b \ c\\
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A= a \ b \ &\color{green}\underline{a \ b}\color{black} \ a \ b \ a \ b \ c\\
+→B= &\color{green}\underline{a \ b}\color{black} \ a \ b \ c\\
+\end{aligned}
+$$
+</xmp>
+<p>下面一例中，$B$ 串在右移 $1\sim 3$ 位时都匹配不成，因此至少向右移 $4$ 位，也就是一直右移 $B$ 串直到两段绿的对齐。</p>
+<xmp>
+$$
+\begin{aligned}
+A&=s \ e \ d \ c \ \color{green}\underline{s \ e \ d}\color{black} \ c \ s \ e \ d \ s\\
+B&=\color{green}\underline{s \ e \ d}\color{black} \ c \ s \ e \ d \ s\\
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A=s \ e \ d \ c \ \underline{s \ e \ d} \ c& \ s \ e \ d \ s\\
+→B=\underline{s \ e \ d} \ c \ s \ e \ d& \ s\\
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A=s \ e \ d \ c \ \underline{s \ e \ d} \ c \ s& \ e \ d \ s\\
+→B=\underline{s \ e \ d} \ c \ s \ e \ d& \ s\\
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A=s \ e \ d \ c \ \underline{s \ e \ d} \ c \ s \ e& \ d \ s\\
+→B=\underline{s \ e \ d} \ c \ s \ e \ d& \ s\\
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A=s \ e \ d \ c \ \underline{\color{green}s \ e \ d\color{black}} \ c \ s \ e \ d& \ s\\
+→B=\underline{\color{green}s \ e \ d\color{black}} \ c \ s \ e \ d& \ s\\
+\end{aligned}
+$$
+</xmp>
+<p>如果没有前后两段相等的呢？如下面一例，右移 $B$ 串直到两段绿的完全错开。</p>
+<xmp>
+$$
+\begin{aligned}
+A&=\color{green}a \ b \ c \ d\color{red} \ a\color{black} \ b \ c \ d \ f\\
+B&=\color{green}a \ b \ c \ d\color{red} \ f
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A=\color{green}a \ b \ c \ d\color{black} \ &a \ b \ c \ d \ f\\
+→B=&\color{green}a \ b \ c \ d\color{black} \ f
+\end{aligned}
+$$
+</xmp>
+<p>$KMP$ 算法步骤总结：</p>
+
+
+
+
+<div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
+  <label for="tabs-uniqueid-0">Step 1</label>
+  <div class="book-tabs-content markdown-inner"><p>将 $A$ 串和 $B$ 串左端对齐。</p>
+<xmp>
+$$
+\begin{aligned}
+A &= \blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\\
+B &= \blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare
+\end{aligned}
+$$
+</xmp>
+</div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-1"  />
+  <label for="tabs-uniqueid-1">Step 2</label>
+  <div class="book-tabs-content markdown-inner"><p>从左往右比较字符，直到出现不匹配的情况。</p>
+<xmp>
+$$
+\begin{aligned}
+A &= \color{green}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\color{red}\blacksquare\color{black}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\\
+B &= \color{green}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\color{red}\blacksquare\color{black}\blacksquare
+\end{aligned}
+$$
+</xmp>
+</div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-2"  />
+  <label for="tabs-uniqueid-2">Step 3</label>
+  <div class="book-tabs-content markdown-inner"><p>在绿色子段中找出前后两段相等的，把 $B$ 串往右拉，直到这两段对齐。</p>
+<xmp>
+$$
+\begin{aligned}
+A &= \color{lightgreen}\blacksquare\blacksquare\blacksquare\color{green}\underline{\blacksquare\blacksquare}\color{black}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\\
+B &= \color{green}\underline{\blacksquare\blacksquare}\color{lightgreen}\blacksquare\blacksquare\blacksquare\color{black}\blacksquare\blacksquare
+\end{aligned}
+\\
+\begin{aligned}
+\\
+A = \blacksquare\blacksquare\blacksquare&\color{green}\underline{\blacksquare\blacksquare}\color{black}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\\
+→B = &\color{green}\underline{\blacksquare\blacksquare}\color{black}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare
+\end{aligned}
+$$
+</xmp>
+</div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-3"  />
+  <label for="tabs-uniqueid-3">Step 4</label>
+  <div class="book-tabs-content markdown-inner"><p>从紫色处开始继续向右比较，重复前面过程。</p>
+<xmp>
+$$
+\begin{aligned}
+A = \blacksquare\blacksquare\blacksquare&\color{green}\underline{\blacksquare\blacksquare}\color{magenta}\blacksquare\color{black}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\\
+→B = &\color{green}\underline{\blacksquare\blacksquare}\color{magenta}\blacksquare\color{black}\blacksquare\blacksquare\blacksquare\blacksquare
+\end{aligned}
+$$
+</xmp>
+</div></div>
+
 <h2 id="预处理">
   预处理
   <a class="anchor" href="#%e9%a2%84%e5%a4%84%e7%90%86">$</a>
 </h2>
 <p>当务之急是，在不匹配时，从 $B$ 串的绿色子段中找出相同的「前缀」和「后缀」。</p>
-<p>下面一例中，$\textcolor{green}{joxjo}$ 的前缀（$\textcolor{green}{jo}$）和后缀（$\textcolor{green}{jo}$）相同。$\textcolor{green}{jo}$ 称为 $\textcolor{green}{joxjo}$ 的「公共前后缀」。</p>
+<p>下面一例中，$\textcolor{green}{joxjo}$ 的前缀 $\textcolor{green}{jo}$ 和后缀 $\textcolor{green}{jo}$ 相同。$\textcolor{green}{jo}$ 称为 $\textcolor{green}{joxjo}$ 的「公共前后缀」。</p>
 <center><img src=\String\kmp_11.png style="zoom:80%"></img></center>
 <p>注意：公共前后缀不能和原字符串相等。即 $joxjo$ 的公共前后缀不能是 $joxjo$。</p>
-<p>$next[i]$：$B[0\cdots i]$ 的最长公共前后缀的长度。</p>
+<p>$next[x]$：$B[0\cdots x]$ 的最长公共前后缀的长度。</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">$i$</th>
-<th style="text-align:center">$B[0\cdots i]$</th>
+<th style="text-align:center">$x$</th>
+<th style="text-align:center">$B[0\cdots x]$</th>
 <th style="text-align:center">公共前后缀</th>
-<th style="text-align:center">$next[i]$</th>
+<th style="text-align:center">$next[x]$</th>
 </tr>
 </thead>
 <tbody>

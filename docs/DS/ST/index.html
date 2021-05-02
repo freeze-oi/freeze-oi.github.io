@@ -4,30 +4,14 @@
 <head>
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="AOV 网 $  给出几组关系：$a &gt; b$，$a &gt; c$，$b &gt; c$，$b &gt; d$，$\cdots$，求可能的 $a \ b \ c \ d \cdots$ 的大小顺序？
-将上述关系转化为有向图，其中 $a → b$ 代表 $a &gt; b$。这类能表示节点大小关系的图称做 AOV 网。
-基本原理 $  拓扑排序 求的是合法的优先顺序，求得的序列称为 拓扑序列。同一张 AOV 网可能有多个合法的拓扑序列。
-Info
-没被箭头指着的节点（入度为 $0$ 的节点）是当前最大的节点。
- Step 1 节点 $a$ 的入度为 $0$。在拓扑序列中追加 $a$，并删除 $a$ 和它的所有邻边：
-拓扑序列：$a$。
-Step 2 节点 $e$ 的入度为 $0$。在拓扑序列中追加 $e$，并删除 $e$ 和它的所有邻边：
-拓扑序列：$a \ e$。"><meta property="og:title" content="拓扑排序" />
-<meta property="og:description" content="AOV 网 $  给出几组关系：$a &gt; b$，$a &gt; c$，$b &gt; c$，$b &gt; d$，$\cdots$，求可能的 $a \ b \ c \ d \cdots$ 的大小顺序？
-将上述关系转化为有向图，其中 $a → b$ 代表 $a &gt; b$。这类能表示节点大小关系的图称做 AOV 网。
-基本原理 $  拓扑排序 求的是合法的优先顺序，求得的序列称为 拓扑序列。同一张 AOV 网可能有多个合法的拓扑序列。
-Info
-没被箭头指着的节点（入度为 $0$ 的节点）是当前最大的节点。
- Step 1 节点 $a$ 的入度为 $0$。在拓扑序列中追加 $a$，并删除 $a$ 和它的所有邻边：
-拓扑序列：$a$。
-Step 2 节点 $e$ 的入度为 $0$。在拓扑序列中追加 $e$，并删除 $e$ 和它的所有邻边：
-拓扑序列：$a \ e$。" />
+<meta name="description" content="const int N = 1e6, logN = 32; int n, l, r, a[N], f[N][logN], Log[N]; void pre() { Log[0] = -1; for(int i = 1; i &lt;= n; i &#43;&#43;) Log[i] = Log[i / 2] &#43; 1; for(int j = 1; j &lt; logN; j &#43;&#43;) for(int i = 1; i &#43; (1 &lt;&lt; j - 1) &lt;= n; i &#43;&#43;) f[i][j] = max(f[i][j - 1], f[i &#43; (1 &lt;&lt; j - 1)][j - 1]); } int query(int l, int r) { // 返回 a[l."><meta property="og:title" content="ST 表" />
+<meta property="og:description" content="const int N = 1e6, logN = 32; int n, l, r, a[N], f[N][logN], Log[N]; void pre() { Log[0] = -1; for(int i = 1; i &lt;= n; i &#43;&#43;) Log[i] = Log[i / 2] &#43; 1; for(int j = 1; j &lt; logN; j &#43;&#43;) for(int i = 1; i &#43; (1 &lt;&lt; j - 1) &lt;= n; i &#43;&#43;) f[i][j] = max(f[i][j - 1], f[i &#43; (1 &lt;&lt; j - 1)][j - 1]); } int query(int l, int r) { // 返回 a[l." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://freeze.org.cn/docs/Graph/topsort/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="https://freeze.org.cn/docs/DS/ST/" /><meta property="article:section" content="docs" />
 
 
 
-<title>拓扑排序 | Freeze&#39;s Blogs</title>
+<title>ST 表 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
 <script defer src="/en.search.min.c13de99d66db20467461531568aaa180f4bffc9fb741b5662ced864ba7347689.js" integrity="sha256-wT3pnWbbIEZ0YVMVaKqhgPS//J&#43;3QbVmLO2GS6c0dok="></script>
@@ -293,7 +277,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle"  />
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle" checked />
     <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
       <a  class="">数据结构</a>
       <span>▾</span>
@@ -414,7 +398,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/DS/ST/" class="">ST 表</a>
+    <a href="https://freeze.org.cn/docs/DS/ST/" class=" active">ST 表</a>
   
 
         </li>
@@ -519,7 +503,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle" checked />
+    <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
     <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
       <a  class="">图论</a>
       <span>▾</span>
@@ -649,7 +633,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Graph/topsort/" class=" active">拓扑排序</a>
+    <a href="https://freeze.org.cn/docs/Graph/topsort/" class="">拓扑排序</a>
   
 
         </li>
@@ -800,7 +784,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>拓扑排序</strong>
+  <strong>ST 表</strong>
 
   <label for="toc-control">
     
@@ -810,91 +794,38 @@ https://github.com/alex-shpak/hugo-book
 </div>
  
 <aside class="hidden clearfix">
-      <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#aov-网">AOV 网</a></li>
-        <li><a href="#基本原理">基本原理</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>  
+      <nav id="TableOfContents"></nav>  
 </aside>
  
                 
             </header>
 
              
-<article class="markdown"><h2 id="aov-网">
-  AOV 网
-  <a class="anchor" href="#aov-%e7%bd%91">$</a>
-</h2>
-<p>给出几组关系：$a &gt; b$，$a &gt; c$，$b &gt; c$，$b &gt; d$，$\cdots$，求可能的 $a \ b \ c \ d \cdots$ 的大小顺序？</p>
-<p>将上述关系转化为有向图，其中 $a → b$ 代表 $a &gt; b$。这类能表示节点大小关系的图称做 <strong>AOV 网</strong>。</p>
-<center><img src=/Graph/topsort_1.png style="zoom:80%"></center>
-<h2 id="基本原理">
-  基本原理
-  <a class="anchor" href="#%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86">$</a>
-</h2>
-<p><strong>拓扑排序</strong> 求的是合法的优先顺序，求得的序列称为 <strong>拓扑序列</strong>。同一张 AOV 网可能有多个合法的拓扑序列。</p>
-<blockquote class="book-hint info">
-  <p><strong>Info</strong></p>
-<p>没被箭头指着的节点（入度为 $0$ 的节点）是当前最大的节点。</p>
+<article class="markdown"><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">const</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">N</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1e6</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">logN</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">32</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">N</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">N</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">logN</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">Log</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">N</span><span style="color:#000;font-weight:bold">];</span>
 
-</blockquote>
-
-
-
-
-
-<div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
-  <label for="tabs-uniqueid-0">Step 1</label>
-  <div class="book-tabs-content markdown-inner"><p>节点 $a$ 的入度为 $0$。在拓扑序列中追加 $a$，并删除 $a$ 和它的所有邻边：</p>
-<center><img src=/Graph/topsort_2.png style="zoom:80%"></center>
-<p>拓扑序列：$a$。</p>
-</div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-1"  />
-  <label for="tabs-uniqueid-1">Step 2</label>
-  <div class="book-tabs-content markdown-inner"><p>节点 $e$ 的入度为 $0$。在拓扑序列中追加 $e$，并删除 $e$ 和它的所有邻边：</p>
-<center><img src=/Graph/topsort_3.png style="zoom:80%"></center>
-<p>拓扑序列：$a \ e$。</p>
-</div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-2"  />
-  <label for="tabs-uniqueid-2">Step 3</label>
-  <div class="book-tabs-content markdown-inner"><p>节点 $b$ 的入度为 $0$。在拓扑序列中追加 $b$，并删除 $b$ 和它的所有邻边：</p>
-<center><img src=/Graph/topsort_4.png style="zoom:80%"></center>
-<p>拓扑序列：$a \ e \ b$。</p>
-</div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-3"  />
-  <label for="tabs-uniqueid-3">$\cdots \ \cdots$</label>
-  <div class="book-tabs-content markdown-inner"></div></div>
-
-<p>故样例的一种拓扑序列为 $a \ e \ b \ c \ d \ f$。</p>
-<p>$deg[i]$ 表示节点 $i$ 的入度，在输入时可以预处理。</p>
-<ol>
-<li>
-<p>定义一个队列，用于存放结点；</p>
-</li>
-<li>
-<p>将所有入度为 $0$ 的节点入队；</p>
-</li>
-<li>
-<p>将队头结点出队，并删除该结点的所有出边。若出现新的结点入度为零，则将其入队。</p>
-</li>
-</ol>
-<p>拓扑排序结束时，若拓扑序列未包含全部节点，则说明剩下的节点形成了闭环。此时不存在合法拓扑序列。</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">vector</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">topSort</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000">vector</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">vec</span><span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#000">queue</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">pre</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">Log</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span>
-        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000">deg</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">push</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">);</span>
-    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">empty</span><span style="color:#000;font-weight:bold">())</span> <span style="color:#000;font-weight:bold">{</span>
-        <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">top</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">front</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">pop</span><span style="color:#000;font-weight:bold">();</span>
-        <span style="color:#000">vec</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">push_back</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">top</span><span style="color:#000;font-weight:bold">);</span>
-        <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">top</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span>
-            <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span> <span style="color:#ce5c00;font-weight:bold">--</span> <span style="color:#000">deg</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">g</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">top</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]])</span>
-                <span style="color:#000">q</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">push</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">g</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">top</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]);</span>
-    <span style="color:#000;font-weight:bold">}</span>
-    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">vec</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">vector</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&gt;</span><span style="color:#000;font-weight:bold">();</span>
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">vec</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">Log</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Log</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">logN</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">j</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">max</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)][</span><span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]);</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">query</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">l</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 返回 a[l...r] 中的最大值
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">Log</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">r</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">max</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">l</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">r</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">]);</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">cin</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">cin</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#000">pre</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">cin</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">query</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div></article>
 
@@ -923,16 +854,7 @@ https://github.com/alex-shpak/hugo-book
         
         <aside class="book-toc">
             <div class="book-toc-content">
-                  <nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#aov-网">AOV 网</a></li>
-        <li><a href="#基本原理">基本原理</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>  
+                  <nav id="TableOfContents"></nav>  
                 
             </div>
         </aside>

@@ -143,5 +143,14 @@ int t[], n; // t[u] : u 号节点的值 // n : 节点总数 插入 $  如何往�
   int a[]; void set(int id, int v) { // 单点修改  a[id] = v; } int ask(int l, int r) { // 区间查询  int ans = 0; for(int i = l; i &amp;lt;= r; i ++) ans = min(ans, a[i]); return ans; } void add(int l, int r, int v) { // 区间修改  for(int i = l; i &amp;lt;= r; i ++) a[i] += v; }     暴力算法（$\textcolor{red}{×}$） 线段树（$\textcolor{green}{√}$）     单点修改 $\textcolor{green}{O(1)}$ $\textcolor{green}{O(\log{n})}$   区间查询 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   区间修改 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   $m$ 次操作 $\textcolor{red}{O(mn)}$ $\textcolor{green}{O(m\log{n})}$    构造 $  查询数组 $A={6,2,3,7,1,5,4,2}$ 中的最小值时，通常使用「两两比较法」：每次比较相邻两项，只保留更小的一项。比较的过程可以画成一棵二叉树，树根是答案。</description>
     </item>
     
+    <item>
+      <title>ST 表</title>
+      <link>https://freeze.org.cn/docs/DS/ST/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/DS/ST/</guid>
+      <description>const int N = 1e6, logN = 32; int n, l, r, a[N], f[N][logN], Log[N]; void pre() { Log[0] = -1; for(int i = 1; i &amp;lt;= n; i ++) Log[i] = Log[i / 2] + 1; for(int j = 1; j &amp;lt; logN; j ++) for(int i = 1; i + (1 &amp;lt;&amp;lt; j - 1) &amp;lt;= n; i ++) f[i][j] = max(f[i][j - 1], f[i + (1 &amp;lt;&amp;lt; j - 1)][j - 1]); } int query(int l, int r) { // 返回 a[l.</description>
+    </item>
+    
   </channel>
 </rss>

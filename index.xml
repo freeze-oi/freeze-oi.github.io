@@ -605,6 +605,15 @@ vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void d
     </item>
     
     <item>
+      <title>ST 表</title>
+      <link>https://freeze.org.cn/docs/DS/ST/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/DS/ST/</guid>
+      <description>const int N = 1e6, logN = 32; int n, l, r, a[N], f[N][logN], Log[N]; void pre() { Log[0] = -1; for(int i = 1; i &amp;lt;= n; i ++) Log[i] = Log[i / 2] + 1; for(int j = 1; j &amp;lt; logN; j ++) for(int i = 1; i + (1 &amp;lt;&amp;lt; j - 1) &amp;lt;= n; i ++) f[i][j] = max(f[i][j - 1], f[i + (1 &amp;lt;&amp;lt; j - 1)][j - 1]); } int query(int l, int r) { // 返回 a[l.</description>
+    </item>
+    
+    <item>
       <title>Dev-C&#43;&#43;</title>
       <link>https://freeze.org.cn/docs/Tools/Dev-cpp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
