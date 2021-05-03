@@ -6,39 +6,6 @@
     <description>Recent content in 基础算法 on Freeze&#39;s Blogs</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/Basics/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>广度优先搜索</title>
-      <link>https://freeze.org.cn/docs/Basics/bfs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Basics/bfs/</guid>
-      <description>简介 $  广度优先搜索（Breadth First Search，简称 BFS）按照层次顺序查找节点，如下图：
-  访问节点 0（根节点）；
-  访问节点 0 的所有子结点（结点 1、2）；
-  访问节点 1、2 的所有子结点（结点 3、4、5）；
-$\cdots \ \cdots$
-  重复访问子结点的操作，直到访问到目标节点。
-基本原理 $    定义一个队列，用于存放节点编号；
-  将根节点编号插入队尾（入队）；
-  将队头的所有子节点入队，移除队头元素（出队），重复直到队列为空。
-  Warning
-为了避免重复访问同一节点，已经进过队列的结点不能再次入队。
- bool vis[]; // vis[i] 代表节点 i 是否进过队列  void bfs(int s, int e) { // 在根节点为 s 的图中找到节点 e memset(vis, false, sizeof vis); queue&amp;lt;int&amp;gt; Q; Q.</description>
-    </item>
-    
-    <item>
-      <title>深度优先搜索</title>
-      <link>https://freeze.org.cn/docs/Basics/dfs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Basics/dfs/</guid>
-      <description>简介 $  深度优先搜索（Depth First Search，简称 DFS）在查找节点时，尽可能往更深处搜索，如下图：
-基本原理 $  DFS 算法在本质上是一种递归：
-  若当前结点为目标结点，直接返回；
-  递归搜索当前结点的每个子节点。
-  void dfs(int s, int e) { // 从节点 i 出发，查找结点 e  if(s == e) return; // 找到结点 e  for(int i = 结点 k 的子节点编号) dfs(i, e); // 搜索  return; // 回溯（此处可以省略） } </description>
-    </item>
-    
-    <item>
       <title>排序算法</title>
       <link>https://freeze.org.cn/docs/Basics/sort/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

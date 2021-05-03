@@ -52,5 +52,14 @@ int gcd(a, b) { if(!b) return a; return gcd(b, a % b); } 最小公倍数 $  如�
   乘法封闭 $  若 $a,b\in[1,m)$ 分别与 $m$ 互质，则 $ab$ 与 $m$ 互质。</description>
     </item>
     
+    <item>
+      <title>快速幂</title>
+      <link>https://freeze.org.cn/docs/Math/quickpow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Math/quickpow/</guid>
+      <description>typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!b) return 1; LL res = Pow(a, b / 2); return res * res + (b % 2) * a; } </description>
+    </item>
+    
   </channel>
 </rss>

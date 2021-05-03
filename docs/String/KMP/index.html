@@ -20,7 +20,7 @@
 <title>KMP 算法 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.c13de99d66db20467461531568aaa180f4bffc9fb741b5662ced864ba7347689.js" integrity="sha256-wT3pnWbbIEZ0YVMVaKqhgPS//J&#43;3QbVmLO2GS6c0dok="></script>
+<script defer src="/en.search.min.77ee135dbb366802ab21e5696a2eee51aa5b1f5ea717994a73b2d053b2ecc745.js" integrity="sha256-d&#43;4TXbs2aAKrIeVpai7uUapbH16nF5lKc7LQU7Lsx0U="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -87,7 +87,24 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/bfs/" class="">广度优先搜索</a>
+    <input type="checkbox" id="section-41ef39c5b40593a842e112d71399835e" class="toggle"  />
+    <label for="section-41ef39c5b40593a842e112d71399835e" class="flex justify-between">
+      <a  class="">搜索算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/Search/bfs/" class="">BFS（广搜）</a>
   
 
         </li>
@@ -100,8 +117,13 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/dfs/" class="">深度优先搜索</a>
+    <a href="https://freeze.org.cn/docs/Basics/Search/dfs/" class="">DFS（深搜）</a>
   
+
+        </li>
+      
+    
+  </ul>
 
         </li>
       
@@ -732,6 +754,19 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/quickpow/" class="">快速幂</a>
+  
+
+        </li>
+      
+    
   </ul>
 
         </li>
@@ -924,10 +959,15 @@ A=\color{lightgrey}a \ b \ \color{black} &a \ b \ a \ b \ a \ b \ c\\
 $$
 </xmp>
 <p>为什么可以这么做呢？</p>
-<p>我们发现 $B$ 串的这两段相等。</p>
-<p>$$
-B= \ \underline{a \ b} \ \underline{a \ b} \ c
-$$</p>
+<p>单独看 $B$ 串的绿色部分，容易发现它的前半段（前缀）和后半段（后缀）都是 $a \ b$。</p>
+<xmp>
+$$
+\begin{aligned}
+B= \ &\color{green}a \ b \ a \ b \color{red} \ c \\
+&\color{black}\underset{前缀}{\underline{a \ b}}\underset{后缀}{\underline{a \ b}}
+\end{aligned}
+$$
+</xmp>
 <p>此时 $A$ 串和 $B$ 串的绿色部分是匹配的，上下两段也相等。</p>
 <xmp>
 $$
@@ -961,10 +1001,17 @@ A= a \ b \ &\color{green}\underline{a \ b}\color{black} \ a \ b \ a \ b \ c\\
 \end{aligned}
 $$
 </xmp>
-<p>下面一例中，$B$ 串在右移 $1\sim 3$ 位时都匹配不成，因此至少向右移 $4$ 位，也就是一直右移 $B$ 串直到两段绿的对齐。</p>
+<p>下面一例中，$B$ 串在右移 $1\sim 3$ 位时都匹配不成，因此至少向右移 $4$ 位，也就是一直右移到 $B$ 串的前缀和后缀对齐。</p>
 <xmp>
 $$
 \begin{aligned}
+A= \ &\color{green}s \ e \ d \ c \ s \ e \ d \color{red}\ c \color{black} \ s \ e \ d \ s\\
+B= \ &\color{green}s \ e \ d \ c \ s \ e \ d \color{red}\ s\\
+&\color{black} \underset{前缀}{\underline{s \ e \ d}} \ c \ \underset{后缀}{\underline{s \ e \ d}}
+\end{aligned}
+\\
+\begin{aligned}
+\\
 A&=s \ e \ d \ c \ \color{green}\underline{s \ e \ d}\color{black} \ c \ s \ e \ d \ s\\
 B&=\color{green}\underline{s \ e \ d}\color{black} \ c \ s \ e \ d \ s\\
 \end{aligned}
@@ -1005,7 +1052,7 @@ B&=\color{green}a \ b \ c \ d\color{red} \ f
 \begin{aligned}
 \\
 A=\color{green}a \ b \ c \ d\color{black} \ &a \ b \ c \ d \ f\\
-→B=&\color{green}a \ b \ c \ d\color{black} \ f
+→B= \ &\color{green}a \ b \ c \ d\color{black} \ f
 \end{aligned}
 $$
 </xmp>
@@ -1020,8 +1067,8 @@ $$
 <xmp>
 $$
 \begin{aligned}
-A &= \blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\\
-B &= \blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare
+A &= \pi\pi\pi\pi\pi\pi\pi\pi\pi\pi\pi\pi\\
+B &= \pi\pi\pi\pi\pi\pi\pi
 \end{aligned}
 $$
 </xmp>
@@ -1031,36 +1078,31 @@ $$
 <xmp>
 $$
 \begin{aligned}
-A &= \color{green}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\color{red}\blacksquare\color{black}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\\
-B &= \color{green}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\color{red}\blacksquare\color{black}\blacksquare
+A &= \color{green}\pi\pi\pi\pi\pi\color{red}\pi\color{black}\pi\pi\pi\pi\pi\pi\\
+B &= \color{green}\pi\pi\pi\pi\pi\color{red}\pi\color{black}\pi
 \end{aligned}
 $$
 </xmp>
 </div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-2"  />
   <label for="tabs-uniqueid-2">Step 3</label>
-  <div class="book-tabs-content markdown-inner"><p>在绿色子段中找出前后两段相等的，把 $B$ 串往右拉，直到这两段对齐。</p>
+  <div class="book-tabs-content markdown-inner"><p>在绿色子段中找出相同的前缀和后缀，把 $B$ 串往右拉，直到这两段对齐，再从蓝色处继续向右比较。</p>
 <xmp>
 $$
 \begin{aligned}
-A &= \color{lightgreen}\blacksquare\blacksquare\blacksquare\color{green}\underline{\blacksquare\blacksquare}\color{black}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\\
-B &= \color{green}\underline{\blacksquare\blacksquare}\color{lightgreen}\blacksquare\blacksquare\blacksquare\color{black}\blacksquare\blacksquare
+A &= \color{lightgreen}\pi\pi\pi\overset{\color{black}后缀}{\color{green}\underline{\pi\pi}}\color{black}\pi\pi\pi\pi\pi\pi\pi\\
+B &= \underset{\color{black}前缀}{\color{green}\underline{\pi\pi}}\color{lightgreen}\pi\pi\pi\color{black}\pi\pi
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A = \blacksquare\blacksquare\blacksquare&\color{green}\underline{\blacksquare\blacksquare}\color{black}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\\
-→B = &\color{green}\underline{\blacksquare\blacksquare}\color{black}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare
+A = \pi\pi\pi&\color{green}\underline{\pi\pi}\color{black}\pi\pi\pi\pi\pi\pi\pi\\
+→B = &\color{green}\underline{\pi\pi}\color{black}\pi\pi\pi\pi\pi
 \end{aligned}
-$$
-</xmp>
-</div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-3"  />
-  <label for="tabs-uniqueid-3">Step 4</label>
-  <div class="book-tabs-content markdown-inner"><p>从紫色处开始继续向右比较，重复前面过程。</p>
-<xmp>
-$$
+\\
 \begin{aligned}
-A = \blacksquare\blacksquare\blacksquare&\color{green}\underline{\blacksquare\blacksquare}\color{magenta}\blacksquare\color{black}\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\blacksquare\\
-→B = &\color{green}\underline{\blacksquare\blacksquare}\color{magenta}\blacksquare\color{black}\blacksquare\blacksquare\blacksquare\blacksquare
+\\
+A = \pi\pi\pi&\color{green}\underline{\pi\pi}\overset{\displaystyle\color{black}↓}{\color{blue}\pi}\color{black}\pi\pi\pi\pi\pi\pi\\
+B = &\color{green}\underline{\pi\pi}\underset{\displaystyle\color{black}↑}{\color{blue}\pi}\color{black}\pi\pi\pi\pi
 \end{aligned}
 $$
 </xmp>

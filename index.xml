@@ -6,6 +6,26 @@
     <description>Recent content in 首页 on Freeze&#39;s Blogs</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>BFS（广搜）</title>
+      <link>https://freeze.org.cn/docs/Basics/Search/bfs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/Search/bfs/</guid>
+      <description>简介 $  广度优先搜索（Breadth First Search，简称 BFS）按照层次顺序查找节点，如下图：
+  访问节点 0（根节点）；
+  访问节点 0 的所有子结点（结点 1、2）；
+  访问节点 1、2 的所有子结点（结点 3、4、5）；
+$\cdots \ \cdots$
+  重复访问子结点的操作，直到访问到目标节点。
+基本原理 $    定义一个队列，用于存放节点编号；
+  将根节点编号插入队尾（入队）；
+  将队头的所有子节点入队，移除队头元素（出队），重复直到队列为空。
+  Warning
+为了避免重复访问同一节点，已经进过队列的结点不能再次入队。
+ bool vis[]; // vis[i] 代表节点 i 是否进过队列  void bfs(int s, int e) { // 在根节点为 s 的图中找到节点 e  memset(vis, false, sizeof vis); queue&amp;lt;int&amp;gt; Q; Q.</description>
+    </item>
+    
+    <item>
       <title>哈希函数</title>
       <link>https://freeze.org.cn/docs/String/hash/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -22,26 +42,6 @@
 $$ getHash(fantasy)=(6·b^6+1·b^5+14·b^4+\cdots+25·b^0)%p $$
 按此方法设计的哈希函数，不同字符串的哈希值相同的概率较小，且哈希值不会超出 long long 的范围。时间复杂度为 $O(n)$。
 typedef long long LL; const LL b = 29, p = 10000019; LL getHash(string str) { // 返回 str 的哈希值  LL h = 0; for(int i = 0; i &amp;lt; str.</description>
-    </item>
-    
-    <item>
-      <title>广度优先搜索</title>
-      <link>https://freeze.org.cn/docs/Basics/bfs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Basics/bfs/</guid>
-      <description>简介 $  广度优先搜索（Breadth First Search，简称 BFS）按照层次顺序查找节点，如下图：
-  访问节点 0（根节点）；
-  访问节点 0 的所有子结点（结点 1、2）；
-  访问节点 1、2 的所有子结点（结点 3、4、5）；
-$\cdots \ \cdots$
-  重复访问子结点的操作，直到访问到目标节点。
-基本原理 $    定义一个队列，用于存放节点编号；
-  将根节点编号插入队尾（入队）；
-  将队头的所有子节点入队，移除队头元素（出队），重复直到队列为空。
-  Warning
-为了避免重复访问同一节点，已经进过队列的结点不能再次入队。
- bool vis[]; // vis[i] 代表节点 i 是否进过队列  void bfs(int s, int e) { // 在根节点为 s 的图中找到节点 e memset(vis, false, sizeof vis); queue&amp;lt;int&amp;gt; Q; Q.</description>
     </item>
     
     <item>
@@ -143,6 +143,19 @@ bool isPrime(int n) { if(n &amp;lt; 2) return false; for(int i = 2; i &amp;lt;= 
     </item>
     
     <item>
+      <title>DFS（深搜）</title>
+      <link>https://freeze.org.cn/docs/Basics/Search/dfs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/Search/dfs/</guid>
+      <description>简介 $  深度优先搜索（Depth First Search，简称 DFS）在查找节点时，尽可能往更深处搜索，如下图：
+基本原理 $  DFS 算法在本质上是一种递归：
+  若当前结点为目标结点，直接返回；
+  递归搜索当前结点的每个子节点。
+  void dfs(int s, int e) { // 从节点 i 出发，查找结点 e  if(s == e) return; // 找到结点 e  for(int i = 结点 k 的子节点编号) dfs(i, e); // 搜索  return; // 回溯（此处可以省略） } </description>
+    </item>
+    
+    <item>
       <title>哈希表</title>
       <link>https://freeze.org.cn/docs/String/hash-map/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -217,19 +230,6 @@ int top, head[]; struct Node { int val, len; int next; // 这里只需要用到�
 void dfs(int u) { // 打印以 u 为根的树的遍历顺序  if(!u) return; cout &amp;lt;&amp;lt; u &amp;lt;&amp;lt; endl; dfs(l[u]); // l[u] 表示 u 的左子节点  dfs(r[u]); // r[u] 表示 u 的右子节点 } 中序遍历 $  先遍历左子树，再访问根节点，最后遍历右子树。上图的中序遍历顺序为 $4→2→5→1→3$。
 void dfs(int u) { if(!u) return; dfs(l[u]); cout &amp;lt;&amp;lt; u &amp;lt;&amp;lt; endl; dfs(r[u]); } 后序遍历 $  先遍历左子树，再遍历右子树，最后访问根节点。上图的后序遍历顺序为 $4→5→2→3→1$。
 void dfs(int u) { if(!</description>
-    </item>
-    
-    <item>
-      <title>深度优先搜索</title>
-      <link>https://freeze.org.cn/docs/Basics/dfs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Basics/dfs/</guid>
-      <description>简介 $  深度优先搜索（Depth First Search，简称 DFS）在查找节点时，尽可能往更深处搜索，如下图：
-基本原理 $  DFS 算法在本质上是一种递归：
-  若当前结点为目标结点，直接返回；
-  递归搜索当前结点的每个子节点。
-  void dfs(int s, int e) { // 从节点 i 出发，查找结点 e  if(s == e) return; // 找到结点 e  for(int i = 结点 k 的子节点编号) dfs(i, e); // 搜索  return; // 回溯（此处可以省略） } </description>
     </item>
     
     <item>
@@ -408,6 +408,15 @@ deque&amp;lt;int&amp;gt; q; // 存储元素下标  void insert(int i, int p) { /
 int t[], n; // t[u] : u 号节点的值 // n : 节点总数 插入 $  如何往小根堆中插入元素 $2$？
   在堆底新建节点，值为 $2$；
   对新节点所在支路进行排序。重复执行以下步骤：</description>
+    </item>
+    
+    <item>
+      <title>快速幂</title>
+      <link>https://freeze.org.cn/docs/Math/quickpow/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Math/quickpow/</guid>
+      <description>typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!b) return 1; LL res = Pow(a, b / 2); return res * res + (b % 2) * a; } </description>
     </item>
     
     <item>

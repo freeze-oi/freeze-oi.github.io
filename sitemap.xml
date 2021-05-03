@@ -2,11 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://freeze.org.cn/docs/Basics/Search/bfs/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/String/hash/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Basics/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/docs/Basics/bfs/</loc>
+    <loc>https://freeze.org.cn/docs/Basics/Search/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/intro/</loc>
   </url><url>
@@ -17,6 +19,8 @@
     <loc>https://freeze.org.cn/docs/Graph/Tree/intro/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Math/prime/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Basics/Search/dfs/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/</loc>
   </url><url>
@@ -31,8 +35,6 @@
     <loc>https://freeze.org.cn/docs/Graph/Tree/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/Tree/traversal/</loc>
-  </url><url>
-    <loc>https://freeze.org.cn/docs/Basics/dfs/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/memo/</loc>
   </url><url>
@@ -61,6 +63,8 @@
     <loc>https://freeze.org.cn/docs/DS/heap/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/String/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Math/quickpow/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/topsort/</loc>
   </url><url>
