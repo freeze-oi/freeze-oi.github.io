@@ -118,5 +118,16 @@ $f[i]$ 由 $f[i$ 的子节点$]$ 推出，计算顺序应为 $f[$子节点$]→f
 vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void dfs(int u) { // 求以 u 为根的子树中节点个数  f[u] = 1; for(int i = 0; i &amp;lt; son[u].size(); i ++) { int v = son[u][i]; // 节点 u 的第 i 个子节点  dfs(v); f[u] += f[v]; } } 例题 $  没有上司的舞会 $  公司有 $n$ 个人（编号 $1\cdots n$），现要举⾏⼀场晚会，并规定如果邀请了某个⼈，那么⼀定不会邀请他的上司（他上司的上司，上司的上司的上司 $\cdots$ 都可以邀请）。</description>
     </item>
     
+    <item>
+      <title>状压 DP</title>
+      <link>https://freeze.org.cn/docs/DP/zip/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/DP/zip/</guid>
+      <description>简介 $  为了解决问题，有时需要在 $f[ \ ]$ 数组的中括号里塞一些奇怪的东西。
+假设你要用 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 四种符号填满下面 $4×4$ 的表格，并且黑色符号只能和白色符号相邻。表格的第一行已经给出，问所有可行的方案中，第四行恰好也为 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 的有几种？
+   $\spadesuit$ $\heartsuit$ $\clubsuit$ $\diamondsuit$     $ \ $ $ \ $ $ \ $ $ \ $   $ \ $ $ \ $ $ \ $ $ \ $   $ \ $ $ \ $ $ \ $ $ \ $    设 $f[\square\square\square\square][i]$ 表示第 $i$ 行填 $\square\square\square\square$ 的可行方案数。我们要求解的是 $f[\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit][4]$。由于黑色符号只能与白色符号相邻，因此：</description>
+    </item>
+    
   </channel>
 </rss>

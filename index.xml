@@ -533,7 +533,7 @@ $$ f[l,r]=\min_{l≤k&amp;lt;r}{f[l,k]+f[k+1,r]}+sum[r]-sum[l-1] $$
       
       <guid>https://freeze.org.cn/docs/Basics/zip/</guid>
       <description>简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
-   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ `n   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp; (~(1 &amp;lt;&amp;lt; (k - 1)))    可以直接使用 STL Bitset。</description>
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n | (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp; (~(1 &amp;lt;&amp;lt; (k - 1)))    可以直接使用 STL Bitset。</description>
     </item>
     
     <item>
@@ -623,11 +623,22 @@ vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void d
     </item>
     
     <item>
-      <title>Dev-C&#43;&#43;</title>
-      <link>https://freeze.org.cn/docs/Tools/Dev-cpp/</link>
+      <title>状压 DP</title>
+      <link>https://freeze.org.cn/docs/DP/zip/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://freeze.org.cn/docs/Tools/Dev-cpp/</guid>
+      <guid>https://freeze.org.cn/docs/DP/zip/</guid>
+      <description>简介 $  为了解决问题，有时需要在 $f[ \ ]$ 数组的中括号里塞一些奇怪的东西。
+假设你要用 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 四种符号填满下面 $4×4$ 的表格，并且黑色符号只能和白色符号相邻。表格的第一行已经给出，问所有可行的方案中，第四行恰好也为 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 的有几种？
+   $\spadesuit$ $\heartsuit$ $\clubsuit$ $\diamondsuit$     $ \ $ $ \ $ $ \ $ $ \ $   $ \ $ $ \ $ $ \ $ $ \ $   $ \ $ $ \ $ $ \ $ $ \ $    设 $f[\square\square\square\square][i]$ 表示第 $i$ 行填 $\square\square\square\square$ 的可行方案数。我们要求解的是 $f[\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit][4]$。由于黑色符号只能与白色符号相邻，因此：</description>
+    </item>
+    
+    <item>
+      <title>Dev-C&#43;&#43;</title>
+      <link>https://freeze.org.cn/docs/Tools/Dev-Cpp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Tools/Dev-Cpp/</guid>
       <description>Dev-C++ $  下载 Dev-C++ 5.11  Dev-C++ 5.10  Dev-C++ 5.09  Dev-C++ 5.08  Dev-C++ 5.07  Dev-C++ 5.06    </description>
     </item>
     

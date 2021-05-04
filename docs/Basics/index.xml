@@ -46,7 +46,7 @@ while(true) { bool solve = false; for(int i = 1; i &amp;lt;= n; i ++) if(a[i] &a
       
       <guid>https://freeze.org.cn/docs/Basics/zip/</guid>
       <description>简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
-   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ `n   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp; (~(1 &amp;lt;&amp;lt; (k - 1)))    可以直接使用 STL Bitset。</description>
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n | (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp; (~(1 &amp;lt;&amp;lt; (k - 1)))    可以直接使用 STL Bitset。</description>
     </item>
     
     <item>

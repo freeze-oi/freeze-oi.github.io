@@ -20,7 +20,7 @@
 <title>KMP 算法 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.77ee135dbb366802ab21e5696a2eee51aa5b1f5ea717994a73b2d053b2ecc745.js" integrity="sha256-d&#43;4TXbs2aAKrIeVpai7uUapbH16nF5lKc7LQU7Lsx0U="></script>
+<script defer src="/en.search.min.ad414d85f5e10d67aa07eafc4c111cfa3b3caae45d99a3470e0593d09513c096.js" integrity="sha256-rUFNhfXhDWeqB&#43;r8TBEc&#43;js8quRdmaNHDgWT0JUTwJY="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -288,6 +288,19 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/zip/" class="">状压 DP</a>
   
 
         </li>
@@ -1062,7 +1075,7 @@ $$
 
 
 <div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
-  <label for="tabs-uniqueid-0">Step 1</label>
+  <label for="tabs-uniqueid-0">1</label>
   <div class="book-tabs-content markdown-inner"><p>将 $A$ 串和 $B$ 串左端对齐。</p>
 <xmp>
 $$
@@ -1073,7 +1086,7 @@ B &= \pi\pi\pi\pi\pi\pi\pi
 $$
 </xmp>
 </div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-1"  />
-  <label for="tabs-uniqueid-1">Step 2</label>
+  <label for="tabs-uniqueid-1">2</label>
   <div class="book-tabs-content markdown-inner"><p>从左往右比较字符，直到出现不匹配的情况。</p>
 <xmp>
 $$
@@ -1084,17 +1097,22 @@ B &= \color{green}\pi\pi\pi\pi\pi\color{red}\pi\color{black}\pi
 $$
 </xmp>
 </div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-2"  />
-  <label for="tabs-uniqueid-2">Step 3</label>
-  <div class="book-tabs-content markdown-inner"><p>在绿色子段中找出相同的前缀和后缀，把 $B$ 串往右拉，直到这两段对齐，再从蓝色处继续向右比较。</p>
+  <label for="tabs-uniqueid-2">3</label>
+  <div class="book-tabs-content markdown-inner"><p>在绿色子段中找出相同的前缀和后缀。</p>
 <xmp>
 $$
 \begin{aligned}
 A &= \color{lightgreen}\pi\pi\pi\overset{\color{black}后缀}{\color{green}\underline{\pi\pi}}\color{black}\pi\pi\pi\pi\pi\pi\pi\\
 B &= \underset{\color{black}前缀}{\color{green}\underline{\pi\pi}}\color{lightgreen}\pi\pi\pi\color{black}\pi\pi
 \end{aligned}
-\\
+$$
+</xmp>
+</div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-3"  />
+  <label for="tabs-uniqueid-3">4</label>
+  <div class="book-tabs-content markdown-inner"><p>把 $B$ 串往右拉，直到前缀和后缀对齐，再从蓝色处继续向右比较。</p>
+<xmp>
+$$
 \begin{aligned}
-\\
 A = \pi\pi\pi&\color{green}\underline{\pi\pi}\color{black}\pi\pi\pi\pi\pi\pi\pi\\
 →B = &\color{green}\underline{\pi\pi}\color{black}\pi\pi\pi\pi\pi
 \end{aligned}
@@ -1112,7 +1130,7 @@ $$
   预处理
   <a class="anchor" href="#%e9%a2%84%e5%a4%84%e7%90%86">$</a>
 </h2>
-<p>当务之急是，在不匹配时，从 $B$ 串的绿色子段中找出相同的「前缀」和「后缀」。</p>
+<p>当务之急是，在不匹配时，从 $B$ 串的绿色子段中找出相同的前缀和后缀。</p>
 <p>下面一例中，$\textcolor{green}{joxjo}$ 的前缀 $\textcolor{green}{jo}$ 和后缀 $\textcolor{green}{jo}$ 相同。$\textcolor{green}{jo}$ 称为 $\textcolor{green}{joxjo}$ 的「公共前后缀」。</p>
 <center><img src=\String\kmp_11.png style="zoom:80%"></img></center>
 <p>注意：公共前后缀不能和原字符串相等。即 $joxjo$ 的公共前后缀不能是 $joxjo$。</p>
