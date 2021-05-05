@@ -4,12 +4,14 @@
 <head>
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="简介 $  为了解决问题，有时需要在 $f[ \ ]$ 数组的中括号里塞一些奇怪的东西。
-假设你要用 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 四种符号填满下面 $4×4$ 的表格，并且黑色符号只能和白色符号相邻。表格的第一行已经给出，问所有可行的方案中，第四行恰好也为 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 的有几种？
-   $\spadesuit$ $\heartsuit$ $\clubsuit$ $\diamondsuit$     $ \ $ $ \ $ $ \ $ $ \ $   $ \ $ $ \ $ $ \ $ $ \ $   $ \ $ $ \ $ $ \ $ $ \ $    设 $f[\square\square\square\square][i]$ 表示第 $i$ 行填 $\square\square\square\square$ 的可行方案数。我们要求解的是 $f[\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit][4]$。由于黑色符号只能与白色符号相邻，因此："><meta property="og:title" content="状压 DP" />
-<meta property="og:description" content="简介 $  为了解决问题，有时需要在 $f[ \ ]$ 数组的中括号里塞一些奇怪的东西。
-假设你要用 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 四种符号填满下面 $4×4$ 的表格，并且黑色符号只能和白色符号相邻。表格的第一行已经给出，问所有可行的方案中，第四行恰好也为 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 的有几种？
-   $\spadesuit$ $\heartsuit$ $\clubsuit$ $\diamondsuit$     $ \ $ $ \ $ $ \ $ $ \ $   $ \ $ $ \ $ $ \ $ $ \ $   $ \ $ $ \ $ $ \ $ $ \ $    设 $f[\square\square\square\square][i]$ 表示第 $i$ 行填 $\square\square\square\square$ 的可行方案数。我们要求解的是 $f[\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit][4]$。由于黑色符号只能与白色符号相邻，因此：" />
+<meta name="description" content="简介 $  在程序中，我们如何保存一面棋盘？
+$$\def\arraystretch{1.5}\begin{array}{|c|c|c|c|}\hline\ & \blacksquare & \ & \blacksquare \\ \hline\blacksquare & \ & \blacksquare & \blacksquare \\ \hline\ & \ & \blacksquare & \ \\ \hline\blacksquare & \blacksquare & \ & \blacksquare \\ \hline\end{array}$$
+对，用 $bool$ 数组。$A[i,j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
+bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定黑棋和白棋不能相邻，则中间两行一共有多少种可行的摆法？"><meta property="og:title" content="状压 DP" />
+<meta property="og:description" content="简介 $  在程序中，我们如何保存一面棋盘？
+$$\def\arraystretch{1.5}\begin{array}{|c|c|c|c|}\hline\ & \blacksquare & \ & \blacksquare \\ \hline\blacksquare & \ & \blacksquare & \blacksquare \\ \hline\ & \ & \blacksquare & \ \\ \hline\blacksquare & \blacksquare & \ & \blacksquare \\ \hline\end{array}$$
+对，用 $bool$ 数组。$A[i,j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
+bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定黑棋和白棋不能相邻，则中间两行一共有多少种可行的摆法？" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://freeze.org.cn/docs/DP/zip/" /><meta property="article:section" content="docs" />
 
@@ -18,7 +20,7 @@
 <title>状压 DP | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.ad414d85f5e10d67aa07eafc4c111cfa3b3caae45d99a3470e0593d09513c096.js" integrity="sha256-rUFNhfXhDWeqB&#43;r8TBEc&#43;js8quRdmaNHDgWT0JUTwJY="></script>
+<script defer src="/en.search.min.2932406daf7bfb266ee94d1b6d078a25682830de20622cd62abb5efc7d4fca50.js" integrity="sha256-KTJAba97&#43;yZu6U0bbQeKJWgoMN4gYizWKrte/H1PylA="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -865,55 +867,99 @@ https://github.com/alex-shpak/hugo-book
   简介
   <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
 </h2>
-<p>为了解决问题，有时需要在 $f[ \ ]$ 数组的中括号里塞一些奇怪的东西。</p>
-<p>假设你要用 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 四种符号填满下面 $4×4$ 的表格，并且黑色符号只能和白色符号相邻。表格的第一行已经给出，问所有可行的方案中，第四行恰好也为 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 的有几种？</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$\spadesuit$</th>
-<th style="text-align:center">$\heartsuit$</th>
-<th style="text-align:center">$\clubsuit$</th>
-<th style="text-align:center">$\diamondsuit$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$ \ $</td>
-<td style="text-align:center">$ \ $</td>
-<td style="text-align:center">$ \ $</td>
-<td style="text-align:center">$ \ $</td>
-</tr>
-<tr>
-<td style="text-align:center">$ \ $</td>
-<td style="text-align:center">$ \ $</td>
-<td style="text-align:center">$ \ $</td>
-<td style="text-align:center">$ \ $</td>
-</tr>
-<tr>
-<td style="text-align:center">$ \ $</td>
-<td style="text-align:center">$ \ $</td>
-<td style="text-align:center">$ \ $</td>
-<td style="text-align:center">$ \ $</td>
-</tr>
-</tbody>
-</table>
-<p>设 $f[\square\square\square\square][i]$ 表示第 $i$ 行填 $\square\square\square\square$ 的可行方案数。我们要求解的是 $f[\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit][4]$。由于黑色符号只能与白色符号相邻，因此：</p>
+<p>在程序中，我们如何保存一面棋盘？</p>
 <p>$$
-\begin{aligned}
-f[\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit][4]=&f[\heartsuit \ \spadesuit \ \diamondsuit \ \clubsuit][3]+f[\diamondsuit \ \spadesuit \ \heartsuit \ \clubsuit][3]\\
-+&f[\heartsuit \ \clubsuit \ \diamondsuit \ \spadesuit][3]+f[\diamondsuit \ \clubsuit \ \heartsuit \ \spadesuit][3]
-\end{aligned}
+\def\arraystretch{1.5}
+    \begin{array}{|c|c|c|c|}\hline
+    \ & \blacksquare & \ & \blacksquare \\ \hline
+    \blacksquare & \ & \blacksquare & \blacksquare \\ \hline
+    \ & \ & \blacksquare & \ \\ \hline
+    \blacksquare & \blacksquare & \ & \blacksquare \\ \hline
+\end{array}
 $$</p>
-<p>在程序中，我们一般通过 
-  <a href="/docs/Basics/zip/">状态压缩</a> 将一串符号转换为一个整数，这样 $f[ \ ]$ 数组就变得可实现。</p>
-<p>具体怎么操作呢？使用数字 $1 \ 2 \ 3 \ 4$ 分别替代字符 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$。上面的方程就会变为：</p>
+<p>对，用 $bool$ 数组。$A[i,j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">A</span><span style="color:#000;font-weight:bold">[][]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000;font-weight:bold">{</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#000;font-weight:bold">{</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#000;font-weight:bold">{</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">},</span>
+    <span style="color:#000;font-weight:bold">{</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">};</span>
+</code></pre></div><p>现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定黑棋和白棋不能相邻，则中间两行一共有多少种可行的摆法？</p>
 <p>$$
-\begin{aligned}
-f[1234][4]=&f[2143][3]+f[4123][3]\\
-+&f[2341][3]+f[4321][3]
-\end{aligned}
+\def\arraystretch{1.5}
+    \begin{array}{|c|c|c|c|}\hline
+    \blacksquare & \ & \blacksquare & \ \\ \hline
+    \ & \ & \ & \ \\ \hline
+    \ & \ & \ & \ \\ \hline
+    \ & \blacksquare & \ & \blacksquare \\ \hline
+\end{array}
 $$</p>
-<p>状压 $DP$ 的核心就在于此。</p>
+<p>设 $f[\square\square\square\square][i]$ 表示从第 $1$ 行摆到第 $i$ 行，且第 $i$ 行摆放 $\square\square\square\square$ 的可行方案总数。</p>
+<p>由于第一行已经给出，因此 $f[\blacksquare\square\blacksquare\square][1]=1$（$\square$ 表示这一格没有棋子）。现在的目标是求 $f[\square\blacksquare\square\blacksquare][4]$。</p>
+<p>因为黑棋和白棋不相邻，故第 $3$ 行有 $4$ 种摆法（第 $3$ 行空着也算一种摆法）：</p>
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    $$
+\def\arraystretch{1.5}
+    \begin{array}{|c|c|c|c|}\hline
+    \blacksquare & \ & \blacksquare & \ \\ \hline
+    \ & \ & \ & \ \\ \hline
+    \blacksquare & \ & \blacksquare & \ \\ \hline
+    \ & \blacksquare & \ & \blacksquare \\ \hline
+\end{array}
+$$
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    $$
+\def\arraystretch{1.5}
+    \begin{array}{|c|c|c|c|}\hline
+    \blacksquare & \ & \blacksquare & \ \\ \hline
+    \ & \ & \ & \ \\ \hline
+    \blacksquare & \ & \ & \ \\ \hline
+    \ & \blacksquare & \ & \blacksquare \\ \hline
+\end{array}
+$$
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    $$
+\def\arraystretch{1.5}
+    \begin{array}{|c|c|c|c|}\hline
+    \blacksquare & \ & \blacksquare & \ \\ \hline
+    \ & \ & \ & \ \\ \hline
+    \ & \ & \blacksquare & \ \\ \hline
+    \ & \blacksquare & \ & \blacksquare \\ \hline
+\end{array}
+$$
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    $$
+\def\arraystretch{1.5}
+    \begin{array}{|c|c|c|c|}\hline
+    \blacksquare & \ & \blacksquare & \ \\ \hline
+    \ & \ & \ & \ \\ \hline
+    \ & \ & \ & \ \\ \hline
+    \ & \blacksquare & \ & \blacksquare \\ \hline
+\end{array}
+$$
+  </div>
+  
+</div>
+
+<p>据此列出：</p>
+<p>$$
+f[\square\blacksquare\square\blacksquare][4]=f[\blacksquare\square\blacksquare\square][3]+f[\blacksquare\square\square\square][3]+f[\square\square\blacksquare\square][3]+f[\square\square\square\square][3]
+$$</p>
+<p>这么做未免也太滑稽了，而且 $C++$ 并不支持特殊符号。那怎么办呢？</p>
+<p>我们想到用开头的 $bool$ 数组表示棋盘，例如 $\square\blacksquare\square\blacksquare$ 可以表示为 $\{0, 1, 0, 1\}$。然后再用 
+  <a href="/docs/Basics/zip/">状态压缩</a> 算法将该数组压缩成二进制数 $(0101)_2$。一波操作之后，我们的方程就变为：</p>
+<p>$$
+f[(0101)_2][4]=f[(1010)_2][3]+f[(1000)_2][3]+f[(0010)_2][3]+f[(0000)_2][3]
+$$</p>
+<p>将一组状态压缩成一个二进制数，塞到 $f[ \ ]$ 的中括号里，再进行递推，这就是「状压 $DP$」。</p>
 </article>
 
             

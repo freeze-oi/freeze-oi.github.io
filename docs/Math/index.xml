@@ -58,7 +58,12 @@ int gcd(a, b) { if(!b) return a; return gcd(b, a % b); } 最小公倍数 $  如�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/Math/quickpow/</guid>
-      <description>typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!b) return 1; LL res = Pow(a, b / 2); return res * res + (b % 2) * a; } </description>
+      <description>快速幂 $  如何快速求出 $a^b$（$a,b\in\mathbb{Z}$）？我想各位 $Oier$ 肯定少不了在 $OJ$1 上提交暴力算法的代码之后 $Runtime \ Error$2 的经历。
+int Pow(int a, int b) { // 暴力算法 计算 a^b  int ans = 1; while(b --) ans *= a; return ans; } 设 $Pow(a, b)$ 表示 $a^b$。
+  若 $b$ 为偶数，则 $a^b=a^{b/2}×a^{b/2}$，即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)$。
+  若 $b$ 为奇数，则 $a^b=a^{b/2}×a^{b/2}×a$（向下取整），即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)×a$。
+  边界条件：$Pow(a, 0)=1$。时间复杂度为 $O(\log{b})$。
+typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!</description>
     </item>
     
   </channel>

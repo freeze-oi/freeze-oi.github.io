@@ -416,7 +416,12 @@ int t[], n; // t[u] : u 号节点的值 // n : 节点总数 插入 $  如何往�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/Math/quickpow/</guid>
-      <description>typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!b) return 1; LL res = Pow(a, b / 2); return res * res + (b % 2) * a; } </description>
+      <description>快速幂 $  如何快速求出 $a^b$（$a,b\in\mathbb{Z}$）？我想各位 $Oier$ 肯定少不了在 $OJ$1 上提交暴力算法的代码之后 $Runtime \ Error$2 的经历。
+int Pow(int a, int b) { // 暴力算法 计算 a^b  int ans = 1; while(b --) ans *= a; return ans; } 设 $Pow(a, b)$ 表示 $a^b$。
+  若 $b$ 为偶数，则 $a^b=a^{b/2}×a^{b/2}$，即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)$。
+  若 $b$ 为奇数，则 $a^b=a^{b/2}×a^{b/2}×a$（向下取整），即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)×a$。
+  边界条件：$Pow(a, 0)=1$。时间复杂度为 $O(\log{b})$。
+typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!</description>
     </item>
     
     <item>
@@ -628,9 +633,10 @@ vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void d
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DP/zip/</guid>
-      <description>简介 $  为了解决问题，有时需要在 $f[ \ ]$ 数组的中括号里塞一些奇怪的东西。
-假设你要用 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 四种符号填满下面 $4×4$ 的表格，并且黑色符号只能和白色符号相邻。表格的第一行已经给出，问所有可行的方案中，第四行恰好也为 $\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit$ 的有几种？
-   $\spadesuit$ $\heartsuit$ $\clubsuit$ $\diamondsuit$     $ \ $ $ \ $ $ \ $ $ \ $   $ \ $ $ \ $ $ \ $ $ \ $   $ \ $ $ \ $ $ \ $ $ \ $    设 $f[\square\square\square\square][i]$ 表示第 $i$ 行填 $\square\square\square\square$ 的可行方案数。我们要求解的是 $f[\spadesuit \ \heartsuit \ \clubsuit \ \diamondsuit][4]$。由于黑色符号只能与白色符号相邻，因此：</description>
+      <description>简介 $  在程序中，我们如何保存一面棋盘？
+$$\def\arraystretch{1.5}\begin{array}{|c|c|c|c|}\hline\ &amp; \blacksquare &amp; \ &amp; \blacksquare \\ \hline\blacksquare &amp; \ &amp; \blacksquare &amp; \blacksquare \\ \hline\ &amp; \ &amp; \blacksquare &amp; \ \\ \hline\blacksquare &amp; \blacksquare &amp; \ &amp; \blacksquare \\ \hline\end{array}$$
+对，用 $bool$ 数组。$A[i,j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
+bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定黑棋和白棋不能相邻，则中间两行一共有多少种可行的摆法？</description>
     </item>
     
     <item>

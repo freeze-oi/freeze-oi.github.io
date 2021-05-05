@@ -1,4 +1,11 @@
 @font-face {
+    font-family: GBK_Mono;
+    src: url(fonts/msyh.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal
+}
+
+@font-face {
     font-family: KaTeX_AMS;
     src: url(fonts/KaTeX_AMS-Regular.woff2) format("woff2"), url(fonts/KaTeX_AMS-Regular.woff) format("woff"), url(fonts/KaTeX_AMS-Regular.ttf) format("truetype");
     font-weight: 400;
@@ -183,7 +190,8 @@
 }
 
 .katex .textit {
-    font-style: italic
+    /* font-style: italic */
+    font-family: GBK_Mono
 }
 
 .katex .textrm {
