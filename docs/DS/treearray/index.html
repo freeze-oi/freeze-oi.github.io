@@ -4,13 +4,15 @@
 <head>
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="前置知识 $  你得先学会 $lowbit(n)$ 的计算方式。
-引入问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
+<meta name="description" content="Warning
+你得先学会 $lowbit$ 运算。
+ 问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
   单点修改：将 $A[ x]$ 加上 $k$。
   区间查询：查询 $A[l\cdots r]$ 的和。
   int a[]; void set(int id, int v) { // 单点修改  a[id] = v; } int ask(int l, int r) { // 区间查询  int ans = 0; for(int i = l; i &lt;= r; i &#43;&#43;) ans &#43;= a[i]; return ans; }     暴力算法（$\textcolor{red}{×}$） 树状数组（$\textcolor{green}{√}$）     单点修改 $\textcolor{green}{O(1)}$ $\textcolor{green}{O(\log{n})}$   区间查询 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   $m$ 次操作 $\textcolor{red}{O(mn)}$ $\textcolor{green}{O(m\log{n})}$    构造 $  在原数组的上方构建树型结构，每个节点表示一段区间和："><meta property="og:title" content="树状数组" />
-<meta property="og:description" content="前置知识 $  你得先学会 $lowbit(n)$ 的计算方式。
-引入问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
+<meta property="og:description" content="Warning
+你得先学会 $lowbit$ 运算。
+ 问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
   单点修改：将 $A[ x]$ 加上 $k$。
   区间查询：查询 $A[l\cdots r]$ 的和。
   int a[]; void set(int id, int v) { // 单点修改  a[id] = v; } int ask(int l, int r) { // 区间查询  int ans = 0; for(int i = l; i &lt;= r; i &#43;&#43;) ans &#43;= a[i]; return ans; }     暴力算法（$\textcolor{red}{×}$） 树状数组（$\textcolor{green}{√}$）     单点修改 $\textcolor{green}{O(1)}$ $\textcolor{green}{O(\log{n})}$   区间查询 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   $m$ 次操作 $\textcolor{red}{O(mn)}$ $\textcolor{green}{O(m\log{n})}$    构造 $  在原数组的上方构建树型结构，每个节点表示一段区间和：" />
@@ -22,7 +24,7 @@
 <title>树状数组 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.2932406daf7bfb266ee94d1b6d078a25682830de20622cd62abb5efc7d4fca50.js" integrity="sha256-KTJAba97&#43;yZu6U0bbQeKJWgoMN4gYizWKrte/H1PylA="></script>
+<script defer src="/en.search.min.48aa70ad2e925db27527066401841fc286361bdb9741fb9586ad36e6709ee431.js" integrity="sha256-SKpwrS6SXbJ1JwZkAYQfwoY2G9uXQfuVhq025nCe5DE="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -854,8 +856,7 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li>
       <ul>
-        <li><a href="#前置知识">前置知识</a></li>
-        <li><a href="#引入问题">引入问题</a></li>
+        <li><a href="#问题">问题</a></li>
         <li><a href="#构造">构造</a>
           <ul>
             <li><a href="#父节点">父节点</a></li>
@@ -880,15 +881,15 @@ https://github.com/alex-shpak/hugo-book
             </header>
 
              
-<article class="markdown"><h2 id="前置知识">
-  前置知识
-  <a class="anchor" href="#%e5%89%8d%e7%bd%ae%e7%9f%a5%e8%af%86">$</a>
-</h2>
-<p>你得先学会 
-  <a href="/docs/Basics/zip/#lowbit-%e8%bf%90%e7%ae%97">$lowbit(n)$</a> 的计算方式。</p>
-<h2 id="引入问题">
-  引入问题
-  <a class="anchor" href="#%e5%bc%95%e5%85%a5%e9%97%ae%e9%a2%98">$</a>
+<article class="markdown"><blockquote class="book-hint warning">
+  <p><strong>Warning</strong></p>
+<p>你得先学会 <a href="/docs/Basics/zip/#lowbit-%E8%BF%90%E7%AE%97">$lowbit$ 运算</a>。</p>
+
+</blockquote>
+
+<h2 id="问题">
+  问题
+  <a class="anchor" href="#%e9%97%ae%e9%a2%98">$</a>
 </h2>
 <p>数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：</p>
 <ul>
@@ -1119,8 +1120,7 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li>
       <ul>
-        <li><a href="#前置知识">前置知识</a></li>
-        <li><a href="#引入问题">引入问题</a></li>
+        <li><a href="#问题">问题</a></li>
         <li><a href="#构造">构造</a>
           <ul>
             <li><a href="#父节点">父节点</a></li>
@@ -1169,13 +1169,13 @@ https://github.com/alex-shpak/hugo-book
 <script type="text/javascript">
     String.prototype.pxWidth = function(font) {
         var canvas = String.prototype.pxWidth.canvas || (String.prototype.pxWidth.canvas = document.createElement("canvas")),
-            context = canvas.getContext("2d"); 
+            context = canvas.getContext("2d");
         font && (context.font = font);
         var metrics = context.measureText(this);
         return metrics.width;
     }
     var len = document.getElementsByClassName("book-btn").length;
-    for(var i = 0; i < len; i ++) {
+    for (var i = 0; i < len; i++) {
         var str = document.getElementsByClassName("book-btn")[i].innerHTML;
         var wid = (100 - str.pxWidth(document.getElementsByClassName("book-btn")[i].style.font)) / 2.3;
         document.getElementsByClassName("book-btn")[i].style.padding = "0 " + wid.toString() + "px";

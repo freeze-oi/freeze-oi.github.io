@@ -7,7 +7,7 @@
 <meta name="description" content="简介 $  如何统计区间 $[l,r]$ 中有多少整数符合某条件？
   暴力算法，枚举 $[l,r]$ 中的每一个整数，逐个判断是否满足条件，此方法遇大数据必 $gg$。
   优雅地使用数位 DP。
-  引出问题 $  统计区间 $[l,r]$（$0≤l&lt;r≤100$）中有多少整数符合「相邻两个数字之差 $≥2$」。
+  问题 $  统计区间 $[l,r]$（$0≤l&lt;r≤100$）中有多少整数符合「相邻两个数字之差 $≥2$」。
 预处理 $  采用「试填法」：从个位填到最高位，如果第 $d$ 位填了 $i$，那么第 $d&#43;1$ 位只能填 $[0,i-1]$ 或 $[i&#43;1,9]$ 中的整数。
 $f[i,d]$ 表示「所有最高位为 $i$ 的 $d$ 位数中，符合条件的个数」。通过给定条件可推出：
 $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
@@ -15,7 +15,7 @@ $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
 <meta property="og:description" content="简介 $  如何统计区间 $[l,r]$ 中有多少整数符合某条件？
   暴力算法，枚举 $[l,r]$ 中的每一个整数，逐个判断是否满足条件，此方法遇大数据必 $gg$。
   优雅地使用数位 DP。
-  引出问题 $  统计区间 $[l,r]$（$0≤l&lt;r≤100$）中有多少整数符合「相邻两个数字之差 $≥2$」。
+  问题 $  统计区间 $[l,r]$（$0≤l&lt;r≤100$）中有多少整数符合「相邻两个数字之差 $≥2$」。
 预处理 $  采用「试填法」：从个位填到最高位，如果第 $d$ 位填了 $i$，那么第 $d&#43;1$ 位只能填 $[0,i-1]$ 或 $[i&#43;1,9]$ 中的整数。
 $f[i,d]$ 表示「所有最高位为 $i$ 的 $d$ 位数中，符合条件的个数」。通过给定条件可推出：
 $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
@@ -28,7 +28,7 @@ $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
 <title>数位 DP | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.2932406daf7bfb266ee94d1b6d078a25682830de20622cd62abb5efc7d4fca50.js" integrity="sha256-KTJAba97&#43;yZu6U0bbQeKJWgoMN4gYizWKrte/H1PylA="></script>
+<script defer src="/en.search.min.48aa70ad2e925db27527066401841fc286361bdb9741fb9586ad36e6709ee431.js" integrity="sha256-SKpwrS6SXbJ1JwZkAYQfwoY2G9uXQfuVhq025nCe5DE="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -861,7 +861,7 @@ https://github.com/alex-shpak/hugo-book
     <li>
       <ul>
         <li><a href="#简介">简介</a></li>
-        <li><a href="#引出问题">引出问题</a></li>
+        <li><a href="#问题">问题</a></li>
         <li><a href="#预处理">预处理</a></li>
         <li><a href="#数位统计">数位统计</a></li>
         <li><a href="#模板">模板</a></li>
@@ -888,9 +888,9 @@ https://github.com/alex-shpak/hugo-book
 <p>优雅地使用<strong>数位 DP</strong>。</p>
 </li>
 </ol>
-<h2 id="引出问题">
-  引出问题
-  <a class="anchor" href="#%e5%bc%95%e5%87%ba%e9%97%ae%e9%a2%98">$</a>
+<h2 id="问题">
+  问题
+  <a class="anchor" href="#%e9%97%ae%e9%a2%98">$</a>
 </h2>
 <p>统计区间 $[l,r]$（$0≤l&lt;r≤100$）中有多少整数符合「相邻两个数字之差 $≥2$」。</p>
 <h2 id="预处理">
@@ -1030,7 +1030,7 @@ $$</p>
     <li>
       <ul>
         <li><a href="#简介">简介</a></li>
-        <li><a href="#引出问题">引出问题</a></li>
+        <li><a href="#问题">问题</a></li>
         <li><a href="#预处理">预处理</a></li>
         <li><a href="#数位统计">数位统计</a></li>
         <li><a href="#模板">模板</a></li>
@@ -1068,13 +1068,13 @@ $$</p>
 <script type="text/javascript">
     String.prototype.pxWidth = function(font) {
         var canvas = String.prototype.pxWidth.canvas || (String.prototype.pxWidth.canvas = document.createElement("canvas")),
-            context = canvas.getContext("2d"); 
+            context = canvas.getContext("2d");
         font && (context.font = font);
         var metrics = context.measureText(this);
         return metrics.width;
     }
     var len = document.getElementsByClassName("book-btn").length;
-    for(var i = 0; i < len; i ++) {
+    for (var i = 0; i < len; i++) {
         var str = document.getElementsByClassName("book-btn")[i].innerHTML;
         var wid = (100 - str.pxWidth(document.getElementsByClassName("book-btn")[i].style.font)) / 2.3;
         document.getElementsByClassName("book-btn")[i].style.padding = "0 " + wid.toString() + "px";

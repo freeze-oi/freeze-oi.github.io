@@ -4,18 +4,18 @@
 <head>
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="快速幂 $  如何快速求出 $a^b$（$a,b\in\mathbb{Z}$）？我想各位 $Oier$ 肯定少不了在 $OJ$1 上提交暴力算法的代码之后 $Runtime \ Error$2 的经历。
-int Pow(int a, int b) { // 暴力算法 计算 a^b  int ans = 1; while(b --) ans *= a; return ans; } 设 $Pow(a, b)$ 表示 $a^b$。
+<meta name="description" content="快速幂 $  如何快速求出 $a^b$（$a,b\in\mathbb{Z}$）？
+设 $Pow(a, b)$ 表示 $a^b$。
   若 $b$ 为偶数，则 $a^b=a^{b/2}×a^{b/2}$，即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)$。
   若 $b$ 为奇数，则 $a^b=a^{b/2}×a^{b/2}×a$（向下取整），即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)×a$。
   边界条件：$Pow(a, 0)=1$。时间复杂度为 $O(\log{b})$。
-typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!"><meta property="og:title" content="快速幂" />
-<meta property="og:description" content="快速幂 $  如何快速求出 $a^b$（$a,b\in\mathbb{Z}$）？我想各位 $Oier$ 肯定少不了在 $OJ$1 上提交暴力算法的代码之后 $Runtime \ Error$2 的经历。
-int Pow(int a, int b) { // 暴力算法 计算 a^b  int ans = 1; while(b --) ans *= a; return ans; } 设 $Pow(a, b)$ 表示 $a^b$。
+typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!b) return 1; // 边界条件  LL res = Pow(a, b / 2); if(b % 2 == 0) // b 是偶数  return res * res; else // b 是奇数  return res * res * a; } 事实上，快速幂还可以写得更清爽："><meta property="og:title" content="快速幂" />
+<meta property="og:description" content="快速幂 $  如何快速求出 $a^b$（$a,b\in\mathbb{Z}$）？
+设 $Pow(a, b)$ 表示 $a^b$。
   若 $b$ 为偶数，则 $a^b=a^{b/2}×a^{b/2}$，即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)$。
   若 $b$ 为奇数，则 $a^b=a^{b/2}×a^{b/2}×a$（向下取整），即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)×a$。
   边界条件：$Pow(a, 0)=1$。时间复杂度为 $O(\log{b})$。
-typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!" />
+typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!b) return 1; // 边界条件  LL res = Pow(a, b / 2); if(b % 2 == 0) // b 是偶数  return res * res; else // b 是奇数  return res * res * a; } 事实上，快速幂还可以写得更清爽：" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://freeze.org.cn/docs/Math/quickpow/" /><meta property="article:section" content="docs" />
 
@@ -24,7 +24,7 @@ typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!" />
 <title>快速幂 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.2932406daf7bfb266ee94d1b6d078a25682830de20622cd62abb5efc7d4fca50.js" integrity="sha256-KTJAba97&#43;yZu6U0bbQeKJWgoMN4gYizWKrte/H1PylA="></script>
+<script defer src="/en.search.min.48aa70ad2e925db27527066401841fc286361bdb9741fb9586ad36e6709ee431.js" integrity="sha256-SKpwrS6SXbJ1JwZkAYQfwoY2G9uXQfuVhq025nCe5DE="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -872,13 +872,8 @@ https://github.com/alex-shpak/hugo-book
   快速幂
   <a class="anchor" href="#%e5%bf%ab%e9%80%9f%e5%b9%82">$</a>
 </h2>
-<p>如何快速求出 $a^b$（$a,b\in\mathbb{Z}$）？我想各位 $Oier$ 肯定少不了在 $OJ$<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 上提交暴力算法的代码之后 $Runtime \ Error$<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> 的经历。</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">Pow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 暴力算法 计算 a^b
-</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">ans</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:bold">--</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">ans</span> <span style="color:#ce5c00;font-weight:bold">*=</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">;</span>
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">ans</span><span style="color:#000;font-weight:bold">;</span>
-<span style="color:#000;font-weight:bold">}</span>
-</code></pre></div><p>设 $Pow(a, b)$ 表示 $a^b$。</p>
+<p>如何快速求出 $a^b$（$a,b\in\mathbb{Z}$）？</p>
+<p>设 $Pow(a, b)$ 表示 $a^b$。</p>
 <ul>
 <li>
 <p>若 $b$ 为偶数，则 $a^b=a^{b/2}×a^{b/2}$，即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)$。</p>
@@ -925,17 +920,6 @@ https://github.com/alex-shpak/hugo-book
 
 </blockquote>
 
-<section class="footnotes" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn:1" role="doc-endnote">
-<p>$OJ$，指 $Online \ Judge$，在线判题系统。 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-<li id="fn:2" role="doc-endnote">
-<p>$Runtime \ Error$，指「运行时错误」。 <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
 </article>
 
             
@@ -1003,13 +987,13 @@ https://github.com/alex-shpak/hugo-book
 <script type="text/javascript">
     String.prototype.pxWidth = function(font) {
         var canvas = String.prototype.pxWidth.canvas || (String.prototype.pxWidth.canvas = document.createElement("canvas")),
-            context = canvas.getContext("2d"); 
+            context = canvas.getContext("2d");
         font && (context.font = font);
         var metrics = context.measureText(this);
         return metrics.width;
     }
     var len = document.getElementsByClassName("book-btn").length;
-    for(var i = 0; i < len; i ++) {
+    for (var i = 0; i < len; i++) {
         var str = document.getElementsByClassName("book-btn")[i].innerHTML;
         var wid = (100 - str.pxWidth(document.getElementsByClassName("book-btn")[i].style.font)) / 2.3;
         document.getElementsByClassName("book-btn")[i].style.padding = "0 " + wid.toString() + "px";

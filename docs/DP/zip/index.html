@@ -4,14 +4,18 @@
 <head>
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="简介 $  在程序中，我们如何保存一面棋盘？
-$$\def\arraystretch{1.5}\begin{array}{|c|c|c|c|}\hline\ & \blacksquare & \ & \blacksquare \\ \hline\blacksquare & \ & \blacksquare & \blacksquare \\ \hline\ & \ & \blacksquare & \ \\ \hline\blacksquare & \blacksquare & \ & \blacksquare \\ \hline\end{array}$$
-对，用 $bool$ 数组。$A[i,j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
-bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定黑棋和白棋不能相邻，则中间两行一共有多少种可行的摆法？"><meta property="og:title" content="状压 DP" />
-<meta property="og:description" content="简介 $  在程序中，我们如何保存一面棋盘？
-$$\def\arraystretch{1.5}\begin{array}{|c|c|c|c|}\hline\ & \blacksquare & \ & \blacksquare \\ \hline\blacksquare & \ & \blacksquare & \blacksquare \\ \hline\ & \ & \blacksquare & \ \\ \hline\blacksquare & \blacksquare & \ & \blacksquare \\ \hline\end{array}$$
-对，用 $bool$ 数组。$A[i,j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
-bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定黑棋和白棋不能相邻，则中间两行一共有多少种可行的摆法？" />
+<meta name="description" content="简介 $  Warning
+你得先学会 状态压缩 章节的内容。
+ 在程序中，我们如何保存一面棋盘？
+$$\def\arraystretch{2}\begin{array}{|c|c|c|c|}\hline\ & \Large♕ & \ & \Large♕ \\ \hline\Large♕ & \ & \Large♕ & \Large♕ \\ \hline\ & \ & \Large♕ & \ \\ \hline\Large♕ & \Large♕ & \ & \Large♕ \\ \hline\end{array}$$
+用 $bool$ 数组。$A[i][j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
+bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定任意两个棋子不能相邻，则中间两行一共有多少种可行的摆法？"><meta property="og:title" content="状压 DP" />
+<meta property="og:description" content="简介 $  Warning
+你得先学会 状态压缩 章节的内容。
+ 在程序中，我们如何保存一面棋盘？
+$$\def\arraystretch{2}\begin{array}{|c|c|c|c|}\hline\ & \Large♕ & \ & \Large♕ \\ \hline\Large♕ & \ & \Large♕ & \Large♕ \\ \hline\ & \ & \Large♕ & \ \\ \hline\Large♕ & \Large♕ & \ & \Large♕ \\ \hline\end{array}$$
+用 $bool$ 数组。$A[i][j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
+bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定任意两个棋子不能相邻，则中间两行一共有多少种可行的摆法？" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://freeze.org.cn/docs/DP/zip/" /><meta property="article:section" content="docs" />
 
@@ -20,7 +24,7 @@ bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在�
 <title>状压 DP | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.2932406daf7bfb266ee94d1b6d078a25682830de20622cd62abb5efc7d4fca50.js" integrity="sha256-KTJAba97&#43;yZu6U0bbQeKJWgoMN4gYizWKrte/H1PylA="></script>
+<script defer src="/en.search.min.48aa70ad2e925db27527066401841fc286361bdb9741fb9586ad36e6709ee431.js" integrity="sha256-SKpwrS6SXbJ1JwZkAYQfwoY2G9uXQfuVhq025nCe5DE="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -853,6 +857,9 @@ https://github.com/alex-shpak/hugo-book
     <li>
       <ul>
         <li><a href="#简介">简介</a></li>
+        <li><a href="#问题">问题</a></li>
+        <li><a href="#预处理">预处理</a></li>
+        <li><a href="#基本原理">基本原理</a></li>
       </ul>
     </li>
   </ul>
@@ -867,100 +874,164 @@ https://github.com/alex-shpak/hugo-book
   简介
   <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
 </h2>
+<blockquote class="book-hint warning">
+  <p><strong>Warning</strong></p>
+<p>你得先学会 <a href="/docs/Basics/zip/">状态压缩</a> 章节的内容。</p>
+
+</blockquote>
+
 <p>在程序中，我们如何保存一面棋盘？</p>
 <p>$$
-\def\arraystretch{1.5}
+\def\arraystretch{2}
     \begin{array}{|c|c|c|c|}\hline
-    \ & \blacksquare & \ & \blacksquare \\ \hline
-    \blacksquare & \ & \blacksquare & \blacksquare \\ \hline
-    \ & \ & \blacksquare & \ \\ \hline
-    \blacksquare & \blacksquare & \ & \blacksquare \\ \hline
+    \ & \Large♕ & \ & \Large♕ \\ \hline
+    \Large♕ & \ & \Large♕ & \Large♕ \\ \hline
+    \ & \ & \Large♕ & \ \\ \hline
+    \Large♕ & \Large♕ & \ & \Large♕ \\ \hline
 \end{array}
 $$</p>
-<p>对，用 $bool$ 数组。$A[i,j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。</p>
+<p>用 $bool$ 数组。$A[i][j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">A</span><span style="color:#000;font-weight:bold">[][]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000;font-weight:bold">{</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">},</span>
     <span style="color:#000;font-weight:bold">{</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">},</span>
     <span style="color:#000;font-weight:bold">{</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">},</span>
     <span style="color:#000;font-weight:bold">{</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">}</span>
 <span style="color:#000;font-weight:bold">};</span>
-</code></pre></div><p>现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定黑棋和白棋不能相邻，则中间两行一共有多少种可行的摆法？</p>
+</code></pre></div><p>现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定任意两个棋子不能相邻，则中间两行一共有多少种可行的摆法？</p>
 <p>$$
-\def\arraystretch{1.5}
+\def\arraystretch{2}
     \begin{array}{|c|c|c|c|}\hline
-    \blacksquare & \ & \blacksquare & \ \\ \hline
+    \Large♕ & \ & \Large♕ & \ \\ \hline
     \ & \ & \ & \ \\ \hline
     \ & \ & \ & \ \\ \hline
-    \ & \blacksquare & \ & \blacksquare \\ \hline
+    \ & \Large♕ & \ & \Large♕ \\ \hline
 \end{array}
 $$</p>
-<p>设 $f[\square\square\square\square][i]$ 表示从第 $1$ 行摆到第 $i$ 行，且第 $i$ 行摆放 $\square\square\square\square$ 的可行方案总数。</p>
-<p>由于第一行已经给出，因此 $f[\blacksquare\square\blacksquare\square][1]=1$（$\square$ 表示这一格没有棋子）。现在的目标是求 $f[\square\blacksquare\square\blacksquare][4]$。</p>
-<p>因为黑棋和白棋不相邻，故第 $3$ 行有 $4$ 种摆法（第 $3$ 行空着也算一种摆法）：</p>
+<p>设 $f[\square\!\square\!\square\!\square][i]$ 表示从第 $1$ 行摆到第 $i$ 行，且第 $i$ 行摆放 $\square\!\square\!\square\!\square\!$ 的可行方案总数。</p>
+<p>由于第一行已经给出，因此 $f[\blacksquare\!\square\!\blacksquare\!\square][1]=1$（$\square$ 表示这一格没有棋子，$\blacksquare$ 表示有棋子）。现在的目标是求 $f[\square\!\blacksquare\!\square\!\blacksquare][4]$。</p>
+<p>因为黑棋和白棋不相邻，而第 $4$ 行已经给出，所以第 $3$ 行有 $4$ 种摆法（全空着也算一种摆法）：</p>
 <div class="book-columns flex flex-wrap">
   
   <div class="flex-even markdown-inner">
-    $$
-\def\arraystretch{1.5}
+    $$1.
+\def\arraystretch{2}
     \begin{array}{|c|c|c|c|}\hline
-    \blacksquare & \ & \blacksquare & \ \\ \hline
-    \ & \ & \ & \ \\ \hline
-    \blacksquare & \ & \blacksquare & \ \\ \hline
-    \ & \blacksquare & \ & \blacksquare \\ \hline
+    \Large♕ & \Huge\ & \Large♕ & \Huge\ \\ \hline
 \end{array}
 $$
   </div>
   
   <div class="flex-even markdown-inner">
-    $$
-\def\arraystretch{1.5}
+    $$2.
+\def\arraystretch{2}
     \begin{array}{|c|c|c|c|}\hline
-    \blacksquare & \ & \blacksquare & \ \\ \hline
-    \ & \ & \ & \ \\ \hline
-    \blacksquare & \ & \ & \ \\ \hline
-    \ & \blacksquare & \ & \blacksquare \\ \hline
-\end{array}
-$$
-  </div>
-  
-  <div class="flex-even markdown-inner">
-    $$
-\def\arraystretch{1.5}
-    \begin{array}{|c|c|c|c|}\hline
-    \blacksquare & \ & \blacksquare & \ \\ \hline
-    \ & \ & \ & \ \\ \hline
-    \ & \ & \blacksquare & \ \\ \hline
-    \ & \blacksquare & \ & \blacksquare \\ \hline
-\end{array}
-$$
-  </div>
-  
-  <div class="flex-even markdown-inner">
-    $$
-\def\arraystretch{1.5}
-    \begin{array}{|c|c|c|c|}\hline
-    \blacksquare & \ & \blacksquare & \ \\ \hline
-    \ & \ & \ & \ \\ \hline
-    \ & \ & \ & \ \\ \hline
-    \ & \blacksquare & \ & \blacksquare \\ \hline
+    \Large♕ & \Huge\ & \Huge\ & \Huge\ \\ \hline
 \end{array}
 $$
   </div>
   
 </div>
 
-<p>据此列出：</p>
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    $$3.
+\def\arraystretch{2}
+    \begin{array}{|c|c|c|c|}\hline
+    \Huge\ & \Huge\ & \Large♕ & \Huge\ \\ \hline
+\end{array}
+$$
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    $$4.
+\def\arraystretch{2}
+    \begin{array}{|c|c|c|c|}\hline
+    \Huge\ & \Huge\ & \Huge\ & \Huge\ \\ \hline
+\end{array}
+$$
+  </div>
+  
+</div>
+
+<p>于是可以列出递推方程：</p>
 <p>$$
-f[\square\blacksquare\square\blacksquare][4]=f[\blacksquare\square\blacksquare\square][3]+f[\blacksquare\square\square\square][3]+f[\square\square\blacksquare\square][3]+f[\square\square\square\square][3]
+f[\square\!\blacksquare\!\square\!\blacksquare][4]=f[\blacksquare\!\square\!\blacksquare\!\square][3]+f[\blacksquare\!\square\!\square\!\square][3]+f[\square\!\square\!\blacksquare\!\square][3]+f[\square\!\square\!\square\!\square][3]
 $$</p>
-<p>这么做未免也太滑稽了，而且 $C++$ 并不支持特殊符号。那怎么办呢？</p>
-<p>我们想到用开头的 $bool$ 数组表示棋盘，例如 $\square\blacksquare\square\blacksquare$ 可以表示为 $\{0, 1, 0, 1\}$。然后再用 
-  <a href="/docs/Basics/zip/">状态压缩</a> 算法将该数组压缩成二进制数 $(0101)_2$。一波操作之后，我们的方程就变为：</p>
+<p>但这么做未免也太滑稽了，而且 $C++$ 并不支持特殊符号。那怎么办呢？</p>
+<p>还记得我们如何 
+  <a href="/docs/DP/zip/#%e7%ae%80%e4%bb%8b">在程序中保存棋盘</a> 吗？对，用 $bool$ 数组。例如 $\square\!\blacksquare\!\square\!\blacksquare$ 可以用 $bool$ 数组表示为 $\{0, 1, 0, 1\}$，然后再用 
+  <a href="/docs/Basics/zip/">状态压缩</a> 算法将它压缩成二进制数 $(0101)_2$。一顿操作之后，我们的方程就变为：</p>
 <p>$$
 f[(0101)_2][4]=f[(1010)_2][3]+f[(1000)_2][3]+f[(0010)_2][3]+f[(0000)_2][3]
 $$</p>
+<p>看上去比之前像话多了。</p>
 <p>将一组状态压缩成一个二进制数，塞到 $f[ \ ]$ 的中括号里，再进行递推，这就是「状压 $DP$」。</p>
-</article>
+<h2 id="问题">
+  问题
+  <a class="anchor" href="#%e9%97%ae%e9%a2%98">$</a>
+</h2>
+<p>在 $n×n$ 的棋盘上放 $m$ 个国王，国王可攻击相邻的 $8$ 个格子。求使他们无法互相攻击的方案总数。</p>
+<h2 id="预处理">
+  预处理
+  <a class="anchor" href="#%e9%a2%84%e5%a4%84%e7%90%86">$</a>
+</h2>
+<p>按照状压 $DP$ 的套路，这道题大抵需要我们用二进制数表示某一行的状态。</p>
+<p>$$
+\def\arraystretch{2}
+    \begin{array}{|c|c|c|c|}\hline
+    \Huge\ & \Large♕ & \Huge\ & \Large♕ \\ \hline
+\end{array}
+→\{0,1,0,1\}→(0101)_2
+$$</p>
+<p>为了后续的需要，我们需要进行预处理：</p>
+<ol>
+<li>
+<p>筛选出所有符合题目条件的状态。</p>
+</li>
+<li>
+<p>保存每种状态对应的国王个数。</p>
+</li>
+</ol>
+<p>由于每行有 $n$ 个格子，因此表示状态的二进制数最大为 $2^n-1$。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// tot: 合法的状态个数
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">state</span><span style="color:#000;font-weight:bold">[];</span> <span style="color:#8f5902;font-style:italic">// s[i]: 第 i 种合法的状态
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">nums</span><span style="color:#000;font-weight:bold">[];</span> <span style="color:#8f5902;font-style:italic">// nums[i]: 第 i 种状态的国王数
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">pre</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 枚举每一种状态为 i
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#204a87;font-weight:bold">continue</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 如果结果不是 0，那么必定有两个国王是挨着的，不合法
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">cnt</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 状态 i 中包含有 cnt 个国王
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">j</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+            <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">cnt</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">state</span><span style="color:#000;font-weight:bold">[</span><span style="color:#ce5c00;font-weight:bold">++</span> <span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">i</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">nums</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">tot</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">cnt</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="基本原理">
+  基本原理
+  <a class="anchor" href="#%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86">$</a>
+</h2>
+<p>$f[i][s][k]$：棋盘的前 $i$ 行已经摆好，第 $i$ 行摆的状态是 $s$，并且一共摆了 $k$ 个国王时有几种合法的方案（这状态设计得是真的恶心🤢）。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[][][],</span> <span style="color:#000">ans</span><span style="color:#000;font-weight:bold">;</span>
+
+<span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">avl</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 若上一行的状态是 a，判断下一行的状态能否是 b
+</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">));</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">dp</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">// 放前 i 行 
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">// 第 i 行的状态是 s
+</span><span style="color:#8f5902;font-style:italic"></span>            <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">k</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">nums</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">];</span> <span style="color:#000">k</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">k</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">// 一共摆了 k 个国王 
+</span><span style="color:#8f5902;font-style:italic"></span>                <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">t</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#8f5902;font-style:italic">// 第 i - 1 行的状态是 t
+</span><span style="color:#8f5902;font-style:italic"></span>                    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">avl</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">state</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">state</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">]))</span>
+                        <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">k</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">t</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">k</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000">nums</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">]];</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">tot</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">ans</span> <span style="color:#ce5c00;font-weight:bold">+=</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">n</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">m</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#000">printf</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;%lld&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ans</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></article>
 
             
             
@@ -992,6 +1063,9 @@ $$</p>
     <li>
       <ul>
         <li><a href="#简介">简介</a></li>
+        <li><a href="#问题">问题</a></li>
+        <li><a href="#预处理">预处理</a></li>
+        <li><a href="#基本原理">基本原理</a></li>
       </ul>
     </li>
   </ul>
@@ -1026,13 +1100,13 @@ $$</p>
 <script type="text/javascript">
     String.prototype.pxWidth = function(font) {
         var canvas = String.prototype.pxWidth.canvas || (String.prototype.pxWidth.canvas = document.createElement("canvas")),
-            context = canvas.getContext("2d"); 
+            context = canvas.getContext("2d");
         font && (context.font = font);
         var metrics = context.measureText(this);
         return metrics.width;
     }
     var len = document.getElementsByClassName("book-btn").length;
-    for(var i = 0; i < len; i ++) {
+    for (var i = 0; i < len; i++) {
         var str = document.getElementsByClassName("book-btn")[i].innerHTML;
         var wid = (100 - str.pxWidth(document.getElementsByClassName("book-btn")[i].style.font)) / 2.3;
         document.getElementsByClassName("book-btn")[i].style.padding = "0 " + wid.toString() + "px";

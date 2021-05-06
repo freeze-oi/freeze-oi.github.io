@@ -74,7 +74,7 @@ Warning
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DP/interval/</guid>
-      <description>引出问题 $  $n$ 堆石子排成一列，第 $i$ 堆石子重量为 $A_i$。每次合并相邻两堆石子为一堆，消耗的体力值为这两堆石子的重量和。求将所有石子合并为一堆，最少消耗多少体力。
+      <description>问题 $  $n$ 堆石子排成一列，第 $i$ 堆石子重量为 $A_i$。每次合并相邻两堆石子为一堆，消耗的体力值为这两堆石子的重量和。求将所有石子合并为一堆，最少消耗多少体力。
 基本原理 $  $f[l,r]$ 表示合并区间 $[l,r]$ 内的石子（第 $l$ 堆至第 $r$ 堆石子）花费的最少体力值。
 枚举 $k=l→r-1$：
   合并区间 $[l,k]$ 内的石子为一堆石子，消耗体力值 $f[l,k]$；
@@ -97,7 +97,7 @@ $$ f[l,r]=\min_{l≤k&amp;lt;r}{f[l,k]+f[k+1,r]}+sum[r]-sum[l-1] $$
       <description>简介 $  如何统计区间 $[l,r]$ 中有多少整数符合某条件？
   暴力算法，枚举 $[l,r]$ 中的每一个整数，逐个判断是否满足条件，此方法遇大数据必 $gg$。
   优雅地使用数位 DP。
-  引出问题 $  统计区间 $[l,r]$（$0≤l&amp;lt;r≤100$）中有多少整数符合「相邻两个数字之差 $≥2$」。
+  问题 $  统计区间 $[l,r]$（$0≤l&amp;lt;r≤100$）中有多少整数符合「相邻两个数字之差 $≥2$」。
 预处理 $  采用「试填法」：从个位填到最高位，如果第 $d$ 位填了 $i$，那么第 $d+1$ 位只能填 $[0,i-1]$ 或 $[i+1,9]$ 中的整数。
 $f[i,d]$ 表示「所有最高位为 $i$ 的 $d$ 位数中，符合条件的个数」。通过给定条件可推出：
 $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
@@ -111,7 +111,7 @@ $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
       
       <guid>https://freeze.org.cn/docs/DP/tree/</guid>
       <description>简介 $  树形 DP 所解决的问题基于「树形结构」。例如：给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。
-引出问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
+问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
 基本原理 $  $f[i]$ 表示以节点 $i$ 为根的子树大小，$Son(i)$ 表示 $i$ 的子节点集合。易知：
 $$ f[i]=1+\sum_{v\in Son(i)}f[v] $$
 $f[i]$ 由 $f[i$ 的子节点$]$ 推出，计算顺序应为 $f[$子节点$]→f[$父节点]。使用记忆化搜索。
@@ -124,10 +124,12 @@ vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void d
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DP/zip/</guid>
-      <description>简介 $  在程序中，我们如何保存一面棋盘？
-$$\def\arraystretch{1.5}\begin{array}{|c|c|c|c|}\hline\ &amp; \blacksquare &amp; \ &amp; \blacksquare \\ \hline\blacksquare &amp; \ &amp; \blacksquare &amp; \blacksquare \\ \hline\ &amp; \ &amp; \blacksquare &amp; \ \\ \hline\blacksquare &amp; \blacksquare &amp; \ &amp; \blacksquare \\ \hline\end{array}$$
-对，用 $bool$ 数组。$A[i,j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
-bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定黑棋和白棋不能相邻，则中间两行一共有多少种可行的摆法？</description>
+      <description>简介 $  Warning
+你得先学会 状态压缩 章节的内容。
+ 在程序中，我们如何保存一面棋盘？
+$$\def\arraystretch{2}\begin{array}{|c|c|c|c|}\hline\ &amp; \Large♕ &amp; \ &amp; \Large♕ \\ \hline\Large♕ &amp; \ &amp; \Large♕ &amp; \Large♕ \\ \hline\ &amp; \ &amp; \Large♕ &amp; \ \\ \hline\Large♕ &amp; \Large♕ &amp; \ &amp; \Large♕ \\ \hline\end{array}$$
+用 $bool$ 数组。$A[i][j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
+bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定任意两个棋子不能相邻，则中间两行一共有多少种可行的摆法？</description>
     </item>
     
   </channel>

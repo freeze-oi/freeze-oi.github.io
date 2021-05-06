@@ -5,13 +5,13 @@
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="简介 $  $KMP$ 算法并不能用来看毛片，它是一种字符串匹配算法。$KMP$ 是该算法的发明者 $Kruth$，$Morris$ 和 $Pratt$ 的名字缩写。
-引出问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
-$$\begin{aligned}A&=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\textcolor{red}{a}$ 与 $\textcolor{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
-$$\begin{aligned}A&=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\B&=\color{green}a \ b \ a \ b \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。"><meta property="og:title" content="KMP 算法" />
+问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
+$$\begin{aligned}A&=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\color{red}{a}$ 与 $\color{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
+$$\begin{aligned}A&=\color{green}{a \ b \ a \ b} \ \color{red}a\color{black} \ b \ a \ b \ c\\B&=\color{green}{a \ b \ a \ b} \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。"><meta property="og:title" content="KMP 算法" />
 <meta property="og:description" content="简介 $  $KMP$ 算法并不能用来看毛片，它是一种字符串匹配算法。$KMP$ 是该算法的发明者 $Kruth$，$Morris$ 和 $Pratt$ 的名字缩写。
-引出问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
-$$\begin{aligned}A&=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\textcolor{red}{a}$ 与 $\textcolor{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
-$$\begin{aligned}A&=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\B&=\color{green}a \ b \ a \ b \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。" />
+问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
+$$\begin{aligned}A&=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\color{red}{a}$ 与 $\color{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
+$$\begin{aligned}A&=\color{green}{a \ b \ a \ b} \ \color{red}a\color{black} \ b \ a \ b \ c\\B&=\color{green}{a \ b \ a \ b} \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://freeze.org.cn/docs/String/KMP/" /><meta property="article:section" content="docs" />
 
@@ -20,7 +20,7 @@
 <title>KMP 算法 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.2932406daf7bfb266ee94d1b6d078a25682830de20622cd62abb5efc7d4fca50.js" integrity="sha256-KTJAba97&#43;yZu6U0bbQeKJWgoMN4gYizWKrte/H1PylA="></script>
+<script defer src="/en.search.min.48aa70ad2e925db27527066401841fc286361bdb9741fb9586ad36e6709ee431.js" integrity="sha256-SKpwrS6SXbJ1JwZkAYQfwoY2G9uXQfuVhq025nCe5DE="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -853,7 +853,7 @@ https://github.com/alex-shpak/hugo-book
     <li>
       <ul>
         <li><a href="#简介">简介</a></li>
-        <li><a href="#引出问题">引出问题</a></li>
+        <li><a href="#问题">问题</a></li>
         <li><a href="#基本原理">基本原理</a></li>
         <li><a href="#预处理">预处理</a></li>
         <li><a href="#模板">模板</a></li>
@@ -873,25 +873,22 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>$KMP$ 算法并不能用来看毛片，它是一种字符串匹配算法。$KMP$ 是该算法的发明者 $Kruth$，$Morris$ 和 $Pratt$ 的名字缩写。</p>
 <center><img src=\String\kmp_1.png style="zoom:80%"></img></center>
-<h2 id="引出问题">
-  引出问题
-  <a class="anchor" href="#%e5%bc%95%e5%87%ba%e9%97%ae%e9%a2%98">$</a>
+<h2 id="问题">
+  问题
+  <a class="anchor" href="#%e9%97%ae%e9%a2%98">$</a>
 </h2>
 <p>给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
 A&=a \ b \ a \ b \ a \ b \ a \ b \ c\\
 B&=a \ b \ a \ b \ c
 \end{aligned}
-$$
-</xmp>
-<p>首先将 $A$ 和 $B$ 的左端对齐，发现 $\textcolor{red}{a}$ 与 $\textcolor{red}{c}$ 不匹配，于是将 $B$ 向右移一位。</p>
-<xmp>
-$$
+$$</div>
+<p>首先将 $A$ 和 $B$ 的左端对齐，发现 $\color{red}{a}$ 与 $\color{red}{c}$ 不匹配，于是将 $B$ 向右移一位。</p>
+<div>$$
 \begin{aligned}
-A&=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\
-B&=\color{green}a \ b \ a \ b \ \color{red}c\\
+A&=\color{green}{a \ b \ a \ b} \ \color{red}a\color{black} \ b \ a \ b \ c\\
+B&=\color{green}{a \ b \ a \ b} \ \color{red}c\\
 \end{aligned}
 \\
 \begin{aligned}
@@ -899,35 +896,32 @@ B&=\color{green}a \ b \ a \ b \ \color{red}c\\
 A=\color{lightgrey}a\color{black} \ &b \ a \ b \ a \ b \ a \ b \ c\\
 →B= \ &a \ b \ a \ b \ c
 \end{aligned}
-$$
-</xmp>
+$$</div>
 <p>重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
-A=\color{lightgrey}a \ &\color{black}b\ \ a \ b \ a \ b \ a \ b \ c\\
+A=\color{lightgrey}a \ &\color{black}b\ a \ b \ a \ b \ a \ b \ c\\
 B= \ &a \ b \ a \ b \ c
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A=\color{lightgrey}a \ b \ &\color{black}a \ b \ a \ b \ a \ b \ c\\
+A=\color{lightgrey}{a \ b} \ &\color{black}a \ b \ a \ b \ a \ b \ c\\
 →B= \ &a \ b \ a \ b \ c
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A=\color{lightgrey}a \ b \ a \ &\color{black}b \ a \ b \ a \ b \ c\\
+A=\color{lightgrey}{a \ b \ a} \ &\color{black}b \ a \ b \ a \ b \ c\\
 →B= \ &a\ b \ a \ b \ c
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A=\color{lightgrey}a \ b \ a \ b \ &\color{black}\color{green}a \ b \ a \ b \ c\\
-→B= \ &\color{green}a \ b \ a \ b \ c
+A=\color{lightgrey}{a \ b \ a \ b} \ &\color{green}{a \ b \ a \ b \ c}\\
+→B= \ &\color{green}{a \ b \ a \ b \ c}
 \end{aligned}
-$$
-</xmp>
+$$</div>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">match</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">string</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">string</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">m</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">(),</span> <span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">();</span>
     <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
@@ -941,14 +935,14 @@ $$
 </code></pre></div><table>
 <thead>
 <tr>
-<th style="text-align:center">暴力算法（$\textcolor{red}{×}$）</th>
-<th style="text-align:center">$KMP$ 算法（$\textcolor{green}{√}$）</th>
+<th style="text-align:center">暴力算法（$\color{red}{×}$）</th>
+<th style="text-align:center">$KMP$ 算法（$\color{green}{√}$）</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">$\textcolor{red}{O(mn)}$</td>
-<td style="text-align:center">$\textcolor{green}{O(m+n)}$</td>
+<td style="text-align:center">$\color{red}{O(mn)}$</td>
+<td style="text-align:center">$\color{green}{O(m+n)}$</td>
 </tr>
 </tbody>
 </table>
@@ -957,76 +951,65 @@ $$
   <a class="anchor" href="#%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86">$</a>
 </h2>
 <p>其实，匹配到这一步时，$B$ 串可以直接向后移 $2$ 位。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
-A&=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\
-B&=\color{green}a \ b \ a \ b \ \color{red}c\\
+A&=\color{green}{a \ b \ a \ b} \ \color{red}a\color{black} \ b \ a \ b \ c\\
+B&=\color{green}{a \ b \ a \ b} \ \color{red}c\\
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A=\color{lightgrey}a \ b \ \color{black} &a \ b \ a \ b \ a \ b \ c\\
-→B= \ &a \ b \ a \ b \ c
+A=\color{lightgrey}{a \ b} \ \color{black} a& \ b \ a \ b \ a \ b \ c\\
+→B= \ a& \ b \ a \ b \ c
 \end{aligned}
-$$
-</xmp>
+$$</div>
 <p>为什么可以这么做呢？</p>
 <p>单独看 $B$ 串的绿色部分，容易发现它的前半段（前缀）和后半段（后缀）都是 $a \ b$。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
-B= \ &\color{green}a \ b \ a \ b \color{red} \ c \\
-&\color{black}\underset{\textit{前缀}}{\underline{a \ b}}\underset{\textit{后缀}}{\underline{a \ b}}
+B= \ &\color{green}{a \ b \ a \ b} \color{red} \ c \\
+&\color{black}{\underset{前缀}{\underline{a \ b}} \ \underset{后缀}{\underline{a \ b}}}
 \end{aligned}
-$$
-</xmp>
+$$</div>
 <p>此时 $A$ 串和 $B$ 串的绿色部分是匹配的，上下两段也相等。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
-A&=\color{green}a \ b \ \underline{a \ b} \ \color{red}a\color{black} \ b \ a \ b \ c\\
-B&=\color{green}a \ b \ \underline{a \ b} \ \color{red}c\\
+A&=\color{green}{a \ b \ \underline{a \ b}} \ \color{red}a\color{black} \ b \ a \ b \ c\\
+B&=\color{green}{a \ b \ \underline{a \ b}} \ \color{red}c\\
 \end{aligned}
-$$
-</xmp>
+$$</div>
 <p>因而 $A$ 串和 $B$ 串的这两段也相等。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
-A&=a \ b \ \color{green}\underline{a \ b}\color{black} \ a \ b \ a \ b \ c\\
-B&=\color{green}\underline{a \ b}\color{black} \ a \ b \ c\\
+A&=a \ b \ \color{green}{\underline{a \ b}}\color{black} \ a \ b \ a \ b \ c\\
+B&= \color{green}{\underline{a \ b}}\color{black} \ a \ b \ c\\
 \end{aligned}
-$$
-</xmp>
+$$</div>
 <p>容易证明，若 $B$ 串只向右移 $1$ 位，肯定匹配不成。因此 $B$ 串至少需要向右移 $2$ 位。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
 A= a \ &b \ \underline{a \ b} \ a \ b \ a \ b \ c\\
-→B= &\underline{a \ b} \ a \ b \ c\\
+→B= \ &\underline{a \ b} \ a \ b \ c\\
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A= a \ b \ &\color{green}\underline{a \ b}\color{black} \ a \ b \ a \ b \ c\\
-→B= &\color{green}\underline{a \ b}\color{black} \ a \ b \ c\\
+A= a \ b \ &\color{green}{\underline{a \ b}}\color{black} \ a \ b \ a \ b \ c\\
+→B= \ &\color{green}{\underline{a \ b}}\color{black} \ a \ b \ c\\
 \end{aligned}
-$$
-</xmp>
+$$</div>
 <p>下面一例中，$B$ 串在右移 $1\sim 3$ 位时都匹配不成，因此至少向右移 $4$ 位，也就是一直右移到 $B$ 串的前缀和后缀对齐。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
-A= \ &\color{green}s \ e \ d \ c \ s \ e \ d \color{red}\ c \color{black} \ s \ e \ d \ s\\
-B= \ &\color{green}s \ e \ d \ c \ s \ e \ d \color{red}\ s\\
-&\color{black} \underset{\textit{前缀}}{\underline{s \ e \ d}} \ c \ \underset{\textit{后缀}}{\underline{s \ e \ d}}
+A= \ &\color{green}{s \ e \ d \ c \ s \ e \ d} \ \color{red}c \color{black} \ s \ e \ d \ s\\
+B= \ &\color{green}{s \ e \ d \ c \ s \ e \ d} \ \color{red}s\\
+&\color{black}{\underset{前缀}{\underline{s \ e \ d}} \ c \ \underset{后缀}{\underline{s \ e \ d}}}
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A&=s \ e \ d \ c \ \color{green}\underline{s \ e \ d}\color{black} \ c \ s \ e \ d \ s\\
-B&=\color{green}\underline{s \ e \ d}\color{black} \ c \ s \ e \ d \ s\\
+A&=s \ e \ d \ c \ \color{green}{\underline{s \ e \ d}}\color{black} \ c \ s \ e \ d \ s\\
+B&=\color{green}{\underline{s \ e \ d}}\color{black} \ c \ s \ e \ d \ s\\
 \end{aligned}
 \\
 \begin{aligned}
@@ -1049,14 +1032,12 @@ A=s \ e \ d \ c \ \underline{s \ e \ d} \ c \ s \ e& \ d \ s\\
 \\
 \begin{aligned}
 \\
-A=s \ e \ d \ c \ \underline{\color{green}s \ e \ d\color{black}} \ c \ s \ e \ d& \ s\\
-→B=\underline{\color{green}s \ e \ d\color{black}} \ c \ s \ e \ d& \ s\\
+A=s \ e \ d \ c \ \underline{\color{green}{s \ e \ d}}\color{black} \ c \ s \ e \ d& \ s\\
+→B=\underline{\color{green}{s \ e \ d}}\color{black} \ c \ s \ e \ d& \ s\\
 \end{aligned}
-$$
-</xmp>
+$$</div>
 <p>如果没有前后两段相等的呢？如下面一例，右移 $B$ 串直到两段绿的完全错开。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
 A&=\color{green}a \ b \ c \ d\color{red} \ a\color{black} \ b \ c \ d \ f\\
 B&=\color{green}a \ b \ c \ d\color{red} \ f
@@ -1067,9 +1048,8 @@ B&=\color{green}a \ b \ c \ d\color{red} \ f
 A=\color{green}a \ b \ c \ d\color{black} \ &a \ b \ c \ d \ f\\
 →B= \ &\color{green}a \ b \ c \ d\color{black} \ f
 \end{aligned}
-$$
-</xmp>
-<p>$KMP$ 算法步骤总结：</p>
+$$</div>
+$KMP$ 算法步骤总结：
 
 
 
@@ -1077,53 +1057,45 @@ $$
 <div class="book-tabs"><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-0" checked="checked" />
   <label for="tabs-uniqueid-0">1</label>
   <div class="book-tabs-content markdown-inner"><p>将 $A$ 串和 $B$ 串左端对齐。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
 A &= \pi\pi\pi\pi\pi\pi\pi\pi\pi\pi\pi\pi\\
 B &= \pi\pi\pi\pi\pi\pi\pi
 \end{aligned}
-$$
-</xmp>
+$$</div>
 </div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-1"  />
   <label for="tabs-uniqueid-1">2</label>
   <div class="book-tabs-content markdown-inner"><p>从左往右比较字符，直到出现不匹配的情况。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
-A &= \color{green}\pi\pi\pi\pi\pi\color{red}\pi\color{black}\pi\pi\pi\pi\pi\pi\\
-B &= \color{green}\pi\pi\pi\pi\pi\color{red}\pi\color{black}\pi
+A &= \color{green}{\pi\pi\pi\pi\pi}\color{red}\pi\color{black}\pi\pi\pi\pi\pi\pi\\
+B &= \color{green}{\pi\pi\pi\pi\pi}\color{red}\pi\color{black}\pi
 \end{aligned}
-$$
-</xmp>
+$$</div>
 </div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-2"  />
   <label for="tabs-uniqueid-2">3</label>
   <div class="book-tabs-content markdown-inner"><p>在绿色子段中找出相同的前缀和后缀。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
-A &= \color{lightgreen}\pi\pi\pi\overset{\color{black}后缀}{\color{green}\underline{\pi\pi}}\color{black}\pi\pi\pi\pi\pi\pi\pi\\
-B &= \underset{\color{black}前缀}{\color{green}\underline{\pi\pi}}\color{lightgreen}\pi\pi\pi\color{black}\pi\pi
+A &= \color{lightgreen}{\pi\pi\pi}\overset{\color{black}{后缀}}{\color{green}{\underline{\pi\pi}}}\color{black}\pi\pi\pi\pi\pi\pi\pi\\
+B &= \underset{\color{black}{前缀}}{\color{green}{\underline{\pi\pi}}}\color{lightgreen}{\pi\pi\pi}\color{black}\pi\pi
 \end{aligned}
-$$
-</xmp>
+$$</div>
 </div><input type="radio" class="toggle" name="tabs-uniqueid" id="tabs-uniqueid-3"  />
   <label for="tabs-uniqueid-3">4</label>
   <div class="book-tabs-content markdown-inner"><p>把 $B$ 串往右拉，直到前缀和后缀对齐，再从蓝色处继续向右比较。</p>
-<xmp>
-$$
+<div>$$
 \begin{aligned}
-A = \pi\pi\pi&\color{green}\underline{\pi\pi}\color{black}\pi\pi\pi\pi\pi\pi\pi\\
-→B = &\color{green}\underline{\pi\pi}\color{black}\pi\pi\pi\pi\pi
+A = \pi\pi\pi&\color{green}{\underline{\pi\pi}}\color{black}\pi\pi\pi\pi\pi\pi\pi\\
+→B = &\color{green}{\underline{\pi\pi}}\color{black}\pi\pi\pi\pi\pi
 \end{aligned}
 \\
 \begin{aligned}
 \\
-A = \pi\pi\pi&\color{green}\underline{\pi\pi}\overset{\displaystyle\color{black}↓}{\color{blue}\pi}\color{black}\pi\pi\pi\pi\pi\pi\\
-B = &\color{green}\underline{\pi\pi}\underset{\displaystyle\color{black}↑}{\color{blue}\pi}\color{black}\pi\pi\pi\pi
+A = \pi\pi\pi&\color{green}{\underline{\pi\pi}}\color{blue}\pi\color{black}\pi\pi\pi\pi\pi\pi\\
+B = &\color{green}{\underline{\pi\pi}}\color{blue}\pi\color{black}\pi\pi\pi\pi
 \end{aligned}
-$$
-</xmp>
+$$</div>
 </div></div>
 
 <h2 id="预处理">
@@ -1131,7 +1103,7 @@ $$
   <a class="anchor" href="#%e9%a2%84%e5%a4%84%e7%90%86">$</a>
 </h2>
 <p>当务之急是，在不匹配时，从 $B$ 串的绿色子段中找出相同的前缀和后缀。</p>
-<p>下面一例中，$\textcolor{green}{joxjo}$ 的前缀 $\textcolor{green}{jo}$ 和后缀 $\textcolor{green}{jo}$ 相同。$\textcolor{green}{jo}$ 称为 $\textcolor{green}{joxjo}$ 的「公共前后缀」。</p>
+<p>下面一例中，$\color{green}{joxjo}$ 的前缀 $\color{green}{jo}$ 和后缀 $\color{green}{jo}$ 相同。$\color{green}{jo}$ 称为 $\color{green}{joxjo}$ 的「公共前后缀」。</p>
 <center><img src=\String\kmp_11.png style="zoom:80%"></img></center>
 <p>注意：公共前后缀不能和原字符串相等。即 $joxjo$ 的公共前后缀不能是 $joxjo$。</p>
 <p>$next[x]$：$B[0\cdots x]$ 的最长公共前后缀的长度。</p>
@@ -1165,20 +1137,20 @@ $$
 </tr>
 <tr>
 <td style="text-align:center">$3$</td>
-<td style="text-align:center">$\underline{\textcolor{red}{j}}ox\underline{\textcolor{red}{j}}$</td>
-<td style="text-align:center">$\textcolor{red}{j}$</td>
+<td style="text-align:center">$\underline{\color{red}{j}}ox\underline{\color{red}{j}}$</td>
+<td style="text-align:center">$\color{red}{j}$</td>
 <td style="text-align:center">$1$</td>
 </tr>
 <tr>
 <td style="text-align:center">$4$</td>
-<td style="text-align:center">$\underline{\textcolor{red}{jo}}x\underline{\textcolor{red}{jo}}$</td>
-<td style="text-align:center">$\textcolor{red}{jo}$</td>
+<td style="text-align:center">$\underline{\color{red}{jo}}x\underline{\color{red}{jo}}$</td>
+<td style="text-align:center">$\color{red}{jo}$</td>
 <td style="text-align:center">$2$</td>
 </tr>
 <tr>
 <td style="text-align:center">$5$</td>
-<td style="text-align:center">$\underline{\textcolor{red}{jox}}\underline{\textcolor{red}{jox}}$</td>
-<td style="text-align:center">$\textcolor{red}{jox}$</td>
+<td style="text-align:center">$\underline{\color{red}{jox}}\underline{\color{red}{jox}}$</td>
+<td style="text-align:center">$\color{red}{jox}$</td>
 <td style="text-align:center">$3$</td>
 </tr>
 <tr>
@@ -1215,7 +1187,7 @@ $$
 <tbody>
 <tr>
 <td style="text-align:center">$next[x]$</td>
-<td style="text-align:center">$\textcolor{red}{0}$</td>
+<td style="text-align:center">$\color{red}{0}$</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
@@ -1249,7 +1221,7 @@ $$
 <tr>
 <td style="text-align:center">$next[x]$</td>
 <td style="text-align:center">$0$</td>
-<td style="text-align:center">$\textcolor{red}{1}$</td>
+<td style="text-align:center">$\color{red}{1}$</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
@@ -1283,7 +1255,7 @@ $$
 <td style="text-align:center">$next[x]$</td>
 <td style="text-align:center">$0$</td>
 <td style="text-align:center">$1$</td>
-<td style="text-align:center">$\textcolor{red}{0}$</td>
+<td style="text-align:center">$\color{red}{0}$</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
@@ -1317,7 +1289,7 @@ $$
 <td style="text-align:center">$0$</td>
 <td style="text-align:center">$1$</td>
 <td style="text-align:center">$0$</td>
-<td style="text-align:center">$\textcolor{red}{1}$</td>
+<td style="text-align:center">$\color{red}{1}$</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
@@ -1351,7 +1323,7 @@ $$
 <td style="text-align:center">$1$</td>
 <td style="text-align:center">$0$</td>
 <td style="text-align:center">$1$</td>
-<td style="text-align:center">$\textcolor{red}{2}$</td>
+<td style="text-align:center">$\color{red}{2}$</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
@@ -1385,7 +1357,7 @@ $$
 <td style="text-align:center">$0$</td>
 <td style="text-align:center">$1$</td>
 <td style="text-align:center">$2$</td>
-<td style="text-align:center">$\textcolor{red}{3}$</td>
+<td style="text-align:center">$\color{red}{3}$</td>
 <td style="text-align:center"></td>
 <td style="text-align:center"></td>
 <td></td>
@@ -1433,7 +1405,7 @@ $$
 <td style="text-align:center">$3$</td>
 <td style="text-align:center">$4$</td>
 <td style="text-align:center">$5$</td>
-<td style="text-align:center">$\textcolor{red}{2}$</td>
+<td style="text-align:center">$\color{red}{2}$</td>
 </tr>
 </tbody>
 </table>
@@ -1494,7 +1466,7 @@ $$
     <li>
       <ul>
         <li><a href="#简介">简介</a></li>
-        <li><a href="#引出问题">引出问题</a></li>
+        <li><a href="#问题">问题</a></li>
         <li><a href="#基本原理">基本原理</a></li>
         <li><a href="#预处理">预处理</a></li>
         <li><a href="#模板">模板</a></li>
@@ -1532,13 +1504,13 @@ $$
 <script type="text/javascript">
     String.prototype.pxWidth = function(font) {
         var canvas = String.prototype.pxWidth.canvas || (String.prototype.pxWidth.canvas = document.createElement("canvas")),
-            context = canvas.getContext("2d"); 
+            context = canvas.getContext("2d");
         font && (context.font = font);
         var metrics = context.measureText(this);
         return metrics.width;
     }
     var len = document.getElementsByClassName("book-btn").length;
-    for(var i = 0; i < len; i ++) {
+    for (var i = 0; i < len; i++) {
         var str = document.getElementsByClassName("book-btn")[i].innerHTML;
         var wid = (100 - str.pxWidth(document.getElementsByClassName("book-btn")[i].style.font)) / 2.3;
         document.getElementsByClassName("book-btn")[i].style.padding = "0 " + wid.toString() + "px";

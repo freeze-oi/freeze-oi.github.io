@@ -5,9 +5,9 @@
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
-   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &gt;&gt; (k - 1)) &amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &lt;&lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n | (1 &lt;&lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp; (~(1 &lt;&lt; (k - 1)))    可以直接使用 STL Bitset。"><meta property="og:title" content="状态压缩" />
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &gt;&gt; (k - 1)) &amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &lt;&lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n | (1 &lt;&lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp; (~(1 &lt;&lt; (k - 1)))    Lowbit 运算 $  $lowbit(n)$ 为 $n$ 在二进制表示下「最低位的 $1$ 和其后所有的 $0$」构成的数。例如 $n=(101000)_2$，$lowbit(n)=(1000)_2$。"><meta property="og:title" content="状态压缩" />
 <meta property="og:description" content="简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
-   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &gt;&gt; (k - 1)) &amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &lt;&lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n | (1 &lt;&lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp; (~(1 &lt;&lt; (k - 1)))    可以直接使用 STL Bitset。" />
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &gt;&gt; (k - 1)) &amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &lt;&lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n | (1 &lt;&lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp; (~(1 &lt;&lt; (k - 1)))    Lowbit 运算 $  $lowbit(n)$ 为 $n$ 在二进制表示下「最低位的 $1$ 和其后所有的 $0$」构成的数。例如 $n=(101000)_2$，$lowbit(n)=(1000)_2$。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://freeze.org.cn/docs/Basics/zip/" /><meta property="article:section" content="docs" />
 
@@ -16,7 +16,7 @@
 <title>状态压缩 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.2932406daf7bfb266ee94d1b6d078a25682830de20622cd62abb5efc7d4fca50.js" integrity="sha256-KTJAba97&#43;yZu6U0bbQeKJWgoMN4gYizWKrte/H1PylA="></script>
+<script defer src="/en.search.min.48aa70ad2e925db27527066401841fc286361bdb9741fb9586ad36e6709ee431.js" integrity="sha256-SKpwrS6SXbJ1JwZkAYQfwoY2G9uXQfuVhq025nCe5DE="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -892,7 +892,6 @@ https://github.com/alex-shpak/hugo-book
 </tr>
 </tbody>
 </table>
-<p>可以直接使用 <code>STL Bitset</code>。</p>
 <h2 id="lowbit-运算">
   Lowbit 运算
   <a class="anchor" href="#lowbit-%e8%bf%90%e7%ae%97">$</a>
@@ -911,12 +910,10 @@ https://github.com/alex-shpak/hugo-book
 </li>
 </ol>
 <p>由于在补码表示下 $-n=\sim n+1$，因此：</p>
-<xmp>
-$$
+<div>$$
 lowbit(n)=n\&(\sim n+1)=n\&-n
-$$
-</xmp>
-<p>时间复杂度为 $O(1)$。结合样例理解。</p>
+$$</div>
+<p>下面给出几个样例，帮助理解：</p>
 <table>
 <thead>
 <tr>
@@ -928,16 +925,16 @@ $$
 </thead>
 <tbody>
 <tr>
-<td style="text-align:center">$($101000$)_2$</td>
-<td style="text-align:center">$($010111$)_2$</td>
-<td style="text-align:center">$($011000$)_2$</td>
-<td style="text-align:center">$($001000$)_2$</td>
+<td style="text-align:center">$(101000)_2$</td>
+<td style="text-align:center">$(010111)_2$</td>
+<td style="text-align:center">$(011000)_2$</td>
+<td style="text-align:center">$(001000)_2$</td>
 </tr>
 <tr>
-<td style="text-align:center">$($101100$)_2$</td>
-<td style="text-align:center">$($010011$)_2$</td>
-<td style="text-align:center">$($010100$)_2$</td>
-<td style="text-align:center">$($000100$)_2$</td>
+<td style="text-align:center">$(101100)_2$</td>
+<td style="text-align:center">$(010011)_2$</td>
+<td style="text-align:center">$(010100)_2$</td>
+<td style="text-align:center">$(000100)_2$</td>
 </tr>
 </tbody>
 </table>
@@ -1008,13 +1005,13 @@ $$
 <script type="text/javascript">
     String.prototype.pxWidth = function(font) {
         var canvas = String.prototype.pxWidth.canvas || (String.prototype.pxWidth.canvas = document.createElement("canvas")),
-            context = canvas.getContext("2d"); 
+            context = canvas.getContext("2d");
         font && (context.font = font);
         var metrics = context.measureText(this);
         return metrics.width;
     }
     var len = document.getElementsByClassName("book-btn").length;
-    for(var i = 0; i < len; i ++) {
+    for (var i = 0; i < len; i++) {
         var str = document.getElementsByClassName("book-btn")[i].innerHTML;
         var wid = (100 - str.pxWidth(document.getElementsByClassName("book-btn")[i].style.font)) / 2.3;
         document.getElementsByClassName("book-btn")[i].style.padding = "0 " + wid.toString() + "px";

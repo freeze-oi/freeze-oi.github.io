@@ -164,7 +164,7 @@ bool isPrime(int n) { if(n &amp;lt; 2) return false; for(int i = 2; i &amp;lt;= 
       <description>简介 $  哈希表由 哈希函数 和 链表 组成，相当于「超级数组」。
   数组的下标1可以是整数，浮点数，字符串等。
   不用定义数组的长度。
-  引出问题 $  医院的排队系统需要记录每个病人对应的问诊顺序。此处假设每个病人的名称都是数字。
+  问题 $  医院的排队系统需要记录每个病人对应的问诊顺序。此处假设每个病人的名称都是数字。
    名称 $32$ $26$ $75$ $4$     问诊顺序 $1$ $2$ $3$ $4$    $p[i]$ 表示「名称为 $i$ 的病人的问诊顺序」。查询问诊顺序的时间复杂度为 $O(1)$。
 int p[]; void update(int i, int x) { // 记录病人 i 的问诊顺序为 x  p[i] = x; } int query(int i) { // 查询病人 i 的问诊顺序  return p[i]; } 然而总有某些病人不按套路取名。</description>
     </item>
@@ -255,9 +255,9 @@ int F[] = {0, 1, 1}; int f(int x) { if(F[x] !</description>
       
       <guid>https://freeze.org.cn/docs/String/KMP/</guid>
       <description>简介 $  $KMP$ 算法并不能用来看毛片，它是一种字符串匹配算法。$KMP$ 是该算法的发明者 $Kruth$，$Morris$ 和 $Pratt$ 的名字缩写。
-引出问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
-$$\begin{aligned}A&amp;=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&amp;=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\textcolor{red}{a}$ 与 $\textcolor{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
-$$\begin{aligned}A&amp;=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\B&amp;=\color{green}a \ b \ a \ b \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &amp;b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &amp;a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。</description>
+问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
+$$\begin{aligned}A&amp;=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&amp;=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\color{red}{a}$ 与 $\color{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
+$$\begin{aligned}A&amp;=\color{green}{a \ b \ a \ b} \ \color{red}a\color{black} \ b \ a \ b \ c\\B&amp;=\color{green}{a \ b \ a \ b} \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &amp;b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &amp;a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。</description>
     </item>
     
     <item>
@@ -416,12 +416,12 @@ int t[], n; // t[u] : u 号节点的值 // n : 节点总数 插入 $  如何往�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/Math/quickpow/</guid>
-      <description>快速幂 $  如何快速求出 $a^b$（$a,b\in\mathbb{Z}$）？我想各位 $Oier$ 肯定少不了在 $OJ$1 上提交暴力算法的代码之后 $Runtime \ Error$2 的经历。
-int Pow(int a, int b) { // 暴力算法 计算 a^b  int ans = 1; while(b --) ans *= a; return ans; } 设 $Pow(a, b)$ 表示 $a^b$。
+      <description>快速幂 $  如何快速求出 $a^b$（$a,b\in\mathbb{Z}$）？
+设 $Pow(a, b)$ 表示 $a^b$。
   若 $b$ 为偶数，则 $a^b=a^{b/2}×a^{b/2}$，即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)$。
   若 $b$ 为奇数，则 $a^b=a^{b/2}×a^{b/2}×a$（向下取整），即 $Pow(a, b)=Pow(a, b/2)×Pow(a, b/2)×a$。
   边界条件：$Pow(a, 0)=1$。时间复杂度为 $O(\log{b})$。
-typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!</description>
+typedef long long LL; LL Pow(LL a, LL b) { // 计算 a^b  if(!b) return 1; // 边界条件  LL res = Pow(a, b / 2); if(b % 2 == 0) // b 是偶数  return res * res; else // b 是奇数  return res * res * a; } 事实上，快速幂还可以写得更清爽：</description>
     </item>
     
     <item>
@@ -492,7 +492,7 @@ Warning
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DP/interval/</guid>
-      <description>引出问题 $  $n$ 堆石子排成一列，第 $i$ 堆石子重量为 $A_i$。每次合并相邻两堆石子为一堆，消耗的体力值为这两堆石子的重量和。求将所有石子合并为一堆，最少消耗多少体力。
+      <description>问题 $  $n$ 堆石子排成一列，第 $i$ 堆石子重量为 $A_i$。每次合并相邻两堆石子为一堆，消耗的体力值为这两堆石子的重量和。求将所有石子合并为一堆，最少消耗多少体力。
 基本原理 $  $f[l,r]$ 表示合并区间 $[l,r]$ 内的石子（第 $l$ 堆至第 $r$ 堆石子）花费的最少体力值。
 枚举 $k=l→r-1$：
   合并区间 $[l,k]$ 内的石子为一堆石子，消耗体力值 $f[l,k]$；
@@ -538,7 +538,7 @@ $$ f[l,r]=\min_{l≤k&amp;lt;r}{f[l,k]+f[k+1,r]}+sum[r]-sum[l-1] $$
       
       <guid>https://freeze.org.cn/docs/Basics/zip/</guid>
       <description>简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
-   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n | (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp; (~(1 &amp;lt;&amp;lt; (k - 1)))    可以直接使用 STL Bitset。</description>
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n | (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp; (~(1 &amp;lt;&amp;lt; (k - 1)))    Lowbit 运算 $  $lowbit(n)$ 为 $n$ 在二进制表示下「最低位的 $1$ 和其后所有的 $0$」构成的数。例如 $n=(101000)_2$，$lowbit(n)=(1000)_2$。</description>
     </item>
     
     <item>
@@ -559,7 +559,7 @@ $$ f[l,r]=\min_{l≤k&amp;lt;r}{f[l,k]+f[k+1,r]}+sum[r]-sum[l-1] $$
       <description>简介 $  如何统计区间 $[l,r]$ 中有多少整数符合某条件？
   暴力算法，枚举 $[l,r]$ 中的每一个整数，逐个判断是否满足条件，此方法遇大数据必 $gg$。
   优雅地使用数位 DP。
-  引出问题 $  统计区间 $[l,r]$（$0≤l&amp;lt;r≤100$）中有多少整数符合「相邻两个数字之差 $≥2$」。
+  问题 $  统计区间 $[l,r]$（$0≤l&amp;lt;r≤100$）中有多少整数符合「相邻两个数字之差 $≥2$」。
 预处理 $  采用「试填法」：从个位填到最高位，如果第 $d$ 位填了 $i$，那么第 $d+1$ 位只能填 $[0,i-1]$ 或 $[i+1,9]$ 中的整数。
 $f[i,d]$ 表示「所有最高位为 $i$ 的 $d$ 位数中，符合条件的个数」。通过给定条件可推出：
 $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
@@ -572,8 +572,9 @@ $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DS/treearray/</guid>
-      <description>前置知识 $  你得先学会 $lowbit(n)$ 的计算方式。
-引入问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
+      <description>Warning
+你得先学会 $lowbit$ 运算。
+ 问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
   单点修改：将 $A[ x]$ 加上 $k$。
   区间查询：查询 $A[l\cdots r]$ 的和。
   int a[]; void set(int id, int v) { // 单点修改  a[id] = v; } int ask(int l, int r) { // 区间查询  int ans = 0; for(int i = l; i &amp;lt;= r; i ++) ans += a[i]; return ans; }     暴力算法（$\textcolor{red}{×}$） 树状数组（$\textcolor{green}{√}$）     单点修改 $\textcolor{green}{O(1)}$ $\textcolor{green}{O(\log{n})}$   区间查询 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   $m$ 次操作 $\textcolor{red}{O(mn)}$ $\textcolor{green}{O(m\log{n})}$    构造 $  在原数组的上方构建树型结构，每个节点表示一段区间和：</description>
@@ -598,7 +599,7 @@ void init(int a[]) { memset(a, 0, sizeof a); int i = 0; char s = getchar(); whil
       
       <guid>https://freeze.org.cn/docs/DP/tree/</guid>
       <description>简介 $  树形 DP 所解决的问题基于「树形结构」。例如：给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。
-引出问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
+问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
 基本原理 $  $f[i]$ 表示以节点 $i$ 为根的子树大小，$Son(i)$ 表示 $i$ 的子节点集合。易知：
 $$ f[i]=1+\sum_{v\in Son(i)}f[v] $$
 $f[i]$ 由 $f[i$ 的子节点$]$ 推出，计算顺序应为 $f[$子节点$]→f[$父节点]。使用记忆化搜索。
@@ -611,7 +612,7 @@ vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void d
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DS/segtree/</guid>
-      <description>引入问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
+      <description>问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
   单点修改：将 $A[id]$ 修改为 $v$。
   区间查询：查询 $A[l\cdots r]$ 的最小值。
   区间修改：将 $A[l\cdots r]$ 每个数加上 $v$。
@@ -633,10 +634,21 @@ vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void d
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DP/zip/</guid>
-      <description>简介 $  在程序中，我们如何保存一面棋盘？
-$$\def\arraystretch{1.5}\begin{array}{|c|c|c|c|}\hline\ &amp; \blacksquare &amp; \ &amp; \blacksquare \\ \hline\blacksquare &amp; \ &amp; \blacksquare &amp; \blacksquare \\ \hline\ &amp; \ &amp; \blacksquare &amp; \ \\ \hline\blacksquare &amp; \blacksquare &amp; \ &amp; \blacksquare \\ \hline\end{array}$$
-对，用 $bool$ 数组。$A[i,j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
-bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定黑棋和白棋不能相邻，则中间两行一共有多少种可行的摆法？</description>
+      <description>简介 $  Warning
+你得先学会 状态压缩 章节的内容。
+ 在程序中，我们如何保存一面棋盘？
+$$\def\arraystretch{2}\begin{array}{|c|c|c|c|}\hline\ &amp; \Large♕ &amp; \ &amp; \Large♕ \\ \hline\Large♕ &amp; \ &amp; \Large♕ &amp; \Large♕ \\ \hline\ &amp; \ &amp; \Large♕ &amp; \ \\ \hline\Large♕ &amp; \Large♕ &amp; \ &amp; \Large♕ \\ \hline\end{array}$$
+用 $bool$ 数组。$A[i][j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
+bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定任意两个棋子不能相邻，则中间两行一共有多少种可行的摆法？</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://freeze.org.cn/docs/Hidden/intro/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Hidden/intro/</guid>
+      <description>恭喜你发现了隐藏空间！ $  </description>
     </item>
     
     <item>

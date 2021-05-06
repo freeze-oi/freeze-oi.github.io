@@ -123,8 +123,9 @@ int t[], n; // t[u] : u 号节点的值 // n : 节点总数 插入 $  如何往�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DS/treearray/</guid>
-      <description>前置知识 $  你得先学会 $lowbit(n)$ 的计算方式。
-引入问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
+      <description>Warning
+你得先学会 $lowbit$ 运算。
+ 问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
   单点修改：将 $A[ x]$ 加上 $k$。
   区间查询：查询 $A[l\cdots r]$ 的和。
   int a[]; void set(int id, int v) { // 单点修改  a[id] = v; } int ask(int l, int r) { // 区间查询  int ans = 0; for(int i = l; i &amp;lt;= r; i ++) ans += a[i]; return ans; }     暴力算法（$\textcolor{red}{×}$） 树状数组（$\textcolor{green}{√}$）     单点修改 $\textcolor{green}{O(1)}$ $\textcolor{green}{O(\log{n})}$   区间查询 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   $m$ 次操作 $\textcolor{red}{O(mn)}$ $\textcolor{green}{O(m\log{n})}$    构造 $  在原数组的上方构建树型结构，每个节点表示一段区间和：</description>
@@ -136,7 +137,7 @@ int t[], n; // t[u] : u 号节点的值 // n : 节点总数 插入 $  如何往�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DS/segtree/</guid>
-      <description>引入问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
+      <description>问题 $  数组 $A$ 中共 $n$ 个元素，对其反复进行以下操作共 $m$ 次：
   单点修改：将 $A[id]$ 修改为 $v$。
   区间查询：查询 $A[l\cdots r]$ 的最小值。
   区间修改：将 $A[l\cdots r]$ 每个数加上 $v$。

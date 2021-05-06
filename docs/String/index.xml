@@ -33,7 +33,7 @@ typedef long long LL; const LL b = 29, p = 10000019; LL getHash(string str) { //
       <description>简介 $  哈希表由 哈希函数 和 链表 组成，相当于「超级数组」。
   数组的下标1可以是整数，浮点数，字符串等。
   不用定义数组的长度。
-  引出问题 $  医院的排队系统需要记录每个病人对应的问诊顺序。此处假设每个病人的名称都是数字。
+  问题 $  医院的排队系统需要记录每个病人对应的问诊顺序。此处假设每个病人的名称都是数字。
    名称 $32$ $26$ $75$ $4$     问诊顺序 $1$ $2$ $3$ $4$    $p[i]$ 表示「名称为 $i$ 的病人的问诊顺序」。查询问诊顺序的时间复杂度为 $O(1)$。
 int p[]; void update(int i, int x) { // 记录病人 i 的问诊顺序为 x  p[i] = x; } int query(int i) { // 查询病人 i 的问诊顺序  return p[i]; } 然而总有某些病人不按套路取名。</description>
     </item>
@@ -45,9 +45,9 @@ int p[]; void update(int i, int x) { // 记录病人 i 的问诊顺序为 x  p[i
       
       <guid>https://freeze.org.cn/docs/String/KMP/</guid>
       <description>简介 $  $KMP$ 算法并不能用来看毛片，它是一种字符串匹配算法。$KMP$ 是该算法的发明者 $Kruth$，$Morris$ 和 $Pratt$ 的名字缩写。
-引出问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
-$$\begin{aligned}A&amp;=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&amp;=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\textcolor{red}{a}$ 与 $\textcolor{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
-$$\begin{aligned}A&amp;=\color{green}a \ b \ a \ b \ \color{red}a\color{black} \ b \ a \ b \ c\\B&amp;=\color{green}a \ b \ a \ b \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &amp;b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &amp;a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。</description>
+问题 $  给定字符串 $A$（长度为 $m$）和 $B$（长度为 $n$），问 $A$ 中是否包含 $B$ ？
+$$\begin{aligned}A&amp;=a \ b \ a \ b \ a \ b \ a \ b \ c\\B&amp;=a \ b \ a \ b \ c\end{aligned}$$首先将 $A$ 和 $B$ 的左端对齐，发现 $\color{red}{a}$ 与 $\color{red}{c}$ 不匹配，于是将 $B$ 向右移一位。
+$$\begin{aligned}A&amp;=\color{green}{a \ b \ a \ b} \ \color{red}a\color{black} \ b \ a \ b \ c\\B&amp;=\color{green}{a \ b \ a \ b} \ \color{red}c\\\end{aligned}\\\begin{aligned}\\A=\color{lightgrey}a\color{black} \ &amp;b \ a \ b \ a \ b \ a \ b \ c\\→B= \ &amp;a \ b \ a \ b \ c\end{aligned}$$重复右移 $B$，直到在 $A$ 中匹配出完整的 $B$。</description>
     </item>
     
     <item>

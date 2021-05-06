@@ -5,13 +5,13 @@
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="简介 $  树形 DP 所解决的问题基于「树形结构」。例如：给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。
-引出问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
+问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
 基本原理 $  $f[i]$ 表示以节点 $i$ 为根的子树大小，$Son(i)$ 表示 $i$ 的子节点集合。易知：
 $$ f[i]=1&#43;\sum_{v\in Son(i)}f[v] $$
 $f[i]$ 由 $f[i$ 的子节点$]$ 推出，计算顺序应为 $f[$子节点$]→f[$父节点]。使用记忆化搜索。
 vector&lt;int&gt; son[]; // son[u] : 节点 u 的子节点集合  void dfs(int u) { // 求以 u 为根的子树中节点个数  f[u] = 1; for(int i = 0; i &lt; son[u].size(); i &#43;&#43;) { int v = son[u][i]; // 节点 u 的第 i 个子节点  dfs(v); f[u] &#43;= f[v]; } } 例题 $  没有上司的舞会 $  公司有 $n$ 个人（编号 $1\cdots n$），现要举⾏⼀场晚会，并规定如果邀请了某个⼈，那么⼀定不会邀请他的上司（他上司的上司，上司的上司的上司 $\cdots$ 都可以邀请）。"><meta property="og:title" content="树形 DP" />
 <meta property="og:description" content="简介 $  树形 DP 所解决的问题基于「树形结构」。例如：给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。
-引出问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
+问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
 基本原理 $  $f[i]$ 表示以节点 $i$ 为根的子树大小，$Son(i)$ 表示 $i$ 的子节点集合。易知：
 $$ f[i]=1&#43;\sum_{v\in Son(i)}f[v] $$
 $f[i]$ 由 $f[i$ 的子节点$]$ 推出，计算顺序应为 $f[$子节点$]→f[$父节点]。使用记忆化搜索。
@@ -24,7 +24,7 @@ vector&lt;int&gt; son[]; // son[u] : 节点 u 的子节点集合  void dfs(int u
 <title>树形 DP | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.2932406daf7bfb266ee94d1b6d078a25682830de20622cd62abb5efc7d4fca50.js" integrity="sha256-KTJAba97&#43;yZu6U0bbQeKJWgoMN4gYizWKrte/H1PylA="></script>
+<script defer src="/en.search.min.48aa70ad2e925db27527066401841fc286361bdb9741fb9586ad36e6709ee431.js" integrity="sha256-SKpwrS6SXbJ1JwZkAYQfwoY2G9uXQfuVhq025nCe5DE="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -857,7 +857,7 @@ https://github.com/alex-shpak/hugo-book
     <li>
       <ul>
         <li><a href="#简介">简介</a></li>
-        <li><a href="#引出问题">引出问题</a></li>
+        <li><a href="#问题">问题</a></li>
         <li><a href="#基本原理">基本原理</a></li>
         <li><a href="#例题">例题</a>
           <ul>
@@ -881,9 +881,9 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p><strong>树形 DP</strong> 所解决的问题基于「树形结构」。例如：给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。</p>
 <center><img src=\DP\tree_1.png style=zoom:80%></img></center>
-<h2 id="引出问题">
-  引出问题
-  <a class="anchor" href="#%e5%bc%95%e5%87%ba%e9%97%ae%e9%a2%98">$</a>
+<h2 id="问题">
+  问题
+  <a class="anchor" href="#%e9%97%ae%e9%a2%98">$</a>
 </h2>
 <p>给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？</p>
 <h2 id="基本原理">
@@ -1062,7 +1062,7 @@ $$</p>
     <li>
       <ul>
         <li><a href="#简介">简介</a></li>
-        <li><a href="#引出问题">引出问题</a></li>
+        <li><a href="#问题">问题</a></li>
         <li><a href="#基本原理">基本原理</a></li>
         <li><a href="#例题">例题</a>
           <ul>
@@ -1104,13 +1104,13 @@ $$</p>
 <script type="text/javascript">
     String.prototype.pxWidth = function(font) {
         var canvas = String.prototype.pxWidth.canvas || (String.prototype.pxWidth.canvas = document.createElement("canvas")),
-            context = canvas.getContext("2d"); 
+            context = canvas.getContext("2d");
         font && (context.font = font);
         var metrics = context.measureText(this);
         return metrics.width;
     }
     var len = document.getElementsByClassName("book-btn").length;
-    for(var i = 0; i < len; i ++) {
+    for (var i = 0; i < len; i++) {
         var str = document.getElementsByClassName("book-btn")[i].innerHTML;
         var wid = (100 - str.pxWidth(document.getElementsByClassName("book-btn")[i].style.font)) / 2.3;
         document.getElementsByClassName("book-btn")[i].style.padding = "0 " + wid.toString() + "px";
