@@ -125,10 +125,10 @@ vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void d
       
       <guid>https://freeze.org.cn/docs/DP/zip/</guid>
       <description>简介 $  Warning
-你得先学会 状态压缩 章节的内容。
+前置知识：状态压缩 。
  在程序中，我们如何保存一面棋盘？
 $$\def\arraystretch{2}\begin{array}{|c|c|c|c|}\hline\ &amp; \Large♕ &amp; \ &amp; \Large♕ \\ \hline\Large♕ &amp; \ &amp; \Large♕ &amp; \Large♕ \\ \hline\ &amp; \ &amp; \Large♕ &amp; \ \\ \hline\Large♕ &amp; \Large♕ &amp; \ &amp; \Large♕ \\ \hline\end{array}$$
-用 $bool$ 数组。$A[i][j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
+用 $bool$ 数组 $A[ \ ][ \ ]$。$A[i][j]=1$ 表示第 $i$ 行第 $j$ 列有一枚棋子。
 bool A[][] = { {0, 1, 0, 1}, {1, 0, 1, 1}, {0, 0, 1, 0}, {1, 1, 0, 1} }; 现在我摆出了棋盘的第 $1$ 行和第 $4$ 行，并规定任意两个棋子不能相邻，则中间两行一共有多少种可行的摆法？</description>
     </item>
     

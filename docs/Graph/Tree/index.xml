@@ -45,11 +45,13 @@ void dfs(int u) { if(!</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/Graph/Tree/LCA/</guid>
-      <description>简介 $  节点 $p$ 和 $q$ 的最近公共祖先（节点 $s$）是 $p$ 到 $q$ 最短路径中深度最浅的节点：
-基本原理 $    从 $p$ 节点开始，不断往父节点移动，直到遇到根节点。标记运动路径中经过的节点；
-  从 $q$ 节点开始，不断往父节点移动，直到遇到的节点被标记过。该节点是 $p$ 和 $q$ 的最近公共祖先。
-  时间复杂度：$O(n)$。
-int fa[]; bool mark[]; /* fa[i] : 节点 i 的父节点，fa[根节点] = 0 mark[i] : 节点 i 是否被标记 */ int LCA(int p, int q) { // 返回节点 p 和 q 的最近公共祖先  memset(mark, false, sizeof mark); while(p) mark[p] = true, p = fa[p]; while(!</description>
+      <description>简介 $  最近公共祖先全称 $Least \ Common \ Ancestors$，简称 $LCA$。
+节点 $p$ 和 $q$ 的最近公共祖先（节点 $s$）是 $p$ 到 $q$ 最短路径中深度最浅的节点：
+如何求 $p$ 和 $q$ 的 $LCA$？假定 $p$ 的 深度 大于 $q$，考虑最简单的做法：
+  从 $p$ 节点开始，重复向父节点移动，直到达到 $q$ 节点的深度。
+  两个节点同时重复向父节点移动，直到相遇。相遇的节点为 $p$ 和 $q$ 的 $LCA$。
+  时间复杂度为 $O(n)$。
+int d[]; // 节点 u 的深度为 d[u] int fa[]; // 节点 u 的父节点为 fa[u]  int LCA(int p, int q) { if(d[p] &amp;lt; d[q]) swap(p, q); // 使 p 的深度 &amp;gt; q  while(d[p] &amp;gt; d[q]) p = fa[p]; while(p !</description>
     </item>
     
     <item>

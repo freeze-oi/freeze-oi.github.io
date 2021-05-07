@@ -4,16 +4,20 @@
 <head>
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="简介 $  节点 $p$ 和 $q$ 的最近公共祖先（节点 $s$）是 $p$ 到 $q$ 最短路径中深度最浅的节点：
-基本原理 $    从 $p$ 节点开始，不断往父节点移动，直到遇到根节点。标记运动路径中经过的节点；
-  从 $q$ 节点开始，不断往父节点移动，直到遇到的节点被标记过。该节点是 $p$ 和 $q$ 的最近公共祖先。
-  时间复杂度：$O(n)$。
-int fa[]; bool mark[]; /* fa[i] : 节点 i 的父节点，fa[根节点] = 0 mark[i] : 节点 i 是否被标记 */ int LCA(int p, int q) { // 返回节点 p 和 q 的最近公共祖先  memset(mark, false, sizeof mark); while(p) mark[p] = true, p = fa[p]; while(!"><meta property="og:title" content="最近公共祖先" />
-<meta property="og:description" content="简介 $  节点 $p$ 和 $q$ 的最近公共祖先（节点 $s$）是 $p$ 到 $q$ 最短路径中深度最浅的节点：
-基本原理 $    从 $p$ 节点开始，不断往父节点移动，直到遇到根节点。标记运动路径中经过的节点；
-  从 $q$ 节点开始，不断往父节点移动，直到遇到的节点被标记过。该节点是 $p$ 和 $q$ 的最近公共祖先。
-  时间复杂度：$O(n)$。
-int fa[]; bool mark[]; /* fa[i] : 节点 i 的父节点，fa[根节点] = 0 mark[i] : 节点 i 是否被标记 */ int LCA(int p, int q) { // 返回节点 p 和 q 的最近公共祖先  memset(mark, false, sizeof mark); while(p) mark[p] = true, p = fa[p]; while(!" />
+<meta name="description" content="简介 $  最近公共祖先全称 $Least \ Common \ Ancestors$，简称 $LCA$。
+节点 $p$ 和 $q$ 的最近公共祖先（节点 $s$）是 $p$ 到 $q$ 最短路径中深度最浅的节点：
+如何求 $p$ 和 $q$ 的 $LCA$？假定 $p$ 的 深度 大于 $q$，考虑最简单的做法：
+  从 $p$ 节点开始，重复向父节点移动，直到达到 $q$ 节点的深度。
+  两个节点同时重复向父节点移动，直到相遇。相遇的节点为 $p$ 和 $q$ 的 $LCA$。
+  时间复杂度为 $O(n)$。
+int d[]; // 节点 u 的深度为 d[u] int fa[]; // 节点 u 的父节点为 fa[u]  int LCA(int p, int q) { if(d[p] &lt; d[q]) swap(p, q); // 使 p 的深度 &gt; q  while(d[p] &gt; d[q]) p = fa[p]; while(p !"><meta property="og:title" content="最近公共祖先" />
+<meta property="og:description" content="简介 $  最近公共祖先全称 $Least \ Common \ Ancestors$，简称 $LCA$。
+节点 $p$ 和 $q$ 的最近公共祖先（节点 $s$）是 $p$ 到 $q$ 最短路径中深度最浅的节点：
+如何求 $p$ 和 $q$ 的 $LCA$？假定 $p$ 的 深度 大于 $q$，考虑最简单的做法：
+  从 $p$ 节点开始，重复向父节点移动，直到达到 $q$ 节点的深度。
+  两个节点同时重复向父节点移动，直到相遇。相遇的节点为 $p$ 和 $q$ 的 $LCA$。
+  时间复杂度为 $O(n)$。
+int d[]; // 节点 u 的深度为 d[u] int fa[]; // 节点 u 的父节点为 fa[u]  int LCA(int p, int q) { if(d[p] &lt; d[q]) swap(p, q); // 使 p 的深度 &gt; q  while(d[p] &gt; d[q]) p = fa[p]; while(p !" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://freeze.org.cn/docs/Graph/Tree/LCA/" /><meta property="article:section" content="docs" />
 
@@ -22,7 +26,7 @@ int fa[]; bool mark[]; /* fa[i] : 节点 i 的父节点，fa[根节点] = 0 mark
 <title>最近公共祖先 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.48aa70ad2e925db27527066401841fc286361bdb9741fb9586ad36e6709ee431.js" integrity="sha256-SKpwrS6SXbJ1JwZkAYQfwoY2G9uXQfuVhq025nCe5DE="></script>
+<script defer src="/en.search.min.511804bcb59d4d09884f31ab6e4f139ee1fb493bf8d7b8137721d741fd8ed50e.js" integrity="sha256-URgEvLWdTQmITzGrbk8TnuH7STv417gTdyHXQf2O1Q4="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -855,6 +859,7 @@ https://github.com/alex-shpak/hugo-book
     <li>
       <ul>
         <li><a href="#简介">简介</a></li>
+        <li><a href="#预处理">预处理</a></li>
         <li><a href="#基本原理">基本原理</a></li>
       </ul>
     </li>
@@ -870,34 +875,66 @@ https://github.com/alex-shpak/hugo-book
   简介
   <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
 </h2>
+<p>最近公共祖先全称 $Least \ Common \ Ancestors$，简称 $LCA$。</p>
 <p>节点 $p$ 和 $q$ 的最近公共祖先（节点 $s$）是 $p$ 到 $q$ 最短路径中深度最浅的节点：</p>
 <center><img src=/Graph/Tree/LCA_1.png style="zoom:80%"></img></center>
-<h2 id="基本原理">
+<p>如何求 $p$ 和 $q$ 的 $LCA$？假定 $p$ 的 
+  <a href="/docs/Graph/Tree/intro/#%e5%b1%82%e5%92%8c%e6%b7%b1%e5%ba%a6">深度</a> 大于 $q$，考虑最简单的做法：</p>
+<ol>
+<li>
+<p>从 $p$ 节点开始，重复向父节点移动，直到达到 $q$ 节点的深度。</p>
+ <center><img src=/Graph/Tree/LCA_2.png style="zoom:80%"></img></center>
+</li>
+<li>
+<p>两个节点同时重复向父节点移动，直到相遇。相遇的节点为 $p$ 和 $q$ 的 $LCA$。</p>
+ <center><img src=/Graph/Tree/LCA_1.png style="zoom:80%"></img></center>
+</li>
+</ol>
+<p>时间复杂度为 $O(n)$。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">[];</span> <span style="color:#8f5902;font-style:italic">// 节点 u 的深度为 d[u]
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[];</span> <span style="color:#8f5902;font-style:italic">// 节点 u 的父节点为 fa[u]
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">LCA</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">swap</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#8f5902;font-style:italic">// 使 p 的深度 &gt; q
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">q</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">];</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="预处理">
+  预处理
+  <a class="anchor" href="#%e9%a2%84%e5%a4%84%e7%90%86">$</a>
+</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">const</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">N</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1e5</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">LogN</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">32</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">N</span><span style="color:#000;font-weight:bold">],</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">N</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">LogN</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">];</span>
+<span style="color:#000">vector</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">N</span><span style="color:#000;font-weight:bold">];</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">build</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">u</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">fa</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span>
+        <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">].</span><span style="color:#000">size</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">u</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">v</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">continue</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">build</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">v</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">u</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="基本原理">
   基本原理
   <a class="anchor" href="#%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86">$</a>
 </h2>
-<ol>
-<li>
-<p>从 $p$ 节点开始，不断往父节点移动，直到遇到根节点。标记运动路径中经过的节点；</p>
-</li>
-<li>
-<p>从 $q$ 节点开始，不断往父节点移动，直到遇到的节点被标记过。该节点是 $p$ 和 $q$ 的最近公共祖先。</p>
-</li>
-</ol>
-<center><img src=/Graph/Tree/LCA_2.gif style="zoom:80%"></img></center>
-<p>时间复杂度：$O(n)$。</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[];</span>
-<span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">mark</span><span style="color:#000;font-weight:bold">[];</span>
-<span style="color:#8f5902;font-style:italic">/*
-</span><span style="color:#8f5902;font-style:italic">    fa[i]   : 节点 i 的父节点，fa[根节点] = 0
-</span><span style="color:#8f5902;font-style:italic">    mark[i] : 节点 i 是否被标记
-</span><span style="color:#8f5902;font-style:italic">*/</span>
-
-<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">LCA</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">p</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 返回节点 p 和 q 的最近公共祖先
-</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">memset</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">mark</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87">false</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">sizeof</span> <span style="color:#000">mark</span><span style="color:#000;font-weight:bold">);</span>
-    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">mark</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87">true</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">p</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">p</span><span style="color:#000;font-weight:bold">];</span>
-    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000">mark</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">q</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">fa</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">q</span><span style="color:#000;font-weight:bold">];</span>
-    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">q</span><span style="color:#000;font-weight:bold">;</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">LCA</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">swap</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">LogN</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">--</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]]</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">y</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#204a87;font-weight:bold">for</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">LogN</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">i</span> <span style="color:#ce5c00;font-weight:bold">--</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">!=</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">])</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">];</span>
+            <span style="color:#000">y</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">y</span><span style="color:#000;font-weight:bold">][</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">];</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">][</span><span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">];</span>
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div></article>
 
@@ -931,6 +968,7 @@ https://github.com/alex-shpak/hugo-book
     <li>
       <ul>
         <li><a href="#简介">简介</a></li>
+        <li><a href="#预处理">预处理</a></li>
         <li><a href="#基本原理">基本原理</a></li>
       </ul>
     </li>

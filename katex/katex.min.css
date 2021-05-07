@@ -184,8 +184,7 @@
 }
 
 .katex .textit {
-    /* font-style: italic */
-    font-family: GBK_Mono
+    font-style: italic
 }
 
 .katex .textrm {

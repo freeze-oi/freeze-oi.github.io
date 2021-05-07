@@ -5,13 +5,13 @@
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="定义 $  若 $a,b,m\in Z,a\%m=b\%m$，则 $a$ 和 $b$ 模 $m$ 同余，记作 $a≡b\pmod{m}$。
-同余类 $    对于任意 $a,k,m\in Z$，都有 $a&#43;km≡a\pmod{m}$。集合 ${a&#43;km}$ 为模 $m$ 的 同余类，简记为 $\overline{a}$。$a$ 是该同余类的 代表元。
+同余类 $    对于任意 $a,k,m\in Z$，都有 $a&#43;km≡a\pmod{m}$。集合 $\{a&#43;km\}$ 为模 $m$ 的 同余类，简记为 $\overline{a}$。$a$ 是该同余类的 代表元。
   模 $m$ 的同余类有 $m$ 个，为 $\overline{0},\overline{1},\overline{2},\cdots,\overline{m-1}$。
   同余系 $    从模 $m$ 的所有同余类中各取一个数，构成的集合是 $m$ 的 完全同余系。
   模 $m$ 的同余类中，代表元与 $m$ 互质的有 $\phi(m)$ 个。从这些同余类中各取一个数，构成的集合是 $m$ 的 简化同余系。
   乘法封闭 $  若 $a,b\in[1,m)$ 分别与 $m$ 互质，则 $ab$ 与 $m$ 互质。"><meta property="og:title" content="同余" />
 <meta property="og:description" content="定义 $  若 $a,b,m\in Z,a\%m=b\%m$，则 $a$ 和 $b$ 模 $m$ 同余，记作 $a≡b\pmod{m}$。
-同余类 $    对于任意 $a,k,m\in Z$，都有 $a&#43;km≡a\pmod{m}$。集合 ${a&#43;km}$ 为模 $m$ 的 同余类，简记为 $\overline{a}$。$a$ 是该同余类的 代表元。
+同余类 $    对于任意 $a,k,m\in Z$，都有 $a&#43;km≡a\pmod{m}$。集合 $\{a&#43;km\}$ 为模 $m$ 的 同余类，简记为 $\overline{a}$。$a$ 是该同余类的 代表元。
   模 $m$ 的同余类有 $m$ 个，为 $\overline{0},\overline{1},\overline{2},\cdots,\overline{m-1}$。
   同余系 $    从模 $m$ 的所有同余类中各取一个数，构成的集合是 $m$ 的 完全同余系。
   模 $m$ 的同余类中，代表元与 $m$ 互质的有 $\phi(m)$ 个。从这些同余类中各取一个数，构成的集合是 $m$ 的 简化同余系。
@@ -24,7 +24,7 @@
 <title>同余 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.46a4dde4dc554fa8cdae72fbaa505a873b17533a7ffde8fae8e2875889f6fc01.css" integrity="sha256-RqTd5NxVT6jNrnL7qlBahzsXUzp//ej66OKHWIn2/AE=">
-<script defer src="/en.search.min.48aa70ad2e925db27527066401841fc286361bdb9741fb9586ad36e6709ee431.js" integrity="sha256-SKpwrS6SXbJ1JwZkAYQfwoY2G9uXQfuVhq025nCe5DE="></script>
+<script defer src="/en.search.min.511804bcb59d4d09884f31ab6e4f139ee1fb493bf8d7b8137721d741fd8ed50e.js" integrity="sha256-URgEvLWdTQmITzGrbk8TnuH7STv417gTdyHXQf2O1Q4="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -897,7 +897,7 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <ul>
 <li>
-<p>对于任意 $a,k,m\in Z$，都有 $a+km≡a\pmod{m}$。集合 ${a+km}$ 为模 $m$ 的 <strong>同余类</strong>，简记为 $\overline{a}$。$a$ 是该同余类的 <strong>代表元</strong>。</p>
+<p>对于任意 $a,k,m\in Z$，都有 $a+km≡a\pmod{m}$。集合 $\{a+km\}$ 为模 $m$ 的 <strong>同余类</strong>，简记为 $\overline{a}$。$a$ 是该同余类的 <strong>代表元</strong>。</p>
 </li>
 <li>
 <p>模 $m$ 的同余类有 $m$ 个，为 $\overline{0},\overline{1},\overline{2},\cdots,\overline{m-1}$。</p>
@@ -933,10 +933,10 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <p>若 $a\in Z$，$p$ 为质数且 $a,p$ 互质，则 $a^p≡a\pmod{p}$。</p>
 <p><strong>证明：</strong></p>
-<p>设 $p$ 的完全同余系为 $C={0,1,2,\cdots,p-1}$，则有 $C_i\not≡C_j\pmod{p}$，</p>
-<p>$∵a,C_i,C_j$ 分别与 $p$ 互质，$∴aC_i\not≡aC_j\pmod{p}$，</p>
+<p>设 $p$ 的完全同余系为 $C=\{0,1,2,\cdots,p-1\}$，则有 $C_i!≡C_j\pmod{p}$，</p>
+<p>$∵a,C_i,C_j$ 分别与 $p$ 互质，$∴aC_i!≡aC_j\pmod{p}$，</p>
 <p>$∵aC_i\%p\in C$，</p>
-<p>$∴aC={0,a,2a,\cdots,(p-1)·a}$ 也为 $p$ 的完全同余系，</p>
+<p>$∴aC=\{0,a,2a,\cdots,(p-1)·a\}$ 也为 $p$ 的完全同余系，</p>
 <p>$∴\prod_{i=2}^{p}C_i≡\prod_{i=2}^{p}aC_i=a^{p-1}\prod_{i=2}^{p}C_i\pmod{p}$，</p>
 <p>$∴a^{p-1}≡1\pmod{p}$，即 $a^p≡a\pmod{p}$。</p>
 <h3 id="欧拉定理">
@@ -945,10 +945,10 @@ https://github.com/alex-shpak/hugo-book
 </h3>
 <p>若 $a,n\in Z$ 互质，则 $a^{\phi(n)}≡1\pmod{n}$。</p>
 <p><strong>证明：</strong></p>
-<p>设 $n$ 的简化同余系为 $C={C_1,C_2,\cdots,C_{\phi(n)}}$，则有 $C_i\not≡C_j\pmod{n}$，</p>
-<p>$∵a,C_i,C_j$ 分别与 $n$ 互质，$∴aC_i\not≡aC_j\pmod{n}$，</p>
+<p>设 $n$ 的简化同余系为 $C=\{C_1,C_2,\cdots,C_{\phi(n)}\}$，则有 $C_i!≡C_j\pmod{n}$，</p>
+<p>$∵a,C_i,C_j$ 分别与 $n$ 互质，$∴aC_i!≡aC_j\pmod{n}$，</p>
 <p>$∵n$ 的简化同余系「关于模 $n$ 乘法封闭」，$∴aC_i\%n\in C$，</p>
-<p>$∴aC={aC_1,aC_2,\cdots,aC_{\phi(n)}}$ 也为 $n$ 的简化同余系，</p>
+<p>$∴aC=\{aC_1,aC_2,\cdots,aC_{\phi(n)}\}$ 也为 $n$ 的简化同余系，</p>
 <p>$∴\prod_{i=1}^{\phi(n)}C_i≡\prod_{i=1}^{\phi(n)}aC_i=a^{\phi(n)}\prod_{i=1}^{\phi(n)}C_i\pmod{n}$，</p>
 <p>$∴a^{\phi(n)}≡1\pmod{n}$。</p>
 <h3 id="扩展欧拉定理">
