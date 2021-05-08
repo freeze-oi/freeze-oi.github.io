@@ -188,7 +188,7 @@ int gcd(a, b) { if(!b) return a; return gcd(b, a % b); } 最小公倍数 $  如�
     </item>
     
     <item>
-      <title>图的存储</title>
+      <title>存图</title>
       <link>https://freeze.org.cn/docs/Graph/store/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -319,13 +319,15 @@ Floyed 算法 $  $g[k][i][j]$ 表示只允许经过节点 $1 \sim k$ 时，从�
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/Graph/Tree/LCA/</guid>
-      <description>简介 $  最近公共祖先全称 $Least \ Common \ Ancestors$，简称 $LCA$。
-节点 $p$ 和 $q$ 的最近公共祖先（节点 $s$）是 $p$ 到 $q$ 最短路径中深度最浅的节点：
-如何求 $p$ 和 $q$ 的 $LCA$？假定 $p$ 的 深度 大于 $q$，考虑最简单的做法：
-  从 $p$ 节点开始，重复向父节点移动，直到达到 $q$ 节点的深度。
-  两个节点同时重复向父节点移动，直到相遇。相遇的节点为 $p$ 和 $q$ 的 $LCA$。
-  时间复杂度为 $O(n)$。
-int d[]; // 节点 u 的深度为 d[u] int fa[]; // 节点 u 的父节点为 fa[u]  int LCA(int p, int q) { if(d[p] &amp;lt; d[q]) swap(p, q); // 使 p 的深度 &amp;gt; q  while(d[p] &amp;gt; d[q]) p = fa[p]; while(p !</description>
+      <description>Warning
+学习本章前，最好先去看看 树形 DP。
+ 简介 $  最近公共祖先全称为 $Least \ Common \ Ancestors$，简称 $LCA$。
+节点 $p,q$ 的最近公共祖先（节点 $s$）是 $p$ 到 $q$ 的最短路径中 深度 最浅的节点：
+如何求两个节点的 $LCA$？首先考虑暴力算法。
+0 用 $p,q$ 两个指针分别指向这两个节点，并且 $p$ 的 深度 比 $q$ 深。
+1 将 $p$ 不断往父节点方向移，直到 $p,q$ 处于同一深度。
+2 $p$ 和 $q$ 同时往父节点移，直到它们相遇于 $s$ 节点。$s$ 节点为 $p$ 和 $q$ 的 $LCA$。
+ var src1 = [&#34;/Graph/Tree/LCA_2.png&#34;, &#34;/Graph/Tree/LCA_3.png&#34;, &#34;/Graph/Tree/LCA_4.png&#34;];var src2 = [&#34;</description>
     </item>
     
     <item>
@@ -600,7 +602,7 @@ void init(int a[]) { memset(a, 0, sizeof a); int i = 0; char s = getchar(); whil
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DP/tree/</guid>
-      <description>简介 $  树形 DP 所解决的问题基于「树形结构」。例如：给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。
+      <description>简介 $  树形 DP 所解决的问题基于「树形结构」。例如，给出一个家族的族谱，求任意两个成员的公共祖先。这里的族谱就是一种「树形结构」。
 问题 $  给定一棵 $n$ 个点，$m$ 条边，顶点编号为 $1\sim n$ 的无权树，$1$ 号节点为根。以 $i$ 号节点为根的子树有几个节点？
 基本原理 $  $f[i]$ 表示以节点 $i$ 为根的子树大小，$Son(i)$ 表示 $i$ 的子节点集合。易知：
 $$ f[i]=1+\sum_{v\in Son(i)}f[v] $$
