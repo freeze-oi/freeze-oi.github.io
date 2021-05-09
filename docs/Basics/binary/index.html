@@ -15,9 +15,9 @@
   重复猜范围的中间数，每次都会将 $n$ 的范围缩小一半，最多 $\log{n}$ 次就可以确定 $n$ 的值。
 通过若干次折半范围实现快速查询，是二分算法的基本思想。
 基本原理 $  $l$ 表示 $n$ 所在范围的左端点，$r$ 表示右端点，即 $n∈(l,r)$。重复执行以下操作：
-  取范围的中间数 $m=\lfloor(l&#43;r)/2\rfloor$；
+  取范围的中间数 $m=(l&#43;r)/2$（向下取整）；
   若 $n&gt;m$，则可以确定 $n∈(m,r)$，令 $l=m$；
-  若 $n&lt;m$，则可以确定 $n∈(l,m)$，令 $r=m$；"><meta property="og:title" content="二分算法" />
+  若 $n&lt;m$，则可以确定 $n∈(l,m)$，令 $r=m$；"><meta property="og:title" content="二分" />
 <meta property="og:description" content="简介 $  玩过「数字炸弹」游戏吗？
   叫你的朋友在你背后写一个 $[1,1000]$ 中的正整数 $n$；
   每轮你都会给出数字 $x$，你朋友只能回答「$n$ 比 $x$ 大」「$n$ 比 $x$ 小」或「猜中」。
@@ -29,7 +29,7 @@
   重复猜范围的中间数，每次都会将 $n$ 的范围缩小一半，最多 $\log{n}$ 次就可以确定 $n$ 的值。
 通过若干次折半范围实现快速查询，是二分算法的基本思想。
 基本原理 $  $l$ 表示 $n$ 所在范围的左端点，$r$ 表示右端点，即 $n∈(l,r)$。重复执行以下操作：
-  取范围的中间数 $m=\lfloor(l&#43;r)/2\rfloor$；
+  取范围的中间数 $m=(l&#43;r)/2$（向下取整）；
   若 $n&gt;m$，则可以确定 $n∈(m,r)$，令 $l=m$；
   若 $n&lt;m$，则可以确定 $n∈(l,m)$，令 $r=m$；" />
 <meta property="og:type" content="article" />
@@ -37,10 +37,10 @@
 
 
 
-<title>二分算法 | Freeze&#39;s Blogs</title>
+<title>二分 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.31fca46263addddb9324e2cffe5e562426b96715e9c0505bd5240226265617a4.css" integrity="sha256-MfykYmOt3duTJOLP/l5WJCa5ZxXpwFBb1SQCJiZWF6Q=">
-<script defer src="/en.search.min.a74bcda0a529529e5de0bc3f3bf874d60e0ad4fb7b3ff828ea30fdafe97382bf.js" integrity="sha256-p0vNoKUpUp5d4Lw/O/h01g4K1Pt7P/go6jD9r&#43;lzgr8="></script>
+<script defer src="/en.search.min.b7cae14b66e715afd48074e754ffbcd7027d1fb52d981c93786969dbbdb318db.js" integrity="sha256-t8rhS2bnFa/UgHTnVP&#43;81wJ9H7UtmByTeGlp272zGNs="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -109,7 +109,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-41ef39c5b40593a842e112d71399835e" class="toggle"  />
     <label for="section-41ef39c5b40593a842e112d71399835e" class="flex justify-between">
-      <a  class="">搜索算法</a>
+      <a  class="">搜索</a>
       <span>▾</span>
     </label>
   
@@ -155,7 +155,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序算法</a>
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序</a>
   
 
         </li>
@@ -168,20 +168,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/binary/" class=" active">二分算法</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+    <a href="https://freeze.org.cn/docs/Basics/binary/" class=" active">二分</a>
   
 
         </li>
@@ -195,6 +182,19 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://freeze.org.cn/docs/Basics/hipre/" class="">高精度</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
   
 
         </li>
@@ -214,26 +214,13 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle"  />
     <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
-      <a  class="">动态规划</a>
+      <a href="https://freeze.org.cn/docs/DP/" class="">动态规划</a>
       <span>▾</span>
     </label>
   
 
           
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/DP/intro/" class="">简介</a>
-  
-
-        </li>
-      
     
       
         <li>
@@ -326,11 +313,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
-  </ul>
-
-        </li>
-      
-    
       
         <li>
           
@@ -338,9 +320,9 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle"  />
-    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
-      <a  class="">数据结构</a>
+    <input type="checkbox" id="section-75cef8e4d85ee595ba5ad678b54db259" class="toggle"  />
+    <label for="section-75cef8e4d85ee595ba5ad678b54db259" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/DP/BinaryLift/" class="">倍增 DP</a>
       <span>▾</span>
     </label>
   
@@ -355,11 +337,51 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/DS/intro/" class="">简介</a>
+    <a href="https://freeze.org.cn/docs/DP/BinaryLift/RMQ/" class="">RMQ</a>
   
 
         </li>
       
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/BinaryLift/LCA/" class="">倍增求 LCA</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle"  />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/DS/" class="">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
     
       
         <li>
@@ -447,19 +469,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/DS/ST/" class="">ST 表</a>
   
 
         </li>
@@ -566,7 +575,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
     <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
-      <a  class="">图论</a>
+      <a href="https://freeze.org.cn/docs/Graph/" class="">图论</a>
       <span>▾</span>
     </label>
   
@@ -581,20 +590,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Graph/intro/" class="">简介</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/Graph/store/" class="">存图</a>
+    <a href="https://freeze.org.cn/docs/Graph/store/" class="">图的存储</a>
   
 
         </li>
@@ -609,26 +605,13 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-51cd7eb0a868c10bd862407a54c9232a" class="toggle"  />
     <label for="section-51cd7eb0a868c10bd862407a54c9232a" class="flex justify-between">
-      <a  class="">树</a>
+      <a href="https://freeze.org.cn/docs/Graph/Tree/" class="">树</a>
       <span>▾</span>
     </label>
   
 
           
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/Graph/Tree/intro/" class="">简介</a>
-  
-
-        </li>
-      
     
       
         <li>
@@ -858,7 +841,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>二分算法</strong>
+  <strong>二分</strong>
 
   <label for="toc-control">
     
@@ -919,7 +902,7 @@ https://github.com/alex-shpak/hugo-book
 <p>$l$ 表示 $n$ 所在范围的左端点，$r$ 表示右端点，即 $n∈(l,r)$。重复执行以下操作：</p>
 <ul>
 <li>
-<p>取范围的中间数 $m=\lfloor(l+r)/2\rfloor$；</p>
+<p>取范围的中间数 $m=(l+r)/2$（向下取整）；</p>
 </li>
 <li>
 <p>若 $n&gt;m$，则可以确定 $n∈(m,r)$，令 $l=m$；</p>
@@ -932,7 +915,7 @@ https://github.com/alex-shpak/hugo-book
 </li>
 </ul>
 <p>初始条件：$l=0,r=1001$。时间复杂度为 $O(\log{n})$。</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">binSearch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 使用二分算法猜出 n 的最少次数
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">binSearch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 使用二分算法猜出 n 的最多次数
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">r</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1001</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">frq</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// frq 记录次数
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">++</span> <span style="color:#000">frq</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">m</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span>

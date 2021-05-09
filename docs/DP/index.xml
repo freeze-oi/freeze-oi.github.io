@@ -6,24 +6,6 @@
     <description>Recent content in 动态规划 on Freeze&#39;s Blogs</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/DP/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>简介</title>
-      <link>https://freeze.org.cn/docs/DP/intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DP/intro/</guid>
-      <description>简介 $  动态规划（DP） 是「打表」的最高境界，原理和考试时查草稿差不多。
-假如一道填空题需要求 $1024×768$，正常学生会在草稿纸上计算出它的值 $=768432$。
-此时某道应用题中再次出现了 $1024×768$：
-部分学生会在打过的草稿里找到 $1024×768=768432$，直接抄进答题卡，省得再计算。更专业的学生会把草稿打成表格，方便查表和检验。
-动态规划将「草稿纸」的参考性利用到极致，极大提高解题效率。
-基本原理 $  Info
-斐波那契数列是形如 $1, 1, 2, 3, 5, 8, \cdots$ 的数列。求数列的第 $n$ 项。
- $f[n]$ 表示数列的第 $n$ 项，则：
-$$f[n]=\left\{\begin{aligned}&amp; 1, n=1, 2\\&amp; f[n-1]+f[n-2], n≥3\end{aligned}\right.$$先把特殊的 $f[1]=f[2]=1$ 填进表：
-   $f[1]$ $f[2]$     $1$ $1$    根据公式计算 $f[3]$ 时，需要用到 $f[1]$ 和 $f[2]$。在表中查找它们的值，代入计算：</description>
-    </item>
-    
-    <item>
       <title>记忆化搜索</title>
       <link>https://freeze.org.cn/docs/DP/memo/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

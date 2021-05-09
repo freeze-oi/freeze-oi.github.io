@@ -6,27 +6,6 @@
     <description>Recent content in 树 on Freeze&#39;s Blogs</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/Graph/Tree/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>简介</title>
-      <link>https://freeze.org.cn/docs/Graph/Tree/intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Graph/Tree/intro/</guid>
-      <description>树的定义 $  树有多种等价的定义方式：
-  连通且无环的无向图；
-  有 $n$ 个节点和 $n-1$ 条边的无向图；
-  任意两个顶点间只有一条路径的无向图。
-  图论中的树看起来更像现实中倒悬的树：
-树的节点存在「父子关系」。以上图为例：
-  有连边的两个节点中，上节点为下节点的父节点。如节点 $2$ 是节点 $5$ 的父节点；
-  有连边的两个节点中，下节点为上节点的子节点，如节点 $5$ 是节点 $2$ 的子节点；
-  没有父节点的节点为根节点，如节点 $1$；
-  没有子节点的节点为叶节点，如节点 $5,6,3,8,9$。
-  有根树和无根树 $  有根树必须明确根节点，而无根树的任意节点都可以是根节点。下面的左图和右图是同一棵无根树：
-子树 $  将节点 $i$ 和其父节点断开，分裂出的以 $i$ 为根的新树，称作节点 $i$ 的子树。如下图，红色部分为节点 $3$ 的子树。
-层和深度 $  定义根节点在第 $1$ 层，子节点层数 $=$ 父节点层数 $+1$：</description>
-    </item>
-    
-    <item>
       <title>树的遍历</title>
       <link>https://freeze.org.cn/docs/Graph/Tree/traversal/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

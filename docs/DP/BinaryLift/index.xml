@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>倍增 DP on Freeze&#39;s Blogs</title>
+    <link>https://freeze.org.cn/docs/DP/BinaryLift/</link>
+    <description>Recent content in 倍增 DP on Freeze&#39;s Blogs</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/DP/BinaryLift/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RMQ</title>
+      <link>https://freeze.org.cn/docs/DP/BinaryLift/RMQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/DP/BinaryLift/RMQ/</guid>
+      <description>简介 $  $RMQ$ 是 $Range \ Maximum/Minimum \ Query$ 的缩写，表示区间的最大$/$最小值。尽管我们已经知道 树状数组 和 线段树 也同样具备区间查询的功能，且使用起来比 $RMQ$ 更灵活，但 $RMQ$ 算法的倍增思想仍然占据着重要地位。
+问题 $  数组 $A$ 中一共 $n$ 个元素。给出 $m$ 次询问：
+ 给出 $l,r$，求 $A[l\cdots r]$ 中的最大值。  int n, a[]; void query(int l, int r) { // 暴力算法  int ans = a[l]; for(int i = l; i &amp;lt;= r; i ++) ans = max(ans, a[i]); return ans; }     暴力算法（$\color{red}{×}$） $RMQ$（$\color{green}{\sqrt{}}$）     单次查询 $\color{red}{O(n)}$ $\color{green}{O(\log{n})}$   $m$ 次询问 $\color{red}{O(mn)}$ $\color{green}{O(m\log{n})}$    模板 $  const int N = 1e6, logN = 32; int n, l, r, a[N], f[N][logN], Log[N]; void pre() { Log[0] = -1; for(int i = 1; i &amp;lt;= n; i ++) Log[i] = Log[i / 2] + 1; for(int j = 1; j &amp;lt; logN; j ++) for(int i = 1; i + (1 &amp;lt;&amp;lt; j - 1) &amp;lt;= n; i ++) f[i][j] = max(f[i][j - 1], f[i + (1 &amp;lt;&amp;lt; j - 1)][j - 1]); } int query(int l, int r) { // 返回 a[l.</description>
+    </item>
+    
+    <item>
+      <title>倍增求 LCA</title>
+      <link>https://freeze.org.cn/docs/DP/BinaryLift/LCA/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/DP/BinaryLift/LCA/</guid>
+      <description>简介 $  见图论算法 最近公共祖先。</description>
+    </item>
+    
+  </channel>
+</rss>

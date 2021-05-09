@@ -6,7 +6,7 @@
     <description>Recent content in 基础算法 on Freeze&#39;s Blogs</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/Basics/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>排序算法</title>
+      <title>排序</title>
       <link>https://freeze.org.cn/docs/Basics/sort/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -18,7 +18,7 @@ while(true) { bool solve = false; for(int i = 1; i &amp;lt;= n; i ++) if(a[i] &a
     </item>
     
     <item>
-      <title>二分算法</title>
+      <title>二分</title>
       <link>https://freeze.org.cn/docs/Basics/binary/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -34,19 +34,9 @@ while(true) { bool solve = false; for(int i = 1; i &amp;lt;= n; i ++) if(a[i] &a
   重复猜范围的中间数，每次都会将 $n$ 的范围缩小一半，最多 $\log{n}$ 次就可以确定 $n$ 的值。
 通过若干次折半范围实现快速查询，是二分算法的基本思想。
 基本原理 $  $l$ 表示 $n$ 所在范围的左端点，$r$ 表示右端点，即 $n∈(l,r)$。重复执行以下操作：
-  取范围的中间数 $m=\lfloor(l+r)/2\rfloor$；
+  取范围的中间数 $m=(l+r)/2$（向下取整）；
   若 $n&amp;gt;m$，则可以确定 $n∈(m,r)$，令 $l=m$；
   若 $n&amp;lt;m$，则可以确定 $n∈(l,m)$，令 $r=m$；</description>
-    </item>
-    
-    <item>
-      <title>状态压缩</title>
-      <link>https://freeze.org.cn/docs/Basics/zip/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Basics/zip/</guid>
-      <description>简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
-   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n | (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp; (~(1 &amp;lt;&amp;lt; (k - 1)))    Lowbit 运算 $  $lowbit(n)$ 为 $n$ 在二进制表示下「最低位的 $1$ 和其后所有的 $0$」构成的数。例如 $n=(101000)_2$，$lowbit(n)=(1000)_2$。</description>
     </item>
     
     <item>
@@ -59,6 +49,16 @@ while(true) { bool solve = false; for(int i = 1; i &amp;lt;= n; i ++) if(a[i] &a
 输入 $  先输入字符串，再把每一位取出，存入数组。
 void init(int a[]) { memset(a, 0, sizeof a); // 清空数组 a  string s; cin &amp;gt;&amp;gt; s; a[0] = s.length(); // a[0] 用于储存数的长度  for(int i = 1; i &amp;lt;= a[0]; i ++) a[i] = s[a[0] - i] - &amp;#39;0&amp;#39;; // 将字符串倒序储存，便于按位计算 } 也可以逐个读入字符。
 void init(int a[]) { memset(a, 0, sizeof a); int i = 0; char s = getchar(); while(s &amp;lt; &amp;#39;0&amp;#39; || s &amp;gt; &amp;#39;9&amp;#39;) s = getchar(); while(s &amp;gt;= &amp;#39;0&amp;#39; &amp;amp;&amp;amp; s &amp;lt;= &amp;#39;9&amp;#39;) a[++ i] = s – &amp;#39;0&amp;#39;, s = getchar(); a[0] = i; } 比较 $  先比较位数，若位数相同则从高位到低位逐位比较。</description>
+    </item>
+    
+    <item>
+      <title>状态压缩</title>
+      <link>https://freeze.org.cn/docs/Basics/zip/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/zip/</guid>
+      <description>简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^= (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n |= (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp;= (~(1 &amp;lt;&amp;lt; (k - 1)))    Lowbit 运算 $  $lowbit(n)$ 为 $n$ 在二进制表示下「最低位的 $1$ 和其后所有的 $0$」构成的数。例如 $n=(101000)_2$，$lowbit(n)=(1000)_2$。</description>
     </item>
     
   </channel>

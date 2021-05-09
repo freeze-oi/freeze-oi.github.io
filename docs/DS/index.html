@@ -4,7 +4,23 @@
 <head>
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content=""><meta property="og:title" content="数据结构" />
+<meta name="description" content="概念 $  数据结构是计算机储存、组织数据的方式，分为逻辑结构和物理结构。
+逻辑结构 $  数据元素之间的逻辑关系，分为以下四种：
+线性结构 $  线性结构用于将元素按照某种顺序排列成「一条线」。
+集合结构 $  集合结构用于分类元素，同类元素置于同个集合。如下图，$2,4,5,8,\textbf{♂}$ 为同类元素，$1,3,6,7$ 为同类元素。
+树形结构 $  树形结构的元素存在「一对多」的层次关系，适用于描述「上下级」关系，在 图论中有详细介绍。
+图形结构 $  图形结构的元素存在「多对多」的关系，适用于描述「城市道路连通」关系，在 图论中有详细介绍。
+物理结构 $  元素在储存器中的储存方式，分为以下两种：
+顺序结构 $  我们熟知的「数组」就是顺序结构，将元素存于一段连续内存中。
+顺序结构具有以下性质：
+  支持随机访问元素；
+  不支持插入元素。
+  相当于食堂打饭排队，大家都按顺序排好，每个人占一小段空间，谁也不插队。
+链式结构 $  链式结构把元素存于任意内存单元（不一定连续），用指针存放关联元素的地址。
+链式机构具有以下性质：
+  不支持随机访问元素；
+  支持插入元素。
+  事实上食堂总会有人插队，相当于在两个元素之间插入一个元素。"><meta property="og:title" content="数据结构" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://freeze.org.cn/docs/DS/" />
@@ -12,7 +28,7 @@
 <title>数据结构 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.31fca46263addddb9324e2cffe5e562426b96715e9c0505bd5240226265617a4.css" integrity="sha256-MfykYmOt3duTJOLP/l5WJCa5ZxXpwFBb1SQCJiZWF6Q=">
-<script defer src="/en.search.min.a74bcda0a529529e5de0bc3f3bf874d60e0ad4fb7b3ff828ea30fdafe97382bf.js" integrity="sha256-p0vNoKUpUp5d4Lw/O/h01g4K1Pt7P/go6jD9r&#43;lzgr8="></script>
+<script defer src="/en.search.min.b7cae14b66e715afd48074e754ffbcd7027d1fb52d981c93786969dbbdb318db.js" integrity="sha256-t8rhS2bnFa/UgHTnVP&#43;81wJ9H7UtmByTeGlp272zGNs="></script>
 <link rel="alternate" type="application/rss+xml" href="https://freeze.org.cn/docs/DS/index.xml" title="Freeze's Blogs" />
 <!--
 Made with Book Theme
@@ -82,7 +98,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-41ef39c5b40593a842e112d71399835e" class="toggle"  />
     <label for="section-41ef39c5b40593a842e112d71399835e" class="flex justify-between">
-      <a  class="">搜索算法</a>
+      <a  class="">搜索</a>
       <span>▾</span>
     </label>
   
@@ -128,7 +144,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序算法</a>
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序</a>
   
 
         </li>
@@ -141,20 +157,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二分算法</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二分</a>
   
 
         </li>
@@ -168,6 +171,19 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://freeze.org.cn/docs/Basics/hipre/" class="">高精度</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
   
 
         </li>
@@ -187,26 +203,13 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle"  />
     <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
-      <a  class="">动态规划</a>
+      <a href="https://freeze.org.cn/docs/DP/" class="">动态规划</a>
       <span>▾</span>
     </label>
   
 
           
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/DP/intro/" class="">简介</a>
-  
-
-        </li>
-      
     
       
         <li>
@@ -299,11 +302,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
-  </ul>
-
-        </li>
-      
-    
       
         <li>
           
@@ -311,9 +309,9 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle" checked />
-    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
-      <a  class="active">数据结构</a>
+    <input type="checkbox" id="section-75cef8e4d85ee595ba5ad678b54db259" class="toggle"  />
+    <label for="section-75cef8e4d85ee595ba5ad678b54db259" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/DP/BinaryLift/" class="">倍增 DP</a>
       <span>▾</span>
     </label>
   
@@ -328,11 +326,51 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/DS/intro/" class="">简介</a>
+    <a href="https://freeze.org.cn/docs/DP/BinaryLift/RMQ/" class="">RMQ</a>
   
 
         </li>
       
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/BinaryLift/LCA/" class="">倍增求 LCA</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle" checked />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/DS/" class="active">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
     
       
         <li>
@@ -420,19 +458,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/DS/ST/" class="">ST 表</a>
   
 
         </li>
@@ -539,7 +564,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
     <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
-      <a  class="">图论</a>
+      <a href="https://freeze.org.cn/docs/Graph/" class="">图论</a>
       <span>▾</span>
     </label>
   
@@ -554,20 +579,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Graph/intro/" class="">简介</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/Graph/store/" class="">存图</a>
+    <a href="https://freeze.org.cn/docs/Graph/store/" class="">图的存储</a>
   
 
         </li>
@@ -582,26 +594,13 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-51cd7eb0a868c10bd862407a54c9232a" class="toggle"  />
     <label for="section-51cd7eb0a868c10bd862407a54c9232a" class="flex justify-between">
-      <a  class="">树</a>
+      <a href="https://freeze.org.cn/docs/Graph/Tree/" class="">树</a>
       <span>▾</span>
     </label>
   
 
           
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/Graph/Tree/intro/" class="">简介</a>
-  
-
-        </li>
-      
     
       
         <li>
@@ -841,14 +840,108 @@ https://github.com/alex-shpak/hugo-book
 </div>
  
 <aside class="hidden clearfix">
-      <nav id="TableOfContents"></nav>  
+      <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#逻辑结构">逻辑结构</a>
+          <ul>
+            <li><a href="#线性结构">线性结构</a></li>
+            <li><a href="#集合结构">集合结构</a></li>
+            <li><a href="#树形结构">树形结构</a></li>
+            <li><a href="#图形结构">图形结构</a></li>
+          </ul>
+        </li>
+        <li><a href="#物理结构">物理结构</a>
+          <ul>
+            <li><a href="#顺序结构">顺序结构</a></li>
+            <li><a href="#链式结构">链式结构</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>  
 </aside>
  
                 
             </header>
 
              
-<article class="markdown"></article>
+<article class="markdown"><h2 id="概念">
+  概念
+  <a class="anchor" href="#%e6%a6%82%e5%bf%b5">$</a>
+</h2>
+<p><strong>数据结构</strong>是计算机储存、组织数据的方式，分为<strong>逻辑结构</strong>和<strong>物理结构</strong>。</p>
+<h2 id="逻辑结构">
+  逻辑结构
+  <a class="anchor" href="#%e9%80%bb%e8%be%91%e7%bb%93%e6%9e%84">$</a>
+</h2>
+<p>数据元素之间的逻辑关系，分为以下四种：</p>
+<h3 id="线性结构">
+  线性结构
+  <a class="anchor" href="#%e7%ba%bf%e6%80%a7%e7%bb%93%e6%9e%84">$</a>
+</h3>
+<p><strong>线性结构</strong>用于将元素按照某种顺序排列成「一条线」。</p>
+<center><img src=\DS\intro_1.png style="zoom:80%"></img></center>
+<h3 id="集合结构">
+  集合结构
+  <a class="anchor" href="#%e9%9b%86%e5%90%88%e7%bb%93%e6%9e%84">$</a>
+</h3>
+<p><strong>集合结构</strong>用于分类元素，同类元素置于同个集合。如下图，$2,4,5,8,\textbf{♂}$ 为同类元素，$1,3,6,7$ 为同类元素。</p>
+<center><img src=\DS\intro_2.png style="zoom:80%"></img></center>
+<h3 id="树形结构">
+  树形结构
+  <a class="anchor" href="#%e6%a0%91%e5%bd%a2%e7%bb%93%e6%9e%84">$</a>
+</h3>
+<p><strong>树形结构</strong>的元素存在「一对多」的层次关系，适用于描述「上下级」关系，在
+  <a href="/posts/graph/">图论</a>中有详细介绍。</p>
+<center><img src=\DS\intro_3.png style="zoom:80%"></img></center>
+<h3 id="图形结构">
+  图形结构
+  <a class="anchor" href="#%e5%9b%be%e5%bd%a2%e7%bb%93%e6%9e%84">$</a>
+</h3>
+<p><strong>图形结构</strong>的元素存在「多对多」的关系，适用于描述「城市道路连通」关系，在
+  <a href="/posts/graph/">图论</a>中有详细介绍。</p>
+<center><img src=\DS\intro_4.png style="zoom:80%"></img></center>
+<h2 id="物理结构">
+  物理结构
+  <a class="anchor" href="#%e7%89%a9%e7%90%86%e7%bb%93%e6%9e%84">$</a>
+</h2>
+<p>元素在储存器中的储存方式，分为以下两种：</p>
+<h3 id="顺序结构">
+  顺序结构
+  <a class="anchor" href="#%e9%a1%ba%e5%ba%8f%e7%bb%93%e6%9e%84">$</a>
+</h3>
+<p>我们熟知的「数组」就是<strong>顺序结构</strong>，将元素存于一段连续内存中。</p>
+<p>顺序结构具有以下性质：</p>
+<ul>
+<li>
+<p>支持随机访问元素；</p>
+</li>
+<li>
+<p>不支持插入元素。</p>
+</li>
+</ul>
+<p>相当于食堂打饭排队，大家都按顺序排好，每个人占一小段空间，谁也不插队。</p>
+<center><img src=\DS\intro_5.png style="zoom:80%"></img></center>
+<h3 id="链式结构">
+  链式结构
+  <a class="anchor" href="#%e9%93%be%e5%bc%8f%e7%bb%93%e6%9e%84">$</a>
+</h3>
+<p><strong>链式结构</strong>把元素存于任意内存单元（不一定连续），用指针存放关联元素的地址。</p>
+<p>链式机构具有以下性质：</p>
+<ul>
+<li>
+<p>不支持随机访问元素；</p>
+</li>
+<li>
+<p>支持插入元素。</p>
+</li>
+</ul>
+<p>事实上食堂总会有人插队，相当于在两个元素之间插入一个元素。</p>
+<center><img src=\DS\intro_6.png style="zoom:80%"></img></center></article>
 
             
             
@@ -875,7 +968,29 @@ https://github.com/alex-shpak/hugo-book
         
         <aside class="book-toc">
             <div class="book-toc-content">
-                  <nav id="TableOfContents"></nav>  
+                  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#概念">概念</a></li>
+        <li><a href="#逻辑结构">逻辑结构</a>
+          <ul>
+            <li><a href="#线性结构">线性结构</a></li>
+            <li><a href="#集合结构">集合结构</a></li>
+            <li><a href="#树形结构">树形结构</a></li>
+            <li><a href="#图形结构">图形结构</a></li>
+          </ul>
+        </li>
+        <li><a href="#物理结构">物理结构</a>
+          <ul>
+            <li><a href="#顺序结构">顺序结构</a></li>
+            <li><a href="#链式结构">链式结构</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>  
                 
             </div>
         </aside>

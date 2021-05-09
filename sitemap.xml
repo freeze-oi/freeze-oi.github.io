@@ -4,19 +4,15 @@
   <url>
     <loc>https://freeze.org.cn/docs/Basics/Search/bfs/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/DP/BinaryLift/RMQ/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/DP/BinaryLift/LCA/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/String/hash/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Basics/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Basics/Search/</loc>
-  </url><url>
-    <loc>https://freeze.org.cn/docs/DP/intro/</loc>
-  </url><url>
-    <loc>https://freeze.org.cn/docs/DS/intro/</loc>
-  </url><url>
-    <loc>https://freeze.org.cn/docs/Graph/intro/</loc>
-  </url><url>
-    <loc>https://freeze.org.cn/docs/Graph/Tree/intro/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Math/prime/</loc>
   </url><url>
@@ -82,7 +78,7 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/SCC/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/docs/Basics/zip/</loc>
+    <loc>https://freeze.org.cn/docs/Basics/hipre/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/treap/</loc>
   </url><url>
@@ -92,7 +88,7 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/treearray/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/docs/Basics/hipre/</loc>
+    <loc>https://freeze.org.cn/docs/Basics/zip/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Tools/</loc>
   </url><url>
@@ -100,9 +96,9 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/segtree/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/docs/DS/ST/</loc>
-  </url><url>
     <loc>https://freeze.org.cn/docs/DP/zip/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/DP/BinaryLift/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Hidden/</loc>
   </url><url>

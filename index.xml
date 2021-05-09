@@ -26,6 +26,26 @@ $\cdots \ \cdots$
     </item>
     
     <item>
+      <title>RMQ</title>
+      <link>https://freeze.org.cn/docs/DP/BinaryLift/RMQ/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/DP/BinaryLift/RMQ/</guid>
+      <description>简介 $  $RMQ$ 是 $Range \ Maximum/Minimum \ Query$ 的缩写，表示区间的最大$/$最小值。尽管我们已经知道 树状数组 和 线段树 也同样具备区间查询的功能，且使用起来比 $RMQ$ 更灵活，但 $RMQ$ 算法的倍增思想仍然占据着重要地位。
+问题 $  数组 $A$ 中一共 $n$ 个元素。给出 $m$ 次询问：
+ 给出 $l,r$，求 $A[l\cdots r]$ 中的最大值。  int n, a[]; void query(int l, int r) { // 暴力算法  int ans = a[l]; for(int i = l; i &amp;lt;= r; i ++) ans = max(ans, a[i]); return ans; }     暴力算法（$\color{red}{×}$） $RMQ$（$\color{green}{\sqrt{}}$）     单次查询 $\color{red}{O(n)}$ $\color{green}{O(\log{n})}$   $m$ 次询问 $\color{red}{O(mn)}$ $\color{green}{O(m\log{n})}$    模板 $  const int N = 1e6, logN = 32; int n, l, r, a[N], f[N][logN], Log[N]; void pre() { Log[0] = -1; for(int i = 1; i &amp;lt;= n; i ++) Log[i] = Log[i / 2] + 1; for(int j = 1; j &amp;lt; logN; j ++) for(int i = 1; i + (1 &amp;lt;&amp;lt; j - 1) &amp;lt;= n; i ++) f[i][j] = max(f[i][j - 1], f[i + (1 &amp;lt;&amp;lt; j - 1)][j - 1]); } int query(int l, int r) { // 返回 a[l.</description>
+    </item>
+    
+    <item>
+      <title>倍增求 LCA</title>
+      <link>https://freeze.org.cn/docs/DP/BinaryLift/LCA/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/DP/BinaryLift/LCA/</guid>
+      <description>简介 $  见图论算法 最近公共祖先。</description>
+    </item>
+    
+    <item>
       <title>哈希函数</title>
       <link>https://freeze.org.cn/docs/String/hash/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -42,89 +62,6 @@ $\cdots \ \cdots$
 $$ getHash(fantasy)=(6·b^6+1·b^5+14·b^4+\cdots+25·b^0)%p $$
 按此方法设计的哈希函数，不同字符串的哈希值相同的概率较小，且哈希值不会超出 long long 的范围。时间复杂度为 $O(n)$。
 typedef long long LL; const LL b = 29, p = 10000019; LL getHash(string str) { // 返回 str 的哈希值  LL h = 0; for(int i = 0; i &amp;lt; str.</description>
-    </item>
-    
-    <item>
-      <title>简介</title>
-      <link>https://freeze.org.cn/docs/DP/intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DP/intro/</guid>
-      <description>简介 $  动态规划（DP） 是「打表」的最高境界，原理和考试时查草稿差不多。
-假如一道填空题需要求 $1024×768$，正常学生会在草稿纸上计算出它的值 $=768432$。
-此时某道应用题中再次出现了 $1024×768$：
-部分学生会在打过的草稿里找到 $1024×768=768432$，直接抄进答题卡，省得再计算。更专业的学生会把草稿打成表格，方便查表和检验。
-动态规划将「草稿纸」的参考性利用到极致，极大提高解题效率。
-基本原理 $  Info
-斐波那契数列是形如 $1, 1, 2, 3, 5, 8, \cdots$ 的数列。求数列的第 $n$ 项。
- $f[n]$ 表示数列的第 $n$ 项，则：
-$$f[n]=\left\{\begin{aligned}&amp; 1, n=1, 2\\&amp; f[n-1]+f[n-2], n≥3\end{aligned}\right.$$先把特殊的 $f[1]=f[2]=1$ 填进表：
-   $f[1]$ $f[2]$     $1$ $1$    根据公式计算 $f[3]$ 时，需要用到 $f[1]$ 和 $f[2]$。在表中查找它们的值，代入计算：</description>
-    </item>
-    
-    <item>
-      <title>简介</title>
-      <link>https://freeze.org.cn/docs/DS/intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DS/intro/</guid>
-      <description>概念 $  数据结构是计算机储存、组织数据的方式，分为逻辑结构和物理结构。
-逻辑结构 $  数据元素之间的逻辑关系，分为以下四种：
-1. 线性结构 $  线性结构用于将元素按照某种顺序排列成「一条线」。
-2. 集合结构 $  集合结构用于分类元素，同类元素置于同个集合。如下图，$2,4,5,8,\textbf{♂}$ 为同类元素，$1,3,6,7$ 为同类元素。
-3. 树形结构 $  树形结构的元素存在「一对多」的层次关系，适用于描述「上下级」关系，在 图论中有详细介绍。
-4. 图形结构 $  图形结构的元素存在「多对多」的关系，适用于描述「城市道路连通」关系，在 图论中有详细介绍。
-物理结构 $  元素在储存器中的储存方式，分为以下两种：
-1. 顺序结构 $  我们熟知的「数组」就是顺序结构，将元素存于一段连续内存中。
-顺序结构具有以下性质：
-  支持随机访问元素；
-  不支持插入元素。
-  相当于食堂打饭排队，大家都按顺序排好，每个人占一小段空间，谁也不插队。
-2. 链式结构 $  链式结构把元素存于任意内存单元（不一定连续），用指针存放关联元素的地址。
-链式机构具有以下性质：
-  不支持随机访问元素；
-  支持插入元素。
-  事实上食堂总会有人插队，相当于在两个元素之间插入一个元素。</description>
-    </item>
-    
-    <item>
-      <title>简介</title>
-      <link>https://freeze.org.cn/docs/Graph/intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Graph/intro/</guid>
-      <description>图的定义 $  图（Graph）由若干顶点和边组成。用大写字母 $G$ 表示图，$V$ 表示顶点集合，$E$ 表示边集合，记作 $G=(V,E)$。
- 图是描述实际问题的工具。如进行城市道规划时，可将每个城市视作顶点，连接城市的道路视作边。
-有向图和无向图 $    如果图的每条边都规定起点和终点，则图被称作有向图；
-  相反，边没有方向（可以理解为双向）的图称为无向图（双向图）。
-   边权和点权 $  为解决实际问题，引入边权和点权的概念：
-  边权及边的长度。解决最短路径问题时，将城市视作顶点，城市之间的道路长度视作边权；
-  点权即点的大小。解决最小收费问题时，将收费站视作顶点，收费站之间的道路视作边，通过收费站支付的费用视作点权。
-  度数 $  若图中有 $d$ 条边与节点 $i$ 相连，则节点 $i$ 的度数为 $d$（即节点的连边个数）。如下图，节点 $1$ 的度为 $5$：
-   若有向图中有 $d$ 条边的终点是节点 $i$，则节点 $i$ 的入度为 $d$（即节点的入边个数）；
-  若有向图中有 $d$ 条边的起点是节点 $i$，则节点 $i$ 的出度为 $d$（即节点的出边个数）；
-  子图 $  图 $G$ 的子图 $H$ 满足以下条件：</description>
-    </item>
-    
-    <item>
-      <title>简介</title>
-      <link>https://freeze.org.cn/docs/Graph/Tree/intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Graph/Tree/intro/</guid>
-      <description>树的定义 $  树有多种等价的定义方式：
-  连通且无环的无向图；
-  有 $n$ 个节点和 $n-1$ 条边的无向图；
-  任意两个顶点间只有一条路径的无向图。
-  图论中的树看起来更像现实中倒悬的树：
-树的节点存在「父子关系」。以上图为例：
-  有连边的两个节点中，上节点为下节点的父节点。如节点 $2$ 是节点 $5$ 的父节点；
-  有连边的两个节点中，下节点为上节点的子节点，如节点 $5$ 是节点 $2$ 的子节点；
-  没有父节点的节点为根节点，如节点 $1$；
-  没有子节点的节点为叶节点，如节点 $5,6,3,8,9$。
-  有根树和无根树 $  有根树必须明确根节点，而无根树的任意节点都可以是根节点。下面的左图和右图是同一棵无根树：
-子树 $  将节点 $i$ 和其父节点断开，分裂出的以 $i$ 为根的新树，称作节点 $i$ 的子树。如下图，红色部分为节点 $3$ 的子树。
-层和深度 $  定义根节点在第 $1$ 层，子节点层数 $=$ 父节点层数 $+1$：</description>
     </item>
     
     <item>
@@ -188,7 +125,7 @@ int gcd(a, b) { if(!b) return a; return gcd(b, a % b); } 最小公倍数 $  如�
     </item>
     
     <item>
-      <title>存图</title>
+      <title>图的存储</title>
       <link>https://freeze.org.cn/docs/Graph/store/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -288,7 +225,7 @@ $$ f[n]=f[n-1]+f[n-2],n≥3 $$
     </item>
     
     <item>
-      <title>排序算法</title>
+      <title>排序</title>
       <link>https://freeze.org.cn/docs/Basics/sort/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -371,7 +308,7 @@ deque&amp;lt;int&amp;gt; q; // 存储元素下标  void insert(int i, int p) { /
     </item>
     
     <item>
-      <title>二分算法</title>
+      <title>二分</title>
       <link>https://freeze.org.cn/docs/Basics/binary/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -387,7 +324,7 @@ deque&amp;lt;int&amp;gt; q; // 存储元素下标  void insert(int i, int p) { /
   重复猜范围的中间数，每次都会将 $n$ 的范围缩小一半，最多 $\log{n}$ 次就可以确定 $n$ 的值。
 通过若干次折半范围实现快速查询，是二分算法的基本思想。
 基本原理 $  $l$ 表示 $n$ 所在范围的左端点，$r$ 表示右端点，即 $n∈(l,r)$。重复执行以下操作：
-  取范围的中间数 $m=\lfloor(l+r)/2\rfloor$；
+  取范围的中间数 $m=(l+r)/2$（向下取整）；
   若 $n&amp;gt;m$，则可以确定 $n∈(m,r)$，令 $l=m$；
   若 $n&amp;lt;m$，则可以确定 $n∈(l,m)$，令 $r=m$；</description>
     </item>
@@ -536,13 +473,15 @@ $$ f[l,r]=\min_{l≤k&amp;lt;r}{f[l,k]+f[k+1,r]}+sum[r]-sum[l-1] $$
     </item>
     
     <item>
-      <title>状态压缩</title>
-      <link>https://freeze.org.cn/docs/Basics/zip/</link>
+      <title>高精度</title>
+      <link>https://freeze.org.cn/docs/Basics/hipre/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://freeze.org.cn/docs/Basics/zip/</guid>
-      <description>简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
-   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^ (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n | (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp; (~(1 &amp;lt;&amp;lt; (k - 1)))    Lowbit 运算 $  $lowbit(n)$ 为 $n$ 在二进制表示下「最低位的 $1$ 和其后所有的 $0$」构成的数。例如 $n=(101000)_2$，$lowbit(n)=(1000)_2$。</description>
+      <guid>https://freeze.org.cn/docs/Basics/hipre/</guid>
+      <description>简介 $  高精度是一套支持高位数的运算系统，例如求两个 114514 位数的和。
+输入 $  先输入字符串，再把每一位取出，存入数组。
+void init(int a[]) { memset(a, 0, sizeof a); // 清空数组 a  string s; cin &amp;gt;&amp;gt; s; a[0] = s.length(); // a[0] 用于储存数的长度  for(int i = 1; i &amp;lt;= a[0]; i ++) a[i] = s[a[0] - i] - &amp;#39;0&amp;#39;; // 将字符串倒序储存，便于按位计算 } 也可以逐个读入字符。
+void init(int a[]) { memset(a, 0, sizeof a); int i = 0; char s = getchar(); while(s &amp;lt; &amp;#39;0&amp;#39; || s &amp;gt; &amp;#39;9&amp;#39;) s = getchar(); while(s &amp;gt;= &amp;#39;0&amp;#39; &amp;amp;&amp;amp; s &amp;lt;= &amp;#39;9&amp;#39;) a[++ i] = s – &amp;#39;0&amp;#39;, s = getchar(); a[0] = i; } 比较 $  先比较位数，若位数相同则从高位到低位逐位比较。</description>
     </item>
     
     <item>
@@ -585,15 +524,13 @@ $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
     </item>
     
     <item>
-      <title>高精度</title>
-      <link>https://freeze.org.cn/docs/Basics/hipre/</link>
+      <title>状态压缩</title>
+      <link>https://freeze.org.cn/docs/Basics/zip/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://freeze.org.cn/docs/Basics/hipre/</guid>
-      <description>简介 $  高精度是一套支持高位数的运算系统，例如求两个 114514 位数的和。
-输入 $  先输入字符串，再把每一位取出，存入数组。
-void init(int a[]) { memset(a, 0, sizeof a); // 清空数组 a  string s; cin &amp;gt;&amp;gt; s; a[0] = s.length(); // a[0] 用于储存数的长度  for(int i = 1; i &amp;lt;= a[0]; i ++) a[i] = s[a[0] - i] - &amp;#39;0&amp;#39;; // 将字符串倒序储存，便于按位计算 } 也可以逐个读入字符。
-void init(int a[]) { memset(a, 0, sizeof a); int i = 0; char s = getchar(); while(s &amp;lt; &amp;#39;0&amp;#39; || s &amp;gt; &amp;#39;9&amp;#39;) s = getchar(); while(s &amp;gt;= &amp;#39;0&amp;#39; &amp;amp;&amp;amp; s &amp;lt;= &amp;#39;9&amp;#39;) a[++ i] = s – &amp;#39;0&amp;#39;, s = getchar(); a[0] = i; } 比较 $  先比较位数，若位数相同则从高位到低位逐位比较。</description>
+      <guid>https://freeze.org.cn/docs/Basics/zip/</guid>
+      <description>简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^= (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n |= (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp;= (~(1 &amp;lt;&amp;lt; (k - 1)))    Lowbit 运算 $  $lowbit(n)$ 为 $n$ 在二进制表示下「最低位的 $1$ 和其后所有的 $0$」构成的数。例如 $n=(101000)_2$，$lowbit(n)=(1000)_2$。</description>
     </item>
     
     <item>
@@ -621,15 +558,6 @@ vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void d
   区间查询：查询 $A[l\cdots r]$ 的最小值。
   区间修改：将 $A[l\cdots r]$ 每个数加上 $v$。
   int a[]; void set(int id, int v) { // 单点修改  a[id] = v; } int ask(int l, int r) { // 区间查询  int ans = 0; for(int i = l; i &amp;lt;= r; i ++) ans = min(ans, a[i]); return ans; } void add(int l, int r, int v) { // 区间修改  for(int i = l; i &amp;lt;= r; i ++) a[i] += v; }     暴力算法（$\textcolor{red}{×}$） 线段树（$\textcolor{green}{√}$）     单点修改 $\textcolor{green}{O(1)}$ $\textcolor{green}{O(\log{n})}$   区间查询 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   区间修改 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   $m$ 次操作 $\textcolor{red}{O(mn)}$ $\textcolor{green}{O(m\log{n})}$    构造 $  查询数组 $A={6,2,3,7,1,5,4,2}$ 中的最小值时，通常使用「两两比较法」：每次比较相邻两项，只保留更小的一项。比较的过程可以画成一棵二叉树，树根是答案。</description>
-    </item>
-    
-    <item>
-      <title>ST 表</title>
-      <link>https://freeze.org.cn/docs/DS/ST/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DS/ST/</guid>
-      <description>const int N = 1e6, logN = 32; int n, l, r, a[N], f[N][logN], Log[N]; void pre() { Log[0] = -1; for(int i = 1; i &amp;lt;= n; i ++) Log[i] = Log[i / 2] + 1; for(int j = 1; j &amp;lt; logN; j ++) for(int i = 1; i + (1 &amp;lt;&amp;lt; j - 1) &amp;lt;= n; i ++) f[i][j] = max(f[i][j - 1], f[i + (1 &amp;lt;&amp;lt; j - 1)][j - 1]); } int query(int l, int r) { // 返回 a[l.</description>
     </item>
     
     <item>

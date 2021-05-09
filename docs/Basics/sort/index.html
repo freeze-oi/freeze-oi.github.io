@@ -7,7 +7,7 @@
 <meta name="description" content="选择排序 $  每次找出第 $i$ 小的元素，与数组第 $i$ 个位置上的元素交换。时间复杂度为 $O(n^2)$。
 for(int i = 1; i &lt;= n; i &#43;&#43;) for(int j = i &#43; 1; j &lt;= n; j &#43;&#43;) if(a[j] &lt; a[k]) swap(a[i],a[k]); 冒泡排序 $  每次检查相邻两个元素，如果前一个大于后一个，就交换它们的位置。当没有可交换的元素时，排序结束。时间复杂度为 $O(n^2)$。
 在程序的执行过程中，较大的元素像气泡般「浮」到数列的末尾，故叫做冒泡排序。
-while(true) { bool solve = false; for(int i = 1; i &lt;= n; i &#43;&#43;) if(a[i] &gt; a[i &#43; 1]) swap(a[i], a[i &#43; 1]), solve = true; if(!solve) break; } 插入排序 $  将数列分为「已排序」和「未排序」两部分，每次从「未排序」区域中选择一个元素插入「已排序」区域的正确位置。时间复杂度为 $O(n^2)$。"><meta property="og:title" content="排序算法" />
+while(true) { bool solve = false; for(int i = 1; i &lt;= n; i &#43;&#43;) if(a[i] &gt; a[i &#43; 1]) swap(a[i], a[i &#43; 1]), solve = true; if(!solve) break; } 插入排序 $  将数列分为「已排序」和「未排序」两部分，每次从「未排序」区域中选择一个元素插入「已排序」区域的正确位置。时间复杂度为 $O(n^2)$。"><meta property="og:title" content="排序" />
 <meta property="og:description" content="选择排序 $  每次找出第 $i$ 小的元素，与数组第 $i$ 个位置上的元素交换。时间复杂度为 $O(n^2)$。
 for(int i = 1; i &lt;= n; i &#43;&#43;) for(int j = i &#43; 1; j &lt;= n; j &#43;&#43;) if(a[j] &lt; a[k]) swap(a[i],a[k]); 冒泡排序 $  每次检查相邻两个元素，如果前一个大于后一个，就交换它们的位置。当没有可交换的元素时，排序结束。时间复杂度为 $O(n^2)$。
 在程序的执行过程中，较大的元素像气泡般「浮」到数列的末尾，故叫做冒泡排序。
@@ -17,10 +17,10 @@ while(true) { bool solve = false; for(int i = 1; i &lt;= n; i &#43;&#43;) if(a[i
 
 
 
-<title>排序算法 | Freeze&#39;s Blogs</title>
+<title>排序 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.31fca46263addddb9324e2cffe5e562426b96715e9c0505bd5240226265617a4.css" integrity="sha256-MfykYmOt3duTJOLP/l5WJCa5ZxXpwFBb1SQCJiZWF6Q=">
-<script defer src="/en.search.min.a74bcda0a529529e5de0bc3f3bf874d60e0ad4fb7b3ff828ea30fdafe97382bf.js" integrity="sha256-p0vNoKUpUp5d4Lw/O/h01g4K1Pt7P/go6jD9r&#43;lzgr8="></script>
+<script defer src="/en.search.min.b7cae14b66e715afd48074e754ffbcd7027d1fb52d981c93786969dbbdb318db.js" integrity="sha256-t8rhS2bnFa/UgHTnVP&#43;81wJ9H7UtmByTeGlp272zGNs="></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -89,7 +89,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-41ef39c5b40593a842e112d71399835e" class="toggle"  />
     <label for="section-41ef39c5b40593a842e112d71399835e" class="flex justify-between">
-      <a  class="">搜索算法</a>
+      <a  class="">搜索</a>
       <span>▾</span>
     </label>
   
@@ -135,7 +135,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/sort/" class=" active">排序算法</a>
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class=" active">排序</a>
   
 
         </li>
@@ -148,20 +148,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二分算法</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二分</a>
   
 
         </li>
@@ -175,6 +162,19 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://freeze.org.cn/docs/Basics/hipre/" class="">高精度</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
   
 
         </li>
@@ -194,26 +194,13 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle"  />
     <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
-      <a  class="">动态规划</a>
+      <a href="https://freeze.org.cn/docs/DP/" class="">动态规划</a>
       <span>▾</span>
     </label>
   
 
           
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/DP/intro/" class="">简介</a>
-  
-
-        </li>
-      
     
       
         <li>
@@ -306,11 +293,6 @@ https://github.com/alex-shpak/hugo-book
         </li>
       
     
-  </ul>
-
-        </li>
-      
-    
       
         <li>
           
@@ -318,9 +300,9 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle"  />
-    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
-      <a  class="">数据结构</a>
+    <input type="checkbox" id="section-75cef8e4d85ee595ba5ad678b54db259" class="toggle"  />
+    <label for="section-75cef8e4d85ee595ba5ad678b54db259" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/DP/BinaryLift/" class="">倍增 DP</a>
       <span>▾</span>
     </label>
   
@@ -335,11 +317,51 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/DS/intro/" class="">简介</a>
+    <a href="https://freeze.org.cn/docs/DP/BinaryLift/RMQ/" class="">RMQ</a>
   
 
         </li>
       
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/BinaryLift/LCA/" class="">倍增求 LCA</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle"  />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/DS/" class="">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
     
       
         <li>
@@ -427,19 +449,6 @@ https://github.com/alex-shpak/hugo-book
 
   
     <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/DS/ST/" class="">ST 表</a>
   
 
         </li>
@@ -546,7 +555,7 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
     <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
-      <a  class="">图论</a>
+      <a href="https://freeze.org.cn/docs/Graph/" class="">图论</a>
       <span>▾</span>
     </label>
   
@@ -561,20 +570,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Graph/intro/" class="">简介</a>
-  
-
-        </li>
-      
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/Graph/store/" class="">存图</a>
+    <a href="https://freeze.org.cn/docs/Graph/store/" class="">图的存储</a>
   
 
         </li>
@@ -589,26 +585,13 @@ https://github.com/alex-shpak/hugo-book
   
     <input type="checkbox" id="section-51cd7eb0a868c10bd862407a54c9232a" class="toggle"  />
     <label for="section-51cd7eb0a868c10bd862407a54c9232a" class="flex justify-between">
-      <a  class="">树</a>
+      <a href="https://freeze.org.cn/docs/Graph/Tree/" class="">树</a>
       <span>▾</span>
     </label>
   
 
           
   <ul>
-    
-      
-        <li>
-          
-  
-  
-
-  
-    <a href="https://freeze.org.cn/docs/Graph/Tree/intro/" class="">简介</a>
-  
-
-        </li>
-      
     
       
         <li>
@@ -838,7 +821,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>排序算法</strong>
+  <strong>排序</strong>
 
   <label for="toc-control">
     

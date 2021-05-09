@@ -6,31 +6,6 @@
     <description>Recent content in 数据结构 on Freeze&#39;s Blogs</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/DS/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>简介</title>
-      <link>https://freeze.org.cn/docs/DS/intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DS/intro/</guid>
-      <description>概念 $  数据结构是计算机储存、组织数据的方式，分为逻辑结构和物理结构。
-逻辑结构 $  数据元素之间的逻辑关系，分为以下四种：
-1. 线性结构 $  线性结构用于将元素按照某种顺序排列成「一条线」。
-2. 集合结构 $  集合结构用于分类元素，同类元素置于同个集合。如下图，$2,4,5,8,\textbf{♂}$ 为同类元素，$1,3,6,7$ 为同类元素。
-3. 树形结构 $  树形结构的元素存在「一对多」的层次关系，适用于描述「上下级」关系，在 图论中有详细介绍。
-4. 图形结构 $  图形结构的元素存在「多对多」的关系，适用于描述「城市道路连通」关系，在 图论中有详细介绍。
-物理结构 $  元素在储存器中的储存方式，分为以下两种：
-1. 顺序结构 $  我们熟知的「数组」就是顺序结构，将元素存于一段连续内存中。
-顺序结构具有以下性质：
-  支持随机访问元素；
-  不支持插入元素。
-  相当于食堂打饭排队，大家都按顺序排好，每个人占一小段空间，谁也不插队。
-2. 链式结构 $  链式结构把元素存于任意内存单元（不一定连续），用指针存放关联元素的地址。
-链式机构具有以下性质：
-  不支持随机访问元素；
-  支持插入元素。
-  事实上食堂总会有人插队，相当于在两个元素之间插入一个元素。</description>
-    </item>
-    
-    <item>
       <title>栈</title>
       <link>https://freeze.org.cn/docs/DS/stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -142,15 +117,6 @@ int t[], n; // t[u] : u 号节点的值 // n : 节点总数 插入 $  如何往�
   区间查询：查询 $A[l\cdots r]$ 的最小值。
   区间修改：将 $A[l\cdots r]$ 每个数加上 $v$。
   int a[]; void set(int id, int v) { // 单点修改  a[id] = v; } int ask(int l, int r) { // 区间查询  int ans = 0; for(int i = l; i &amp;lt;= r; i ++) ans = min(ans, a[i]); return ans; } void add(int l, int r, int v) { // 区间修改  for(int i = l; i &amp;lt;= r; i ++) a[i] += v; }     暴力算法（$\textcolor{red}{×}$） 线段树（$\textcolor{green}{√}$）     单点修改 $\textcolor{green}{O(1)}$ $\textcolor{green}{O(\log{n})}$   区间查询 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   区间修改 $\textcolor{red}{O(n)}$ $\textcolor{green}{O(\log{n})}$   $m$ 次操作 $\textcolor{red}{O(mn)}$ $\textcolor{green}{O(m\log{n})}$    构造 $  查询数组 $A={6,2,3,7,1,5,4,2}$ 中的最小值时，通常使用「两两比较法」：每次比较相邻两项，只保留更小的一项。比较的过程可以画成一棵二叉树，树根是答案。</description>
-    </item>
-    
-    <item>
-      <title>ST 表</title>
-      <link>https://freeze.org.cn/docs/DS/ST/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/DS/ST/</guid>
-      <description>const int N = 1e6, logN = 32; int n, l, r, a[N], f[N][logN], Log[N]; void pre() { Log[0] = -1; for(int i = 1; i &amp;lt;= n; i ++) Log[i] = Log[i / 2] + 1; for(int j = 1; j &amp;lt; logN; j ++) for(int i = 1; i + (1 &amp;lt;&amp;lt; j - 1) &amp;lt;= n; i ++) f[i][j] = max(f[i][j - 1], f[i + (1 &amp;lt;&amp;lt; j - 1)][j - 1]); } int query(int l, int r) { // 返回 a[l.</description>
     </item>
     
   </channel>

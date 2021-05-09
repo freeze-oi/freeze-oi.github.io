@@ -6,26 +6,7 @@
     <description>Recent content in 图论 on Freeze&#39;s Blogs</description>
     <generator>Hugo -- gohugo.io</generator><atom:link href="https://freeze.org.cn/docs/Graph/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>简介</title>
-      <link>https://freeze.org.cn/docs/Graph/intro/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Graph/intro/</guid>
-      <description>图的定义 $  图（Graph）由若干顶点和边组成。用大写字母 $G$ 表示图，$V$ 表示顶点集合，$E$ 表示边集合，记作 $G=(V,E)$。
- 图是描述实际问题的工具。如进行城市道规划时，可将每个城市视作顶点，连接城市的道路视作边。
-有向图和无向图 $    如果图的每条边都规定起点和终点，则图被称作有向图；
-  相反，边没有方向（可以理解为双向）的图称为无向图（双向图）。
-   边权和点权 $  为解决实际问题，引入边权和点权的概念：
-  边权及边的长度。解决最短路径问题时，将城市视作顶点，城市之间的道路长度视作边权；
-  点权即点的大小。解决最小收费问题时，将收费站视作顶点，收费站之间的道路视作边，通过收费站支付的费用视作点权。
-  度数 $  若图中有 $d$ 条边与节点 $i$ 相连，则节点 $i$ 的度数为 $d$（即节点的连边个数）。如下图，节点 $1$ 的度为 $5$：
-   若有向图中有 $d$ 条边的终点是节点 $i$，则节点 $i$ 的入度为 $d$（即节点的入边个数）；
-  若有向图中有 $d$ 条边的起点是节点 $i$，则节点 $i$ 的出度为 $d$（即节点的出边个数）；
-  子图 $  图 $G$ 的子图 $H$ 满足以下条件：</description>
-    </item>
-    
-    <item>
-      <title>存图</title>
+      <title>图的存储</title>
       <link>https://freeze.org.cn/docs/Graph/store/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
