@@ -54,7 +54,7 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/String/trie/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/docs/Basics/binary/</loc>
+    <loc>https://freeze.org.cn/docs/Basics/double/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/heap/</loc>
   </url><url>
@@ -82,17 +82,19 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/Graph/treap/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/docs/Basics/binary/</loc>
+  </url><url>
     <loc>https://freeze.org.cn/docs/DP/digit/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Math/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/treearray/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/docs/Basics/zip/</loc>
-  </url><url>
     <loc>https://freeze.org.cn/docs/Tools/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/tree/</loc>
+  </url><url>
+    <loc>https://freeze.org.cn/docs/Basics/zip/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DS/segtree/</loc>
   </url><url>

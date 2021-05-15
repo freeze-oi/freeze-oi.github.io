@@ -4,24 +4,40 @@
 <head>
     <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="定义 $  若 $a,b,m\in Z,a\%m=b\%m$，则 $a$ 和 $b$ 模 $m$ 同余，记作 $a≡b\pmod{m}$。
-同余类 $    对于任意 $a,k,m\in Z$，都有 $a&#43;km≡a\pmod{m}$。集合 $\{a&#43;km\}$ 为模 $m$ 的 同余类，简记为 $\overline{a}$。$a$ 是该同余类的 代表元。
-  模 $m$ 的同余类有 $m$ 个，为 $\overline{0},\overline{1},\overline{2},\cdots,\overline{m-1}$。
-  同余系 $    从模 $m$ 的所有同余类中各取一个数，构成的集合是 $m$ 的 完全同余系。
-  模 $m$ 的同余类中，代表元与 $m$ 互质的有 $\phi(m)$ 个。从这些同余类中各取一个数，构成的集合是 $m$ 的 简化同余系。
-  乘法封闭 $  若 $a,b\in[1,m)$ 分别与 $m$ 互质，则 $ab$ 与 $m$ 互质。"><meta property="og:title" content="同余" />
-<meta property="og:description" content="定义 $  若 $a,b,m\in Z,a\%m=b\%m$，则 $a$ 和 $b$ 模 $m$ 同余，记作 $a≡b\pmod{m}$。
-同余类 $    对于任意 $a,k,m\in Z$，都有 $a&#43;km≡a\pmod{m}$。集合 $\{a&#43;km\}$ 为模 $m$ 的 同余类，简记为 $\overline{a}$。$a$ 是该同余类的 代表元。
-  模 $m$ 的同余类有 $m$ 个，为 $\overline{0},\overline{1},\overline{2},\cdots,\overline{m-1}$。
-  同余系 $    从模 $m$ 的所有同余类中各取一个数，构成的集合是 $m$ 的 完全同余系。
-  模 $m$ 的同余类中，代表元与 $m$ 互质的有 $\phi(m)$ 个。从这些同余类中各取一个数，构成的集合是 $m$ 的 简化同余系。
-  乘法封闭 $  若 $a,b\in[1,m)$ 分别与 $m$ 互质，则 $ab$ 与 $m$ 互质。" />
+<meta name="description" content="简介 $  玩过「数字炸弹」游戏吗？
+  叫你的朋友在你背后写一个 $[1,1000]$ 中的正整数 $n$；
+  每轮你都会给出数字 $x$，你朋友只能回答「$n$ 比 $x$ 大」「$n$ 比 $x$ 小」或「猜中」。
+  一旦猜中，数字炸弹就会爆炸。你能求出引爆炸弹的最少次数吗？
+最初 $n∈(0,1001)$。你可以先猜 $500$：
+  若 $n&gt;500$，则可以进一步确定 $n∈(500,1001)$；
+  若 $n&lt;500$，则可以进一步确定 $n∈(0,500)$；
+  否则 $n=500$，猜中。
+  重复猜范围的中间数，每次都会将 $n$ 的范围缩小一半，最多 $\log{n}$ 次就可以确定 $n$ 的值。
+通过若干次折半范围实现快速查询，是二分算法的基本思想。
+基本原理 $  $l$ 表示 $n$ 所在范围的左端点，$r$ 表示右端点，即 $n∈(l,r)$。重复执行以下操作：
+  取范围的中间数 $m=(l&#43;r)/2$（向下取整）；
+  若 $n&gt;m$，则可以确定 $n∈(m,r)$，令 $l=m$；
+  若 $n&lt;m$，则可以确定 $n∈(l,m)$，令 $r=m$；"><meta property="og:title" content="二分" />
+<meta property="og:description" content="简介 $  玩过「数字炸弹」游戏吗？
+  叫你的朋友在你背后写一个 $[1,1000]$ 中的正整数 $n$；
+  每轮你都会给出数字 $x$，你朋友只能回答「$n$ 比 $x$ 大」「$n$ 比 $x$ 小」或「猜中」。
+  一旦猜中，数字炸弹就会爆炸。你能求出引爆炸弹的最少次数吗？
+最初 $n∈(0,1001)$。你可以先猜 $500$：
+  若 $n&gt;500$，则可以进一步确定 $n∈(500,1001)$；
+  若 $n&lt;500$，则可以进一步确定 $n∈(0,500)$；
+  否则 $n=500$，猜中。
+  重复猜范围的中间数，每次都会将 $n$ 的范围缩小一半，最多 $\log{n}$ 次就可以确定 $n$ 的值。
+通过若干次折半范围实现快速查询，是二分算法的基本思想。
+基本原理 $  $l$ 表示 $n$ 所在范围的左端点，$r$ 表示右端点，即 $n∈(l,r)$。重复执行以下操作：
+  取范围的中间数 $m=(l&#43;r)/2$（向下取整）；
+  若 $n&gt;m$，则可以确定 $n∈(m,r)$，令 $l=m$；
+  若 $n&lt;m$，则可以确定 $n∈(l,m)$，令 $r=m$；" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://freeze.org.cn/docs/Math/mod/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="https://freeze.org.cn/docs/Basics/double/" /><meta property="article:section" content="docs" />
 
 
 
-<title>同余 | Freeze&#39;s Blogs</title>
+<title>二分 | Freeze&#39;s Blogs</title>
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.31fca46263addddb9324e2cffe5e562426b96715e9c0505bd5240226265617a4.css" integrity="sha256-MfykYmOt3duTJOLP/l5WJCa5ZxXpwFBb1SQCJiZWF6Q=">
 <script defer src="/en.search.min.d3ab5d517c07286151fc4f1a24d418c1bf6d90d6775be33b27c6693ba5566a4c.js" integrity="sha256-06tdUXwHKGFR/E8aJNQYwb9tkNZ3W&#43;M7J8ZpO6VWakw="></script>
@@ -74,7 +90,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle" checked />
     <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
       <a  class="">基础算法</a>
       <span>▾</span>
@@ -152,7 +168,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Basics/double/" class="">二分</a>
+    <a href="https://freeze.org.cn/docs/Basics/double/" class=" active">二分</a>
   
 
         </li>
@@ -718,7 +734,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-ce95f89a1d24a8066e4c63de0cb15986" class="toggle" checked />
+    <input type="checkbox" id="section-ce95f89a1d24a8066e4c63de0cb15986" class="toggle"  />
     <label for="section-ce95f89a1d24a8066e4c63de0cb15986" class="flex justify-between">
       <a  class="">数论</a>
       <span>▾</span>
@@ -761,7 +777,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://freeze.org.cn/docs/Math/mod/" class=" active">同余</a>
+    <a href="https://freeze.org.cn/docs/Math/mod/" class="">同余</a>
   
 
         </li>
@@ -838,7 +854,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>同余</strong>
+  <strong>二分</strong>
 
   <label for="toc-control">
     
@@ -852,26 +868,8 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li>
       <ul>
-        <li><a href="#定义">定义</a>
-          <ul>
-            <li><a href="#同余类">同余类</a></li>
-            <li><a href="#同余系">同余系</a></li>
-            <li><a href="#乘法封闭">乘法封闭</a></li>
-          </ul>
-        </li>
-        <li><a href="#同余定理">同余定理</a>
-          <ul>
-            <li><a href="#费马小定理">费马小定理</a></li>
-            <li><a href="#欧拉定理">欧拉定理</a></li>
-            <li><a href="#扩展欧拉定理">扩展欧拉定理</a></li>
-          </ul>
-        </li>
-        <li><a href="#扩展欧几里得算法">扩展欧几里得算法</a>
-          <ul>
-            <li><a href="#贝祖定理">贝祖定理</a></li>
-            <li><a href="#乘法逆元">乘法逆元</a></li>
-          </ul>
-        </li>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#基本原理">基本原理</a></li>
       </ul>
     </li>
   </ul>
@@ -882,95 +880,65 @@ https://github.com/alex-shpak/hugo-book
             </header>
 
              
-<article class="markdown"><h2 id="定义">
-  定义
-  <a class="anchor" href="#%e5%ae%9a%e4%b9%89">$</a>
+<article class="markdown"><h2 id="简介">
+  简介
+  <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
 </h2>
-<p>若 $a,b,m\in Z,a\%m=b\%m$，则 $a$ 和 $b$ 模 $m$ 同余，记作 $a≡b\pmod{m}$。</p>
-<h3 id="同余类">
-  同余类
-  <a class="anchor" href="#%e5%90%8c%e4%bd%99%e7%b1%bb">$</a>
-</h3>
+<p>玩过「数字炸弹」游戏吗？</p>
 <ul>
 <li>
-<p>对于任意 $a,k,m\in Z$，都有 $a+km≡a\pmod{m}$。集合 $\{a+km\}$ 为模 $m$ 的 <strong>同余类</strong>，简记为 $\overline{a}$。$a$ 是该同余类的 <strong>代表元</strong>。</p>
+<p>叫你的朋友在你背后写一个 $[1,1000]$ 中的正整数 $n$；</p>
 </li>
 <li>
-<p>模 $m$ 的同余类有 $m$ 个，为 $\overline{0},\overline{1},\overline{2},\cdots,\overline{m-1}$。</p>
+<p>每轮你都会给出数字 $x$，你朋友只能回答「$n$ 比 $x$ 大」「$n$ 比 $x$ 小」或「猜中」。</p>
 </li>
 </ul>
-<h3 id="同余系">
-  同余系
-  <a class="anchor" href="#%e5%90%8c%e4%bd%99%e7%b3%bb">$</a>
-</h3>
+<p>一旦猜中，数字炸弹就会爆炸。你能求出引爆炸弹的最少次数吗？</p>
+<p>最初 $n∈(0,1001)$。你可以先猜 $500$：</p>
 <ul>
 <li>
-<p>从模 $m$ 的所有同余类中各取一个数，构成的集合是 $m$ 的 <strong>完全同余系</strong>。</p>
+<p>若 $n&gt;500$，则可以进一步确定 $n∈(500,1001)$；</p>
 </li>
 <li>
-<p>模 $m$ 的同余类中，代表元与 $m$ 互质的有 $\phi(m)$ 个。从这些同余类中各取一个数，构成的集合是 $m$ 的 <strong>简化同余系</strong>。</p>
+<p>若 $n&lt;500$，则可以进一步确定 $n∈(0,500)$；</p>
+</li>
+<li>
+<p>否则 $n=500$，猜中。</p>
 </li>
 </ul>
-<h3 id="乘法封闭">
-  乘法封闭
-  <a class="anchor" href="#%e4%b9%98%e6%b3%95%e5%b0%81%e9%97%ad">$</a>
-</h3>
-<p>若 $a,b\in[1,m)$ 分别与 $m$ 互质，则 $ab$ 与 $m$ 互质。</p>
-<p>又 $∵gcd(ab,m)=gcd(m,ab\%m)=1$，$∴ab\%m$ 也与 $m$ 互质。</p>
-<p>$∴a,b,ab\%m$ 都属于 $m$ 的简化同余系。</p>
-<p>因此 $m$ 的简化同余系「关于模 $m$ <strong>乘法封闭</strong>」。</p>
-<h2 id="同余定理">
-  同余定理
-  <a class="anchor" href="#%e5%90%8c%e4%bd%99%e5%ae%9a%e7%90%86">$</a>
+<p>重复猜范围的中间数，每次都会将 $n$ 的范围缩小一半，最多 $\log{n}$ 次就可以确定 $n$ 的值。</p>
+<p>通过若干次折半范围实现快速查询，是<strong>二分算法</strong>的基本思想。</p>
+<h2 id="基本原理">
+  基本原理
+  <a class="anchor" href="#%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86">$</a>
 </h2>
-<h3 id="费马小定理">
-  费马小定理
-  <a class="anchor" href="#%e8%b4%b9%e9%a9%ac%e5%b0%8f%e5%ae%9a%e7%90%86">$</a>
-</h3>
-<p>若 $a\in Z$，$p$ 为质数且 $a,p$ 互质，则 $a^p≡a\pmod{p}$。</p>
-<p><strong>证明：</strong></p>
-<p>设 $p$ 的完全同余系为 $C=\{0,1,2,\cdots,p-1\}$，则有 $C_i!≡C_j\pmod{p}$，</p>
-<p>$∵a,C_i,C_j$ 分别与 $p$ 互质，$∴aC_i!≡aC_j\pmod{p}$，</p>
-<p>$∵aC_i\%p\in C$，</p>
-<p>$∴aC=\{0,a,2a,\cdots,(p-1)·a\}$ 也为 $p$ 的完全同余系，</p>
-<p>$∴\prod_{i=2}^{p}C_i≡\prod_{i=2}^{p}aC_i=a^{p-1}\prod_{i=2}^{p}C_i\pmod{p}$，</p>
-<p>$∴a^{p-1}≡1\pmod{p}$，即 $a^p≡a\pmod{p}$。</p>
-<h3 id="欧拉定理">
-  欧拉定理
-  <a class="anchor" href="#%e6%ac%a7%e6%8b%89%e5%ae%9a%e7%90%86">$</a>
-</h3>
-<p>若 $a,n\in Z$ 互质，则 $a^{\phi(n)}≡1\pmod{n}$。</p>
-<p><strong>证明：</strong></p>
-<p>设 $n$ 的简化同余系为 $C=\{C_1,C_2,\cdots,C_{\phi(n)}\}$，则有 $C_i!≡C_j\pmod{n}$，</p>
-<p>$∵a,C_i,C_j$ 分别与 $n$ 互质，$∴aC_i!≡aC_j\pmod{n}$，</p>
-<p>$∵n$ 的简化同余系「关于模 $n$ 乘法封闭」，$∴aC_i\%n\in C$，</p>
-<p>$∴aC=\{aC_1,aC_2,\cdots,aC_{\phi(n)}\}$ 也为 $n$ 的简化同余系，</p>
-<p>$∴\prod_{i=1}^{\phi(n)}C_i≡\prod_{i=1}^{\phi(n)}aC_i=a^{\phi(n)}\prod_{i=1}^{\phi(n)}C_i\pmod{n}$，</p>
-<p>$∴a^{\phi(n)}≡1\pmod{n}$。</p>
-<h3 id="扩展欧拉定理">
-  扩展欧拉定理
-  <a class="anchor" href="#%e6%89%a9%e5%b1%95%e6%ac%a7%e6%8b%89%e5%ae%9a%e7%90%86">$</a>
-</h3>
-<p>若 $a,n\in Z$ 互质，则对于任意 $b\in Z$，有 $a^b≡a^{b \% \phi(n)}\pmod{n}$。</p>
-<p><strong>证明：</strong></p>
-<p>设 $b\%\phi(n)=q$，则有 $b=k·\phi(n)+q(0≤k&lt;\phi(n))$，</p>
-<p>$∴a^b=a^{k·\phi(n)+q}=(a^{\phi(n)})^k·a^q≡a^q=a^{b\%\phi(n)}\pmod{n}$，</p>
-<p>即 $a^b≡a^{b\%\phi(n)}\pmod{n}$。</p>
-<h2 id="扩展欧几里得算法">
-  扩展欧几里得算法
-  <a class="anchor" href="#%e6%89%a9%e5%b1%95%e6%ac%a7%e5%87%a0%e9%87%8c%e5%be%97%e7%ae%97%e6%b3%95">$</a>
-</h2>
-<h3 id="贝祖定理">
-  贝祖定理
-  <a class="anchor" href="#%e8%b4%9d%e7%a5%96%e5%ae%9a%e7%90%86">$</a>
-</h3>
-<p>对于任意 $a,b\in Z$，存在 $x,y\in Z$，使 $ax+by=gcd(a,b)$。</p>
-<h3 id="乘法逆元">
-  乘法逆元
-  <a class="anchor" href="#%e4%b9%98%e6%b3%95%e9%80%86%e5%85%83">$</a>
-</h3>
-<p>若 $a,b,m\in Z$，$b$ 与 $m$ 互质且 $b|a$，则存在 $x\in Z$，使 $\displaystyle\frac{a}{b}≡ax\pmod{m}$。称 $x$ 为 $b$ 的模 $m$ 乘法逆元，记为 $b^{-1}\pmod{m}$。</p>
-</article>
+<p>$l$ 表示 $n$ 所在范围的左端点，$r$ 表示右端点，即 $n∈(l,r)$。重复执行以下操作：</p>
+<ul>
+<li>
+<p>取范围的中间数 $m=(l+r)/2$（向下取整）；</p>
+</li>
+<li>
+<p>若 $n&gt;m$，则可以确定 $n∈(m,r)$，令 $l=m$；</p>
+</li>
+<li>
+<p>若 $n&lt;m$，则可以确定 $n∈(l,m)$，令 $r=m$；</p>
+</li>
+<li>
+<p>若 $n=m$，跳出循环。</p>
+</li>
+</ul>
+<p>初始条件：$l=0,r=1001$。时间复杂度为 $O(\log{n})$。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">binSearch</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">n</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 使用二分算法猜出 n 的最多次数
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">r</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1001</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">frq</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// frq 记录次数
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">++</span> <span style="color:#000">frq</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">m</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">r</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">/</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">l</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">n</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">r</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">m</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#204a87;font-weight:bold">break</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">frq</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></article>
 
             
             
@@ -1001,26 +969,8 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li>
       <ul>
-        <li><a href="#定义">定义</a>
-          <ul>
-            <li><a href="#同余类">同余类</a></li>
-            <li><a href="#同余系">同余系</a></li>
-            <li><a href="#乘法封闭">乘法封闭</a></li>
-          </ul>
-        </li>
-        <li><a href="#同余定理">同余定理</a>
-          <ul>
-            <li><a href="#费马小定理">费马小定理</a></li>
-            <li><a href="#欧拉定理">欧拉定理</a></li>
-            <li><a href="#扩展欧拉定理">扩展欧拉定理</a></li>
-          </ul>
-        </li>
-        <li><a href="#扩展欧几里得算法">扩展欧几里得算法</a>
-          <ul>
-            <li><a href="#贝祖定理">贝祖定理</a></li>
-            <li><a href="#乘法逆元">乘法逆元</a></li>
-          </ul>
-        </li>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#基本原理">基本原理</a></li>
       </ul>
     </li>
   </ul>

@@ -42,7 +42,7 @@ $\cdots \ \cdots$
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://freeze.org.cn/docs/DP/BinaryLift/LCA/</guid>
-      <description>简介 $  见图论算法 最近公共祖先。</description>
+      <description>见图论算法 最近公共祖先。</description>
     </item>
     
     <item>
@@ -309,10 +309,10 @@ deque&amp;lt;int&amp;gt; q; // 存储元素下标  void insert(int i, int p) { /
     
     <item>
       <title>二分</title>
-      <link>https://freeze.org.cn/docs/Basics/binary/</link>
+      <link>https://freeze.org.cn/docs/Basics/double/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://freeze.org.cn/docs/Basics/binary/</guid>
+      <guid>https://freeze.org.cn/docs/Basics/double/</guid>
       <description>简介 $  玩过「数字炸弹」游戏吗？
   叫你的朋友在你背后写一个 $[1,1000]$ 中的正整数 $n$；
   每轮你都会给出数字 $x$，你朋友只能回答「$n$ 比 $x$ 大」「$n$ 比 $x$ 小」或「猜中」。
@@ -494,6 +494,21 @@ void init(int a[]) { memset(a, 0, sizeof a); int i = 0; char s = getchar(); whil
     </item>
     
     <item>
+      <title>二进制</title>
+      <link>https://freeze.org.cn/docs/Basics/binary/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/binary/</guid>
+      <description>重要性质 $    $a∧a=0$
+  $a∧0=a$
+  $a\; \&amp;amp; \; 0=0$
+  $a\; \&amp;amp; \; -1=a$
+注：$-1$ 的补码用二进制表示为 $11111111$（每一位都为 $1$）。
+  min/max(a, b) $  通常我们会这样定义 $min(a, b)$：
+int min(int a, int b) { // if 语句  if(a &amp;lt; b) return a; else return b; } int min(int a, int b) { // 三目运算符  return a &amp;lt; b ? a : b; } 但在某些机器上，执行「$if()$ 语句」或「三目运算符」很浪费时间，于是有人想出了更快的版本：</description>
+    </item>
+    
+    <item>
       <title>数位 DP</title>
       <link>https://freeze.org.cn/docs/DP/digit/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -524,16 +539,6 @@ $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
     </item>
     
     <item>
-      <title>状态压缩</title>
-      <link>https://freeze.org.cn/docs/Basics/zip/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://freeze.org.cn/docs/Basics/zip/</guid>
-      <description>简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
-   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^= (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n |= (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp;= (~(1 &amp;lt;&amp;lt; (k - 1)))    Lowbit 运算 $  $lowbit(n)$ 为 $n$ 在二进制表示下「最低位的 $1$ 和其后所有的 $0$」构成的数。例如 $n=(101000)_2$，$lowbit(n)=(1000)_2$。</description>
-    </item>
-    
-    <item>
       <title>树形 DP</title>
       <link>https://freeze.org.cn/docs/DP/tree/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -545,6 +550,16 @@ $$ f[i,d]=\sum_{|k-i|≥2} f[k,d-1] $$
 $$ f[i]=1+\sum_{v\in Son(i)}f[v] $$
 $f[i]$ 由 $f[i$ 的子节点$]$ 推出，计算顺序应为 $f[$子节点$]→f[$父节点]。使用记忆化搜索。
 vector&amp;lt;int&amp;gt; son[]; // son[u] : 节点 u 的子节点集合  void dfs(int u) { // 求以 u 为根的子树中节点个数  f[u] = 1; for(int i = 0; i &amp;lt; son[u].size(); i ++) { int v = son[u][i]; // 节点 u 的第 i 个子节点  dfs(v); f[u] += f[v]; } } 例题 $  没有上司的舞会 $  公司有 $n$ 个人（编号 $1\cdots n$），现要举⾏⼀场晚会，并规定如果邀请了某个⼈，那么⼀定不会邀请他的上司（他上司的上司，上司的上司的上司 $\cdots$ 都可以邀请）。</description>
+    </item>
+    
+    <item>
+      <title>状态压缩</title>
+      <link>https://freeze.org.cn/docs/Basics/zip/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/docs/Basics/zip/</guid>
+      <description>简介 $  将长度为 $m$ 的 $bool$ 数组用一个 $m$ 位二进制整数表示，该整数的第 $i$ 位对应原数组第 $i$ 个元素。
+   操作 运算     取出二进制数 $n$ 的第 $k$ 位 (n &amp;gt;&amp;gt; (k - 1)) &amp;amp; 1   将二进制数 $n$ 的第 $k$ 位取反 n ^= (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $1$ n |= (1 &amp;lt;&amp;lt; (k - 1))   将二进制数 $n$ 的第 $k$ 位赋值为 $0$ n &amp;amp;= (~(1 &amp;lt;&amp;lt; (k - 1)))    Lowbit 运算 $  $lowbit(n)$ 为 $n$ 在二进制表示下「最低位的 $1$ 和其后所有的 $0$」构成的数。例如 $n=(101000)_2$，$lowbit(n)=(1000)_2$。</description>
     </item>
     
     <item>
