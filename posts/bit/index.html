@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="en" dir=" ltr ">
+
+<head>
+    <meta name="generator" content="Hugo 0.82.0" /> <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="简介 $  $C&#43;&#43;$ 提供了 $6$ 个快到极致的位运算操作符（不会的请自行百度）：
+   操作符 $\&amp;$ $|$ $∧$ $\sim$ $&laquo;$ $&raquo;$     读作 与 或 异或 取反 左移 右移    位运算有多块？在 $32$ 位的 $CPU$ 中，位运算比普通的乘除法快约 $40$ 倍。位运算凭此成为 $OI$ 赛场上的薅羊毛利器。
+重要性质 $    $a\; \&amp; \; 0=0$
+  $a\; \&amp; -1=a$
+  $a\; | \; 0=a$
+  $a\; | -1=-1$
+     $a∧a=0$"><meta property="og:title" content="如何利用位运算薅羊毛" />
+<meta property="og:description" content="简介 $  $C&#43;&#43;$ 提供了 $6$ 个快到极致的位运算操作符（不会的请自行百度）：
+   操作符 $\&amp;$ $|$ $∧$ $\sim$ $&laquo;$ $&raquo;$     读作 与 或 异或 取反 左移 右移    位运算有多块？在 $32$ 位的 $CPU$ 中，位运算比普通的乘除法快约 $40$ 倍。位运算凭此成为 $OI$ 赛场上的薅羊毛利器。
+重要性质 $    $a\; \&amp; \; 0=0$
+  $a\; \&amp; -1=a$
+  $a\; | \; 0=a$
+  $a\; | -1=-1$
+     $a∧a=0$" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://freeze.org.cn/posts/bit/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-15T00:00:00&#43;00:00" />
+<meta property="article:modified_time" content="2021-05-15T00:00:00&#43;00:00" />
+
+<title>如何利用位运算薅羊毛 | Freeze&#39;s Blogs</title>
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.31fca46263addddb9324e2cffe5e562426b96715e9c0505bd5240226265617a4.css" integrity="sha256-MfykYmOt3duTJOLP/l5WJCa5ZxXpwFBb1SQCJiZWF6Q=">
+<script defer src="/en.search.min.e991b51941f9b2d15560e606a360ceaf885ba4f2d3b477de7040929295b56d6d.js" integrity="sha256-6ZG1GUH5stFVYOYGo2DOr4hbpPLTtHfecECSkpW1bW0="></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+--> 
+</head>
+
+<body dir=" ltr ">
+    <input type="checkbox" class="hidden toggle" id="menu-control" />
+    <input type="checkbox" class="hidden toggle" id="toc-control" />
+    <main class="container flex">
+        <aside class="book-menu">
+            <div class="book-menu-content">
+                 <nav>
+<h2 class="book-brand">
+  <a href="/"><img src="/logo.png" alt="Logo" /><span>Freeze&#39;s Blogs</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-f4e1054a1a18f4b5cba046970680d31d" class="toggle"  />
+    <label for="section-f4e1054a1a18f4b5cba046970680d31d" class="flex justify-between">
+      <a  class="">基础算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-41ef39c5b40593a842e112d71399835e" class="toggle"  />
+    <label for="section-41ef39c5b40593a842e112d71399835e" class="flex justify-between">
+      <a  class="">搜索</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/Search/bfs/" class="">BFS（广搜）</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/Search/dfs/" class="">DFS（深搜）</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/sort/" class="">排序</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/double/" class="">二分</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/hipre/" class="">高精度</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/binary/" class="">二进制</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Basics/zip/" class="">状态压缩</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-881053f17f484c85378d3c8abfe12511" class="toggle"  />
+    <label for="section-881053f17f484c85378d3c8abfe12511" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/DP/" class="">动态规划</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/memo/" class="">记忆化搜索</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/basics/" class="">基础 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/knap/" class="">背包 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/interval/" class="">区间 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/digit/" class="">数位 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/tree/" class="">树形 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/zip/" class="">状压 DP</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-75cef8e4d85ee595ba5ad678b54db259" class="toggle"  />
+    <label for="section-75cef8e4d85ee595ba5ad678b54db259" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/DP/BinaryLift/" class="">倍增 DP</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/BinaryLift/RMQ/" class="">RMQ</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DP/BinaryLift/LCA/" class="">倍增求 LCA</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-c52067f201458adbb5455083990e4532" class="toggle"  />
+    <label for="section-c52067f201458adbb5455083990e4532" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/DS/" class="">数据结构</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/stack/" class="">栈</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/link/" class="">链表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/queue/" class="">队列</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/heap/" class="">二叉堆</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/DSU/" class="">并查集</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/treearray/" class="">树状数组</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/DS/segtree/" class="">线段树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-676d83afa8d0b27104552182cc42cf5c" class="toggle"  />
+    <label for="section-676d83afa8d0b27104552182cc42cf5c" class="flex justify-between">
+      <a  class="">字符串算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/hash/" class="">哈希函数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/hash-map/" class="">哈希表</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/KMP/" class="">KMP 算法</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/trie/" class="">Trie 树</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/String/AC-atm/" class="">AC 自动机</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de3a5001ae8b3f900038d0be772141d6" class="toggle"  />
+    <label for="section-de3a5001ae8b3f900038d0be772141d6" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/Graph/" class="">图论算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/store/" class="">图的存储</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-51cd7eb0a868c10bd862407a54c9232a" class="toggle"  />
+    <label for="section-51cd7eb0a868c10bd862407a54c9232a" class="flex justify-between">
+      <a href="https://freeze.org.cn/docs/Graph/Tree/" class="">树</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/traversal/" class="">树的遍历</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/LCA/" class="">最近公共祖先</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/Tree/MST/" class="">最小生成树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/path/" class="">最短路</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/topsort/" class="">拓扑排序</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/SCC/" class="">强连通分量</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Graph/treap/" class="">Treap 平衡树</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-ce95f89a1d24a8066e4c63de0cb15986" class="toggle"  />
+    <label for="section-ce95f89a1d24a8066e4c63de0cb15986" class="flex justify-between">
+      <a  class="">数论算法</a>
+      <span>▾</span>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/prime/" class="">质数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/factor/" class="">因数</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/mod/" class="">同余</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Math/quickpow/" class="">快速幂</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://freeze.org.cn/docs/Tools/" class="">工具</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+  
+<ul>
+  
+  <li>
+    <a href="/posts/" >
+        专题
+      </a>
+  </li>
+  
+</ul>
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside.book-menu nav");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+ 
+                
+            </div>
+        </aside>
+
+        <div class="book-page">
+            <header class="book-header">
+                 <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>如何利用位运算薅羊毛</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+ 
+<aside class="hidden clearfix">
+    
+   <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#重要性质">重要性质</a></li>
+        <li><a href="#小数转整数">小数转整数</a></li>
+        <li><a href="#相反数转换">相反数转换</a></li>
+        <li><a href="#判断奇偶性">判断奇偶性</a></li>
+        <li><a href="#判断是否同号">判断是否同号</a></li>
+        <li><a href="#快速读入">快速读入</a></li>
+        <li><a href="#求绝对值">求绝对值</a></li>
+        <li><a href="#求最大最小值">求最大/最小值</a></li>
+        <li><a href="#交换两个变量的值">交换两个变量的值</a></li>
+        <li><a href="#判断是否为-2-的幂">判断是否为 2 的幂</a></li>
+        <li><a href="#向上舍入到-2-的幂">向上舍入到 2 的幂</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav> 
+
+</aside>
+ 
+                
+            </header>
+
+             
+<article class="markdown">
+  <h1>
+    <a href="/posts/bit/">如何利用位运算薅羊毛</a>
+  </h1>
+  
+  <h5>May 15, 2021</h5>
+
+
+
+  
+    <span>
+    
+      <a href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+    </span> &nbsp;
+  
+
+  
+    <span>
+    
+      <a href="/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/">位运算</a>
+    </span> &nbsp;
+  
+
+
+  <p><h2 id="简介">
+  简介
+  <a class="anchor" href="#%e7%ae%80%e4%bb%8b">$</a>
+</h2>
+<p>$C++$ 提供了 $6$ 个快到极致的位运算操作符（不会的请自行百度）：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">操作符</th>
+<th style="text-align:center">$\&amp;$</th>
+<th style="text-align:center">$|$</th>
+<th style="text-align:center">$∧$</th>
+<th style="text-align:center">$\sim$</th>
+<th style="text-align:center">$&laquo;$</th>
+<th style="text-align:center">$&raquo;$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">读作</td>
+<td style="text-align:center">与</td>
+<td style="text-align:center">或</td>
+<td style="text-align:center">异或</td>
+<td style="text-align:center">取反</td>
+<td style="text-align:center">左移</td>
+<td style="text-align:center">右移</td>
+</tr>
+</tbody>
+</table>
+<p>位运算有多块？在 $32$ 位的 $CPU$ 中，位运算比普通的乘除法快约 $40$ 倍。位运算凭此成为 $OI$ 赛场上的薅羊毛利器。</p>
+<h2 id="重要性质">
+  重要性质
+  <a class="anchor" href="#%e9%87%8d%e8%a6%81%e6%80%a7%e8%b4%a8">$</a>
+</h2>
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <ul>
+<li>
+<p>$a\; \&amp; \; 0=0$</p>
+</li>
+<li>
+<p>$a\; \&amp; -1=a$</p>
+</li>
+<li>
+<p>$a\; | \; 0=a$</p>
+</li>
+<li>
+<p>$a\; | -1=-1$</p>
+</li>
+</ul>
+
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <ul>
+<li>
+<p>$a∧a=0$</p>
+</li>
+<li>
+<p>$a∧0=a$</p>
+</li>
+<li>
+<p>$a\; &laquo;\; 1=a×2$</p>
+</li>
+<li>
+<p>$a\; &raquo;\; 1=a÷2$（向下取整）</p>
+</li>
+</ul>
+
+  </div>
+  
+</div>
+
+<center> 注：$-1$ 在内存中表示为 $11111111$（每一位都为 $1$）。</center>
+<h2 id="小数转整数">
+  小数转整数
+  <a class="anchor" href="#%e5%b0%8f%e6%95%b0%e8%bd%ac%e6%95%b4%e6%95%b0">$</a>
+</h2>
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <p>正常写法：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">);</span>
+</code></pre></div>
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <p>位运算优化：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div>
+  </div>
+  
+</div>
+
+<h2 id="相反数转换">
+  相反数转换
+  <a class="anchor" href="#%e7%9b%b8%e5%8f%8d%e6%95%b0%e8%bd%ac%e6%8d%a2">$</a>
+</h2>
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <p>正常写法：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div>
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <p>位运算优化：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">~</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div>
+  </div>
+  
+</div>
+
+<h2 id="判断奇偶性">
+  判断奇偶性
+  <a class="anchor" href="#%e5%88%a4%e6%96%ad%e5%a5%87%e5%81%b6%e6%80%a7">$</a>
+</h2>
+<p>判断 $x$ 是否为奇数，只需要看 $x÷2$ 的余数。</p>
+<div>$$
+\text{isOdd}(x)=\left\{\begin{aligned}
+&\text{true}, && x \ \text{mod} \ 2=1\\
+&\text{false}, && x \ \text{mod} \ 2=0
+\end{aligned}\right.
+$$</div>
+<p>将 $x$ 和 $1$ 进行「与」运算，可以取出 $x$ 在二进制下的第一位。举个例子：</p>
+<div>$$
+\begin{aligned}
+1 \ 0 \ 0 \ 1 \ 0 \ 1 \ 1 \ 1& \\
+\text{\&} \ 0 \ 0 \ 0 \ 0 \ 0 \ 0 \ 0 \ 1& \\
+\overline{ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }&\\
+0 \ 0 \ 0 \ 0 \ 0 \ 0 \ 0 \ 1&
+\end{aligned}
+$$</div>
+<p>取出的这一位数字正是 $x÷2$ 的余数。于是：</p>
+<div>$$
+\text{isOdd}(x)=\left\{\begin{aligned}
+&\text{true}, && x \; \& \; 1=1\\
+&\text{false}, && x \; \& \; 1=0
+\end{aligned}\right.
+$$</div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">isOdd</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// x 为奇数则返回 true，否则 false
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="判断是否同号">
+  判断是否同号
+  <a class="anchor" href="#%e5%88%a4%e6%96%ad%e6%98%af%e5%90%a6%e5%90%8c%e5%8f%b7">$</a>
+</h2>
+<p>在内存中，正数的最高位为 $0$，负数的最高位为 $1$。</p>
+<div>$$
+\begin{aligned}
+(int)&+14→0000\cdots 1110\\
+(int)&-14→\underbrace{1111\cdots 0010}_{共 \ 32 \ 位}
+\end{aligned}
+$$</div>
+<p>而 $int$ 类型的变量一共有 $32$ 位。于是将变量右移 $31$ 位，便可提取出它的最高位。</p>
+<div>$$
+\begin{aligned}
+&+14\;»\;31=0000\cdots 1110\;»\;31=0\\
+&-14\;»\;31=\underbrace{1111\cdots 0010}_{共 \ 32 \ 位}\;»\;31=1
+\end{aligned}
+$$</div>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">judge</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">31</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">31</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>还可以写得更高逼格一点：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">judge</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000;font-weight:bold">((</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">^</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">31</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="快速读入">
+  快速读入
+  <a class="anchor" href="#%e5%bf%ab%e9%80%9f%e8%af%bb%e5%85%a5">$</a>
+</h2>
+<p>原理简洁易懂：</p>
+<p>$$x×10=x×2+x×8=(x\;&laquo;\;1)+(x\;&laquo;\;3)$$</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">read</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 读入一个整数
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">f</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#204a87;font-weight:bold">char</span> <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">getchar</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#4e9a06">&#39;0&#39;</span> <span style="color:#ce5c00;font-weight:bold">||</span> <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#4e9a06">&#39;9&#39;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#4e9a06">&#39;-&#39;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">f</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">getchar</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000;font-weight:bold">}</span> <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">&gt;=</span> <span style="color:#4e9a06">&#39;0&#39;</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#4e9a06">&#39;9&#39;</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">+</span> <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#4e9a06">&#39;0&#39;</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 等价于 x = x * 10 + s - &#39;0&#39;
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000">s</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">getchar</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000;font-weight:bold">}</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="求绝对值">
+  求绝对值
+  <a class="anchor" href="#%e6%b1%82%e7%bb%9d%e5%af%b9%e5%80%bc">$</a>
+</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">abs</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">^</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">31</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">31</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="求最大最小值">
+  求最大/最小值
+  <a class="anchor" href="#%e6%b1%82%e6%9c%80%e5%a4%a7%e6%9c%80%e5%b0%8f%e5%80%bc">$</a>
+</h2>
+<p>通常我们会这样定义 $min(a, b)$：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">min</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// a 和 b 谁最小就返回谁
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// if 语句
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">else</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">min</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:bold">?</span> <span style="color:#f57900">a</span> <span style="color:#000;font-weight:bold">:</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 三目运算符
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>但在某些机器上，执行「$if()$ 语句」或「三目运算符」很浪费时间，于是有人想出了更快的版本：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">min</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:bold">^</span> <span style="color:#000;font-weight:bold">((</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">^</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">));</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>乍一看还挺神奇。现在我们逐步理解该语句。首先看最右边的 $-(a&lt;b)$：</p>
+<div>$$
+-(a < b) =\left\{\begin{aligned}
+&-1, &&a < b\\
+&0, &&a≥b
+\end{aligned}\right.
+$$</div>
+<p>根据 
+  <a href="/docs/Basics/binary/#%e9%87%8d%e8%a6%81%e6%80%a7%e8%b4%a8">重要性质</a>，有</p>
+<div>$$
+(a∧b)\&\color{blue}{-(a < b)}\color{black} =\left\{\begin{aligned}
+&(a∧b)\;\&\;\color{blue}{-1}\color{black} =a∧b, &&a < b\\
+&(a∧b)\;\&\;\color{blue}{0}\color{black} =0, &&a≥b
+\end{aligned}\right.
+$$</div>
+<p>因此</p>
+<div>$$
+b∧\color{blue}{((a∧b)\&-(a < b))}\color{black}=\left\{\begin{aligned}
+& b∧\color{blue}{(a∧b)}\color{black} =a, &&a < b\\
+& b∧\color{blue}{0}\color{black} =b, &&a≥b
+\end{aligned}\right.
+$$</div>
+<p>因此</p>
+<p>$$min(a, b)=b∧((a∧b)\&amp;-(a&lt;b))$$</p>
+<p>同理，可以推出 $max(a, b)$：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">max</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">^</span> <span style="color:#000;font-weight:bold">((</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">^</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">));</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><h2 id="交换两个变量的值">
+  交换两个变量的值
+  <a class="anchor" href="#%e4%ba%a4%e6%8d%a2%e4%b8%a4%e4%b8%aa%e5%8f%98%e9%87%8f%e7%9a%84%e5%80%bc">$</a>
+</h2>
+<p>交换 $a,b$ 的值，一般需要用到「第三个变量」：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">swap</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 第三个变量
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">c</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">c</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>利用二进制原理，可以省去「第三个变量」占用的内存：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">swap</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span><span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">^=</span> <span style="color:#000">b</span> <span style="color:#ce5c00;font-weight:bold">^=</span> <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">^=</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#8f5902;font-style:italic">// 这条语句等价于 a ^= b, b ^= a, a ^= b;
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>举个例子就能秒懂：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">$a$</th>
+<th style="text-align:center">$b$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">初始值</td>
+<td style="text-align:center">$1$</td>
+<td style="text-align:center">$2$</td>
+</tr>
+<tr>
+<td style="text-align:center">$a\;∧\!=b$</td>
+<td style="text-align:center">$1∧2$</td>
+<td style="text-align:center">$2$</td>
+</tr>
+<tr>
+<td style="text-align:center">$b\;∧\!=a$</td>
+<td style="text-align:center">$1∧2$</td>
+<td style="text-align:center">$2∧1∧2$</td>
+</tr>
+<tr>
+<td style="text-align:center">$a\;∧\!=b$</td>
+<td style="text-align:center">$1∧2∧2∧1∧2$</td>
+<td style="text-align:center">$2∧1∧2$</td>
+</tr>
+<tr>
+<td style="text-align:center">计算结果</td>
+<td style="text-align:center">$2$</td>
+<td style="text-align:center">$1$</td>
+</tr>
+</tbody>
+</table>
+<h2 id="判断是否为-2-的幂">
+  判断是否为 2 的幂
+  <a class="anchor" href="#%e5%88%a4%e6%96%ad%e6%98%af%e5%90%a6%e4%b8%ba-2-%e7%9a%84%e5%b9%82">$</a>
+</h2>
+<p>判断整数是否是 $2$ 的幂，大部分人会这么写：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">judge</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">&lt;=</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">true</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">*=</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87">false</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>时间复杂度为 $O(\log{n})$。但是还有人嫌它太慢。</p>
+<p>于是互联网上的高手给出了数个 $O(1)$ 的解法：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">judge</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">-</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">));</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">judge</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">!</span><span style="color:#000;font-weight:bold">((</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#0000cf;font-weight:bold">31</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">%</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">judge</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 用到了 lowbit() 的知识
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">x</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#000;font-weight:bold">...</span>
+</code></pre></div><p>都是很浅显易懂的写法，然而没有多少人能在第一时间想到 $\cdots \ \cdots$</p>
+<h2 id="向上舍入到-2-的幂">
+  向上舍入到 2 的幂
+  <a class="anchor" href="#%e5%90%91%e4%b8%8a%e8%88%8d%e5%85%a5%e5%88%b0-2-%e7%9a%84%e5%b9%82">$</a>
+</h2>
+<p>定义 $\text{nextPow}(x)$ 为 $x$ 向上舍入到 $2$ 的幂：</p>
+<div>$$
+\begin{aligned}
+&\text{nextPow}(1)=2\\
+&\text{nextPow}(2)=2\\
+&\text{nextPow}(3)=4\\
+&\text{nextPow}(4)=4\\
+&\text{nextPow}(5)=8\\
+&\text{nextPow}(6)=8\\
+&\text{nextPow}(7)=8\\
+&\qquad \cdots \ \cdots
+\end{aligned}
+$$</div>
+<p>$O(\log{n})$ 做法：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">nextPow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">while</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">a</span> <span style="color:#ce5c00;font-weight:bold">*=</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>$O(1)$ 做法：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">nextPow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">--</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">|=</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">|=</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">|=</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">|=</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">8</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">|=</span> <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">&gt;&gt;</span> <span style="color:#0000cf;font-weight:bold">16</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">x</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">x</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>首先看中间最魔幻的几步：</p>
+<div class="book-columns flex flex-wrap">
+  
+  <div class="flex-even markdown-inner">
+    <ul>
+<li>
+<p>$x\;|=x\;&raquo;\;1$：使 $x$ 的最高 $2$ 位都为 $1$；</p>
+</li>
+<li>
+<p>$x\;|=x\;&raquo;\;2$：使 $x$ 的最高 $4$ 位都为 $1$；</p>
+</li>
+<li>
+<p>$x\;|=x\;&raquo;\;4$：使 $x$ 的最高 $8$ 位都为 $1$；</p>
+<p>$\cdots \ \cdots$</p>
+</li>
+</ul>
+
+  </div>
+  
+  <div class="flex-even markdown-inner">
+    <ul>
+<li>
+<p>${10000001}\;|\;{01000000}=\color{red}{11}\color{black}000001$；</p>
+</li>
+<li>
+<p>${11000001}\;|\;{00110000}=\color{red}{1111}\color{black}0001$；</p>
+</li>
+<li>
+<p>${11110001}\;|\;{00001111}=\color{red}{11111111}$；</p>
+<p>$\cdots \ \cdots$</p>
+</li>
+</ul>
+
+  </div>
+  
+</div>
+
+<p>一顿操作下来，$x$ 的每一位全部都化为 $1$。此时 $x+1$ 便为 $\text{nextPow(}x)$。</p>
+<p>这么做还存在一个问题：如果 $x$ 本来就是 $2$ 的幂，那么 $\text{nextPow(}x)$ 应该等于 $x$，但按照这种做法将得到 $x×2$。于是我们需要在最开始令 $x$ 自减 $1$，即 <code>x --</code>。</p>
+</p>
+</article>
+
+            
+            
+
+            <footer class="book-footer">
+                 <div class="flex flex-wrap justify-between">
+      
+    <div style="margin:0 auto">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener">
+            <span>闽 ICP 备 2021002587 号</span>
+        </a>
+    </div>
+</div> 
+                
+                
+            </footer>
+
+              
+            
+
+            <label for="menu-control" class="hidden book-menu-overlay"></label>
+        </div>
+
+        
+        <aside class="book-toc">
+            <div class="book-toc-content">
+                
+   <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#简介">简介</a></li>
+        <li><a href="#重要性质">重要性质</a></li>
+        <li><a href="#小数转整数">小数转整数</a></li>
+        <li><a href="#相反数转换">相反数转换</a></li>
+        <li><a href="#判断奇偶性">判断奇偶性</a></li>
+        <li><a href="#判断是否同号">判断是否同号</a></li>
+        <li><a href="#快速读入">快速读入</a></li>
+        <li><a href="#求绝对值">求绝对值</a></li>
+        <li><a href="#求最大最小值">求最大/最小值</a></li>
+        <li><a href="#交换两个变量的值">交换两个变量的值</a></li>
+        <li><a href="#判断是否为-2-的幂">判断是否为 2 的幂</a></li>
+        <li><a href="#向上舍入到-2-的幂">向上舍入到 2 的幂</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav> 
+
+                
+            </div>
+        </aside>
+        
+    </main>
+
+    
+<link rel="stylesheet" href="/katex/katex.min.css">
+<script src="/katex/katex.min.js"></script>
+<script src="/katex/auto-render.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [{
+                left: "$$",
+                right: "$$",
+                display: true
+            }, {
+                left: "$",
+                right: "$",
+                display: false
+            }]
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    String.prototype.pxWidth = function(font) {
+        var canvas = String.prototype.pxWidth.canvas || (String.prototype.pxWidth.canvas = document.createElement("canvas")),
+            context = canvas.getContext("2d");
+        font && (context.font = font);
+        var metrics = context.measureText(this);
+        return metrics.width;
+    }
+    var len = document.getElementsByClassName("book-btn").length;
+    for (var i = 0; i < len; i++) {
+        var str = document.getElementsByClassName("book-btn")[i].innerHTML;
+        var wid = (100 - str.pxWidth(document.getElementsByClassName("book-btn")[i].style.font)) / 2.3;
+        document.getElementsByClassName("book-btn")[i].style.padding = "0 " + wid.toString() + "px";
+    }
+</script>
+</body>
+
+</html>
+
+     

@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://freeze.org.cn/posts/bit/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://freeze.org.cn/docs/Basics/Search/bfs/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/BinaryLift/RMQ/</loc>
@@ -102,18 +105,30 @@
   </url><url>
     <loc>https://freeze.org.cn/docs/DP/BinaryLift/</loc>
   </url><url>
+    <loc>https://freeze.org.cn/categories/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://freeze.org.cn/tags/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://freeze.org.cn/posts/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://freeze.org.cn/tags/%E4%BD%8D%E8%BF%90%E7%AE%97/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://freeze.org.cn/categories/%E7%AE%97%E6%B3%95/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://freeze.org.cn/</loc>
+    <lastmod>2021-05-15T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://freeze.org.cn/docs/Hidden/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/Hidden/intro/</loc>
   </url><url>
-    <loc>https://freeze.org.cn/categories/</loc>
-  </url><url>
     <loc>https://freeze.org.cn/docs/Tools/Dev-Cpp/</loc>
   </url><url>
     <loc>https://freeze.org.cn/docs/</loc>
-  </url><url>
-    <loc>https://freeze.org.cn/tags/</loc>
-  </url><url>
-    <loc>https://freeze.org.cn/</loc>
   </url>
 </urlset>

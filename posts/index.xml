@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>专题 on Freeze&#39;s Blogs</title>
+    <link>https://freeze.org.cn/posts/</link>
+    <description>Recent content in 专题 on Freeze&#39;s Blogs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 15 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://freeze.org.cn/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何利用位运算薅羊毛</title>
+      <link>https://freeze.org.cn/posts/bit/</link>
+      <pubDate>Sat, 15 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://freeze.org.cn/posts/bit/</guid>
+      <description>简介 $  $C++$ 提供了 $6$ 个快到极致的位运算操作符（不会的请自行百度）：
+   操作符 $\&amp;amp;$ $|$ $∧$ $\sim$ $&amp;laquo;$ $&amp;raquo;$     读作 与 或 异或 取反 左移 右移    位运算有多块？在 $32$ 位的 $CPU$ 中，位运算比普通的乘除法快约 $40$ 倍。位运算凭此成为 $OI$ 赛场上的薅羊毛利器。
+重要性质 $    $a\; \&amp;amp; \; 0=0$
+  $a\; \&amp;amp; -1=a$
+  $a\; | \; 0=a$
+  $a\; | -1=-1$
+     $a∧a=0$</description>
+    </item>
+    
+  </channel>
+</rss>
